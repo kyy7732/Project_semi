@@ -1,4 +1,4 @@
-package com.project.festival;
+package com.semi.project;
 
 import java.text.DateFormat;
 import java.util.Date;

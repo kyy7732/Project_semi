@@ -1,8 +1,8 @@
-package com.project.festival.user.service;
+package com.semi.project.user.service;
 
 import org.springframework.stereotype.Service;
 
-import com.project.festival.user.mapper.IUserMapper;
+import com.semi.project.user.mapper.IUserMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -10,6 +10,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService {
 
-	private final IUserMapper mapper;
+//	private final IUserMapper mapper;
 	
 }

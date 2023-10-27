@@ -1,4 +1,4 @@
-package com.project.festival.user.mapper;
+package com.semi.project.user.mapper;
 
 public interface IUserMapper {
 
