@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="location"
+			value="classpath:/properties/Hikari.properties" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:/mapper/*Mapper.xml" />
+	</bean>
+	
+	<bean id="ds" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="${ora.driverClassName}"/>
+		<property name="jdbcUrl" value="${ora.url}"/>
+		<property name="username" value="${ora.username}"/>
+		<property name="password" value="${ora.password}"/>
+	</bean>
+	
+	<mybatis-spring:scan base-package="com.semi.project.festival.mapper"/>
+	<mybatis-spring:scan base-package="com.semi.project.user.mapper"/>
+
+</beans>
