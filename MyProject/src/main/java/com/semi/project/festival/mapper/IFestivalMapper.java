@@ -7,6 +7,6 @@ import com.semi.project.festival.entity.Festival;
 public interface IFestivalMapper {
 	
 	//시즌별 축제 조회
-	List<Festival> getFestival();
+	List<Festival> getFestival(String season);
 	
 }
