@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.project.festival">
+	<logger name="com.semi.project">
 		<level value="info" />
 	</logger>
 	
