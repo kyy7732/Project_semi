@@ -1,6 +1,12 @@
 package com.semi.project.user.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.semi.project.festival.dto.FtvResponseDTO;
+import com.semi.project.festival.dto.ReplyResponseDTO;
+import com.semi.project.user.mapper.IUserMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -8,6 +14,20 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService {
 
-//	private final IUserMapper mapper;
+	private final IUserMapper mapper;
+
+	public void regist() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<FtvResponseDTO> getLikeList(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<ReplyResponseDTO> getReplyList(Object attribute) {
+		return null;
+	}
 	
 }
