@@ -141,23 +141,25 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_adr">이메일</label>
+                                <label>이메일</label>
                             </th>
                             <td class="pn_td">
                                 <p class="pn_txt">
-                                    <input type="text" id="s_mail" name="u_mail">
+                                    <input type="text" id="email" name="email">
                                     @
-                                    <input type="text" id="s_mail" name="u_mail">&nbsp;
-                                    <select type="select" id="s_mail" name="u_mail">
-                                        <option value="gmail.common">gmail.com</option>
-                                        <option value=""></option>
+                                    <input type="text" id="email" name="email">&nbsp;
+                                    <select type="select" id="email" name="email">
+                                        <option value="">직접입력</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
                                         <input type="button" value="이메일 인증">
                                     </span>
                                     
                                 </p>
-                                
+                                <!--여기까짖지지지지니지지지 -->
                                 
                                 
                             </td>

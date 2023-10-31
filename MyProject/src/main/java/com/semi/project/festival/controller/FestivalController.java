@@ -43,18 +43,7 @@ public class FestivalController {
 	    return service.getReplyList(ftvNum);
 	}
 	
-	
-	// 로그인 페이지로 이동 요청
-	@GetMapping("/login")
-	public void login() {}
-	
-	// 로그인 요청
-	@PostMapping("/login")
-	public void login(String userId, String userPw, Model model) {
-		System.out.println("festival의 login요청!!!!");
-		model.addAttribute("result", service.login(userId, userPw));
-		
-		}
+
 	}
 
 

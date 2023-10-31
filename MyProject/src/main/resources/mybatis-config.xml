@@ -5,11 +5,13 @@
 <configuration>
 
 	    <settings>
-	    	<setting name="jdbcTypeForNull" value="NULL"/>
-	    	<setting name="mapUnderscoreToCamelCase" value="True"/>
+	    	<setting name="jdbcTypeForNull" value="NULL"/> <!-- 값이 null일 경우 null값 넣기 -->
+	    	<setting name="mapUnderscoreToCamelCase" value="True"/> <!-- 언더스코어 표기법을 카멜 케이스로 자동 변환하는 설정 -->
 	    </settings>
     
     <typeAliases>
 		<typeAlias type="com.semi.project.festival.entity.Festival" alias="festival"/>
     </typeAliases>
+    
+    
 </configuration>

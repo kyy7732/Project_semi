@@ -16,6 +16,9 @@ public interface IUserMapper {
 	
 	// 회원 정보 얻어오기
 	User getInfo(String id);
+
+	// 아이디 중복 확인
+	int idCheck(String account);
 	
 	//로그아웃
 	
