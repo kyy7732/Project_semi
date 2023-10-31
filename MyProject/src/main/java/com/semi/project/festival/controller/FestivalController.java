@@ -42,5 +42,7 @@ public class FestivalController {
 	    return service.getReplyList(ftvNum);
 	}
 	
+	
+	
 
 }
