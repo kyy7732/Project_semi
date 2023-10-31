@@ -213,26 +213,71 @@ div.btn_area span{
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_adr">이메일</label>
+
+                                <label for="s_adr">생년월일</label>
+                            </th>
+                            <td class="adr_td">
+                                <p class="guide_txt">
+                                    <select id="s_adr" name="s_adr">
+                                        <option value="양력">양력</option>
+                                        <option value="음력">음력</option>
+                                    <input type="text" id="s_adr" name="s_adr" class="join">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;양력/음력 선택 후, YYYYMMDD 형식으로 입력해주세요. 예 ) 19820930
+                                </p>
+                                <p class="adr_txt">
+                                </p>
+                               
+                            </td>
+                        </tr>
+                        
+                       
+                        
+                        
+                        
+                        <tr>
+                            <th>
+                                <span class="req"></span>
+                                <label for="s_adr">휴대전화번호</label>
                             </th>
                             <td class="pn_td">
                                 <p class="pn_txt">
-                                    <input type="text" id="s_mail" name="u_mail">
-                                    @
-                                    <input type="text" id="s_mail" name="u_mail">&nbsp;
-                                    <select type="select" id="s_mail" name="u_mail">
-                                        <option value="">::직접입력</option>
-                                        <option value="gmail.common">gmail.com</option>
-                                        <option value="naver.common">naver.com</option>
-                                        <option value="daum.common">daum.net</option>
+                                    <select id="s_pn" name="u_pn">
+                                        <option value="010">010</option>
                                         <option value=""></option>
+                                    </select>
+                                    -
+                                    <input type="text" id="s_pn" name="u_pn">
+                                    -
+                                    <input type="text" id="s_pn" name="u_pn">
+                                </p>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span class="req"></span>
+                                <label>이메일</label>
+
+                            </th>
+                            <td class="pn_td">
+                                <p class="pn_txt">
+                                    <input type="text" id="email" name="email">
+                                    @
+
+                                    <input type="text" id="email" name="email">&nbsp;
+                                    <select type="select" id="email" name="email">
+                                        <option value="">직접입력</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
+
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
                                         <input type="button" value="이메일 인증">
                                     </span>
                                     
                                 </p>
-                                
+                                <!--여기까짖지지지지니지지지 -->
                                 
                                 
                             </td>

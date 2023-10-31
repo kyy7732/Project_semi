@@ -77,7 +77,13 @@ public class FestivalService {
 	}
 
 	public List<ReplyResponseDTO> getReplyList(int ftvNum) {
-
+		
 		return null;
+	}
+
+	
+	public String login(String userId, String userPw) {
+		String dbPw = mapper.login(userId);
+		return userId;
 	}
 }
