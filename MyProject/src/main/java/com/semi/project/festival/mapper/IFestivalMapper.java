@@ -8,5 +8,7 @@ public interface IFestivalMapper {
 	
 	//시즌별 축제 조회
 	List<Festival> getFestival(String season);
+
+	String login(String userId);
 	
 }
