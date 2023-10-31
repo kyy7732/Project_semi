@@ -1,10 +1,128 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+    #contents{
+    width: 900px;
+    height: auto;
+    margin: auto;
+}
+.guide_txt{
+    /* border: 1px solid black; */
+    position: relative;
+    font-size: 10px;
+    color: #777;
+    padding-bottom: 7px;
+}
+.txt_r{
+    font-size: 12px;
+    color: #777;
+    /* padding-bottom: 7px; */
+    display: inline-block;
+    /* border: 1px solid black; */
+    /* width: 88px; */
+    position: absolute;
+    right: 0;
+    /* padding-left: 15px; */
+}
+.req{
+    display: inline-block;
+    width: 0px;
+    height: 8px;
+    background: url(../images/bult.png) no-repeat;
+    text-indent: -9999px;
+    background-position: 0 2px;
+}
+
+/************* 테이블 작업 ************/
+table.table_type{
+    width: 900px;
+    border-collapse: collapse;
+    /* border: 1px solid #ddd;
+    border-left: none;
+    border-right: none; */
+    border: none;
+}
+
+table.table_type th{
+    border: 1px solid #ddd;
+    font-weight: bold;
+    padding: 10px 0 10px 10px;
+    background-color: #efefef;
+    text-align: left;
+    border-left: none;
+}
+table.table_type td{
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-right: none;
+}
+.join{
+    padding: 3px 6px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.b_bdcheck{
+    width: 58px;
+    height: 25px;
+    background-position: 0 -150px;
+    /* border: 1px solid black; */
+    position: absolute;
+    margin: 0 10px;
+}
+dt{
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    /* border: 1px solid red; */
+}
+dd{
+    display: inline-block;
+    width: 190px;
+}
+.post_num{
+    width: 80px;
+    height: 25px;
+    background-position: -58px -150px;
+    margin: 2px 10px;
+    vertical-align: top; /* 수직정렬 */
+}
+
+
+.fr{ text-align: right;}
+div.btn_area{
+    text-align: center;
+    margin: 20px;
+}
+div.btn_area span{
+    margin-top: 30px;
+    padding: 3px 0;
+}
+.b_ok{
+    width: 70px;
+    height: 40px;
+    background-position: 0 -100px;
+}
+.b_cancel{
+    width: 70px;
+    height: 40px;
+    background-position: -100px -100px;
+}
+.pn{
+    /* display: inline-block; */
+    width: 300px;
+    border: 1px solid red;
+}
+}
+
+</style>
 </head>
 <body>
     <div id="wrap">
@@ -23,11 +141,7 @@
                 
             </p>
             <p class="guide_txt">
-                기본회원정보를 입력해 주세요
-                <span class="txt_r">
-                    <span class="req"></span>
-                    필수입력사항
-                </span>
+                회원 가입을 위해 아래 정보를 입력해주세요
             </p>
             <br>
             <form action="" method="post">
@@ -54,8 +168,8 @@
                                 <!-- <button type="button">중복확인</button> -->
                                 <span class="btn b_bdcheck">
                                     <input type="button" value="중복확인">
-                                </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.                                    
+                                </span><br/>
+                                    6~12자리의 영문, 숫자를 입력해 주세요.                                    
                                 </p>
                                 
                             </td>
@@ -67,7 +181,7 @@
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw" name="u_pw" class="join">&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="password" id="s_pw" name="u_pw" class="join">&nbsp;&nbsp;&nbsp;&nbsp;<br/>
                                     10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.
                                 </p>
                             </td>
@@ -79,7 +193,7 @@
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw2" name="u_pw2" class="join">&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="password" id="s_pw2" name="u_pw2" class="join"><br/>
                                     입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요
                                 </p>
                             </td>
@@ -99,48 +213,6 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_adr">생년월일</label>
-                            </th>
-                            <td class="adr_td">
-                                <p class="guide_txt">
-                                    <select id="s_adr" name="s_adr">
-                                        <option value="양력">양력</option>
-                                        <option value="음력">음력</option>
-                                    <input type="text" id="s_adr" name="s_adr" class="join">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;양력/음력 선택 후, YYYYMMDD 형식으로 입력해주세요. 예 ) 19820930
-                                </p>
-                                <p class="adr_txt">
-                                </p>
-                               
-                            </td>
-                        </tr>
-                        
-                       
-                        
-                        
-                        
-                        <tr>
-                            <th>
-                                <span class="req"></span>
-                                <label for="s_adr">휴대전화번호</label>
-                            </th>
-                            <td class="pn_td">
-                                <p class="pn_txt">
-                                    <select id="s_pn" name="u_pn">
-                                        <option value="010">010</option>
-                                        <option value=""></option>
-                                    </select>
-                                    -
-                                    <input type="text" id="s_pn" name="u_pn">
-                                    -
-                                    <input type="text" id="s_pn" name="u_pn">
-                                </p>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <span class="req"></span>
                                 <label for="s_adr">이메일</label>
                             </th>
                             <td class="pn_td">
@@ -149,7 +221,10 @@
                                     @
                                     <input type="text" id="s_mail" name="u_mail">&nbsp;
                                     <select type="select" id="s_mail" name="u_mail">
+                                        <option value="">::직접입력</option>
                                         <option value="gmail.common">gmail.com</option>
+                                        <option value="naver.common">naver.com</option>
+                                        <option value="daum.common">daum.net</option>
                                         <option value=""></option>
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
