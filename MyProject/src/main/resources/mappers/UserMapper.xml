@@ -4,6 +4,9 @@
     
 <mapper namespace="com.semi.project.user.mapper.IUserMapper">
 
-	
+	<select id="getPw">
+		SELECT user_pw FROM
+		WHERE user_id = #{userId}
+	</select>
 
 </mapper>

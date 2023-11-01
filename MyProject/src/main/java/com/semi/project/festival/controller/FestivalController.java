@@ -28,7 +28,7 @@ public class FestivalController {
 	@GetMapping("/ftvList")
 	@ResponseBody
 	public List<FtvResponseDTO> getFtvList(String season){
-		log.info("/festival/ftvList 요청: GET!  {}", season);
+		log.info("/festival/ftvList 요청: GET! {}", season);
        return service.getFtvList(season);
 	}
 

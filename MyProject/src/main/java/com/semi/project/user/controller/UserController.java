@@ -6,8 +6,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;  
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
@@ -24,8 +26,8 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
 	private final UserService service;
-
-	//회원가입 페이지(동기)
+	
+	//회원가입 페이지 이동(동기)
 	@GetMapping("/join")
 	public void joinPage() {
 		log.info("/user/join 요청: GET!");
@@ -38,10 +40,19 @@ public class UserController {
 	    service.regist();
 	    return "redirect:/user/uselogin";
 	}
-
+	
 	//로그인페이지(동기)
 	@GetMapping("/login")
 	public void loginPage(){}
+	
+	@GetMapping("/id/{account}")
+	@ResponseBody
+	public String idCheck(@PathVariable String account) {
+		System.out.println("클라이언트로부터 전달된 아이디: " + account);
+		int result = service.idCheck(account);
+		if(result == 1) return "duplicated";
+		else return "ok";
+	}
 
 	//로그인(동기)
 	@PostMapping("/login")
