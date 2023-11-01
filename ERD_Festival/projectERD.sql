@@ -40,15 +40,15 @@ CREATE TABLE festival
 	ftv_num number NOT NULL,
 	ftv_name varchar2(500) NOT NULL,
 	host_org varchar2(500),
-	phone number(10,0) NOT NULL,
+	phone VARCHAR2(500),
 	place varchar2(500) NOT NULL,
 	url varchar2(500),
 	ftv_content varchar2(4000),
 	organizer_org varchar2(500),
-	admn_area number NOT NULL,
+	admn_area varchar2(500),
 	road_addr varchar2(500),
-	latitude number(10,10),
-	longitude number(10,10),
+	latitude number,
+	longitude number,
 	end_date date NOT NULL,
 	start_date date NOT NULL,
 	season varchar2(50),
@@ -124,7 +124,3 @@ BEGIN
 	INTO :new.ftv_num
 	FROM dual;
 END;
-
-
-
-

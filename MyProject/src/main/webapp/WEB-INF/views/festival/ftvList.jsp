@@ -7,6 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>slkdafjklsjfdlsjf</h1>
+	<%@ include file="../include/header.jsp"  %>
+	
+	
+	
+	<%@ include file="../include/footer.jsp"  %>
+	
+	<script>
+		
+		
+	
+	
+	</script>
 </body>
 </html>

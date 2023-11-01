@@ -35,7 +35,7 @@
     display: inline-block;
     width: 0px;
     height: 8px;
-    background: url(../images/bult.png) no-repeat;
+    /* background: url(./images/join.png) no-repeat; */
     text-indent: -9999px;
     background-position: 0 2px;
 }
@@ -120,7 +120,6 @@ div.btn_area span{
     width: 300px;
     border: 1px solid red;
 }
-}
 
 </style>
 </head>
@@ -144,7 +143,7 @@ div.btn_area span{
                 회원 가입을 위해 아래 정보를 입력해주세요
             </p>
             <br>
-            <form action="" method="post">
+            <form action="${pageContext.request.contextPath}/user/join" name="join" method="post">
                 <table class="table_type">
                     <colgroup>
                         <col width="130px"/>
@@ -164,10 +163,9 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="text" id="s_id" name="u_id" class="join">
-                                <!-- <button type="button">중복확인</button> -->
+                                    <input type="text" id="userId" name="userId" class="join">
                                 <span class="btn b_bdcheck">
-                                    <input type="button" value="중복확인">
+                                    <input name="idCheck" type="button" value="중복확인">
                                 </span><br/>
                                     6~12자리의 영문, 숫자를 입력해 주세요.                                    
                                 </p>
@@ -209,50 +207,6 @@ div.btn_area span{
                             </td>
                         </tr>
                         
-                        
-                        <tr>
-                            <th>
-                                <span class="req"></span>
-
-                                <label for="s_adr">생년월일</label>
-                            </th>
-                            <td class="adr_td">
-                                <p class="guide_txt">
-                                    <select id="s_adr" name="s_adr">
-                                        <option value="양력">양력</option>
-                                        <option value="음력">음력</option>
-                                    <input type="text" id="s_adr" name="s_adr" class="join">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;양력/음력 선택 후, YYYYMMDD 형식으로 입력해주세요. 예 ) 19820930
-                                </p>
-                                <p class="adr_txt">
-                                </p>
-                               
-                            </td>
-                        </tr>
-                        
-                       
-                        
-                        
-                        
-                        <tr>
-                            <th>
-                                <span class="req"></span>
-                                <label for="s_adr">휴대전화번호</label>
-                            </th>
-                            <td class="pn_td">
-                                <p class="pn_txt">
-                                    <select id="s_pn" name="u_pn">
-                                        <option value="010">010</option>
-                                        <option value=""></option>
-                                    </select>
-                                    -
-                                    <input type="text" id="s_pn" name="u_pn">
-                                    -
-                                    <input type="text" id="s_pn" name="u_pn">
-                                </p>
-                                
-                            </td>
-                        </tr>
                         <tr>
                             <th>
                                 <span class="req"></span>
@@ -261,10 +215,10 @@ div.btn_area span{
                             </th>
                             <td class="pn_td">
                                 <p class="pn_txt">
-                                    <input type="text" id="email" name="email">
+                                    <input type="text" id="email1" name="email1">
                                     @
 
-                                    <input type="text" id="email" name="email">&nbsp;
+                                    <input type="text" id="email2" name="email2">&nbsp;
                                     <select type="select" id="email" name="email">
                                         <option value="">직접입력</option>
                                         <option value="naver.com">naver.com</option>
@@ -300,5 +254,18 @@ div.btn_area span{
         
         <!-- 하단영역 끝 -->
     </div>
+
+    <script>
+        //회원가입 요청
+
+        const userId = document.join.userId.value;
+        const $idCheck = document.join.idCheck;
+        $idCheck.onclick = e => {
+            
+            fetch('${pageContext.request.contextPath}/user/id/' + userId)
+        }
+
+
+    </script>
 </body>
 </html>
