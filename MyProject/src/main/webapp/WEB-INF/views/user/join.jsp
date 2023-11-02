@@ -8,34 +8,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    #contents{
+#contents {
     width: 900px;
     height: auto;
     margin: auto;
 }
 .guide_txt{
-    /* border: 1px solid black; */
     position: relative;
-    font-size: 10px;
-    color: #777;
-    padding-bottom: 7px;
+    font-size: 12px;
+    color: #666;
 }
 .txt_r{
     font-size: 12px;
     color: #777;
-    /* padding-bottom: 7px; */
     display: inline-block;
-    /* border: 1px solid black; */
-    /* width: 88px; */
     position: absolute;
     right: 0;
-    /* padding-left: 15px; */
 }
 .req{
     display: inline-block;
     width: 0px;
     height: 8px;
-    background: url(../images/bult.png) no-repeat;
+    //background: url(../images/bult.png) no-repeat;
     text-indent: -9999px;
     background-position: 0 2px;
 }
@@ -68,6 +62,7 @@ table.table_type td{
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
 .b_bdcheck{
     width: 58px;
     height: 25px;
@@ -95,8 +90,6 @@ dd{
     vertical-align: top; /* 수직정렬 */
 }
 
-
-.fr{ text-align: right;}
 div.btn_area{
     text-align: center;
     margin: 20px;
@@ -121,6 +114,22 @@ div.btn_area span{
     border: 1px solid red;
 }
 
+.title01{
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.mainLogo{
+    display: inline-block;
+    width: 230px;
+    height: 65px;
+    text-indent: -9999px;
+    margin-left: 40%;
+    margin-top: 20px;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -133,9 +142,10 @@ div.btn_area span{
         
         <!--  콘텐츠영역  -->
         <div id="contents">
-            <h1 class="sub_title title01">
+            <img src="../img/mainLogo.png" class="mainLogo">
+            <span class="sub_title title01">
                 회원가입
-            </h1>
+            </span>
             <p class="title_src">
                 
             </p>
@@ -149,12 +159,7 @@ div.btn_area span{
                         <col width="130px"/>
                         <col width="*">
                     </colgroup>
-                    <tbody>
-                        <!-- <tr>
-                            <th>이름</th>
-                            <td>마루치</td>
-                        </tr> -->
-                        
+                    <tbody>                        
                         <tr>
                             <th>
                                 <span class="req"></span>
@@ -212,25 +217,6 @@ div.btn_area span{
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_adr">휴대전화번호</label>
-                            </th>
-                            <td class="pn_td">
-                                <p class="pn_txt">
-                                    <select id="s_pn" name="u_pn">
-                                        <option value="010">010</option>
-                                        <option value=""></option>
-                                    </select>
-                                    -
-                                    <input type="text" id="s_pn" name="u_pn">
-                                    -
-                                    <input type="text" id="s_pn" name="u_pn">
-                                </p>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                <span class="req"></span>
                                 <label for="email">이메일</label>
                             </th>
                             <td class="pn_td">
@@ -246,6 +232,7 @@ div.btn_area span{
                                     <span class="btn b_bdcheck">
                                         <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
                                     </span>
+
                                     <div class="mail_check_box">
                                     	<input type="text" class="form_control mail_check_input" placeholder="인증번호 6자리를 입력하세요." maxlength="6" disabled="disabled">
                                     	<span id="mail_check_warn"></span>
@@ -268,7 +255,7 @@ div.btn_area span{
         <!-- 콘텐츠영역 끝 -->
 
         <!--  하단영역  -->
-        
+        <%@ include file="../include/footer.jsp"  %>
         <!-- 하단영역 끝 -->
     </div>
     
@@ -281,6 +268,12 @@ div.btn_area span{
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
 
+        const $idCheck = document.join.idCheck;
+        $idCheck.onclick = e => {
+            const userId = document.join.userId.value;
+            fetch('${pageContext.request.contextPath}/user/id/' + userId)
+        }
+        
         emailBox.addEventListener('change', (event) => {
             if(event.target.value !== "type"){
                 emailInput.value = event.target.value
