@@ -8,34 +8,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    #contents{
+#contents {
     width: 900px;
     height: auto;
     margin: auto;
 }
 .guide_txt{
-    /* border: 1px solid black; */
     position: relative;
-    font-size: 10px;
-    color: #777;
-    padding-bottom: 7px;
+    font-size: 12px;
+    color: #666;
 }
 .txt_r{
     font-size: 12px;
     color: #777;
-    /* padding-bottom: 7px; */
     display: inline-block;
-    /* border: 1px solid black; */
-    /* width: 88px; */
     position: absolute;
     right: 0;
-    /* padding-left: 15px; */
 }
 .req{
     display: inline-block;
     width: 0px;
     height: 8px;
-    /* background: url(./images/join.png) no-repeat; */
     text-indent: -9999px;
     background-position: 0 2px;
 }
@@ -68,6 +61,7 @@ table.table_type td{
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
 .b_bdcheck{
     width: 58px;
     height: 25px;
@@ -95,8 +89,6 @@ dd{
     vertical-align: top; /* 수직정렬 */
 }
 
-
-.fr{ text-align: right;}
 div.btn_area{
     text-align: center;
     margin: 20px;
@@ -121,6 +113,22 @@ div.btn_area span{
     border: 1px solid red;
 }
 
+.title01{
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.mainLogo{
+    display: inline-block;
+    width: 230px;
+    height: 65px;
+    text-indent: -9999px;
+    margin-left: 40%;
+    margin-top: 20px;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -133,9 +141,10 @@ div.btn_area span{
         
         <!--  콘텐츠영역  -->
         <div id="contents">
-            <h1 class="sub_title title01">
+            <img src="../img/mainLogo.png" class="mainLogo">
+            <span class="sub_title title01">
                 회원가입
-            </h1>
+            </span>
             <p class="title_src">
                 
             </p>
@@ -149,12 +158,7 @@ div.btn_area span{
                         <col width="130px"/>
                         <col width="*">
                     </colgroup>
-                    <tbody>
-                        <!-- <tr>
-                            <th>이름</th>
-                            <td>마루치</td>
-                        </tr> -->
-                        
+                    <tbody>                        
                         <tr>
                             <th>
                                 <span class="req"></span>
@@ -165,6 +169,7 @@ div.btn_area span{
                                 <p class="guide_txt">
                                     <input type="text" id="userId" name="userId" class="join">
                                 <span class="btn b_bdcheck">
+                                    <!-- <img src="../img/id_check.png" class="id_check"> -->
                                     <input name="idCheck" type="button" value="중복확인">
                                 </span><br/>
                                     6~12자리의 영문, 숫자를 입력해 주세요.                                    
@@ -209,17 +214,16 @@ div.btn_area span{
                         
                         <tr>
                             <th>
-                                <span class="req"></span>
+                                <span class="req" join></span>
                                 <label>이메일</label>
 
                             </th>
                             <td class="pn_td">
                                 <p class="pn_txt">
-                                    <input type="text" id="email1" name="email1">
+                                    <input type="text" class="join" id="email1" name="email1">
                                     @
-
-                                    <input type="text" id="email2" name="email2">&nbsp;
-                                    <select type="select" id="email" name="email">
+                                    <input type="text" class="join" id="email2" name="email2">&nbsp;
+                                    <select type="select"  id="email" name="email">
                                         <option value="">직접입력</option>
                                         <option value="naver.com">naver.com</option>
                                         <option value="gmail.com">gmail.com</option>
@@ -231,9 +235,6 @@ div.btn_area span{
                                     </span>
                                     
                                 </p>
-                                <!--여기까짖지지지지니지지지 -->
-                                
-                                
                             </td>
                         </tr>
                     </tbody>
@@ -251,7 +252,7 @@ div.btn_area span{
         <!-- 콘텐츠영역 끝 -->
 
         <!--  하단영역  -->
-        
+        <%@ include file="../include/footer.jsp"  %>
         <!-- 하단영역 끝 -->
     </div>
 
@@ -264,8 +265,6 @@ div.btn_area span{
             
             fetch('${pageContext.request.contextPath}/user/id/' + userId)
         }
-
-
     </script>
 </body>
 </html>
