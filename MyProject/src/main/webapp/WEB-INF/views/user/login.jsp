@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>modalLogin</title>
 <style>
-/*헤더*/
- #header{
+/* 헤더 */
+ /* #header{
             height: 44px;
             margin: 0;
             background-color: #2177CE;
@@ -29,7 +29,7 @@
         /* li태그 안에 존재하는 a태그의 글꼴 색을 회색(#eee)으로
         그리고 밑줄은 없앤다. 
         마우스가 올라가면 살짝 어두운 색(#e2e2e2)로 지정하자!*/
-        #nav>li>a{
+        /* #nav>li>a{
             color: #eee;
             text-decoration: none;
         }
@@ -49,11 +49,11 @@
             text-align: center;
             z-index: 1; 
             /* border: 1px solid red; */
-        }
+       /* }
         body{ 
             margin: 0;
             padding: 0;
-        }
+        } */ 
 
 /*로그인*/
 #modal.modal-overlay {
@@ -118,7 +118,7 @@
 </style>
 </head>
 
-<div id="wrap">
+<!-- <div id="wrap">
        <header id="header">
         <ul id="nav">
             <li><a href="" id="apple">&nbsp;</a></li>
@@ -132,7 +132,7 @@
             <li><a href="" id="">회원가입</a></li>
         </ul>
        </header>
-</div>
+</div> -->
 <!-- 이미지 div -->
 <!-- <img src="images/mapImg.png" style= "opacity: 100%"/> -->
 
@@ -179,4 +179,4 @@
 </body>
 </html>
 
-<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>

@@ -1,130 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ include file="include/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-    <style>
-      /*í¤ë*/
-      #header {
-        height: 44px;
-        margin: 0;
-        background-color: #2177ce;
-      }
-      #nav {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        font: 14px sans-serif;
-        text-align: center;
-        line-height: 44px;
-      }
-      #nav > li {
-        display: inline;
-        margin-right: 70px;
-      }
-      /* liíê·¸ ìì ì¡´ì¬íë aíê·¸ì ê¸ê¼´ ìì íì(#eee)ì¼ë¡
-        ê·¸ë¦¬ê³  ë°ì¤ì ìì¤ë¤. 
-        ë§ì°ì¤ê° ì¬ë¼ê°ë©´ ì´ì§ ì´ëì´ ì(#e2e2e2)ë¡ ì§ì íì!*/
-      #nav > li > a {
-        color: #eee;
-        text-decoration: none;
-      }
-      #nav > li > a:hover {
-        color: #e2e2e2;
-      }
-      #apple {
-        background-image: url(images/icon_apple.svg);
-        width: 48px;
-        position: absolute;
-        top: 2px;
-        background-size: 16px 44px;
-        background-repeat: no-repeat;
-        background-position: center center;
-
-        margin-left: -24px;
-        text-align: center;
-        z-index: 1;
-        /* border: 1px solid red; */
-      }
-      body {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
   </head>
+  <style>
+    body {
+      border: red;
+    }
+  </style>
   <body>
-    <div id="wrap">
-      <header id="header">
-        <ul id="nav">
-          <li>
-            <a
-              href=""
-              id="apple"
-              >&nbsp;</a
-            >
-          </li>
-          <li>
-            <a
-              href=""
-              id=""
-              >지역축제알리미</a
-            >
-          </li>
-          <li>
-            <a
-              href=""
-              id=""
-            ></a>
-          </li>
-          <li>
-            <a
-              href=""
-              id=""
-            ></a>
-          </li>
-          <li>
-            <a
-              href=""
-              id=""
-            ></a>
-          </li>
-          <li>
-            <a
-              href=""
-              id=""
-            ></a>
-          </li>
-          <li>
-            <a
-              href=""
-              id=""
-            ></a>
-          </li>
-          <li>
-            <a
-              href=""
-              id=""
-              >로그인</a
-            >
-          </li>
-          <li>
-            <a
-              href=""
-              id=""
-              >회원가입</a
-            >
-          </li>
-        </ul>
-      </header>
-    </div>
-
     <!-- 지도영역 -->
     <div
       id="map"
-      style="width: 70%; height: 500px"
+      style="width: 100%; height: 600px"
     ></div>
 
     <script
@@ -141,7 +33,7 @@ pageEncoding="UTF-8"%>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
           center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-          level: 20, // 지도의 확대 레벨
+          level: 12, // 지도의 확대 레벨
         };
 
       // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
@@ -172,6 +64,7 @@ pageEncoding="UTF-8"%>
         });
       });
 
+      //폴리곤 표시
       function displayArea(coordinates, name) {
         var polygonPath = [];
         $.each(coordinates[0], function (i, coordinate) {
@@ -193,6 +86,30 @@ pageEncoding="UTF-8"%>
         });
 
         polygon.setMap(map); // 지도에 다각형 표시
+      }
+
+      kakao.maps.event.addListener(map, 'zoom_changed', function () {
+        level = map.getLevel();
+        if (!detailMode && level <= 10) {
+          // level 에 따라 다른 json 파일을 사용한다.
+          detailMode = true;
+          removePolygon();
+          init('json/sig.json');
+        } else if (detailMode && level > 10) {
+          // level 에 따라 다른 json 파일을 사용한다.
+          detailMode = false;
+          removePolygon();
+          init('json/sido.json');
+        }
+      });
+
+      // 모든 폴리곤을 지우는 함수
+      function removePolygon() {
+        for (let i = 0; i < polygons.length; i++) {
+          polygons[i].setMap(null);
+        }
+        areas = [];
+        polygons = [];
       }
 
       ///////////////////////////////////////////////////
@@ -241,4 +158,4 @@ pageEncoding="UTF-8"%>
   </body>
 </html>
 
-<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
