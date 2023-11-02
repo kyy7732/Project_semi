@@ -143,7 +143,7 @@ div.btn_area span{
                 회원 가입을 위해 아래 정보를 입력해주세요
             </p>
             <br>
-            <form action="${pageContext.request.contextPath}/user/join" name="join" method="post">
+            <form action="${pageContext.request.contextPath}/user/join" name="joinForm" method="post">
                 <table class="table_type">
                     <colgroup>
                         <col width="130px"/>
@@ -256,12 +256,13 @@ div.btn_area span{
     </div>
 
     <script>
-        //회원가입 요청
+        //id 중복확인 요청
 
-        const userId = document.join.userId.value;
-        const $idCheck = document.join.idCheck;
+        //const userId = document.joinForm.userId.value;
+        const $idCheck = document.joinForm.idCheck;
         $idCheck.onclick = e => {
-            
+       		const userId = document.getElementById('userId').value;
+            console.log(userId);
             fetch('${pageContext.request.contextPath}/user/id/' + userId)
         }
 
