@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="include/header.jsp" %>
 		mainPage!!
-<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
+
+<%@ include file="include/footer.jsp" %>
 </body>
 
 </html>

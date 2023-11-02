@@ -15,8 +15,11 @@ public class FestivalMapperTest {
 	
 	@Autowired
 	private IFestivalMapper mapper;
-	
 
-	
+	@Test
+	@DisplayName("봄버튼을 클릭하면 봄축제 정보가 출력된다.")
+	void getFestival() {
+		mapper.getFestival("봄");
+	}
 	
 }
