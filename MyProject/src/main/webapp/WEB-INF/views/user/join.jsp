@@ -1,10 +1,127 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+    #contents{
+    width: 900px;
+    height: auto;
+    margin: auto;
+}
+.guide_txt{
+    /* border: 1px solid black; */
+    position: relative;
+    font-size: 10px;
+    color: #777;
+    padding-bottom: 7px;
+}
+.txt_r{
+    font-size: 12px;
+    color: #777;
+    /* padding-bottom: 7px; */
+    display: inline-block;
+    /* border: 1px solid black; */
+    /* width: 88px; */
+    position: absolute;
+    right: 0;
+    /* padding-left: 15px; */
+}
+.req{
+    display: inline-block;
+    width: 0px;
+    height: 8px;
+    background: url(../images/bult.png) no-repeat;
+    text-indent: -9999px;
+    background-position: 0 2px;
+}
+
+/************* 테이블 작업 ************/
+table.table_type{
+    width: 900px;
+    border-collapse: collapse;
+    /* border: 1px solid #ddd;
+    border-left: none;
+    border-right: none; */
+    border: none;
+}
+
+table.table_type th{
+    border: 1px solid #ddd;
+    font-weight: bold;
+    padding: 10px 0 10px 10px;
+    background-color: #efefef;
+    text-align: left;
+    border-left: none;
+}
+table.table_type td{
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-right: none;
+}
+.join{
+    padding: 3px 6px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.b_bdcheck{
+    width: 58px;
+    height: 25px;
+    background-position: 0 -150px;
+    /* border: 1px solid black; */
+    position: absolute;
+    margin: 0 10px;
+}
+dt{
+    display: inline-block;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    /* border: 1px solid red; */
+}
+dd{
+    display: inline-block;
+    width: 190px;
+}
+.post_num{
+    width: 80px;
+    height: 25px;
+    background-position: -58px -150px;
+    margin: 2px 10px;
+    vertical-align: top; /* 수직정렬 */
+}
+
+
+.fr{ text-align: right;}
+div.btn_area{
+    text-align: center;
+    margin: 20px;
+}
+div.btn_area span{
+    margin-top: 30px;
+    padding: 3px 0;
+}
+.b_ok{
+    width: 70px;
+    height: 40px;
+    background-position: 0 -100px;
+}
+.b_cancel{
+    width: 70px;
+    height: 40px;
+    background-position: -100px -100px;
+}
+.pn{
+    /* display: inline-block; */
+    width: 300px;
+    border: 1px solid red;
+}
+
+</style>
 </head>
 <body>
     <div id="wrap">
@@ -23,11 +140,7 @@
                 
             </p>
             <p class="guide_txt">
-                기본회원정보를 입력해 주세요
-                <span class="txt_r">
-                    <span class="req"></span>
-                    필수입력사항
-                </span>
+                회원 가입을 위해 아래 정보를 입력해주세요
             </p>
             <br>
             <form action="${pageContext.request.contextPath}/user/join" method="post" name="joinForm">
@@ -79,7 +192,7 @@
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw2" name="u_pw2" class="join">&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="password" id="s_pw2" name="u_pw2" class="join"><br/>
                                     입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요
                                 </p>
                             </td>
@@ -128,7 +241,7 @@
                                     	<option value="type">직접입력</option>
                                         <option value="@naver.com">naver.com</option>
                                         <option value="@gmail.com">gmail.com</option>
-                                        <option value="@daum.com">daum.net</option>
+                                        <option value="@daum.net">daum.net</option>
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
                                         <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
@@ -183,7 +296,6 @@
     const email =
       document.getElementById('email').value +
       document.getElementById('email1').value;
-    console.log('완성된 email: ', email);
 
     fetch('${pageContext.request.contextPath}/user/email', {
       method: 'post',
@@ -216,141 +328,29 @@
       $resultMsg.textContent = '인증번호가 일치합니다.';
       $resultMsg.style.color = 'green';
 
- 
-      document.getElementById('check_btn').disabled = true;
-      document.getElementById('email').setAttribute('readonly', true);
-      document.getElementById('email1').setAttribute('readonly', true);
-      document.getElementById('email2').setAttribute('readonly', true);
-
-      e.target.style.display = 'none';
-
-      const $email2 = document.getElementById('email1');
-
-      $email2.setAttribute(
-        'onFocus',
-        'this.initialSelect = this.selectedIndex'
-      );
-      $email2.setAttribute(
-        'onChange',
-        'this.selectedIndex = this.initialSelect'
-      ); // 사용자가 옵션을 바꾸려고 하면 초기 설정값으로 돌아간다
-    } else {
-      $resultMsg.textContent = '인증번호를 다시 확인해 주세요.';
-      $resultMsg.style.color = 'red';
-      e.target.focus();
-    }
-  }; // 인증번호 검증 끝.
+        document.getElementById('check_btn').disabled = true;
+        document.getElementById('email').setAttribute('readonly', true);
+    	  const select = document.getElementById('email2');
+    	  const input = document.getElementById('email1');
         
-        
+    	    select.disabled = true;
+    	    input.readOnly = true;
 
-		/*
-        document.getElementById('idCheckBtn').onclick = () => {
-
-            const userId = document.getElementById('s_id').value;
-            if(userId === '') {
-                alert('아이디는 필수값입니다.');
-                return;
-            }
-
-            if(!idFlag) {
-                alert('유효하지 않은 아이디 입니다.')
-                return;
-            }
-            fetch('${pageContext.request.contextPath}/user/id/' + userId)
-                .then(rest => res.text())
-                .then(data => {
-                    if(data === 'ok') {
-                        document.getElementById('s_id').setAttribute('readonly', true);
-                        document.getElementById('idCheckBtn').setAttribute('disabled', true);
-                        document.getElementById('msgId').textContent = '사용 가능한 아이디 입니다.';
-                    } else {
-                        document.getElementById('msgId').textContent = '중복된 아이디 입니다.';
-                        document.getElementById('s_id').value = '';
-                        document.getElementById('s_id').focus();
-                    }
-                });
-        }
-
-        document.getElementById('check_btn').onclick = function() {
-            const email = document.getElementById('email').value + document.getElementById('email1').value;
-            console.log('완성된 email: ', email);
-
-            fetch('${pageContext.request.contextPath}/user/email', {
-                method: 'post',
-                headers: {
-                    'Content-Type': 'text/plain'
-                },
-                body: email
-            })
-            .then(res => res.text())
-            .then(data => {
-                console.log('인증번호: ', data);
-                document.querySelector('.mail_check_input').disabled = false;
-                code = data;
-                alert('인증번호가 전송되었습니다.')
-            })
-            .catch(error => {
-                console.log(error);
-                alert('관리자에게 문의 하세요!');
-            });
-        };
-
-        document.querySelector('.mail_check_input').onblur = function(e) {
-            const inputCode = e.target.value;
-            const $resultMsg = document.getElementById('mail_check_warn');
-            console.log('사용자가 입력한 값: ', inputCode);
-        }
-
-        if(inputCode === code) {
-            $resultMsg.textContent = '인증번호가 일치합니다.';
-            $resultMsg.style.color = 'green';
-
-            document.getElementById('mail_check_btn').disabled = true;
-            document.getElementById('email').setAttribute('readonly', true);
-            document.getElementById('email1').setAttribute('readonly', true);
-            document.getElementById('email2').setAttribute('readonly', true);
-
-            e.target.style.display = 'none'
-
-            const $email2 = document.getElementById('email2');
-
-            $email2.setAttribute('onFocus', 'this.initialSelect = this.selectedIndex');
-            $email2.setAttribute('onChange', 'this.selectedIndex = this.initialSelect');
+            select.addEventListener('change', function() {
+    	    input.value = select.value;
+    	  })	
+          e.target.style.display = 'none';
         } else {
             $resultMsg.textContent = '인증번호를 다시 확인해 주세요.';
             $resultMsg.style.color = 'red';
             e.target.focus();
         }
-	*/
-		
-	
-	
+     
+    	};
+      
 	</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
