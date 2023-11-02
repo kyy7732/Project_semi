@@ -1,113 +1,244 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-		
-<div>메인페이지</div>   
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <style>
+      /*í¤ë*/
+      #header {
+        height: 44px;
+        margin: 0;
+        background-color: #2177ce;
+      }
+      #nav {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font: 14px sans-serif;
+        text-align: center;
+        line-height: 44px;
+      }
+      #nav > li {
+        display: inline;
+        margin-right: 70px;
+      }
+      /* liíê·¸ ìì ì¡´ì¬íë aíê·¸ì ê¸ê¼´ ìì íì(#eee)ì¼ë¡
+        ê·¸ë¦¬ê³  ë°ì¤ì ìì¤ë¤. 
+        ë§ì°ì¤ê° ì¬ë¼ê°ë©´ ì´ì§ ì´ëì´ ì(#e2e2e2)ë¡ ì§ì íì!*/
+      #nav > li > a {
+        color: #eee;
+        text-decoration: none;
+      }
+      #nav > li > a:hover {
+        color: #e2e2e2;
+      }
+      #apple {
+        background-image: url(images/icon_apple.svg);
+        width: 48px;
+        position: absolute;
+        top: 2px;
+        background-size: 16px 44px;
+        background-repeat: no-repeat;
+        background-position: center center;
 
-<!-- 지도를 표시할 div 입니다 -->
-<div id="map" style="width:70%;height:500px;"></div>
+        margin-left: -24px;
+        text-align: center;
+        z-index: 1;
+        /* border: 1px solid red; */
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <header id="header">
+        <ul id="nav">
+          <li>
+            <a
+              href=""
+              id="apple"
+              >&nbsp;</a
+            >
+          </li>
+          <li>
+            <a
+              href=""
+              id=""
+              >지역축제알리미</a
+            >
+          </li>
+          <li>
+            <a
+              href=""
+              id=""
+            ></a>
+          </li>
+          <li>
+            <a
+              href=""
+              id=""
+            ></a>
+          </li>
+          <li>
+            <a
+              href=""
+              id=""
+            ></a>
+          </li>
+          <li>
+            <a
+              href=""
+              id=""
+            ></a>
+          </li>
+          <li>
+            <a
+              href=""
+              id=""
+            ></a>
+          </li>
+          <li>
+            <a
+              href=""
+              id=""
+              >로그인</a
+            >
+          </li>
+          <li>
+            <a
+              href=""
+              id=""
+              >회원가입</a
+            >
+          </li>
+        </ul>
+      </header>
+    </div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"></script>
+    <!-- 지도영역 -->
+    <div
+      id="map"
+      style="width: 70%; height: 500px"
+    ></div>
 
-<script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapOption = { 
-	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	        level: 3 // 지도의 확대 레벨
-	    };  
-	
-	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	
-	// 지도에 표시할 원을 생성합니다
-	var circle = new kakao.maps.Circle({
-	    center : new kakao.maps.LatLng(33.450701, 126.570667),  // 원의 중심좌표 입니다 
-	    radius: 50, // 미터 단위의 원의 반지름입니다 
-	    strokeWeight: 5, // 선의 두께입니다 
-	    strokeColor: '#75B8FA', // 선의 색깔입니다
-	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	    strokeStyle: 'dashed', // 선의 스타일 입니다
-	    fillColor: '#CFE7FF', // 채우기 색깔입니다
-	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
-	}); 
-	
-	// 지도에 원을 표시합니다 
-	circle.setMap(map); 
-	
-	
-	// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
-	var linePath = [
-	    new kakao.maps.LatLng(33.452344169439975, 126.56878163224233),
-	    new kakao.maps.LatLng(33.452739313807456, 126.5709308145358),
-	    new kakao.maps.LatLng(33.45178067090639, 126.5726886938753) 
-	];
-	
-	// 지도에 표시할 선을 생성합니다
-	var polyline = new kakao.maps.Polyline({
-	    path: linePath, // 선을 구성하는 좌표배열 입니다
-	    strokeWeight: 5, // 선의 두께 입니다
-	    strokeColor: '#FFAE00', // 선의 색깔입니다
-	    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	    strokeStyle: 'solid' // 선의 스타일입니다
-	});
-	
-	// 지도에 선을 표시합니다 
-	polyline.setMap(map);  
-	
-	
-	var sw = new kakao.maps.LatLng(33.448842, 126.570379), // 사각형 영역의 남서쪽 좌표
-	    ne = new kakao.maps.LatLng(33.450026,  126.568556); // 사각형 영역의 북동쪽 좌표
-	
-	// 사각형을 구성하는 영역정보를 생성합니다
-	// 사각형을 생성할 때 영역정보는 LatLngBounds 객체로 넘겨줘야 합니다
-	var rectangleBounds = new kakao.maps.LatLngBounds(sw, ne);
-	
-	// 지도에 표시할 사각형을 생성합니다
-	var rectangle = new kakao.maps.Rectangle({
-	    bounds: rectangleBounds, // 그려질 사각형의 영역정보입니다
-	    strokeWeight: 4, // 선의 두께입니다
-	    strokeColor: '#FF3DE5', // 선의 색깔입니다
-	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	    strokeStyle: 'shortdashdot', // 선의 스타일입니다
-	    fillColor: '#FF8AEF', // 채우기 색깔입니다
-	    fillOpacity: 0.8 // 채우기 불투명도 입니다
-	});
-	
-	// 지도에 사각형을 표시합니다
-	rectangle.setMap(map);
-	
-	
-	// 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
-	var polygonPath = [
-	    new kakao.maps.LatLng(33.45133510810506, 126.57159381623066),
-	    new kakao.maps.LatLng(33.44955812811862, 126.5713551811832),
-	    new kakao.maps.LatLng(33.449986291544086, 126.57263296172184),
-	    new kakao.maps.LatLng(33.450682513554554, 126.57321034054742),
-	    new kakao.maps.LatLng(33.451346760004206, 126.57235740081413) 
-	];
-	
-	// 지도에 표시할 다각형을 생성합니다
-	var polygon = new kakao.maps.Polygon({
-	    path:polygonPath, // 그려질 다각형의 좌표 배열입니다
-	    strokeWeight: 3, // 선의 두께입니다
-	    strokeColor: '#39DE2A', // 선의 색깔입니다
-	    strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	    strokeStyle: 'longdash', // 선의 스타일입니다
-	    fillColor: '#A2FF99', // 채우기 색깔입니다
-	    fillOpacity: 0.7 // 채우기 불투명도 입니다
-	});
-	
-	// 지도에 다각형을 표시합니다
-	polygon.setMap(map);
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
 
-</script>
-		
-		
-		
-</body>
+    <script>
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+          center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+          level: 20, // 지도의 확대 레벨
+        };
+
+      // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+      // var map = new kakao.maps.Map(mapContainer, mapOption);
+
+      let map = new kakao.maps.Map(mapContainer, mapOption),
+        customOverlay = new kakao.maps.CustomOverlay({});
+
+      var jsonLocation = '/resources/external_json//sido.json';
+
+      let detailMode = false; // level에 따라 다른 json 파일 사용
+      let level = '';
+      let polygons = [];
+      // var polygonPath = [];
+      var points = [];
+
+      $.getJSON(jsonLocation, function (data) {
+        var data = data.features;
+        var coordinates = [];
+        var name = '';
+        $.each(data, function (i, val) {
+          if (val.geometry.type == 'Polygon') {
+            coordinates = val.geometry.coordinates;
+            name = val.properties.CTP_KOR_NM;
+
+            displayArea(coordinates, name); // 호출!!
+          }
+        });
+      });
+
+      function displayArea(coordinates, name) {
+        var polygonPath = [];
+        $.each(coordinates[0], function (i, coordinate) {
+          var point = new Object();
+          point.x = coordinate[1];
+          point.y = coordinate[0];
+          points.push(point);
+          polygonPath.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
+        });
+
+        var polygon = new kakao.maps.Polygon({
+          path: polygonPath, // 그려질 다각형의 좌표 배열입니다
+          strokeWeight: 3, // 선의 두께입니다
+          strokeColor: '#39DE2A', // 선의 색깔입니다
+          strokeOpacity: 0.8, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+          strokeStyle: 'longdash', // 선의 스타일입니다
+          fillColor: '#A2FF99', // 채우기 색깔입니다
+          fillOpacity: 0.7, // 채우기 불투명도 입니다
+        });
+
+        polygon.setMap(map); // 지도에 다각형 표시
+      }
+
+      ///////////////////////////////////////////////////
+      // 다각형에 마우스오버 이벤트가 발생했을 때 변경할 채우기 옵션입니다
+      var mouseoverOption = {
+        fillColor: '#A2FF99', // 채우기 색깔입니다
+        fillOpacity: 0.7, // 채우기 불투명도 입니다
+      };
+
+      // 다각형에 마우스아웃 이벤트가 발생했을 때 변경할 채우기 옵션입니다
+      var mouseoutOption = {
+        fillColor: '#EFFFED', // 채우기 색깔입니다
+        fillOpacity: 0.8, // 채우기 불투명도 입니다
+      };
+
+      //
+      kakao.maps.event.addListener(polygon, 'mouseover', function (mouseEvent) {
+        polygon.setOptions({ fillColor: '#09f' });
+        customOverlay.setContent('<div class="area">' + area.name + '</div>');
+        customOverlay.setPosition(mouseEvent.latLng);
+        customOverlay.setMap(map);
+      });
+
+      kakao.maps.event.addListener(polygon, 'mousemove', function (mouseEvent) {
+        customOverlay.setPosition(mouseEvent.latLng);
+      });
+
+      kakao.maps.event.addListener(polygon, 'mouseout', function () {
+        polygon.setOptions({ fillColor: '#fff' });
+        customOverlay.setMap(null);
+      });
+
+      kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+        if (!detailMode) {
+          map.setLevel(10); // level에 따라 이벤트 변경
+          var latlng = mouseEvent.latLng;
+
+          // 지도의 중심을 부드럽게 클릭한 위치로 이동시킵니다.
+          map.panTo(latlng);
+        } else {
+          // 클릭 이벤트 함수
+          // callFunctionWithRegionCode(area.location);
+        }
+      });
+    </script>
+  </body>
 </html>
+
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
