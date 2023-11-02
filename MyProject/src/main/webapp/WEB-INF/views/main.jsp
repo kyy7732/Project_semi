@@ -9,6 +9,7 @@
 <body>
 <%@ include file="include/header.jsp" %>
 		mainPage!!
+
 <%@ include file="include/footer.jsp" %>
 </body>
 
