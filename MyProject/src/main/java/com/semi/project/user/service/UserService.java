@@ -29,5 +29,10 @@ public class UserService {
 	public List<ReplyResponseDTO> getReplyList(Object attribute) {
 		return null;
 	}
+
+	// 아이디 중복 확인
+	public int idCheck(String account) {
+		return mapper.idCheck(account);
+	}
 	
 }

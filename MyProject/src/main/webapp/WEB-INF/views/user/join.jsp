@@ -35,7 +35,7 @@
     display: inline-block;
     width: 0px;
     height: 8px;
-    background: url(../images/bult.png) no-repeat;
+    /* background: url(./images/join.png) no-repeat; */
     text-indent: -9999px;
     background-position: 0 2px;
 }
@@ -120,7 +120,6 @@ div.btn_area span{
     width: 300px;
     border: 1px solid red;
 }
-}
 
 </style>
 </head>
@@ -144,7 +143,7 @@ div.btn_area span{
                 회원 가입을 위해 아래 정보를 입력해주세요
             </p>
             <br>
-            <form action="" method="post">
+            <form action="${pageContext.request.contextPath}/user/join" name="join" method="post">
                 <table class="table_type">
                     <colgroup>
                         <col width="130px"/>
@@ -164,10 +163,9 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="text" id="s_id" name="u_id" class="join">
-                                <!-- <button type="button">중복확인</button> -->
+                                    <input type="text" id="userId" name="userId" class="join">
                                 <span class="btn b_bdcheck">
-                                    <input type="button" value="중복확인">
+                                    <input name="idCheck" type="button" value="중복확인">
                                 </span><br/>
                                     6~12자리의 영문, 숫자를 입력해 주세요.                                    
                                 </p>
@@ -209,30 +207,31 @@ div.btn_area span{
                             </td>
                         </tr>
                         
-                        
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_adr">이메일</label>
+                                <label>이메일</label>
+
                             </th>
                             <td class="pn_td">
                                 <p class="pn_txt">
-                                    <input type="text" id="s_mail" name="u_mail">
+                                    <input type="text" id="email1" name="email1">
                                     @
-                                    <input type="text" id="s_mail" name="u_mail">&nbsp;
-                                    <select type="select" id="s_mail" name="u_mail">
-                                        <option value="">::직접입력</option>
-                                        <option value="gmail.common">gmail.com</option>
-                                        <option value="naver.common">naver.com</option>
-                                        <option value="daum.common">daum.net</option>
-                                        <option value=""></option>
+
+                                    <input type="text" id="email2" name="email2">&nbsp;
+                                    <select type="select" id="email" name="email">
+                                        <option value="">직접입력</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
+
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
                                         <input type="button" value="이메일 인증">
                                     </span>
                                     
                                 </p>
-                                
+                                <!--여기까짖지지지지니지지지 -->
                                 
                                 
                             </td>
@@ -255,5 +254,18 @@ div.btn_area span{
         
         <!-- 하단영역 끝 -->
     </div>
+
+    <script>
+        //회원가입 요청
+
+        const userId = document.join.userId.value;
+        const $idCheck = document.join.idCheck;
+        $idCheck.onclick = e => {
+            
+            fetch('${pageContext.request.contextPath}/user/id/' + userId)
+        }
+
+
+    </script>
 </body>
 </html>

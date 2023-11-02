@@ -1,10 +1,12 @@
 package com.semi.project.festival.controller;
 
-import java.util.List;  
+import java.beans.Encoder;
+import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,7 +34,6 @@ public class FestivalController {
        return service.getFtvList(season);
 	}
 
-
 	
 	//댓글 조회(비동기)
 	@GetMapping("/reply")
@@ -42,5 +43,19 @@ public class FestivalController {
 	    return service.getReplyList(ftvNum);
 	}
 	
+	
+	
 
-}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
