@@ -89,10 +89,10 @@
                 <div class="close-area">x</div>
             </div>
             <div class="alrimi_login_input">
-                <input type="text" name="username" placeholder="Username">
+                <input type="text" id="id" name="username" placeholder="Username">
             </div>
             <div class="alrimi_login_input">
-                <input type="password" name="password" placeholder="Password">
+                <input type="password" id="pw" name="password" placeholder="Password">
             </div>
             <div class="alrimi_login_btn">
                 <input type="submit" class="btn_alrimi" id="btn_login" value="로그인">
