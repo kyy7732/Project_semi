@@ -167,9 +167,9 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="text" id="s_id" name="s_id" class="join">
+                                    <input type="text" id="userId" name="userId" class="join">
                                 <span class="btn b_bdcheck">
-                                    <input type="button" id="idCheckBtn" value="중복확인">
+                                    <input type="button" id="idCheck" value="중복확인">
                                 </span>&nbsp;&nbsp;&nbsp;&nbsp;
                                     6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.       
                                 <span id="msgId"></span>                             
@@ -184,7 +184,7 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw" name="s_pw" class="join">&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="password" id="userPw" name="userPw" class="join">&nbsp;&nbsp;&nbsp;&nbsp;
                                     10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.
                                 </p>
                             </td>
@@ -196,7 +196,7 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw2" name="u_pw2" class="join"><br/>
+                                    <input type="password" id="userPw2" name="userPw2" class="join"><br/>
                                     입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요
                                 </p>
                             </td>
@@ -205,10 +205,10 @@ div.btn_area span{
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_name">이름</label>
+                                <label for="userName">이름</label>
                             </th>
                             <td>
-                                <input type="text" id="s_name" name="u_name" class="join">
+                                <input type="text" id="userName" name="userName" class="join">
                             </td>
                         </tr>
                             
@@ -260,18 +260,31 @@ div.btn_area span{
     
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+
+
+
+        //id 중복확인 요청
+    
+        //const userId = document.joinForm.userId.value;
+        const $idCheck = document.joinForm.idCheck;
+        $idCheck.onclick = e => {
+               const userId = document.getElementById('userId').value;
+            console.log(userId);
+            fetch('${pageContext.request.contextPath}/user/id/' + userId)
+        }
+
+
+
+
+
+
+
 		let code = '';
 		let idFlag, pwFlag;
 
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
-
-        const $idCheck = document.join.idCheck;
-        $idCheck.onclick = e => {
-            const userId = document.join.userId.value;
-            fetch('${pageContext.request.contextPath}/user/id/' + userId)
-        }
         
         emailBox.addEventListener('change', (event) => {
             if(event.target.value !== "type"){
@@ -343,9 +356,3 @@ div.btn_area span{
 	</script>
 </body>
 </html>
-
-
-
-
-
-
