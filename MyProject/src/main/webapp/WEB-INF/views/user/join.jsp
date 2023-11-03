@@ -29,7 +29,6 @@
     display: inline-block;
     width: 0px;
     height: 8px;
-    //background: url(../images/bult.png) no-repeat;
     text-indent: -9999px;
     background-position: 0 2px;
 }
