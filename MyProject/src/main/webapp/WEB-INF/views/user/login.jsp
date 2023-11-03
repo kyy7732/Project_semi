@@ -1,122 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>modalLogin</title>
+    <title>Document</title>
     <style>
-        #modal.modal-overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(100, 85, 85, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(158, 164, 164, 0.68);
-            backdrop-filter: blur(1.5px);
-            -webkit-backdrop-filter: blur(10.5px);
-            border-radius: 10px;
-            border: 1px solid rgba(163, 25, 25, 0.18);
-        }
+    * {
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+    body {
+      display: flex; /* ë´ì©ì ìí ë° ìì§ì¼ë¡ ê°ì´ë° ì ë ¬íê¸° ìí´ flexboxë¥¼ ì¬ì©í©ëë¤ */
+      justify-content: center; /* ìí ê°ì´ë° ì ë ¬ */
+      align-items: center; /* ìì§ ê°ì´ë° ì ë ¬ */
+      height: 80vh; /* bodyë¥¼ ë·°í¬í¸ì ì ì²´ ëì´ë¡ ì¤ì  */
 
-        #modal .modal-window {
-            background: rgba(204, 216, 216, 0.329);
-            box-shadow: 0 8px 32px 0 rgba(158, 164, 164, 0.68);
-            backdrop-filter: blur(13.5px);
-            -webkit-backdrop-filter: blur(13.5px);
-            border-radius: 10px;
-            border: 1px solid rgba(247, 207, 207, 0.18);
-            width: 400px;
-            height: 500px;
-            position: relative;
-            top: -100px;
-            padding: 10px;
-        }
+    }
 
-        #modal .title {
-            padding-left: 10px;
-            display: inline;
-            text-shadow: 1px 1px 2px rgb(161, 96, 96);
-            color: black;
+    h2{
+        margin-bottom: 10px;
+        text-indent: -9999px;
+    }
+    .login-wrapper {
 
-        }
+      width: 400px;
+      height: 350px;
+      padding: 40px;
+      box-sizing: border-box;
+      color: #244cfe;
+    }
 
-        #modal .title h2 {
-            display: inline;
-        }
-
-        #modal .close-area {
-            display: inline;
-            float: right;
-            padding-right: 10px;
-            cursor: pointer;
-            text-shadow: 1px 1px 2px gray;
-            color: black;
-        }
-        #find_pw {
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            background: url(../user/images/idpw.png) no-repeat;
-            text-indent: -9999px;
-        }
-
-        
-    </style>
-</head>
-
-<body>
+    .login-wrapper {
+    text-align: center;
+    width: 400px;
+    height: 500px;
+    padding: 40px;
+    box-sizing: border-box;
+    border: 1px solid #747474; /* 1í½ì ëê»ì ê²ìì íëë¦¬ ì¶ê° */
+    border-radius: 10px;
     
-    <!-- 이미지 -->
-    <div id="container">
-        <h2></h2>
-        
-    </div>
+    }
 
-    <!-- 로그인 창 -->
-    <div id="modal" class="modal-overlay">
-        <div class="modal-window">
-            <div class="title">
-                <h2>지역축제알리미</h2>
-                <div class="close-area">x</div>
-            </div>
-            <div class="alrimi_login_input">
-                <input type="text" name="username" placeholder="Username">
-            </div>
-            <div class="alrimi_login_input">
-                <input type="password" name="password" placeholder="Password">
-            </div>
-            <div class="alrimi_login_btn">
-                <input type="submit" class="btn_alrimi" id="btn_login" value="로그인">
-                <input type="button" class="btn_alrimi" value="회원가입" onclick="#">
-                <div class="find_pw"> <!-- 아이디 or 비번 까먹었을 때 들어가는 url-->
-                    <a href='#'>아이디/비밀번호 찾기</a>
-                    <input type="checkbox" name="chk" id="ch01"/>
-                    <label for="ch01">
-                       자동로그인
-                    </label>
-                </div>
-                
-                <fieldset>
-                    <legend>로그인 방법 선택</legend>
-                    <input id="login-naver" type="radio">
-                    <label for="login-naver">네이버 로그인</label>
-                    <input id="login-kakao" type="radio">
-                    <label for="login-kakao">카카오 로그인</label>
-                    <input id="login-kakao" type="radio">
-                    <label for="login-kakao">회원 로그인</label>
-                </fieldset>
-            </div>
-        </div>
-    </div>
-    </div>
+    #login-form > input {
 
-</body>
+      width: 100%;
+      height: 48px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+      border-radius: 6px;
+      background-color: #f8f8f8;
+    }
+    #login-form > input::placeholder {
+
+      color: #d2d2d2;
+    }
+    #login-form > input[type='submit']{
+
+      color: #fff;
+      font-size: 16px;
+      background-color: #244cfe;
+    }
+
+    #login-form > input[type='submit'][value='ì¹´ì¹´ì¤ ë¡ê·¸ì¸'] {
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        background-color:  #f9e000; 
+
+    }
+    #login-form > input[type='submit'][value='ë¤ì´ë² ë¡ê·¸ì¸'] {
+        font-weight: bold;
+        color: #fff;
+        font-size: 16px;
+        background-color:#19CE60; /* ë¸ëì ë°°ê²½ ììì¼ë¡ ë³ê²½ */
+
+    }
+
+  </style>
+  </head>
+ 
+  <body>
+    <div class="login-wrapper">
+    <img src="../img/mainLogo.png" class="mainLogo">
+    <h2>Login</h2>
+    <form method="post"  action="ìë²ìurl"
+        id="login-form"
+      >
+        <input
+          type="text"
+          name="userName"
+          placeholder="ID"
+        />
+        <input
+          type="password"
+          name="userPassword"
+          placeholder="Password"
+        />
+        </label>
+        <input type="submit" value="ë¡ê·¸ì¸" class="loginBtn"  />
+        <input type="submit" value="ì¹´ì¹´ì¤ ë¡ê·¸ì¸" class="kakaoLog" />
+        <input type="submit" value="ë¤ì´ë² ë¡ê·¸ì¸" class="naverLog"/>
+
+
+      </form>
+    </div>
+  </body>
+</html>
