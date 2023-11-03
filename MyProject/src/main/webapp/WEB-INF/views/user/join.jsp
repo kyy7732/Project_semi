@@ -29,7 +29,7 @@
     display: inline-block;
     width: 0px;
     height: 8px;
-    //background: url(../images/bult.png) no-repeat;
+    background: url(../images/bult.png) no-repeat;
     text-indent: -9999px;
     background-position: 0 2px;
 }
@@ -261,6 +261,18 @@ div.btn_area span{
     
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
+
+
+
+        //id 중복확인 요청
+    
+        //const userId = document.joinForm.userId.value;
+        const $idCheck = document.joinForm.idCheck;
+        $idCheck.onclick = e => {
+               const userId = document.getElementById('userId').value;
+            console.log(userId);
+            fetch('${pageContext.request.contextPath}/user/id/' + userId)
+        }
 		let code = '';
 		let idFlag, pwFlag;
 
@@ -271,8 +283,7 @@ div.btn_area span{
         const $idCheck = document.join.idCheck;
         $idCheck.onclick = e => {
             const userId = document.join.userId.value;
-            fetch('${pageContext.request.contextPath}/user/id/' + userId)
-        }
+            
         
         emailBox.addEventListener('change', (event) => {
             if(event.target.value !== "type"){
@@ -344,9 +355,6 @@ div.btn_area span{
 	</script>
 </body>
 </html>
-
-
-
 
 
 
