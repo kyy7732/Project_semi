@@ -7,7 +7,7 @@
   <body>
     <header id="header">
       <img
-        src="logoHeader.png"
+        src="/img/logoHeader.png"
         alt="My Image"
       />
     </header>
