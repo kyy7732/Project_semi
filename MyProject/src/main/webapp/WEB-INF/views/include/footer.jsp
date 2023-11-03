@@ -10,11 +10,38 @@ pageEncoding="UTF-8"%>
     />
     <title>Document</title>
     <style>
+      html,
+      body {
+        height: 100%;
+      }
+      #wrap {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        position: relative;
+      }
+
       #footer {
-        width: auto;
+        width: 100%;
         background: #eee;
-        margin-top: 80px;
         padding: 40px 0px 50px;
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+      }
+
+      #footer .foot_guide {
+        width: 900px;
+        margin: auto;
+      }
+      #footer .foot_menu {
+        overflow: hidden;
+        padding-bottom: 20px;
+      }
+      #footer .foot_menu li {
+        display: inline-block;
+        padding: 0 10px;
+        border-left: 1px solid #999;
       }
       .foot_guide {
         width: 900px;
@@ -62,11 +89,7 @@ pageEncoding="UTF-8"%>
         margin-right: auto;
       }
     </style>
-    <link rel="stylesheet" type="text/css" href="
-    <c:url value="/resources/static/css/footer.css" />
-    ">
   </head>
-
   <!--  footer 영역  -->
   <body>
     <footer id="footer">
