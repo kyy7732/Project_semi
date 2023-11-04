@@ -10,7 +10,7 @@
 		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="location"
 			value="classpath:/properties/Hikari.properties" />
-	</bean>
+    </bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
