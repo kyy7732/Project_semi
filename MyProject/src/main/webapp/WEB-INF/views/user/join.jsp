@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>join</title>
 <style>
 #contents {
     width: 900px;
@@ -219,9 +219,9 @@ div.btn_area span{
                                 <label for="email">이메일</label>
                             </th>
                             <td class="pn_td">
-                                    <input type="text" id="email" name="email">
-                                    @
-                                    <input type="text" class="box" id="email1" name="email1">&nbsp;
+                                <input type="text" id="sMail" name="uMail" class="join">
+                                @
+                                <input class="join type="text" class="box" id="email1" name="email1">&nbsp;
                                     <select type="select" class="box" id="email2" name="email2">
                                     	<option value="type">직접입력</option>
                                         <option value="@naver.com">naver.com</option>
