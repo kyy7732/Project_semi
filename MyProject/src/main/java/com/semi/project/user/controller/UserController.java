@@ -4,10 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Controller;  
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,6 +16,7 @@ import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
 import com.semi.project.user.dto.RequestDTO;
 import com.semi.project.user.service.UserService;
+import com.semi.project.util.MailSenderService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,33 +28,45 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
 	private final UserService service;
-	
-	//회원가입 페이지 이동(동기)
+	private final MailSenderService mailService;
+
+	//회원가입 페이지(동기)
 	@GetMapping("/join")
 	public void joinPage() {
 		log.info("/user/join 요청: GET!");
 	}
+	
+	// 아이디 중복 확인(비동기)
+	@GetMapping("/id/{userId}")
+	@ResponseBody
+	public String idCheck(@PathVariable String userId) {
+		log.info("클라이언트로부터 전달된 아이디: " + userId); 
+		int result = service.idCheck(userId);		
+		if(result == 1) return "duplication";
+		else return "ok";
+
+	}
+	
+	// 이메일 인증
+	@PostMapping("/email")
+	@ResponseBody
+	public String mailCheck(@RequestBody String email) { // 받는 형태가 JSON이어서 java형태로 바꿔준다
+		log.info("이메일 인증 요청 들어옴: " + email);
+		return mailService.joinEmail(email);
+	}
+	
 	
 	//회원가입(동기)
 	@PostMapping("/join")
 	public String join(RequestDTO dto){
 		log.info("/user/join 요청: POST! {}", dto);
 	    service.regist();
-	    return "redirect:/user/uselogin";
+	    return "redirect:/user/login";
 	}
 	
 	//로그인페이지(동기)
 	@GetMapping("/login")
 	public void loginPage(){}
-	
-	@GetMapping("/id/{account}")
-	@ResponseBody
-	public String idCheck(@PathVariable String account) {
-		System.out.println("클라이언트로부터 전달된 아이디: " + account);
-		int result = service.idCheck(account);
-		if(result == 1) return "duplicated";
-		else return "ok";
-	}
 
 	//로그인(동기)
 	@PostMapping("/login")

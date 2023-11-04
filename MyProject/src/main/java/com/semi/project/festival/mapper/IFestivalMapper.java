@@ -8,6 +8,8 @@ public interface IFestivalMapper {
 	
 	//시즌별 축제 조회
 	List<Festival> getFestival(String season);
+
+	String login(String userId);
 	
 	//좋아요 목록 조회
 	List<Festival> likeList(int likeNum);

@@ -19,10 +19,6 @@ public class UserService {
 
 	private final IUserMapper mapper;
 	private final BCryptPasswordEncoder encoder;
-
-	public int idCheck(String account) {
-		return mapper.idCheck(account);
-	}
 	
 	public void regist() {
 		// TODO Auto-generated method stub
@@ -36,6 +32,11 @@ public class UserService {
 
 	public List<ReplyResponseDTO> getReplyList(Object attribute) {
 		return null;
+	}
+
+	// 아이디 중복 확인
+	public int idCheck(String userId) {
+		return mapper.idCheck(userId);
 	}
 	
 	public void login(RequestDTO dto) {
