@@ -1,99 +1,127 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta
-      name="description"
-      content=""
-    />
-    <meta
-      name="author"
-      content=""
-    />
-    <title>myPage</title>
-    <!-- Favicon-->
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="assets/favicon.ico"
-    />
-    <!-- Bootstrap icons-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link
-      href="/MyProject/src/main/webapp/resources/static/css/mypage.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <!-- Features section-->
-    <section
-      class="py-5 border-bottom"
-      id="features"
-    >
-      <div class="container px-5 my-5">
-        <div class="row gx-5">
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <div
-              class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
-            >
-              <i class="bi bi-collection"></i>
-            </div>
-            <h2 class="h4 fw-bolder">나의 정보 관리</h2>
-            <p></p>
-            <a
-              class="text-decoration-none"
-              href="#!"
-            >
-              회원정보 수정
-              <i class="bi bi-arrow-right"></i>
-            </a>
-          </div>
-          <div class="col-lg-4 mb-5 mb-lg-0">
-            <div
-              class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
-            >
-              <i class="bi bi-building"></i>
-            </div>
-            <h2 class="h4 fw-bolder">나의 활동</h2>
 
-            <a
-              class="text-decoration-none"
-              href="#!"
-            >
-              내가 쓴 댓글 목록
-              <i class="bi bi-arrow-right"></i>
-            </a>
-          </div>
-          <div class="col-lg-4">
-            <div
-              class="feature bg-primary bg-gradient text-white rounded-3 mb-3"
-            >
-              <i class="bi bi-toggles2"></i>
-            </div>
-            <h2 class="h4 fw-bolder">Good</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+  
+  @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 
-            <a
-              class="text-decoration-none"
-              href="#!"
-            >
-              좋아요 표시한 글
-              <i class="bi bi-arrow-right"></i>
-            </a>
-          </div>
+        
+  
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        .header {
+            padding-top: 0px;
+            border: solid 1px black;
+            height: 110px;
+            margin: 0%;
+            padding: 0px;
+        }
+
+        .foter {
+            width: 100%;
+            padding: 0 25px;
+            line-height: 60px;
+            color: #8a8c8f;
+            border-top: 1px solid #dee5e7;
+            background-color: #f2f2f2;
+            border: solid 1px;
+            position: absolute;
+            bottom: 0px;
+        }
+
+        #nav{
+            list-style-type: none;
+            margin: 0px;
+            overflow: auto;
+        }
+        ul#menu {
+            list-style: none;
+            padding-left: 0px;
+            margin: 0px;
+            margin-top: 30px;
+        }
+        header {
+            border: solid;
+            margin: 0px;
+            padding: 0px;
+        }
+        li {
+            width: 200px;
+            border-right: solid 2px rgb(186, 199, 216);
+            border-bottom: #cbdef1 dotted 2px;
+            font-size: 17px;
+        }
+        .aButton {
+            display: block;
+            padding: 12px;
+            text-decoration-line: none;
+
+        }
+        a {
+            color: #0356A9;
+        }
+        .hTable{
+            position: relative;
+            left: 5px;
+        }
+        a:hover{
+            color: #158aff;
+        }
+        #page {
+            text-align: center;
+            line-height: 100px;
+            margin: 0px;
+        }
+        #no:hover {
+            color: #000;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="header">
+            <h1>헤더 페이지</h1>
+            <p>
+                <h1>---------------------------------------------</h1>
+            </p>
         </div>
-      </div>
-    </section>
-  </body>
-</html>
+        <table id="nav">
+            <ul id="menu">
+                <li id="no">
+                    <h1 id="page"><strong>마이 페이지</strong></h1>
+                </li>
+                <div id="menu2">
+                <li>
+                    <a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
+                </li>
+                <li>
+                    <a href="#" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
+                </li>
+                <li>
+                    <a href="#" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
+                </li>
+            </div>
 
+            </ul>
+    </table>
+    </div>
+    </div>
+    
+    <script>
+
+    </script>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+</body>
+
+</html>
