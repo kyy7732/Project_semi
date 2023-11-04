@@ -258,6 +258,16 @@
             padding: 4px;
         }
 
+        #pagination{
+            border: 1px solid black;
+            display: flex;
+            font-size: 17px;
+            list-style: none;
+        }
+
+        .ssk{
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -297,20 +307,37 @@
                   </div>
               </div>
             </div>  
-              <div id="divPaging">
-                  <div>◀</div>
-                  <div><b>1</b></div>
-                  <div>2</div>
-                  <div>3</div>
-                  <div>4</div>
-                  <div>5</div>
-                  <div>▶</div>
-              </div>
+            <form action="#" name="pageForm">
+                <div class="text-center">
+                    <hr>
+                    <ul id="pagination" class="pagination pagination-sm">
+                            <li class="ssk"><a href="#" data-pagenum="1">1</a></li>
+                                       
+                            <li class=""><a href="#" data-pagenum="2">2</a></li>
+                                       
+                            <li class="active"><a href="#" data-pagenum="3">3</a></li>
+                                       
+                            <li class=""><a href="#" data-pagenum="4">4</a></li>
+                                       
+                            <li class=""><a href="#" data-pagenum="5">5</a></li>
+    
+                            <li><a href="#" data-pagenum="6">다음</a></li>
+                    </ul>
+                </div>
+
+                <input type="hidden" name="pageNo" value="3">
+                <input type="hidden" name="amount" value="10">
+                <input type="hidden" name="keyword" value="">
+                <input type="hidden" name="condition" value="">
+		    </form>
         </div>
     </div>
   </form>
   <button id ='like_list'>좋아요 목록</button>
     
+  <section>
+    
+  </section>
 
 </body>
 
@@ -326,4 +353,4 @@
     //닫기 버튼을 누르면, 모달창의 노쇼클래스가 추가된다. 즉, 모달창이 사라진다
   
     </script>
-
+    
