@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
+import com.semi.project.festival.entity.Festival;
+import com.semi.project.festival.entity.FtvLike;
 import com.semi.project.festival.service.FestivalService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,9 +29,9 @@ public class FestivalController {
 	//시즌별 축제조회(비동기)
 	@GetMapping("/ftvList")
 	@ResponseBody
-	public List<FtvResponseDTO> getFtvList(String season){
+	public Festival getFestival(String season){
 		log.info("/festival/ftvList 요청: GET! {}", season);
-       return service.getFtvList(season);
+       return service.getFestival(season);
 	}
 
 
@@ -37,9 +39,9 @@ public class FestivalController {
 	//댓글 조회(비동기)
 	@GetMapping("/reply")
 	@ResponseBody
-	public List<ReplyResponseDTO> getReplyList(@RequestBody int ftvNum){   
+	public FtvLike likeList(@RequestBody int ftvNum){   
 		log.info("/festival/reply 요청: GET! {}", ftvNum);
-	    return service.getReplyList(ftvNum);
+	    return service.likeList(ftvNum);
 	}
 	
 

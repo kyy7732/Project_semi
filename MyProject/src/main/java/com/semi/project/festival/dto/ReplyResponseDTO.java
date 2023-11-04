@@ -20,7 +20,7 @@ public class ReplyResponseDTO {
 	private int ftvNum;
 
 	public static ReplyResponseDTO toDTO(User user) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

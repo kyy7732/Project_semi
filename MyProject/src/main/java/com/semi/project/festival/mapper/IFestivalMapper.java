@@ -12,4 +12,6 @@ public interface IFestivalMapper {
 	//좋아요 목록 조회
 	List<Festival> likeList(int likeNum);
 	
+	//댓글 조회
+	
 }
