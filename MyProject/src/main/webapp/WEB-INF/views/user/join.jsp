@@ -328,8 +328,10 @@ div.btn_area span{
     const $msgPwC = document.getElementById('msgPwC');
     $userPwC.onkeyup = () => {
         if($userPwC.value === $userPw.value){
+            $userPwC.style.borderColor = 'green';
             $msgPwC.innerHTML = '비밀번호가 일치합니다.';
         } else {
+            $userPwC.style.borderColor = 'red';
             $msgPwC.innerHTML = '비밀번호가 일치하지 않습니다.';
         }
     }
