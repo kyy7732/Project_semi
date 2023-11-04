@@ -7,7 +7,7 @@ public interface IUserMapper {
 
 
 	//아이디 중복 확인
-	int idCheck(String id);
+	int idCheck(String userId);
 	
 	//회원 가입
 	void join(User user);

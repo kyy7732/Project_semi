@@ -29,7 +29,6 @@
     display: inline-block;
     width: 0px;
     height: 8px;
-    background: url(../images/bult.png) no-repeat;
     text-indent: -9999px;
     background-position: 0 2px;
 }
@@ -168,12 +167,12 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="text" id="s_id" name="s_id" class="join">
+                                    <input type="text" id="userId" name="userId" class="join">
                                 <span class="btn b_bdcheck">
-                                    <input type="button" id="idCheckBtn" value="중복확인">
-                                </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.       
-                                <span id="msgId"></span>                             
+                                    <input type="button" id="idCheck" value="중복확인">
+                                </span>
+                                <span id="msgId">6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.       
+                                </span>                             
                                 </p>
                                 
                             </td>
@@ -185,8 +184,8 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw" name="s_pw" class="join">&nbsp;&nbsp;&nbsp;&nbsp;
-                                    10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.
+                                    <input type="password" id="userPw" name="userPw" class="join">
+                                    <span id="msgPw">10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.</span>
                                 </p>
                             </td>
                         </tr>
@@ -197,8 +196,8 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw2" name="u_pw2" class="join"><br/>
-                                    입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요
+                                    <input type="password" id="userPw2" name="userPw2" class="join"><br/>
+                                    <span id="userPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                                 </p>
                             </td>
                         </tr>
@@ -206,10 +205,10 @@ div.btn_area span{
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_name">이름</label>
+                                <label for="userName">이름</label>
                             </th>
                             <td>
-                                <input type="text" id="s_name" name="u_name" class="join">
+                                <input type="text" id="userName" name="userName" class="join">
                             </td>
                         </tr>
                             
@@ -262,28 +261,87 @@ div.btn_area span{
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 
-
-
+        let code = '';
+		let idFlag, pwFlag;
+        const $msgId = document.getElementById('msgId');
         //id 중복확인 요청
     
         //const userId = document.joinForm.userId.value;
         const $idCheck = document.joinForm.idCheck;
+        const $userId = document.getElementById('userId');
+
         $idCheck.onclick = e => {
                const userId = document.getElementById('userId').value;
-            console.log(userId);
+               if(!idFlag){
+                alert('유효하지 않은 아이디 입니다.');
+                return;
+               }
             fetch('${pageContext.request.contextPath}/user/id/' + userId)
+            .then(res => res.text())
+            .then(text => {
+                if(text === 'ok'){
+                    console.log('ok');
+                    $msgId.innerHTML = '사용 가능한 아이디입니다.';
+                    $userId.disabled = true;
+                } else {
+                    console.log('duplicated');
+                    $msgId.innerText = '이미 존재하는 아이디입니다.';
+                }
+            })
+            
         }
-		let code = '';
-		let idFlag, pwFlag;
+
+    //아이디 유효성 검사 스크립트
+    $userId.onkeyup = () => {
+
+        var regex = /^[A-Za-z0-9+]{8,12}$/;
+            if(regex.test($userId.value)){
+                $userId.style.borderColor = 'green';
+                $msgId.innerHTML = '아이디 중복 체크는 필수 입니다.';
+                idFlag = true;
+            } else {
+                $userId.style.borderColor = 'red';
+                $msgId.innerHTML = '유효하지 않은 아이디 입니다.';
+                idFlag = false;
+        }
+    }
+
+    // 비밀번호 유효성 검사 스크립트
+    const $userPw = document.getElementById('userPw');
+    const $msgPw = document.getElementById('msgPw');
+    $userPw.onkeyup = () => {
+
+        var regex = /^[A-Za-z0-9+]{8,16}$/;
+        if(regex.test($userPw.value)){
+            $userPw.style.borderColor = 'green';
+            $msgPw.innerHTML = '사용가능합니다.';
+            pwFlag = true;
+
+        } else{
+            $userPw.style.borderColor = 'red';
+            $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
+            pwFlag = false;
+        }
+    }
+
+    const $userPwC = document.getElementById('usrPwC');
+    const $msgPwC = document.getElementById('msgPwC');
+    $userPwC.onkeyup = () => {
+        if($userPwC.value === $userPw.value){
+            $msgPwC.innerHTML = '비밀번호가 일치합니다.';
+        } else {
+            $msgPwC.innerHTML = '비밀번호가 일치하지 않습니다.';
+        }
+    }
+
+
+
+
+
 
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
-
-        const $idCheck = document.join.idCheck;
-        $idCheck.onclick = e => {
-            const userId = document.join.userId.value;
-            
         
         emailBox.addEventListener('change', (event) => {
             if(event.target.value !== "type"){
@@ -355,6 +413,3 @@ div.btn_area span{
 	</script>
 </body>
 </html>
-
-
-
