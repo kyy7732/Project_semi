@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- <%@ include file="/WEB-INF/views/include/header.jsp" %>
+ <%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,7 +141,6 @@ div.btn_area span{
         
         <!--  콘텐츠영역  -->
         <div id="contents">
-            <img src="../img/mainLogo.png" class="mainLogo">
             <span class="sub_title title01">
                 회원가입
             </span>
@@ -196,8 +195,8 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="userPw2" name="userPw2" class="join"><br/>
-                                    <span id="userPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
+                                    <input type="password" id="userPwC" name="userPwC" class="join"><br/>
+                                    <span id="msgPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                                 </p>
                             </td>
                         </tr>
@@ -243,7 +242,7 @@ div.btn_area span{
                 </table>
                 <div class="btn_area">
                     <span class="btn b_ok">
-                        <input type="button" value="확인">
+                        <input type="submit" name="joinBtn" value="확인">
                     </span>
                     <span class="btn b_cancel">
                         <input type="button" value="취소">
@@ -324,15 +323,18 @@ div.btn_area span{
         }
     }
 
-    const $userPwC = document.getElementById('usrPwC');
-    const $msgPwC = document.getElementById('msgPwC');
+    // 비밀번호 확인 스크립트
+    const $userPwC = document.getElementById('userPwC');
+    var $msgPwC = document.getElementById('msgPwC');
     $userPwC.onkeyup = () => {
-        if($userPwC.value === $userPw.value){
+        if($userPwC.value == $userPw.value){
             $userPwC.style.borderColor = 'green';
             $msgPwC.innerHTML = '비밀번호가 일치합니다.';
+            pwFlag = true;
         } else {
             $userPwC.style.borderColor = 'red';
             $msgPwC.innerHTML = '비밀번호가 일치하지 않습니다.';
+            pwFlag = false;
         }
     }
 
@@ -411,6 +413,19 @@ div.btn_area span{
         }
      
     	};
+
+        //회원정보 전송 요청 검사 스크립트
+        document.joinForm.joinBtn.onclick = () => {
+            
+            if(!idFlag || !pwFlag){
+                alert('입력값을 다시 한번 확인해주세요.');
+            } else {
+                
+            }
+            
+        }
+
+
       
 	</script>
 </body>
