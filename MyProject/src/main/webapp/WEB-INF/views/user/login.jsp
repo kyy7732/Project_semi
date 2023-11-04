@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> 
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0"/>
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Login</title>
     <style>
-      html
-      body {
+      html body {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -18,34 +18,30 @@ pageEncoding="UTF-8"%>
       }
 
       h2 {
-        margin-bottom: 10px;
         text-indent: -9999px;
-        
       }
       .login-wrapper {
         text-align: center;
         width: 400px;
         height: 500px;
         padding: 40px;
+        padding-right: 40px;
         box-sizing: border-box;
         border: 1px solid #747474;
         border-radius: 10px;
       }
 
       #loginForm > input {
-
-        width: 100%;
+        width: 88%;
         height: 48px;
         padding: 0 10px;
         margin-bottom: 10px;
         border-radius: 6px;
         background-color: #f8f8f8;
-       
       }
 
       #loginForm > button {
-
-        width: 100%;
+        width: 95%;
         height: 48px;
         padding: 0 10px;
         box-sizing: border-box;
@@ -54,106 +50,92 @@ pageEncoding="UTF-8"%>
         background-color: #f8f8f8;
       }
 
-      #loginForm > input::placeholder {
-
-        color: #d2d2d2;
-      }
       #loginForm > button[type='submit'] {
+        text-align: center;
+        width: 95%;
         color: #fff;
         font-size: 16px;
         background-color: #0356a9;
       }
 
-      #loginForm > button[type='submit'][class='kakaoLog'] {
-        color: #fff;
-        font-size: 16px;
-        font-weight: bold;
-        background-color: #f9e000;
-
-      }
-      #loginForm > button[type='submit'][class='naverLog'] {
-        font-weight: bold;
-        color: #fff;
-        font-size: 16px;
-        background-color: #19ce60;
-       
+      #loginForm > button > a img,
+      #loginForm > botton > a img {
+        width: 300px; /* 이미지의 원하는 너비 설정 */
+        height: 40px; /* 이미지의 원하는 높이 설정 */
       }
     </style>
   </head>
-  
+
   <body>
-    <div class="login-wrapper">
-      <img
-        src="../img/mainLogo.png"
-        class="mainLogo"
-      />
-      <h2>Login</h2>
-      <form
-        method="post"
-        id="loginForm"
-        name="loginForm"
-      >
-        <input
-          type="text"
-          id="userId"
-          name="userId"
-          placeholder="ID"
+    <div>
+      <div class="login-wrapper">
+        <img
+          src="../img/mainLogo.png"
+          class="mainLogo"
         />
-        <input
-          type="password"
-          id="userPw"
-          name="userPw"
-          placeholder="Password"
-        />
-        <button
-          type="submit"
-          id="loginBtn"
+
+        <h2>Login</h2>
+        <form
+          method="post"
+          id="loginForm"
+          name="loginForm"
         >
-          로그인
-        </button>
+          <input
+            type="text"
+            id="userId"
+            name="userId"
+            placeholder="ID"
+          />
+          <input
+            type="password"
+            id="userPw"
+            name="userPw"
+            placeholder="Password"
+          />
+          <button
+            type="submit"
+            id="loginBtn"
+          >
+            <a href="#"></a>
+            로그인
+          </button>
 
-        <button
-          type="submit"
-          id="naverLog"
-          class="naverLog"
-        >
-          네이버 로그인
-        </button>
-        <button
-          type="submit"
-          id="kakaoLog"
-          class="kakaoLog"
-          
-        ><a href="javascript:kakaoLogin();"></a>
-          카카오로그인
-  </a>
-        </button>
-      </form>
-    </div>
+          <!-- 네이버 로그인 -->
+          <button>
+            <a
+              href="#"
+              style="height: 300px; height: 52px"
+            >
+            </a>
+            naver
+          </button>
 
-          </div>
-
-        </div>
+          <!-- 카카오로그인 -->
+          <botton>
+            <a href="javascript:kakaoLogin();">
+              <img src="../img/kakaoLoginBtn.png" />
+            </a>
+          </botton>
+        </form>
       </div>
     </div>
-    
+
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
-      window.Kakao.init("");
-      function kakaoLogin(){
+      window.Kakao.init('');
+      function kakaoLogin() {
         window.Kakao.Auth.login({
-          scope:'profile_nickname',
-          success: function(authObj){
+          scope: 'profile_nickname',
+          success: function (authObj) {
             console.log(authObj);
             window.Kakao.API.request({
-              url:'/v2/user/me',
-              success: res=>{
-
+              url: '/v2/user/me',
+              success: (res) => {
                 const kakao_account = res.kakao_account;
                 console.log(kakao_account);
-              }
+              },
             });
-          }
+          },
         });
       }
     </script>
