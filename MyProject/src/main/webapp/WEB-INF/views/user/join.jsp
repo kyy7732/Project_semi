@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- <%@ include file="/WEB-INF/views/include/header.jsp" %>
+ <%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -223,10 +223,10 @@ div.btn_area span{
                                     @
                                     <input type="text" class="box" id="email1" name="email1">&nbsp;
                                     <select type="select" class="box" id="email2" name="email2">
-                                    	<option value="type">직접입력</option>
-                                        <option value="@naver.com">naver.com</option>
-                                        <option value="@gmail.com">gmail.com</option>
-                                        <option value="@daum.net">daum.net</option>
+                                    	<option value="type" selected>직접입력</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
                                         <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
@@ -260,105 +260,30 @@ div.btn_area span{
     
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-
         let code = '';
 		let idFlag, pwFlag;
-        const $msgId = document.getElementById('msgId');
-        //id 중복확인 요청
-    
-        //const userId = document.joinForm.userId.value;
-        const $idCheck = document.joinForm.idCheck;
-        const $userId = document.getElementById('userId');
-
-        $idCheck.onclick = e => {
-               const userId = document.getElementById('userId').value;
-               if(!idFlag){
-                alert('유효하지 않은 아이디 입니다.');
-                return;
-               }
-            fetch('${pageContext.request.contextPath}/user/id/' + userId)
-            .then(res => res.text())
-            .then(text => {
-                if(text === 'ok'){
-                    console.log('ok');
-                    $msgId.innerHTML = '사용 가능한 아이디입니다.';
-                    $userId.disabled = true;
-                } else {
-                    console.log('duplicated');
-                    $msgId.innerText = '이미 존재하는 아이디입니다.';
-                }
-            })
-            
-        }
-
-    //아이디 유효성 검사 스크립트
-    $userId.onkeyup = () => {
-
-        var regex = /^[A-Za-z0-9+]{8,12}$/;
-            if(regex.test($userId.value)){
-                $userId.style.borderColor = 'green';
-                $msgId.innerHTML = '아이디 중복 체크는 필수 입니다.';
-                idFlag = true;
-            } else {
-                $userId.style.borderColor = 'red';
-                $msgId.innerHTML = '유효하지 않은 아이디 입니다.';
-                idFlag = false;
-        }
-    }
-
-    // 비밀번호 유효성 검사 스크립트
-    const $userPw = document.getElementById('userPw');
-    const $msgPw = document.getElementById('msgPw');
-    $userPw.onkeyup = () => {
-
-        var regex = /^[A-Za-z0-9+]{8,16}$/;
-        if(regex.test($userPw.value)){
-            $userPw.style.borderColor = 'green';
-            $msgPw.innerHTML = '사용가능합니다.';
-            pwFlag = true;
-
-        } else{
-            $userPw.style.borderColor = 'red';
-            $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
-            pwFlag = false;
-        }
-    }
-
-    const $userPwC = document.getElementById('usrPwC');
-    const $msgPwC = document.getElementById('msgPwC');
-    $userPwC.onkeyup = () => {
-        if($userPwC.value === $userPw.value){
-            $userPwC.style.borderColor = 'green';
-            $msgPwC.innerHTML = '비밀번호가 일치합니다.';
-        } else {
-            $userPwC.style.borderColor = 'red';
-            $msgPwC.innerHTML = '비밀번호가 일치하지 않습니다.';
-        }
-    }
-
-
-
-
-
-
+        
+   
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
         
         emailBox.addEventListener('change', (event) => {
             if(event.target.value !== "type"){
-                emailInput.value = event.target.value
-                emailInput.disabled = true
+                emailInput.value = event.target.value;
+                emailInput.disabled = true;
             } else {
-                emailInput.value = ""
-                emailInput.disabled = false
+                emailInput.value = "";
+                emailInput.value = document.getElementById('email1').value;
+                emailInput.disabled = false;
             }
         })
         
     
      document.getElementById('check_btn').onclick = function () {
     const email =
-      document.getElementById('email').value +
+      document.getElementById('email').value 
+      + '@' + 
       document.getElementById('email1').value;
 
     fetch('${pageContext.request.contextPath}/user/email', {

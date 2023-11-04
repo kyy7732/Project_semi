@@ -90,12 +90,6 @@
 
 <body>
     <div id="wrap">
-        <div class="header">
-            <h1>헤더 페이지</h1>
-            <p>
-                <h1>---------------------------------------------</h1>
-            </p>
-        </div>
         <table id="nav">
             <ul id="menu">
                 <li id="no">
