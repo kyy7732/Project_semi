@@ -42,10 +42,10 @@ public class UserController {
 	@ResponseBody
 	public String idCheck(@PathVariable String userId) {
 		log.info("클라이언트로부터 전달된 아이디: " + userId); 
-		return null;
-//		int result = service.idCheck(userId);
-//		if(result == 1) return "fail";
-//		else return "ok";
+		int result = service.idCheck(userId);		
+		if(result == 1) return "duplication";
+		else return "ok";
+
 	}
 	
 	// 이메일 인증

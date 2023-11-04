@@ -36,8 +36,16 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<resources mapping="/css/**" location="/resources/static/css/" />
+    <resources mapping="/js/**" location="/resources/static/js/" />
+    <resources mapping="/img/**" location="/resources/static/img/" />
+    <resources mapping="/fonts/**" location="/resources/static/fonts/" />
+    
 	<context:component-scan base-package="com.semi.project" />
 	
-	
+	<resources mapping="/css/" location="/resources/static/css/" />
+    <resources mapping="/js/" location="/resources/static/js/" />
+    <resources mapping="/img/" location="/resources/static/img/" /> <!-- src/main/webapp은 생략 되므로 resources로 이동 -->
+    <resources mapping="/fonts/" location="/resources/static/fonts/" />
 	
 </beans:beans>

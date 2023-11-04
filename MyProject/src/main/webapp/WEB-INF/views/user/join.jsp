@@ -1,41 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- 
+ <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    #contents{
+#contents {
     width: 900px;
     height: auto;
     margin: auto;
 }
 .guide_txt{
-    /* border: 1px solid black; */
     position: relative;
-    font-size: 10px;
-    color: #777;
-    padding-bottom: 7px;
+    font-size: 12px;
+    color: #666;
 }
 .txt_r{
     font-size: 12px;
     color: #777;
-    /* padding-bottom: 7px; */
     display: inline-block;
-    /* border: 1px solid black; */
-    /* width: 88px; */
     position: absolute;
     right: 0;
-    /* padding-left: 15px; */
 }
 .req{
     display: inline-block;
     width: 0px;
     height: 8px;
-    background: url(../images/bult.png) no-repeat;
     text-indent: -9999px;
     background-position: 0 2px;
 }
@@ -68,6 +61,7 @@ table.table_type td{
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
 .b_bdcheck{
     width: 58px;
     height: 25px;
@@ -95,8 +89,6 @@ dd{
     vertical-align: top; /* 수직정렬 */
 }
 
-
-.fr{ text-align: right;}
 div.btn_area{
     text-align: center;
     margin: 20px;
@@ -121,6 +113,22 @@ div.btn_area span{
     border: 1px solid red;
 }
 
+.title01{
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.mainLogo{
+    display: inline-block;
+    width: 230px;
+    height: 65px;
+    text-indent: -9999px;
+    margin-left: 40%;
+    margin-top: 20px;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -133,9 +141,10 @@ div.btn_area span{
         
         <!--  콘텐츠영역  -->
         <div id="contents">
-            <h1 class="sub_title title01">
+            <img src="../img/mainLogo.png" class="mainLogo">
+            <span class="sub_title title01">
                 회원가입
-            </h1>
+            </span>
             <p class="title_src">
                 
             </p>
@@ -149,12 +158,7 @@ div.btn_area span{
                         <col width="130px"/>
                         <col width="*">
                     </colgroup>
-                    <tbody>
-                        <!-- <tr>
-                            <th>이름</th>
-                            <td>마루치</td>
-                        </tr> -->
-                        
+                    <tbody>                        
                         <tr>
                             <th>
                                 <span class="req"></span>
@@ -163,12 +167,12 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="text" id="s_id" name="s_id" class="join">
+                                    <input type="text" id="userId" name="userId" class="join">
                                 <span class="btn b_bdcheck">
-                                    <input type="button" id="idCheckBtn" value="중복확인">
-                                </span>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.       
-                                <span id="msgId"></span>                             
+                                    <input type="button" id="idCheck" value="중복확인">
+                                </span>
+                                <span id="msgId">6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.       
+                                </span>                             
                                 </p>
                                 
                             </td>
@@ -180,8 +184,8 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw" name="s_pw" class="join">&nbsp;&nbsp;&nbsp;&nbsp;
-                                    10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.
+                                    <input type="password" id="userPw" name="userPw" class="join">
+                                    <span id="msgPw">10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.</span>
                                 </p>
                             </td>
                         </tr>
@@ -192,8 +196,8 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw2" name="u_pw2" class="join"><br/>
-                                    입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요
+                                    <input type="password" id="userPw2" name="userPw2" class="join"><br/>
+                                    <span id="userPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                                 </p>
                             </td>
                         </tr>
@@ -201,33 +205,14 @@ div.btn_area span{
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_name">이름</label>
+                                <label for="userName">이름</label>
                             </th>
                             <td>
-                                <input type="text" id="s_name" name="u_name" class="join">
+                                <input type="text" id="userName" name="userName" class="join">
                             </td>
                         </tr>
                             
                         
-                        <tr>
-                            <th>
-                                <span class="req"></span>
-                                <label for="s_adr">휴대전화번호</label>
-                            </th>
-                            <td class="pn_td">
-                                <p class="pn_txt">
-                                    <select id="s_pn" name="u_pn">
-                                        <option value="010">010</option>
-                                        <option value=""></option>
-                                    </select>
-                                    -
-                                    <input type="text" id="s_pn" name="u_pn">
-                                    -
-                                    <input type="text" id="s_pn" name="u_pn">
-                                </p>
-                                
-                            </td>
-                        </tr>
                         <tr>
                             <th>
                                 <span class="req"></span>
@@ -246,6 +231,7 @@ div.btn_area span{
                                     <span class="btn b_bdcheck">
                                         <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
                                     </span>
+
                                     <div class="mail_check_box">
                                     	<input type="text" class="form_control mail_check_input" placeholder="인증번호 6자리를 입력하세요." maxlength="6" disabled="disabled">
                                     	<span id="mail_check_warn"></span>
@@ -268,19 +254,97 @@ div.btn_area span{
         <!-- 콘텐츠영역 끝 -->
 
         <!--  하단영역  -->
-        
+        <%@ include file="../include/footer.jsp"  %>
         <!-- 하단영역 끝 -->
     </div>
     
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		let code = '';
+
+        let code = '';
 		let idFlag, pwFlag;
+        const $msgId = document.getElementById('msgId');
+        //id 중복확인 요청
+    
+        //const userId = document.joinForm.userId.value;
+        const $idCheck = document.joinForm.idCheck;
+        const $userId = document.getElementById('userId');
+
+        $idCheck.onclick = e => {
+               const userId = document.getElementById('userId').value;
+               if(!idFlag){
+                alert('유효하지 않은 아이디 입니다.');
+                return;
+               }
+            fetch('${pageContext.request.contextPath}/user/id/' + userId)
+            .then(res => res.text())
+            .then(text => {
+                if(text === 'ok'){
+                    console.log('ok');
+                    $msgId.innerHTML = '사용 가능한 아이디입니다.';
+                    $userId.disabled = true;
+                } else {
+                    console.log('duplicated');
+                    $msgId.innerText = '이미 존재하는 아이디입니다.';
+                }
+            })
+            
+        }
+
+    //아이디 유효성 검사 스크립트
+    $userId.onkeyup = () => {
+
+        var regex = /^[A-Za-z0-9+]{8,12}$/;
+            if(regex.test($userId.value)){
+                $userId.style.borderColor = 'green';
+                $msgId.innerHTML = '아이디 중복 체크는 필수 입니다.';
+                idFlag = true;
+            } else {
+                $userId.style.borderColor = 'red';
+                $msgId.innerHTML = '유효하지 않은 아이디 입니다.';
+                idFlag = false;
+        }
+    }
+
+    // 비밀번호 유효성 검사 스크립트
+    const $userPw = document.getElementById('userPw');
+    const $msgPw = document.getElementById('msgPw');
+    $userPw.onkeyup = () => {
+
+        var regex = /^[A-Za-z0-9+]{8,16}$/;
+        if(regex.test($userPw.value)){
+            $userPw.style.borderColor = 'green';
+            $msgPw.innerHTML = '사용가능합니다.';
+            pwFlag = true;
+
+        } else{
+            $userPw.style.borderColor = 'red';
+            $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
+            pwFlag = false;
+        }
+    }
+
+    const $userPwC = document.getElementById('usrPwC');
+    const $msgPwC = document.getElementById('msgPwC');
+    $userPwC.onkeyup = () => {
+        if($userPwC.value === $userPw.value){
+            $userPwC.style.borderColor = 'green';
+            $msgPwC.innerHTML = '비밀번호가 일치합니다.';
+        } else {
+            $userPwC.style.borderColor = 'red';
+            $msgPwC.innerHTML = '비밀번호가 일치하지 않습니다.';
+        }
+    }
+
+
+
+
+
 
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
-
+        
         emailBox.addEventListener('change', (event) => {
             if(event.target.value !== "type"){
                 emailInput.value = event.target.value
@@ -351,9 +415,3 @@ div.btn_area span{
 	</script>
 </body>
 </html>
-
-
-
-
-
-

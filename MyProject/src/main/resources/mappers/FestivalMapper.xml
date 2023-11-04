@@ -3,12 +3,5 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.semi.project.festival.mapper.IFestivalMapper">
-	<select id="getFestival" resultType="festival">
-		SELECT * FROM festival
-		WHERE season = #{season}
-	</select>
 	
-	<select id="idCheck" resultType="int">
-	
-	</select>
 </mapper>

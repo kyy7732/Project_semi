@@ -36,8 +36,8 @@ public class UserService {
 	}
 
 	// 아이디 중복 확인
-	public int idCheck(String account) {
-		return mapper.idCheck(account);
+	public int idCheck(String userId) {
+		return mapper.idCheck(userId);
 	}
 	
 
