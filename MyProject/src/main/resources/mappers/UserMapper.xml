@@ -4,6 +4,10 @@
     
 <mapper namespace="com.semi.project.user.mapper.IUserMapper">
 
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM users
+		WHERE user_id = #{userId}
+	</select>
 	
 
 </mapper>

@@ -42,8 +42,9 @@ public class UserController {
 	public String idCheck(@PathVariable String userId) {
 		log.info("클라이언트로부터 전달된 아이디: " + userId); 
 		int result = service.idCheck(userId);		
-		if(result == 1) return "fail";
+		if(result == 1) return "duplication";
 		else return "ok";
+
 	}
 	
 	// 이메일 인증
@@ -60,7 +61,7 @@ public class UserController {
 	public String join(RequestDTO dto){
 		log.info("/user/join 요청: POST! {}", dto);
 	    service.regist();
-	    return "redirect:/user/uselogin";
+	    return "redirect:/user/login";
 	}
 
 	//로그인페이지(동기)
