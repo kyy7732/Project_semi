@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>join</title>
 <style>
 #contents {
     width: 900px;
@@ -141,7 +141,6 @@ div.btn_area span{
         
         <!--  콘텐츠영역  -->
         <div id="contents">
-            <img src="../img/mainLogo.png" class="mainLogo">
             <span class="sub_title title01">
                 회원가입
             </span>
@@ -196,8 +195,8 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="userPw2" name="userPw2" class="join"><br/>
-                                    <span id="userPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
+                                    <input type="password" id="userPwC" name="userPwC" class="join"><br/>
+                                    <span id="msgPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                                 </p>
                             </td>
                         </tr>
@@ -219,9 +218,9 @@ div.btn_area span{
                                 <label for="email">이메일</label>
                             </th>
                             <td class="pn_td">
-                                    <input type="text" id="email" name="email">
-                                    @
-                                    <input type="text" class="box" id="email1" name="email1">&nbsp;
+                                <input type="text" id="sMail" name="uMail" class="join">
+                                @
+                                <input class="join type="text" class="box" id="email1" name="email1">&nbsp;
                                     <select type="select" class="box" id="email2" name="email2">
                                     	<option value="type" selected>직접입력</option>
                                         <option value="naver.com">naver.com</option>
@@ -243,7 +242,7 @@ div.btn_area span{
                 </table>
                 <div class="btn_area">
                     <span class="btn b_ok">
-                        <input type="button" value="확인">
+                        <input type="submit" name="joinBtn" value="확인">
                     </span>
                     <span class="btn b_cancel">
                         <input type="button" value="취소">
@@ -262,8 +261,88 @@ div.btn_area span{
 	<script>
         let code = '';
 		let idFlag, pwFlag;
-        
-   
+        const $msgId = document.getElementById('msgId');
+        //id 중복확인 요청
+    
+        //const userId = document.joinForm.userId.value;
+        const $idCheck = document.joinForm.idCheck;
+        const $userId = document.getElementById('userId');
+
+        $idCheck.onclick = e => {
+               const userId = document.getElementById('userId').value;
+               if(!idFlag){
+                alert('유효하지 않은 아이디 입니다.');
+                return;
+               }
+            fetch('${pageContext.request.contextPath}/user/id/' + userId)
+            .then(res => res.text())
+            .then(text => {
+                if(text === 'ok'){
+                    console.log('ok');
+                    $msgId.innerHTML = '사용 가능한 아이디입니다.';
+                    $userId.setAttribute('readonly', true);
+                    $idCheck.setAttribute('disabled', true);
+                } else {
+                    console.log('duplicated');
+                    $msgId.innerText = '이미 존재하는 아이디입니다.';
+                }
+            })
+            
+        }
+
+    //아이디 유효성 검사 스크립트
+    $userId.onkeyup = () => {
+
+        var regex = /^[A-Za-z0-9+]{8,12}$/;
+            if(regex.test($userId.value)){
+                $userId.style.borderColor = 'green';
+                $msgId.innerHTML = '아이디 중복 체크는 필수 입니다.';
+                idFlag = true;
+            } else {
+                $userId.style.borderColor = 'red';
+                $msgId.innerHTML = '유효하지 않은 아이디 입니다.';
+                idFlag = false;
+        }
+    }
+
+    // 비밀번호 유효성 검사 스크립트
+    const $userPw = document.getElementById('userPw');
+    const $msgPw = document.getElementById('msgPw');
+    $userPw.onkeyup = () => {
+
+        var regex = /^[A-Za-z0-9+]{8,16}$/;
+        if(regex.test($userPw.value)){
+            $userPw.style.borderColor = 'green';
+            $msgPw.innerHTML = '사용가능합니다.';
+            pwFlag = true;
+
+        } else{
+            $userPw.style.borderColor = 'red';
+            $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
+            pwFlag = false;
+        }
+    }
+
+    // 비밀번호 확인 스크립트
+    const $userPwC = document.getElementById('userPwC');
+    var $msgPwC = document.getElementById('msgPwC');
+    $userPwC.onkeyup = () => {
+        if($userPwC.value == $userPw.value){
+            $userPwC.style.borderColor = 'green';
+            $msgPwC.innerHTML = '비밀번호가 일치합니다.';
+            pwFlag = true;
+        } else {
+            $userPwC.style.borderColor = 'red';
+            $msgPwC.innerHTML = '비밀번호가 일치하지 않습니다.';
+            pwFlag = false;
+        }
+    }
+
+
+
+
+
+
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
@@ -336,6 +415,31 @@ div.btn_area span{
         }
      
     	};
+
+        //회원정보 전송 요청 검사 스크립트
+        document.joinForm.joinBtn.onclick = () => {
+            
+            if(!idFlag || !pwFlag){
+                if(!$userId.getAttribute('readonly')){
+                    alert('아이디 중복체크는 필수입니다.')
+                    return;
+                } else if(document.getElementById('userName').value == '') {
+                    alert('이름은 필수 입력값입니다.')
+                    return;
+                } else if(!document.getElementById('check_btn').disabled){
+                    alert('이메일 인증을 완료해주세요.')
+                    return;
+                } else if(confirm('회원가입을 진행합니다.')){
+                    document.joinForm.submit();
+                } else return;
+            } else{
+                alert('입력값을 다시 한번 확인해주세요.');
+                return;
+            }
+            
+        }
+
+
       
 	</script>
 </body>

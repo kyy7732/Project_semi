@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -106,6 +107,18 @@
                     <a href="#" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
                 </li>
             </div>
+
+            </ul>
+    </table>
+    </div>
+    </div>
+    
+    <script>
+
+    </script>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+</body>
+
 
             </ul>
     </table>

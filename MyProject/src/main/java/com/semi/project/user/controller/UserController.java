@@ -62,7 +62,7 @@ public class UserController {
 	public String join(RequestDTO dto){
 		log.info("/user/join 요청: POST! {}", dto);
 	    service.regist();
-	    return "redirect:/user/uselogin";
+	    return "redirect:/user/login";
 	}
 
 	//로그인페이지(동기)
