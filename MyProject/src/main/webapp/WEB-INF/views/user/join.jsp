@@ -1,41 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
- 
+ <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    #contents{
+#contents {
     width: 900px;
     height: auto;
     margin: auto;
 }
 .guide_txt{
-    /* border: 1px solid black; */
     position: relative;
-    font-size: 10px;
-    color: #777;
-    padding-bottom: 7px;
+    font-size: 12px;
+    color: #666;
 }
 .txt_r{
     font-size: 12px;
     color: #777;
-    /* padding-bottom: 7px; */
     display: inline-block;
-    /* border: 1px solid black; */
-    /* width: 88px; */
     position: absolute;
     right: 0;
-    /* padding-left: 15px; */
 }
 .req{
     display: inline-block;
     width: 0px;
     height: 8px;
-    /* background: url(./images/join.png) no-repeat; */
     text-indent: -9999px;
     background-position: 0 2px;
 }
@@ -68,6 +61,7 @@ table.table_type td{
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
 .b_bdcheck{
     width: 58px;
     height: 25px;
@@ -95,8 +89,6 @@ dd{
     vertical-align: top; /* 수직정렬 */
 }
 
-
-.fr{ text-align: right;}
 div.btn_area{
     text-align: center;
     margin: 20px;
@@ -121,6 +113,22 @@ div.btn_area span{
     border: 1px solid red;
 }
 
+.title01{
+    display: inline-block;
+    text-indent: -9999px;
+}
+
+.mainLogo{
+    display: inline-block;
+    width: 230px;
+    height: 65px;
+    text-indent: -9999px;
+    margin-left: 40%;
+    margin-top: 20px;
+}
+
+
+
 </style>
 </head>
 <body>
@@ -133,9 +141,10 @@ div.btn_area span{
         
         <!--  콘텐츠영역  -->
         <div id="contents">
-            <h1 class="sub_title title01">
+            <img src="../img/mainLogo.png" class="mainLogo">
+            <span class="sub_title title01">
                 회원가입
-            </h1>
+            </span>
             <p class="title_src">
                 
             </p>
@@ -143,18 +152,13 @@ div.btn_area span{
                 회원 가입을 위해 아래 정보를 입력해주세요
             </p>
             <br>
-            <form action="${pageContext.request.contextPath}/user/join" name="join" method="post">
+            <form action="${pageContext.request.contextPath}/user/join" method="post" name="joinForm">
                 <table class="table_type">
                     <colgroup>
                         <col width="130px"/>
                         <col width="*">
                     </colgroup>
-                    <tbody>
-                        <!-- <tr>
-                            <th>이름</th>
-                            <td>마루치</td>
-                        </tr> -->
-                        
+                    <tbody>                        
                         <tr>
                             <th>
                                 <span class="req"></span>
@@ -165,9 +169,10 @@ div.btn_area span{
                                 <p class="guide_txt">
                                     <input type="text" id="userId" name="userId" class="join">
                                 <span class="btn b_bdcheck">
-                                    <input name="idCheck" type="button" value="중복확인">
-                                </span><br/>
-                                    6~12자리의 영문, 숫자를 입력해 주세요.                                    
+                                    <input type="button" id="idCheck" value="중복확인">
+                                </span>
+                                <span id="msgId">6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.       
+                                </span>                             
                                 </p>
                                 
                             </td>
@@ -179,8 +184,8 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw" name="u_pw" class="join">&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-                                    10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.
+                                    <input type="password" id="userPw" name="userPw" class="join">
+                                    <span id="msgPw">10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.</span>
                                 </p>
                             </td>
                         </tr>
@@ -191,8 +196,8 @@ div.btn_area span{
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="s_pw2" name="u_pw2" class="join"><br/>
-                                    입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요
+                                    <input type="password" id="userPw2" name="userPw2" class="join"><br/>
+                                    <span id="userPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                                 </p>
                             </td>
                         </tr>
@@ -200,39 +205,37 @@ div.btn_area span{
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_name">이름</label>
+                                <label for="userName">이름</label>
                             </th>
                             <td>
-                                <input type="text" id="s_name" name="u_name" class="join">
+                                <input type="text" id="userName" name="userName" class="join">
                             </td>
                         </tr>
+                            
                         
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label>이메일</label>
-
+                                <label for="email">이메일</label>
                             </th>
                             <td class="pn_td">
-                                <p class="pn_txt">
-                                    <input type="text" id="email1" name="email1">
+                                    <input type="text" id="email" name="email">
                                     @
-
-                                    <input type="text" id="email2" name="email2">&nbsp;
-                                    <select type="select" id="email" name="email">
-                                        <option value="">직접입력</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="daum.net">daum.net</option>
-
+                                    <input type="text" class="box" id="email1" name="email1">&nbsp;
+                                    <select type="select" class="box" id="email2" name="email2">
+                                    	<option value="type">직접입력</option>
+                                        <option value="@naver.com">naver.com</option>
+                                        <option value="@gmail.com">gmail.com</option>
+                                        <option value="@daum.net">daum.net</option>
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
-                                        <input type="button" value="이메일 인증">
+                                        <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
                                     </span>
-                                    
-                                </p>
-                                <!--여기까짖지지지지니지지지 -->
-                                
+
+                                    <div class="mail_check_box">
+                                    	<input type="text" class="form_control mail_check_input" placeholder="인증번호 6자리를 입력하세요." maxlength="6" disabled="disabled">
+                                    	<span id="mail_check_warn"></span>
+                                    </div>
                                 
                             </td>
                         </tr>
@@ -251,21 +254,164 @@ div.btn_area span{
         <!-- 콘텐츠영역 끝 -->
 
         <!--  하단영역  -->
-        
+        <%@ include file="../include/footer.jsp"  %>
         <!-- 하단영역 끝 -->
     </div>
+    
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
 
-    <script>
-        //회원가입 요청
+        let code = '';
+		let idFlag, pwFlag;
+        const $msgId = document.getElementById('msgId');
+        //id 중복확인 요청
+    
+        //const userId = document.joinForm.userId.value;
+        const $idCheck = document.joinForm.idCheck;
+        const $userId = document.getElementById('userId');
 
-        const userId = document.join.userId.value;
-        const $idCheck = document.join.idCheck;
         $idCheck.onclick = e => {
-            
+               const userId = document.getElementById('userId').value;
+               if(!idFlag){
+                alert('유효하지 않은 아이디 입니다.');
+                return;
+               }
             fetch('${pageContext.request.contextPath}/user/id/' + userId)
+            .then(res => res.text())
+            .then(text => {
+                if(text === 'ok'){
+                    console.log('ok');
+                    $msgId.innerHTML = '사용 가능한 아이디입니다.';
+                    $userId.disabled = true;
+                } else {
+                    console.log('duplicated');
+                    $msgId.innerText = '이미 존재하는 아이디입니다.';
+                }
+            })
+            
         }
 
+    //아이디 유효성 검사 스크립트
+    $userId.onkeyup = () => {
 
-    </script>
+        var regex = /^[A-Za-z0-9+]{8,12}$/;
+            if(regex.test($userId.value)){
+                $userId.style.borderColor = 'green';
+                $msgId.innerHTML = '아이디 중복 체크는 필수 입니다.';
+                idFlag = true;
+            } else {
+                $userId.style.borderColor = 'red';
+                $msgId.innerHTML = '유효하지 않은 아이디 입니다.';
+                idFlag = false;
+        }
+    }
+
+    // 비밀번호 유효성 검사 스크립트
+    const $userPw = document.getElementById('userPw');
+    const $msgPw = document.getElementById('msgPw');
+    $userPw.onkeyup = () => {
+
+        var regex = /^[A-Za-z0-9+]{8,16}$/;
+        if(regex.test($userPw.value)){
+            $userPw.style.borderColor = 'green';
+            $msgPw.innerHTML = '사용가능합니다.';
+            pwFlag = true;
+
+        } else{
+            $userPw.style.borderColor = 'red';
+            $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
+            pwFlag = false;
+        }
+    }
+
+    const $userPwC = document.getElementById('usrPwC');
+    const $msgPwC = document.getElementById('msgPwC');
+    $userPwC.onkeyup = () => {
+        if($userPwC.value === $userPw.value){
+            $userPwC.style.borderColor = 'green';
+            $msgPwC.innerHTML = '비밀번호가 일치합니다.';
+        } else {
+            $userPwC.style.borderColor = 'red';
+            $msgPwC.innerHTML = '비밀번호가 일치하지 않습니다.';
+        }
+    }
+
+
+
+
+
+
+        // 이메일 직접입력 구현
+        const emailInput = document.querySelector('#email1')
+        const emailBox = document.querySelector('#email2')
+        
+        emailBox.addEventListener('change', (event) => {
+            if(event.target.value !== "type"){
+                emailInput.value = event.target.value
+                emailInput.disabled = true
+            } else {
+                emailInput.value = ""
+                emailInput.disabled = false
+            }
+        })
+        
+    
+     document.getElementById('check_btn').onclick = function () {
+    const email =
+      document.getElementById('email').value +
+      document.getElementById('email1').value;
+
+    fetch('${pageContext.request.contextPath}/user/email', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      body: email,
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        console.log('인증번호: ', data);
+ 
+        document.querySelector('.mail_check_input').disabled = false; 
+        code = data; 
+        alert('인증번호가 전송되었습니다. 확인 후 입력란에 정확히 입력하세요.');
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('알 수 없는 문제가 발생했습니다. 관리자에게 문의하세요!');
+      });
+  };
+
+
+  document.querySelector('.mail_check_input').onblur = function (e) {
+    const inputCode = e.target.value;
+    const $resultMsg = document.getElementById('mail_check_warn');
+    console.log('사용자가 입력한 값: ', inputCode);
+
+    if (inputCode === code) {
+      $resultMsg.textContent = '인증번호가 일치합니다.';
+      $resultMsg.style.color = 'green';
+
+        document.getElementById('check_btn').disabled = true;
+        document.getElementById('email').setAttribute('readonly', true);
+    	  const select = document.getElementById('email2');
+    	  const input = document.getElementById('email1');
+        
+    	    select.disabled = true;
+    	    input.readOnly = true;
+
+            select.addEventListener('change', function() {
+    	    input.value = select.value;
+    	  })	
+          e.target.style.display = 'none';
+        } else {
+            $resultMsg.textContent = '인증번호를 다시 확인해 주세요.';
+            $resultMsg.style.color = 'red';
+            e.target.focus();
+        }
+     
+    	};
+      
+	</script>
 </body>
 </html>
