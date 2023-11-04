@@ -6,10 +6,7 @@
   </head>
   <body>
     <header id="header">
-      <img
-        src="/img/logoHeader.png"
-        alt="My Image"
-      />
+		<img src="./img/mainLogo.png" class="mainLogo">
     </header>
   </body>
 </html>

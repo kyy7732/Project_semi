@@ -35,4 +35,13 @@ public class UserService {
 		return mapper.idCheck(userId);
 	}
 	
+	//로그인 
+	public String login(String userId, String userPw) {
+		String pw = mapper.login(userPw);
+		if(pw.matches(userPw)) {
+			return userId;
+		}
+		
+		return null;
+	}	
 }
