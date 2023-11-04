@@ -176,7 +176,7 @@ div.btn_area {
         
         <!--  콘텐츠영역  -->
         <div id="contents">
-            
+            <%@ include file="./myPage.jsp" %>
             <form action="" method="post">
                 <table class="table_type">
                     <colgroup>
