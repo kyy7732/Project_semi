@@ -281,7 +281,8 @@ div.btn_area span{
                 if(text === 'ok'){
                     console.log('ok');
                     $msgId.innerHTML = '사용 가능한 아이디입니다.';
-                    $userId.disabled = true;
+                    $userId.setAttribute('readonly', true);
+                    $idCheck.setAttribute('disabled', true);
                 } else {
                     console.log('duplicated');
                     $msgId.innerText = '이미 존재하는 아이디입니다.';
@@ -418,9 +419,21 @@ div.btn_area span{
         document.joinForm.joinBtn.onclick = () => {
             
             if(!idFlag || !pwFlag){
+                if(!$userId.getAttribute('readonly')){
+                    alert('아이디 중복체크는 필수입니다.')
+                    return;
+                } else if(document.getElementById('userName').value == '') {
+                    alert('이름은 필수 입력값입니다.')
+                    return;
+                } else if(!document.getElementById('check_btn').disabled){
+                    alert('이메일 인증을 완료해주세요.')
+                    return;
+                } else if(confirm('회원가입을 진행합니다.')){
+                    document.joinForm.submit();
+                } else return;
+            } else{
                 alert('입력값을 다시 한번 확인해주세요.');
-            } else {
-                
+                return;
             }
             
         }
