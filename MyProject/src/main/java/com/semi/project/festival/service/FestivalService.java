@@ -1,4 +1,12 @@
-//package com.semi.project.festival.service;
+package com.semi.project.festival.service;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Service;
+
+import com.semi.project.festival.mapper.IFestivalMapper;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 //
 //import java.net.URI;
 //import java.net.URISyntaxException;
@@ -25,13 +33,13 @@
 //import lombok.RequiredArgsConstructor;
 //import lombok.extern.slf4j.Slf4j;
 //
-//@Service
-//@RequiredArgsConstructor
-//@Slf4j
-//@PropertySource("classpath:/properties/FestivalApi.properties")
-//public class FestivalService {
+@Service
+@RequiredArgsConstructor
+@Slf4j
+@PropertySource("classpath:/properties/FestivalApi.properties")
+public class FestivalService {
 //
-//	private final IFestivalMapper mapper;
+	private final IFestivalMapper mapper;
 //	
 //	//properties 작성값 읽어오기
 //	@Value("${festival.serviceKey}")
@@ -155,6 +163,5 @@
 //	public FtvLike likeList(int ftvNum) {
 //
 //		return null;
-//	}
-//
-//}
+	}
+
