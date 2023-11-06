@@ -1,4 +1,11 @@
-//package com.semi.project.festival.service;
+package com.semi.project.festival.service;
+
+import org.springframework.stereotype.Service;
+
+import com.semi.project.festival.mapper.IFestivalMapper;
+
+import lombok.RequiredArgsConstructor;
+
 //
 //import java.net.URI;
 //import java.net.URISyntaxException;
@@ -25,11 +32,19 @@
 //import lombok.RequiredArgsConstructor;
 //import lombok.extern.slf4j.Slf4j;
 //
-//@Service
-//@RequiredArgsConstructor
+@Service
+@RequiredArgsConstructor
 //@Slf4j
 //@PropertySource("classpath:/properties/FestivalApi.properties")
-//public class FestivalService {
+public class FestivalService {
+	//필드
+	private final IFestivalMapper mapper;
+
+	//메서드
+	public void getFestivalBySeason(String season) {
+		mapper.getFestival(season);
+		
+	}
 //
 //	private final IFestivalMapper mapper;
 //	
@@ -157,4 +172,4 @@
 //		return null;
 //	}
 //
-//}
+}

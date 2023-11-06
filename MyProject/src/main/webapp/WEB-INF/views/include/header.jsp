@@ -137,7 +137,7 @@ pageEncoding="UTF-8"%>
     <script>
       //main logo 클릭 시 main으로 이동
       document.querySelector('.title').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}';
+        location.href = '${pageContext.request.contextPath}/';
       });
 
       //로그인페이지로 이동
