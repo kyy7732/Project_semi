@@ -70,8 +70,8 @@ public class UserController {
 
 	//로그인(동기)
 	@PostMapping("/login")
-	public String login(RequestDTO dto){
-	     log.info("/user/login 요청: POST! {}", dto);
+	public String login(String userId, String userPw){
+	     log.info("/user/login 요청: POST! {} {} ", userId, userPw);
 	     return "redirect:/"; //메인페이지로
 	}
 	
