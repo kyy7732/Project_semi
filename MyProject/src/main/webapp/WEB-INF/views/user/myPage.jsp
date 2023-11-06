@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    pageEncoding="UTF-8"%>
 
+    <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,24 +101,12 @@
                     <a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
                 </li>
                 <li>
-                    <a href="#" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
+                    <a href="${pageContext.request.contextPath}/user/likeList" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
                 </li>
                 <li>
                     <a href="#" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
                 </li>
             </div>
-
-            </ul>
-    </table>
-    </div>
-    </div>
-    
-    <script>
-
-    </script>
-	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
-</body>
-
 
             </ul>
     </table>

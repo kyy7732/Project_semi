@@ -35,13 +35,7 @@ public class FestivalController {
 	}
 
 	
-	//댓글 조회(비동기)
-	@GetMapping("/reply")
-	@ResponseBody
-	public List<ReplyResponseDTO> getReplyList(@RequestBody int ftvNum){   
-		log.info("/festival/reply 요청: GET! {}", ftvNum);
-	    return service.getReplyList(ftvNum);
-	}
+
 	
 	
 	
