@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
+
+import com.semi.project.user.dto.RequestDTO;
 import com.semi.project.user.entity.User;
 import com.semi.project.user.mapper.IUserMapper;
 
@@ -20,7 +22,6 @@ public class UserService {
 
 	private final IUserMapper mapper;
 	private final BCryptPasswordEncoder encoder;
-
 	public void regist() {
 		// TODO Auto-generated method stub
 		
@@ -40,7 +41,6 @@ public class UserService {
 		return mapper.idCheck(userId);
 	}
 	
-
 	public void join(User user) {
 		log.info("암호화 하기 전 비번: ", user.getUserPw());	
 		
@@ -56,17 +56,23 @@ public class UserService {
 						.build());
 	}
 
+
 	
 	public String login(String userId, String userPw) {
 		String dbPw = mapper.login(userId);
 		if(dbPw != null) {
-			if(encoder.matches(userPw,  dbPw)) {
+			if(encoder.matches(userPw, dbPw)) {
 				return userId;
 			}
 		}
 		return null;
 	}
 	
+
+	public ReplyResponseDTO getInfo(String id) {
+		User user = mapper.getInfo(id);
+		return ReplyResponseDTO.toDTO(user);	
+	}
 }
 
 

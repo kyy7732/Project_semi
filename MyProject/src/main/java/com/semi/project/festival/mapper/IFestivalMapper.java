@@ -11,4 +11,9 @@ public interface IFestivalMapper {
 
 	String login(String userId);
 	
+	//좋아요 목록 조회
+	List<Festival> likeList(int likeNum);
+	
+	//댓글 조회
+	
 }
