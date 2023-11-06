@@ -9,5 +9,9 @@
 		WHERE user_id = #{userId}
 	</select>
 	
+	<delete id="delete">
+		DELETE FROM users
+		WHERE user_id = #{userId}
+	</delete>
 
 </mapper>

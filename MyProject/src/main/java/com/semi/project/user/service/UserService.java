@@ -34,5 +34,9 @@ public class UserService {
 	public int idCheck(String userId) {
 		return mapper.idCheck(userId);
 	}
+
+	public void delete(String userId) {
+		mapper.delete(userId);
+	}
 	
 }
