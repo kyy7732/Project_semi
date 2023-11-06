@@ -4,15 +4,27 @@
     
 <mapper namespace="com.semi.project.user.mapper.IUserMapper">
 
+
+	<select id="getPw">
+		SELECT user_pw FROM
+		WHERE user_id = #{userId}
+	</select>
+
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM users
 		WHERE user_id = #{userId}
 	</select>
 	
+	<delete id="delete">
+		DELETE FROM users
+		WHERE user_id = #{userId}
+	</delete>
 
+
+	<!-- 로그인 | 아이디, 비밀번호 -->
 	<select id="login" resultType="string">
-		SELECT user_id FROM users
-		WHERE
-		user_id = #{userId}
+		SELECT user_pw 
+		FROM users
+		WHERE user_id = #{userId}
 	</select>
 </mapper>

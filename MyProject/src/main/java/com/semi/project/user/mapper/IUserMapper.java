@@ -6,6 +6,7 @@ public interface IUserMapper {
 
 
 
+
 	//아이디 중복 확인
 	int idCheck(String userId);
 	
@@ -22,11 +23,13 @@ public interface IUserMapper {
 	// 회원 정보 얻어오기
 	User getInfo(String userId);
 
+
+	//이메일 중복 확인
+	
 	//로그아웃
 	
 	//회원탈퇴
-
-	
+	void delete(String userId);
 
 	
 }
