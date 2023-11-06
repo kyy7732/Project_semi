@@ -222,10 +222,10 @@ div.btn_area span{
                                 @
                                 <input class="join type="text" class="box" id="email1" name="email1">&nbsp;
                                     <select type="select" class="box" id="email2" name="email2">
-                                    	<option value="type">직접입력</option>
-                                        <option value="@naver.com">naver.com</option>
-                                        <option value="@gmail.com">gmail.com</option>
-                                        <option value="@daum.net">daum.net</option>
+                                    	<option value="type" selected>직접입력</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
                                         <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
@@ -259,7 +259,6 @@ div.btn_area span{
     
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-
         let code = '';
 		let idFlag, pwFlag;
         const $msgId = document.getElementById('msgId');
@@ -350,18 +349,20 @@ div.btn_area span{
         
         emailBox.addEventListener('change', (event) => {
             if(event.target.value !== "type"){
-                emailInput.value = event.target.value
-                emailInput.disabled = true
+                emailInput.value = event.target.value;
+                emailInput.disabled = true;
             } else {
-                emailInput.value = ""
-                emailInput.disabled = false
+                emailInput.value = "";
+                emailInput.value = document.getElementById('email1').value;
+                emailInput.disabled = false;
             }
         })
         
     
      document.getElementById('check_btn').onclick = function () {
     const email =
-      document.getElementById('email').value +
+      document.getElementById('email').value 
+      + '@' + 
       document.getElementById('email1').value;
 
     fetch('${pageContext.request.contextPath}/user/email', {

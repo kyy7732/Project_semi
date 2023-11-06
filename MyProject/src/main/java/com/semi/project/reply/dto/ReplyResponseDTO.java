@@ -1,4 +1,4 @@
-package com.semi.project.user.dto;
+package com.semi.project.reply.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
