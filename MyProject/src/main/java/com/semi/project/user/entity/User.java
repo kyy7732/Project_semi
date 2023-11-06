@@ -1,6 +1,6 @@
 package com.semi.project.user.entity;
 
-import lombok.AllArgsConstructor;
+import lombok.AllArgsConstructor; 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,5 +20,7 @@ public class User {
 	private String email;
 	private String name;
 	
-	
+
 }
+
+

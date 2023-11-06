@@ -63,7 +63,7 @@ public class UserController {
 	    service.regist();
 	    return "redirect:/user/login";
 	}
-
+	
 	//로그인페이지(동기)
 	@GetMapping("/login")
 	public void loginPage(){}

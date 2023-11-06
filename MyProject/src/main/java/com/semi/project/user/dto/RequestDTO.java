@@ -16,5 +16,19 @@ import lombok.ToString;
 public class RequestDTO {
 
 	private String userId;
+	private String userPw;
+	private String email;
+	private String name;
 	
 }
+
+
+
+
+
+
+
+
+
+
+
