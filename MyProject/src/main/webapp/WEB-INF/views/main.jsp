@@ -23,8 +23,6 @@ pageEncoding="UTF-8"%> <%@ include file="include/header.jsp" %>
     body > #wrap > #searchPart {
       margin-top: 55px;
     }
-    body > #wrap > #map {
-    }
 
     /* .container {
       width: 100vw;

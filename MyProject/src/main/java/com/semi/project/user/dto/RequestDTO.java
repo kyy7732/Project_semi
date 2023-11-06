@@ -16,4 +16,5 @@ import lombok.ToString;
 public class RequestDTO {
 
 	private String userId;
+	
 }

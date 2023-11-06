@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
       #footer {
         width: 100%;
         background: #eee;
-        padding: 40px 0px 50px;
+        padding: 40px 0px;
         position: absolute;
         bottom: 0;
         margin: 0;
@@ -85,6 +85,7 @@ pageEncoding="UTF-8"%>
 
       .middle {
         width: 300px;
+        text-align: center;
         margin-left: auto;
         margin-right: auto;
       }
