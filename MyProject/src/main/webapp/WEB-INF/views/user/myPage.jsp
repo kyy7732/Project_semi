@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>myPage</title>
     <style>
   
   @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
@@ -50,12 +50,7 @@
             margin: 0px;
             margin-top: 30px;
         }
-        header {
-            border: solid;
-            margin: 0px;
-            padding: 0px;
-        }
-        li {
+        li.border {
             width: 200px;
             border-right: solid 2px rgb(186, 199, 216);
             border-bottom: #cbdef1 dotted 2px;
@@ -65,9 +60,6 @@
             display: block;
             padding: 12px;
             text-decoration-line: none;
-
-        }
-        a {
             color: #0356A9;
         }
         .hTable{
@@ -77,7 +69,7 @@
         a:hover{
             color: #158aff;
         }
-        #page {
+        #page5 {
             text-align: center;
             line-height: 100px;
             margin: 0px;
@@ -93,42 +85,45 @@
     <div id="wrap">
         <table id="nav">
             <ul id="menu">
-                <li id="no">
-                    <h1 id="page"><strong>마이 페이지</strong></h1>
+                <li id="no" class="border">
+                    <h1 id="page5"><strong>마이 페이지</strong></h1>
                 </li>
                 <div id="menu2">
-                <li>
-                    <a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
+                <li class="border">
+                    <a href="#" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
+                    <!--<a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>-->
                 </li>
-                <li>
+                <li class="border">
                     <a href="#" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
                 </li>
-                <li>
+                <li class="border">
                     <a href="#" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
                 </li>
+                <li class="border">
+                  <a href="#" id="deleteBtn" class="aButton" ><h2 class="hTable">회원 탈퇴</h2></a>
+              </li>
             </div>
 
             </ul>
     </table>
     </div>
     </div>
-    
-    <script>
-
-    </script>
-	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
-</body>
-
-
-            </ul>
-    </table>
-    </div>
-    </div>
-    
-    <script>
-
-    </script>
-	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 
 </html>
+    <script>
+     
+      document.getElementById('deleteBtn').onclick = e => {
+      if (confirm("정말로 삭제하시겠습니까?")) {
+        alert("삭제되었습니다.");
+        location.href = "${pageContext.request.contextPath}/user/delete?userId=${userId}";
+      } else {
+        return;
+        // 삭제가 취소된 경우 실행할 코드를 작성할 수 있습니다.
+      }
+    }
+      
+
+    </script>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+

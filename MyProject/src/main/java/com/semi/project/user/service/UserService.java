@@ -40,6 +40,10 @@ public class UserService {
 	public int idCheck(String userId) {
 		return mapper.idCheck(userId);
 	}
+
+	public void delete(String userId) {
+		mapper.delete(userId);
+	}
 	
 	public void join(User user) {
 		log.info("암호화 하기 전 비번: ", user.getUserPw());	

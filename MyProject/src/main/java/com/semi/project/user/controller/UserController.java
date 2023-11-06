@@ -96,8 +96,9 @@ public class UserController {
 	//회원정보 삭제 요청(동기)
 	@GetMapping("/delete")
 	public String delete(String userId) {
-		log.info("/user/delete 요청: POST! {}", userId);
-		return "redirect:/"; //메인페이지로? 마이페이지로?
+		log.info("/user/delete 요청: Get! {}", userId);
+		service.delete(userId);
+		return "redirect:/";
 	}
 	
 	//나의활동 페이지
