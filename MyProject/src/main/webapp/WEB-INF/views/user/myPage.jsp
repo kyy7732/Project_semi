@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,7 +108,9 @@
     </table>
     </div>
     </div>
-    
+</body>
+
+</html>
     <script>
      
       document.getElementById('deleteBtn').onclick = e => {
@@ -123,6 +126,4 @@
 
     </script>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
-</body>
 
-</html>

@@ -222,10 +222,10 @@ div.btn_area span{
                                 @
                                 <input class="join type="text" class="box" id="email1" name="email1">&nbsp;
                                     <select type="select" class="box" id="email2" name="email2">
-                                    	<option value="type">직접입력</option>
-                                        <option value="@naver.com">naver.com</option>
-                                        <option value="@gmail.com">gmail.com</option>
-                                        <option value="@daum.net">daum.net</option>
+                                    	<option value="type" selected>직접입력</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
                                         <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
@@ -259,7 +259,6 @@ div.btn_area span{
     
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-
         let code = '';
 		let idFlag, pwFlag;
         const $msgId = document.getElementById('msgId');
@@ -281,7 +280,8 @@ div.btn_area span{
                 if(text === 'ok'){
                     console.log('ok');
                     $msgId.innerHTML = '사용 가능한 아이디입니다.';
-                    $userId.disabled = true;
+                    $userId.setAttribute('readonly', true);
+                    $idCheck.setAttribute('disabled', true);
                 } else {
                     console.log('duplicated');
                     $msgId.innerText = '이미 존재하는 아이디입니다.';
@@ -349,18 +349,20 @@ div.btn_area span{
         
         emailBox.addEventListener('change', (event) => {
             if(event.target.value !== "type"){
-                emailInput.value = event.target.value
-                emailInput.disabled = true
+                emailInput.value = event.target.value;
+                emailInput.disabled = true;
             } else {
-                emailInput.value = ""
-                emailInput.disabled = false
+                emailInput.value = "";
+                emailInput.value = document.getElementById('email1').value;
+                emailInput.disabled = false;
             }
         })
         
     
      document.getElementById('check_btn').onclick = function () {
     const email =
-      document.getElementById('email').value +
+      document.getElementById('email').value 
+      + '@' + 
       document.getElementById('email1').value;
 
     fetch('${pageContext.request.contextPath}/user/email', {
@@ -418,9 +420,21 @@ div.btn_area span{
         document.joinForm.joinBtn.onclick = () => {
             
             if(!idFlag || !pwFlag){
+                if(!$userId.getAttribute('readonly')){
+                    alert('아이디 중복체크는 필수입니다.')
+                    return;
+                } else if(document.getElementById('userName').value == '') {
+                    alert('이름은 필수 입력값입니다.')
+                    return;
+                } else if(!document.getElementById('check_btn').disabled){
+                    alert('이메일 인증을 완료해주세요.')
+                    return;
+                } else if(confirm('회원가입을 진행합니다.')){
+                    document.joinForm.submit();
+                } else return;
+            } else{
                 alert('입력값을 다시 한번 확인해주세요.');
-            } else {
-                
+                return;
             }
             
         }

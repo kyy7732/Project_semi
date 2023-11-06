@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,15 +64,16 @@ public class UserController {
 	    service.regist();
 	    return "redirect:/user/login";
 	}
-
+	
 	//로그인페이지(동기)
 	@GetMapping("/login")
 	public void loginPage(){}
 
 	//로그인(동기)
 	@PostMapping("/login")
-	public String login(RequestDTO dto){
-	     log.info("/user/login 요청: POST! {}", dto);
+	public String login(String userId, String userPw, Model model){
+	     log.info("/user/login 요청: POST! {}", userId);
+	     model.addAttribute("result", service.login(userId, userPw));
 	     return "redirect:/"; //메인페이지로
 	}
 	
