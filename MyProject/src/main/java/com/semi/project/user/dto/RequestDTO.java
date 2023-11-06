@@ -20,8 +20,6 @@ public class RequestDTO {
 	private String email;
 	private String name;
 	
-
-	
 }
 
 
