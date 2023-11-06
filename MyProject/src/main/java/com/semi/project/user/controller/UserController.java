@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,8 +71,9 @@ public class UserController {
 
 	//로그인(동기)
 	@PostMapping("/login")
-	public String login(String userId, String userPw){
-	     log.info("/user/login 요청: POST! {} {} ", userId, userPw);
+	public String login(String userId, String userPw, Model model){
+	     log.info("/user/login 요청: POST! {}", userId);
+	     model.addAttribute("result", service.login(userId, userPw));
 	     return "redirect:/"; //메인페이지로
 	}
 	
@@ -94,8 +96,9 @@ public class UserController {
 	//회원정보 삭제 요청(동기)
 	@GetMapping("/delete")
 	public String delete(String userId) {
-		log.info("/user/delete 요청: POST! {}", userId);
-		return "redirect:/"; //메인페이지로? 마이페이지로?
+		log.info("/user/delete 요청: Get! {}", userId);
+		service.delete(userId);
+		return "redirect:/";
 	}
 	
 	//나의활동 페이지

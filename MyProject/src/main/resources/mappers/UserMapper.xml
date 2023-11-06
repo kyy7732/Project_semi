@@ -14,15 +14,17 @@
 		SELECT COUNT(*) FROM users
 		WHERE user_id = #{userId}
 	</select>
+	
+	<delete id="delete">
+		DELETE FROM users
+		WHERE user_id = #{userId}
+	</delete>
 
 
 	<!-- 로그인 | 아이디, 비밀번호 -->
-	<select id="login" resultMap="string">
+	<select id="login" resultType="string">
 		SELECT user_pw 
 		FROM users
 		WHERE user_id = #{userId}
 	</select>
-	
-
-
 </mapper>

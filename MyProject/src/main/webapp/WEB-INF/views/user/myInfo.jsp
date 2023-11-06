@@ -7,6 +7,7 @@
     
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 
@@ -165,15 +166,16 @@ div.btn_area {
 
 
 </head>
+
 <body>
     
     <div id="wrap">
         <!--  상단영역  -->
-        
-            
+
+
         </header>
         <!-- 상단영역 끝 -->
-        
+
         <!--  콘텐츠영역  -->
         <div id="contents">
             <%@ include file="./myPage.jsp" %>
@@ -274,12 +276,15 @@ div.btn_area {
         </div>
         <!-- 콘텐츠영역 끝 -->
 
-        <!--  하단영역  -->
+        </div>
         
+         <!--  하단영역  -->
+
         <!-- 하단영역 끝 -->
     </div>
 
 </body>
+
 </html>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
