@@ -1,7 +1,6 @@
-package com.semi.project.reply.dto;
+package com.semi.project.reply.request;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +11,10 @@ import lombok.ToString;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class ReplyResponseDTO {
-
+public class UserReplyModifyRequestDTO {
+	
+	private int commentNum;
 	private String userId;
+	private String content;
+	
 }
