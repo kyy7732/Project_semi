@@ -22,8 +22,7 @@ public interface IUserMapper {
 
 
 	//이메일 중복 확인
-	
-	//로그아웃
+	int getEmail(String email);	
 	
 	//회원탈퇴
 	void delete(String userId);
@@ -33,6 +32,7 @@ public interface IUserMapper {
 	
 	//좋아요 목록 조회
 	void getLikeList(String userId);
+
 
 
 	

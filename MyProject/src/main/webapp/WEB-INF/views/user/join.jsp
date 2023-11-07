@@ -174,13 +174,13 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_id">아이디</label>
+                                <label for="userId">아이디</label>
 
                             </th>
                             <td>
                                 <p class="guide_txt">
                                     <input type="text" id="userId" name="userId" class="join">
-                                    <input type="button" id="idCheck" value="중복확인">
+                                    <input type="button" id="idCheck" name="idCheck" value="중복확인">
                                     <br />
                                     <span id="msgId">6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.
                                     </span>
@@ -191,12 +191,11 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_pw">비밀번호</label>
+                                <label for="userPw">비밀번호</label>
                             </th>
                             <td>
                                 <p class="guide_txt">
                                     <input type="password" id="userPw" name="userPw" class="join">
-                                    <br />
                                     <span id="msgPw">8개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.</span>
                                 </p>
                             </td>
@@ -204,11 +203,11 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_pw2">비밀번호 확인</label>
+                                <label for="userPwC">비밀번호 확인</label>
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="userPwC" name="userPwC" class="join"><br />
+                                    <input type="password" id="userPwC" name="userPwC" class="join">
                                     <span id="msgPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                                 </p>
                             </td>
@@ -272,9 +271,10 @@
         let code = '';
         let idFlag, pwFlag;
         const $msgId = document.getElementById('msgId');
-        //id 중복확인 요청
 
-        //const userId = document.joinForm.userId.value;
+        
+        
+        //아이디 중복 검사 스크립트
         const $idCheck = document.joinForm.idCheck;
         const $userId = document.getElementById('userId');
 
@@ -348,15 +348,14 @@
             }
         }
 
-
-
-
-
-
+        
+        
+        
+		// 이메일 중복 검사 스크립트
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
-
+        
         emailBox.addEventListener('change', (event) => {
             if (event.target.value !== "type") {
                 emailInput.value = event.target.value;
@@ -367,14 +366,15 @@
                 emailInput.disabled = false;
             }
         })
-
-
+        
+        
         document.getElementById('check_btn').onclick = function () {
             const email =
-                document.getElementById('email').value +
-                '@' +
-                document.getElementById('email1').value;
-
+            document.getElementById('email').value +
+            '@' +
+            document.getElementById('email1').value;
+            
+            fetch('${pageContext.request.contextPath}/user/email/' + email)
             fetch('${pageContext.request.contextPath}/user/email', {
                     method: 'post',
                     headers: {
