@@ -30,7 +30,7 @@ DROP SEQUENCE SEQ_festival_ftv_num;
 CREATE SEQUENCE SEQ_festival_ftvNo INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_festival_ftv_no INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_festival_ftv_num INCREMENT BY 1 START WITH 1;
-
+CREATE SEQUENCE SEQ_reply_comment_num INCREMENT BY 1 START WITH 1;
 
 
 /* Create Tables */
@@ -73,6 +73,7 @@ CREATE TABLE reply
 	reg_date date DEFAULT SYSDATE NOT NULL,
 	user_id varchar2(50) NOT NULL,
 	ftv_num number NOT NULL,
+    update_date date,
 	PRIMARY KEY (comment_num)
 );
 
