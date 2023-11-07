@@ -19,8 +19,7 @@ pageEncoding="UTF-8"%>
         align-items: flex-end;
       }
       .title {
-        background: transparent url(/resources/static/img/logoHeader.png)
-          no-repeat center;
+        background: transparent url(/img/logoHeader.png) no-repeat center;
         flex-grow: 3;
         min-width: 298px;
         min-height: 75px;
@@ -42,8 +41,7 @@ pageEncoding="UTF-8"%>
       .real-time .sound-icon {
         width: 20px;
         height: 30px;
-        background: transparent url(/resources/static/img/soundIcon.png)
-          no-repeat center;
+        background: transparent url(/img/soundIcon.png) no-repeat center;
         margin-right: 10px;
       }
       .real-time .real-time-icon {
@@ -112,6 +110,47 @@ pageEncoding="UTF-8"%>
       .join-btn {
         margin-bottom: 7px;
       }
+      
+      *{margin:0; padding:0;}
+      a.button{display:inline-block; padding: 10px 20px; text-decoration:none; color:#fff; background:#000; margin:20px;}
+      #modal{
+        display:none;
+        position:fixed; 
+        width:100%; height:100%;
+        top:0; left:0; 
+        background:rgba(0,0,0,0.3);
+      }
+      .modal-con{
+        display:none;
+        position:fixed;
+        top:50%; left:15%;
+        transform: translate(-50%,-50%);
+        max-width: 60%;
+        min-height: 30%;
+        background:#fff;
+      }
+      .modal-header {
+        font-size:20px; 
+        padding: 20px; 
+        background : gold;
+        border: 1px solid black;
+      }
+      .modal-con .con{
+        font-size:15px; line-height:1.3;
+        padding: 30px;
+      }
+      .modal-con .close{
+        display:block;
+        position:absolute;
+        width:30px; height:30px;
+        border-radius:50%; 
+        border: 3px solid #000;
+        text-align:center; line-height: 30px;
+        text-decoration:none;
+        color:#000; font-size:20px; font-weight: bold;
+        right:10px; top:10px;
+      }
+
     </style>
   </head>
   <body>
@@ -131,23 +170,115 @@ pageEncoding="UTF-8"%>
       <div class="btn-area">
         <button class="btn login-btn">로그인</button>
         <button class="btn join-btn">회원가입</button>
-        <button class="btn like">좋아요목록</button>
+        <a href="javascript:openModal('modal1');" class="btn like">좋아요목록</a>
       </div>
     </div>
-    <script>
-      //main logo 클릭 시 main으로 이동
-      document.querySelector('.title').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}';
-      });
 
-      //로그인페이지로 이동
-      document.querySelector('.login-btn').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}/user/login';
+    <!-- 좋아요 목록 모달-->
+    
+    <!-- <div id="wrap">
+      <a href="javascript:openModal('modal1');" class="button modal-open">모달열기</a>
+     
+    </div> -->
+
+    <div id="modal"></div>
+      <div class="modal-con modal1">
+          <div class="modal-header">
+              <input type="text" placeholder="좋아요 리스트">
+              <a href="javascript:;" class="portal">검색</a>
+              <a href="${pageContext.request.contextPath}/" class="close">X</a>
+          </div>
+              <div class="board_list_wrap">
+                  <div class="board_list">
+                      <div class="ftv1">
+                          <div class="num">1</div>
+                          <div class="modal_title"><a href="#">글제목</a></div>
+                          <div class="likebtn">♡</div>
+                      </div>
+                      <div class="ftv2">
+                          <div class="num">2</div>
+                          <div class="modal_title"><a href="#">글제목</a></div>
+                          <div class="likebtn">♡</div>
+                      </div>
+                      <div class="ftv3">
+                      <div class="num">3</div>
+                      <div class="modal_title"><a href="#">글제목</a></div>
+                      <div class="likebtn">♡</div>
+                      </div>
+                      <div class="ftv4">
+                      <div class="num">4</div>
+                      <div class="modal_title"><a href="#">글제목</a></div>
+                      <div class="likebtn">♡</div>
+                      </div>
+                      <div class="ftv5">
+                      <div class="num">5</div>
+                      <div class="modal_title"><a href="#">글제목</a></div>
+                      <div class="likebtn">♡</div>
+                      </div>
+              </div>        
+          </div>
+              
+              <form action="${pageContext.request.contextPath}/user/likeListTest2" name="pageForm">
+              <div class="text-center">
+                  <hr>
+                  <ul id="pagination" class="pagination pagination-sm">
+                      <c:if test="${pc.prev}">
+                          <li><a href="#" data-pagenum="${pc.begin-1}">이전</a></li>
+                      </c:if>
+                      
+                      <c:forEach var="num" begin="${pc.begin}" end="${pc.end}">               
+                          <li class="${pc.page.pageNo == num ? 'active' : ''}"><a href="#" data-pagenum="${num}">${num}</a></li>
+                      </c:forEach>
+                      
+                      <c:if test="${pc.next}">
+                          <li><a href="#" data-pagenum="${pc.end+1}">다음</a></li>
+                      </c:if>
+                  </ul>
+              </div>
+
+              <input type="hidden" name="pageNo" value="${pc.page.pageNo}">
+              <input type="hidden" name="amount" value="${pc.page.amount}">
+              <input type="hidden" name="keyword" value="${pc.page.keyword}">
+              <input type="hidden" name="condition" value="${pc.page.condition}"> 
+              
+      </div>
+
+    <script>
+      document.querySelector('.container').addEventListener('click', (e) => {
+        e.preventDefault();
+        //main logo 클릭 시 main으로 이동
+        if (e.target.matches('.title')) {
+          location.href = '${pageContext.request.contextPath}/';
+          console.log('wefwf');
+          return;
+        }
+        //로그인페이지로 이동
+        if (e.target.matches('.login-btn')) {
+          location.href = '${pageContext.request.contextPath}/user/login';
+          return;
+        }
+        //회원가입 페이지로 이동
+        if (e.target.matches('.join-btn')) {
+          location.href = '${pageContext.request.contextPath}/user/join';
+          return;
+        }
+        //좋아요 목록으로 이동
+        if (e.target.matches('.like')) {
+          location.href = '${pageContext.request.contextPath}/user/likeList';
+          return;
+        }
       });
-      //회원가입 페이지로 이동
-      document.querySelector('.join-btn').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}/user/join';
-      });
-    </script>
+      
+     function openModal(modalname){
+              $("#modal").fadeIn(300);
+              $("."+modalname).fadeIn(300);
+             document.querySelector('.modal1').style.zIndex = '10';
+            }
+            
+            $("#modal, .close").on('click',function(){
+              $("#modal").fadeOut(300);
+              $(".modal-con").fadeOut(300);
+            });
+  </script>
   </body>
 </html>

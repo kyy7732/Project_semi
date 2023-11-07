@@ -138,6 +138,10 @@ pageEncoding="UTF-8"%>
           },
         });
       }
+
+      document.querySelector('img').onclick = () => {
+        location.href = '${pageContext.request.contextPath}/';
+      };
     </script>
   </body>
 </html>
