@@ -38,6 +38,7 @@ pageEncoding="UTF-8"%>
         justify-content: center;
         align-items: center;
         flex-grow: 1;
+        min-width: 200px;
       }
       .real-time .sound-icon {
         width: 20px;
@@ -55,6 +56,7 @@ pageEncoding="UTF-8"%>
         flex-grow: 5;
         padding-left: 10px;
         border-left: 3px solid rgba(204, 202, 202, 0.929);
+        min-width: 200px;
       }
       .fest-name span {
         font-weight: bold;
