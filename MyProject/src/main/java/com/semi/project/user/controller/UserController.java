@@ -119,11 +119,6 @@ public class UserController {
 	      return service.getLikeList(userId);
 	}
 	
-	//댓글목록 요청(비동기)
-	@GetMapping("/reply")
-	public List<ReplyResponseDTO> replyList(HttpSession session) {
-		return service.getReplyList(session.getAttribute("login"));
-	}
 	
 	
 	
