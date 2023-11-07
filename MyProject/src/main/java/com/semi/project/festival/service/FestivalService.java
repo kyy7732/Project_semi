@@ -1,38 +1,15 @@
-//package com.semi.project.festival.service;
-//
-//import java.net.URI;
-//import java.net.URISyntaxException;
-//import java.util.Map;
-//
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.context.annotation.PropertySource;
-//import org.springframework.http.HttpEntity;
-//import org.springframework.http.HttpHeaders;
-//import org.springframework.http.HttpMethod;
-//import org.springframework.http.MediaType;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.stereotype.Service;
-//import org.springframework.web.client.RestTemplate;
-//import org.springframework.web.util.UriComponents;
-//import org.springframework.web.util.UriComponentsBuilder;
-//
-//import com.semi.project.festival.dto.FtvResponseDTO;
-//import com.semi.project.festival.dto.ReplyResponseDTO;
-//import com.semi.project.festival.entity.Festival;
-//import com.semi.project.festival.entity.FtvLike;
-//import com.semi.project.festival.mapper.IFestivalMapper;
-//
-//import lombok.RequiredArgsConstructor;
-//import lombok.extern.slf4j.Slf4j;
-//
-//@Service
-//@RequiredArgsConstructor
-//@Slf4j
-//@PropertySource("classpath:/properties/FestivalApi.properties")
-//public class FestivalService {
-//
-//	private final IFestivalMapper mapper;
-//	
+// package com.semi.project.festival.service;
+// import org.springframework.context.annotation.PropertySource;
+// import org.springframework.stereotype.Service;
+
+
+// @Service
+// @RequiredArgsConstructor
+// @Slf4j
+// @PropertySource("classpath:/properties/FestivalApi.properties")
+// public class FestivalService {
+// 	private final IFestivalMapper mapper;
+// //	
 //	//properties 작성값 읽어오기
 //	@Value("${festival.serviceKey}")
 //	private String serviceKey;
@@ -128,7 +105,7 @@
 ////        urlBuilder.append("&" + URLEncoder.encode("instt_nm","UTF-8") + "=" + URLEncoder.encode("", "UTF-8")); /*제공기관기관명*/
 ////        URL url = new URL(urlBuilder.toString());
 ////        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-////        conn.setRequestMethod("GET");
+////        conn.setRequestMethod("GET")
 ////        conn.setRequestProperty("Content-type", "application/json");
 ////        System.out.println("Response code: " + conn.getResponseCode());
 ////        BufferedReader rd;
@@ -155,6 +132,5 @@
 //	public FtvLike likeList(int ftvNum) {
 //
 //		return null;
-//	}
-//
-//}
+	//}
+

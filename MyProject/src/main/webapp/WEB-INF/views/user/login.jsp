@@ -112,7 +112,7 @@ pageEncoding="UTF-8"%>
 
           <!-- 카카오로그인 -->
           <botton>
-            <a href="javascript:kakaoLogin();">
+            <a href="javascript:kakaoLogin()">
               <img src="../img/kakaoLoginBtn.png" />
             </a>
           </botton>
@@ -143,7 +143,7 @@ pageEncoding="UTF-8"%>
       };
 
       ////////////카카오 ///////////////
-      window.Kakao.init('apikey');
+      window.Kakao.init('');
       function kakaoLogin() {
         window.Kakao.Auth.login({
           scope: 'profile_nickname',
