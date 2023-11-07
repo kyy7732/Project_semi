@@ -103,7 +103,7 @@ pageEncoding="UTF-8"%>
           <!-- 네이버 로그인 -->
           <button>
             <a
-              href="#"
+              href="naverLogin.jsp"
               style="height: 300px; height: 52px"
             >
             </a>
