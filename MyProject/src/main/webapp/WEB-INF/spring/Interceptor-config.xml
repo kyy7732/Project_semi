@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!--<bean id="userLoginHandler"
+	<bean id="userLoginHandler"
 		class="com.semi.project.util.interceptor.UserLoginHandler" />
 		
 	<bean id="userAuth"
@@ -13,18 +13,18 @@
 	<mvc:interceptors>
 
 		<mvc:interceptor>
-			<mvc:mapping path="/user/userLogin" />
+			<mvc:mapping path="/user/login" />
 			<ref bean="userLoginHandler" />
 		</mvc:interceptor>
 
-		 로그인 권한 체크 인터셉터 url 매핑 
-		<mvc:interceptor>
-			<mvc:mapping path="/freeboard/freeRegist"/>
-			<mvc:mapping path="/user/userMypage"/>
+		 
+		<!--   <mvc:interceptor>
+			<mvc:mapping path="/user/freeRegist"/>
+			<mvc:mapping path="/user/Mypage"/>
 			<ref bean="userAuth" />
-		</mvc:interceptor>
+		</mvc:interceptor>-->
 
-	</mvc:interceptors>-->
+	</mvc:interceptors>
 
 
 

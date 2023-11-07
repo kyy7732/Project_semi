@@ -32,9 +32,10 @@
 		DELETE FROM users
 		WHERE user_id = #{userId}
 	</delete>
-	
+<!-- 	
 	<select id="getLikeList">
 		SELECT * FROM festival
 		WHERE 
 	</select>
+	 -->
 </mapper>
