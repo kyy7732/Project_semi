@@ -79,6 +79,7 @@ pageEncoding="UTF-8"%>
           method="post"
           id="loginForm"
           name="loginForm"
+          action="${pageContext.request.contextPath}/user/login"
         >
           <input
             type="text"
@@ -93,10 +94,9 @@ pageEncoding="UTF-8"%>
             placeholder="Password"
           />
           <button
-            type="submit"
+            type="button"
             id="loginBtn"
           >
-            <a href="#"></a>
             로그인
           </button>
 
@@ -122,7 +122,28 @@ pageEncoding="UTF-8"%>
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
-      window.Kakao.init('');
+      const msg = '${msg}';
+      if (msg === 'joinSuccess') {
+        alert('회원가입을 환영합니다!');
+      } else if (msg === 'loginFail') {
+        alert('로그인에 실패했습니다. 아이디와 비밀번호를 확인하세요');
+      }
+      ///////////userLogin///////////////////
+      document.getElementById('loginBtn').onclick = () => {
+        if (document.loginForm.userId.value === '') {
+          alert('아이디를 입력해주세요');
+          return;
+        }
+        if (document.loginForm.userPw.value === '') {
+          alert('비밀번호를 입력해주세요');
+          return;
+        }
+
+        document.loginForm.submit();
+      };
+
+      ////////////카카오 ///////////////
+      window.Kakao.init('apikey');
       function kakaoLogin() {
         window.Kakao.Auth.login({
           scope: 'profile_nickname',

@@ -23,14 +23,6 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean>
-
-	<beans:bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-    	<beans:property name="locations">
-    		<beans:list>
-    			<beans:value>classpath:/properties/Email.properties</beans:value>
-    		</beans:list>
-    	</beans:property>
-    </beans:bean>
     
     <resources mapping="/css/**" location="/resources/static/css/" />
     <resources mapping="/js/**" location="/resources/static/js/" />
