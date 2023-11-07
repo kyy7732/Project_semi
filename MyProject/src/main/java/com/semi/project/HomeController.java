@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+//	private final FestivalService service;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -32,6 +33,9 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		
+		//축제 name, place, url, 위도, 경도 불러오기
+//		service.getFestivalInfo();
 		
 		return "main";
 	}

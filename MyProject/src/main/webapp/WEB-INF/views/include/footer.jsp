@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
 
       #footer {
         width: 100%;
-        height: 10%;
+        height: 10rem;
         background: #eee;
         padding: 40px 0px;
         position: absolute;
