@@ -196,7 +196,6 @@
                             <td>
                                 <p class="guide_txt">
                                     <input type="password" id="userPw" name="userPw" class="join">
-                                    <br />
                                     <span id="msgPw">8개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.</span>
                                 </p>
                             </td>
@@ -208,7 +207,7 @@
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="userPwC" name="userPwC" class="join"><br />
+                                    <input type="password" id="userPwC" name="userPwC" class="join">
                                     <span id="msgPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                                 </p>
                             </td>
