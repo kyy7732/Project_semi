@@ -11,7 +11,7 @@
   .white-bg {
     border-radius: 5px;
     padding: 30px;
-    width: 300px;
+    width: 350px;
     height: 600px;
     border: 1px solid blue;
     background: skyblue;
@@ -40,6 +40,12 @@
             border: 1px solid blue;
             /* z-index : 5; */
             padding: 30px;
+        }
+
+        .modal-con {
+            /* border: 1px solid black; */
+            width: 100%;
+            height: 25px;
         }
 
         /* #modal .modal-window {
@@ -229,9 +235,9 @@
         /* 모달 검색창 */
         input {
             border: 1px solid blue;
-            font-size: 15px;
+            font-size: 20px;
             width: 200px;
-            height: 10px;
+            height: 24px;
             padding: 7px;
             outline: none;
             float: left;
@@ -248,14 +254,15 @@
             padding: 4px;
         }
         /* 모달 창끄기 버튼 */
-        #closeBtn{
+        .close{
             height: 25px;
             border: 0px;
-            background: blue;
+            background: blue; 
             outline: none;
             float: right;
             color: #ffffff;
-            padding: 4px;
+            
+            
         }
 
         #pagination{
@@ -268,16 +275,33 @@
         .ssk{
             border: 1px solid black;
         }
+
+        
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
 
 <body>
+
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+         crossorigin="anonymous"
+      />
+
     <form action="" method="#">
     <div id="modal" class="black-bg noshow">
         <div class="white-bg">
+            <div class="modal-con">
             <input type="text" placeholder="좋아요 리스트">
-            <button type="button">검색</button>
-            <button type="button" id="closeBtn">Χ</button>
+            <!-- <button type="button">검색</button> -->
+            <a href="javascript:;" class="portal">검색</a>
+            <a href="javascript:;" class="close">X</a>
+            </div>
+            <!-- <button type="button" id="closeBtn">Χ</button> -->  
             <div class="board_list_wrap">
               <div class="board_list">
                   <div class="ftv1">
@@ -330,7 +354,7 @@
                 <input type="hidden" name="keyword" value="">
                 <input type="hidden" name="condition" value="">
 		    </form>
-        </div>
+        </div>  
     </div>
   </form>
   <button id ='like_list'>좋아요 목록</button>
@@ -339,18 +363,32 @@
     
   </section>
 
-</body>
-
-<script>
+  <!-- <script>
     document.querySelector('#like_list').addEventListener('click',function(){
       document.querySelector('.black-bg').classList.remove('noshow');
-    })
-    // 좋아요 목록을 누르면, 모달창의 노쇼클래스가 사라진다. 즉, 모달창이 눈에 보인다
+    }) -->
+    <!-- // 좋아요 목록을 누르면, 모달창의 노쇼클래스가 사라진다. 즉, 모달창이 눈에 보인다
 
-    document.querySelector('#closeBtn').addEventListener('click',function(){
-      document.querySelector('.black-bg').classList.add('noshow');
-    })
+    // document.querySelector('#closeBtn').addEventListener('click',function(){
+    //   document.querySelector('.black-bg').classList.add('noshow');
+    // })
     //닫기 버튼을 누르면, 모달창의 노쇼클래스가 추가된다. 즉, 모달창이 사라진다
   
-    </script>
+    </script> -->
+     <script>
+            
+            function openModal(modalname){
+              $('#like_list').fadeIn(300);
+              $("."+modalname).fadeIn(300);
+            }
+            
+            $(".close").on('click',function(){
+              $(".white-bg").fadeOut(300);
+              $(".modal-con").fadeOut(300);
+            });
+        </script>
+
+</body>
+
+
     
