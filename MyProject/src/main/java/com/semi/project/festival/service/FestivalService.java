@@ -3,6 +3,8 @@ package com.semi.project.festival.service;
 import org.springframework.stereotype.Service;
 
 import com.semi.project.festival.mapper.IFestivalMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import lombok.RequiredArgsConstructor;
 <<<<<<< HEAD

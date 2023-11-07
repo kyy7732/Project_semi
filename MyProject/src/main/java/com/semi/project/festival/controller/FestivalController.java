@@ -31,50 +31,37 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FestivalController {
 
-    private final FestivalService service;
-    
-    //축제지도 화면 이동 요청
-    @GetMapping("/")
-    public void viewFestival() {
-    	
-    }
-
-    //시즌별 축제조회(비동기)
-    @GetMapping("/ftvList/{season}")
-    @ResponseBody
-    public List<FtvResponseDTO> getFtvList(@PathVariable String season){
-        log.info("/festival/ftvList 요청: GET!  {}", season);
-        service.getFestivalBySeason(season);
-//       return service.getFtvList(season);
-        return null;
-    }
-
-
-    //댓글 조회(비동기)
-    @GetMapping("/reply")
-    @ResponseBody
-    public List<ReplyResponseDTO> getReplyList(@RequestBody int ftvNum){
-        log.info("/festival/reply 요청: GET! {}", ftvNum);
-//        return service.getReplyList(ftvNum);
-        return null;
-    }
-
-
-
-
-    }
-	
 	private final FestivalService service;
-	
-	//시즌별 축제조회(비동기)
-//	@GetMapping("/ftvList")
-//	@ResponseBody
-//	public List<FtvResponseDTO> getFtvList(String season){
-//		log.info("/festival/ftvList 요청: GET!  {}", season);
-//       return service.getFtvList(season);
-//	}
+
+	//축제지도 화면 이동 요청
+	@GetMapping("/")
+	public void viewFestival() {
 
 	}
+
+	//시즌별 축제조회(비동기)
+	@GetMapping("/ftvList/{season}")
+	@ResponseBody
+	public List<FtvResponseDTO> getFtvList(@PathVariable String season){
+		log.info("/festival/ftvList 요청: GET!  {}", season);
+		service.getFestivalBySeason(season);
+		//       return service.getFtvList(season);
+		return null;
+	}
+
+
+
+	//댓글 조회(비동기)
+	@GetMapping("/reply")
+	@ResponseBody
+	public List<ReplyResponseDTO> getReplyList(@RequestBody int ftvNum){
+		log.info("/festival/reply 요청: GET! {}", ftvNum);
+		//        return service.getReplyList(ftvNum);
+		return null;
+	}
+
+
+}
 
 
 
