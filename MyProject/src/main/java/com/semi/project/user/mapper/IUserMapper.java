@@ -4,9 +4,6 @@ import com.semi.project.user.entity.User;
 
 public interface IUserMapper {
 
-
-
-
 	//아이디 중복 확인
 	int idCheck(String userId);
 	
@@ -18,14 +15,25 @@ public interface IUserMapper {
 	String login(String userId);
 	
 	//회원정보수정
-	void updateUser(User user);
+	void update(User user);
 	
 	// 회원 정보 얻어오기
 	User getInfo(String userId);
 
+
+	//이메일 중복 확인
+	
 	//로그아웃
 	
 	//회원탈퇴
+	void delete(String userId);
+
+	//좋아요 목록 저장
+	
+	
+	//좋아요 목록 조회
+	void getLikeList(String userId);
+
 
 	
 }

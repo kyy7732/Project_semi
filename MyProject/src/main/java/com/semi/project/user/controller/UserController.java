@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
@@ -90,25 +91,32 @@ public class UserController {
 	@PostMapping("/update")
 	public String update(RequestDTO dto) {
 		log.info("/user/update 요청: POST! {}", dto);
+		service.update(dto);
 		return "redirect:/user/myPage";
 	}
 	
 	//회원정보 삭제 요청(동기)
 	@GetMapping("/delete")
 	public String delete(String userId) {
-		log.info("/user/delete 요청: POST! {}", userId);
-		return "redirect:/"; //메인페이지로? 마이페이지로?
+		log.info("/user/delete 요청: Get! {}", userId);
+		service.delete(userId);
+		return "redirect:/";
 	}
 	
 	//나의활동 페이지
 	
+	//좋아요 목록 저장(비동기)
+	@PostMapping("/likeList")
+	@ResponseBody
+	public void registFtvLike(@RequestParam String userId, @RequestParam int ftvNum) {
+		
+	}
 	
 	//좋아요 목록 요청(동기)
 	@GetMapping("/likeList")
-	public List<FtvResponseDTO> getFtvLIkeList(String userId){
+	public List<FtvResponseDTO> getFtvLIkeList(@RequestParam String userId, @RequestParam int ftvNum){
 	      log.info("/festival/likeList 요청: GET! {}", userId);   
 	      return service.getLikeList(userId);
-	
 	}
 	
 	//댓글목록 요청(비동기)
@@ -116,5 +124,7 @@ public class UserController {
 	public List<ReplyResponseDTO> replyList(HttpSession session) {
 		return service.getReplyList(session.getAttribute("login"));
 	}
+	
+	
 	
 }

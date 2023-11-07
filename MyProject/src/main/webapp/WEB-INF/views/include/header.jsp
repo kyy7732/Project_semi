@@ -19,8 +19,7 @@ pageEncoding="UTF-8"%>
         align-items: flex-end;
       }
       .title {
-        background: transparent url(/resources/static/img/logoHeader.png)
-          no-repeat center;
+        background: transparent url(/img/logoHeader.png) no-repeat center;
         flex-grow: 3;
         min-width: 298px;
         min-height: 75px;
@@ -43,8 +42,7 @@ pageEncoding="UTF-8"%>
       .real-time .sound-icon {
         width: 20px;
         height: 30px;
-        background: transparent url(/resources/static/img/soundIcon.png)
-          no-repeat center;
+        background: transparent url(/img/soundIcon.png) no-repeat center;
         margin-right: 10px;
       }
       .real-time .real-time-icon {
@@ -137,18 +135,29 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
     <script>
-      //main logo 클릭 시 main으로 이동
-      document.querySelector('.title').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}/';
-      });
-
-      //로그인페이지로 이동
-      document.querySelector('.login-btn').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}/user/login';
-      });
-      //회원가입 페이지로 이동
-      document.querySelector('.join-btn').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}/user/join';
+      document.querySelector('.container').addEventListener('click', (e) => {
+        e.preventDefault();
+        //main logo 클릭 시 main으로 이동
+        if (e.target.matches('.title')) {
+          location.href = '${pageContext.request.contextPath}/';
+          console.log('wefwf');
+          return;
+        }
+        //로그인페이지로 이동
+        if (e.target.matches('.login-btn')) {
+          location.href = '${pageContext.request.contextPath}/user/login';
+          return;
+        }
+        //회원가입 페이지로 이동
+        if (e.target.matches('.join-btn')) {
+          location.href = '${pageContext.request.contextPath}/user/join';
+          return;
+        }
+        //좋아요 목록으로 이동
+        if (e.target.matches('.like')) {
+          location.href = '${pageContext.request.contextPath}/user/likeList';
+          return;
+        }
       });
     </script>
   </body>

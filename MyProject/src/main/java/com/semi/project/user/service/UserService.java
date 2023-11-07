@@ -28,7 +28,7 @@ public class UserService {
 	}
 
 	public List<FtvResponseDTO> getLikeList(String userId) {
-		// TODO Auto-generated method stub
+		mapper.getLikeList(userId);
 		return null;
 	}
 
@@ -72,6 +72,20 @@ public class UserService {
 	public ReplyResponseDTO getInfo(String id) {
 		User user = mapper.getInfo(id);
 		return ReplyResponseDTO.toDTO(user);	
+	}
+
+	public void update(RequestDTO dto) {
+		
+		mapper.update(User.builder()
+				.userId(dto.getUserId())
+				.userPw(dto.getUserPw())
+				.email(dto.getEmail())
+				.name(dto.getName())
+				.build());
+	}
+
+	public void delete(String userId) {
+		mapper.delete(userId);
 	}
 }
 
