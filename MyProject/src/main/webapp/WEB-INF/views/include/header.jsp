@@ -276,6 +276,10 @@ pageEncoding="UTF-8"%>
               <input type="hidden" name="pageNo" value="${pc.page.pageNo}">
               <input type="hidden" name="amount" value="${pc.page.amount}">
               <input type="hidden" name="keyword" value="${pc.page.keyword}">
+              <input type="hidden" name="condition" value="${pc.page.condition}"> 
+              
+      </div>
+      <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
               <input type="hidden" name="condition" value="${pc.page.condition}">  -->
     </div>
 

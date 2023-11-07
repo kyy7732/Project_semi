@@ -4,16 +4,18 @@
     
 <mapper namespace="com.semi.project.user.mapper.IUserMapper">
 
+	<select id="getEmail" resultType="int">
+		SELECT COUNT(*) FROM users
+		WHERE email = #{email}
+	</select>
+
+
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM users
 		WHERE user_id = #{userId}
 	</select>
-	
-<<<<<<< HEAD
-	<!-- 로그인  -->
-=======
+
 	<!-- 로그인 | 아이디, 비밀번호 -->
->>>>>>> c09930276bd89d173fe90deaf61791526fd6afbc
 	<select id="login" resultType="string">
 		SELECT user_pw
 		FROM users

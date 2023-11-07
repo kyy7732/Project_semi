@@ -1,6 +1,6 @@
 package com.semi.project.user.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -86,6 +86,10 @@ public class UserService {
 
 	public void delete(String userId) {
 		mapper.delete(userId);
+	}
+
+	public int getEmail(String email) {
+		return mapper.getEmail(email);
 	}
 }
 
