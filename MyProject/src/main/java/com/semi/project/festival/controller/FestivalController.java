@@ -44,9 +44,6 @@ public class FestivalController {
 		log.info("/festival/reply 요청: GET! {}", ftvNum);
 	    return service.likeList(ftvNum);
 	}
-	
-	
-	
 
 	}
 
