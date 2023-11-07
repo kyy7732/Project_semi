@@ -2,6 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.semi.project.festival.mapper.IFestivalMapper">
-	
+<mapper
+	namespace="com.semi.project.festival.mapper.IFestivalMapper">
+	<sql id="search">
+     	<if test="season =='spring'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE season = '봄'
+     	</if>
+     	
+     	<if test="season =='summer'">
+     		WHERE season = '여름'
+     	</if>
+     	
+     	<if test="season =='fall'">
+     		WHERE season = '가을'
+     	</if>
+     	
+     	<if test="season =='winter'">
+     		WHERE season = '겨울'
+     	</if>
+     </sql>
+
+	<select id="getFestival" resultType="Festival">
+		SELECT
+		ftv_num,
+		ftv_name, place, url, start_date, end_date,
+		road_addr, latitude, longitude
+		FROM festival
+		<include refid="search" />
+	</select>
 </mapper>

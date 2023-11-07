@@ -70,7 +70,7 @@ pageEncoding="UTF-8"%>
     <div>
       <div class="login-wrapper">
         <img
-          src="../img/mainLogo.png"
+          src="/resources/static/img/logoHeader.png"
           class="mainLogo"
         />
 
@@ -159,10 +159,9 @@ pageEncoding="UTF-8"%>
           },
         });
       }
-
-      document.querySelector('img').onclick = () => {
+      document.querySelector('.mainLogo').addEventListener('click', (e) => {
         location.href = '${pageContext.request.contextPath}/';
-      };
+      });
     </script>
   </body>
 </html>

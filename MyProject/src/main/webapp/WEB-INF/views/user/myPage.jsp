@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
  <%@ include file="../include/header.jsp" %>
-
 <!DOCTYPE html>
 <html>
     
@@ -185,7 +184,6 @@
   display: inline-block;
   width: 0px;
   height: 8px;
-  background: url(../images/bult.png) no-repeat;
   text-indent: -9999px;
   background-position: 0 2px;
 }
@@ -244,7 +242,7 @@ table.table_type td {
 }
 div.btn_area {
   text-align: center;
-  margin: -250px;
+  margin: -280px;
   margin-left: 150px;
 }
 
@@ -424,11 +422,6 @@ div.btn_area {
         }
     }
 
-
-
-
-
-
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
@@ -443,7 +436,6 @@ div.btn_area {
             }
         })
         
-    
      document.getElementById('check_btn').onclick = function () {
     const email =
       document.getElementById('email').value +
@@ -509,6 +501,8 @@ div.btn_area {
       }
     }
       
+
+      // 유효성 검사
 
     </script>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
