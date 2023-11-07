@@ -3,8 +3,6 @@ package com.semi.project.reply.request;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import com.semi.project.reply.entity.Reply;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
