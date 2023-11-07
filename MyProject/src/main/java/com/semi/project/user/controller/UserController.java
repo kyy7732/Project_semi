@@ -44,9 +44,18 @@ public class UserController {
 	public String idCheck(@PathVariable String userId) {
 		log.info("클라이언트로부터 전달된 아이디: " + userId); 
 		int result = service.idCheck(userId);		
-		if(result == 1) return "duplication";
+		if(result == 1) return "duplicated";
 		else return "ok";
 
+	}
+	
+	// 이메일 중복확인 (비동기)
+	@GetMapping("/email/{email}")
+	@ResponseBody
+	public String getEmail(@PathVariable String email) {
+		log.info(email);
+		if(service.getEmail(email) == 1) return "duplicated";
+		else return "possible";
 	}
 	
 	// 이메일 인증

@@ -242,7 +242,7 @@ pageEncoding="UTF-8"%>
               <input type="hidden" name="condition" value="${pc.page.condition}"> 
               
       </div>
-
+      <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script>
       document.querySelector('.container').addEventListener('click', (e) => {
         e.preventDefault();

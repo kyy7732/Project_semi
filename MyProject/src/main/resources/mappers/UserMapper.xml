@@ -4,6 +4,12 @@
     
 <mapper namespace="com.semi.project.user.mapper.IUserMapper">
 
+	<select id="getEmail" resultType="int">
+		SELECT COUNT(*) FROM users
+		WHERE email = #{email}
+	</select>
+
+
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM users
 		WHERE user_id = #{userId}
