@@ -1,6 +1,6 @@
-// package com.semi.project.festival.service;
-// import org.springframework.context.annotation.PropertySource;
-// import org.springframework.stereotype.Service;
+package com.semi.project.festival.service;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Service;
 
 
 // @Service
@@ -9,7 +9,7 @@
 // @PropertySource("classpath:/properties/FestivalApi.properties")
 // public class FestivalService {
 // 	private final IFestivalMapper mapper;
-// //	
+//	
 //	//properties 작성값 읽어오기
 //	@Value("${festival.serviceKey}")
 //	private String serviceKey;
@@ -132,5 +132,6 @@
 //	public FtvLike likeList(int ftvNum) {
 //
 //		return null;
+	//}
 	//}
 
