@@ -11,6 +11,8 @@
     
     <typeAliases>
 		<typeAlias type="com.semi.project.festival.entity.Festival" alias="festival"/>
+		<typeAlias type="com.semi.project.user.entity.User" alias="user"/>
+		<typeAlias type="com.semi.project.reply.entity.Reply" alias="reply"/>
     </typeAliases>
     
     

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
  <%@ include file="../include/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
     
@@ -271,14 +272,14 @@ div.btn_area {
                 </li>
                 <div id="menu2">
                 <li class="border">
-                    <a href="#" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
+                    <a href="${pageContext.request.contextPath}/user/myPage" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
                     <!--<a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>-->
                 </li>
                 <li class="border">
-                    <a href="#" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
+                    <a href="${pageContext.request.contextPath}/user/reply" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
                 </li>
                 <li class="border">
-                    <a href="#" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
+                    <a href="${pageContext.request.contextPath}/user/likeList" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
                 </li>
                 <li class="border">
                   <a href="#" id="deleteBtn" class="aButton" ><h2 class="hTable">회원 탈퇴</h2></a>
