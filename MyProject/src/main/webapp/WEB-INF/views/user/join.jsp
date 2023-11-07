@@ -439,8 +439,6 @@ div.btn_area span{
             
         }
 
-
-      
 	</script>
 </body>
 </html>

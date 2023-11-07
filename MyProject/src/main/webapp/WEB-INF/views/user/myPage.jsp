@@ -243,7 +243,7 @@ table.table_type td {
 }
 div.btn_area {
   text-align: center;
-  margin: -250px;
+  margin: -280px;
   margin-left: 150px;
 }
 
@@ -423,11 +423,6 @@ div.btn_area {
         }
     }
 
-
-
-
-
-
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
@@ -442,7 +437,6 @@ div.btn_area {
             }
         })
         
-    
      document.getElementById('check_btn').onclick = function () {
     const email =
       document.getElementById('email').value +
@@ -507,7 +501,22 @@ div.btn_area {
         // 삭제가 취소된 경우 실행할 코드를 작성할 수 있습니다.
       }
     }
+      // update로 보내기
+      //회원정보 수정 요청 검사 스크립트
+      document.getElementById("updateBtn").addEventListener("click", function() {
+        // 사용자가 입력한 데이터 가져오기.
+
+        const uId = document.getElementById("uId").value;
+        const uName = document.getElementById("uName").value;
+        const uMail = document.getElementById("uMail").value;
+        const userPw = document.getElementById("userPw").value;
+        const userPw2 = document.getElementById("userPw2").value;
+      })
+
+      // 유효성 검사
       
+    
+
 
     </script>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
