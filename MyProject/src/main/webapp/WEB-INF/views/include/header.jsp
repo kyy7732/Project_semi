@@ -154,6 +154,7 @@ pageEncoding="UTF-8"%>
       }
 
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -219,7 +220,6 @@ pageEncoding="UTF-8"%>
                       </div>
               </div>        
           </div>
-              
               <form action="${pageContext.request.contextPath}/user/likeListTest2" name="pageForm">
               <div class="text-center">
                   <hr>
