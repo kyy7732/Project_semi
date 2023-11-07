@@ -23,7 +23,7 @@ public class FestivalController {
 
 	}
 
-//	//시즌별 축제조회(비동기)
+	//시즌별 축제조회(비동기)
 //	@GetMapping("/ftvList/{season}")
 //	@ResponseBody
 //	public List<FtvResponseDTO> getFtvList(@PathVariable String season){
