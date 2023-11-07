@@ -184,7 +184,7 @@
   display: inline-block;
   width: 0px;
   height: 8px;
-  background: url(/resources\static\img\naver.png) no-repeat;
+  /* background: url(/resources\static\img\naver.png) no-repeat; */
   text-indent: -9999px;
   background-position: 0 2px;
 }
