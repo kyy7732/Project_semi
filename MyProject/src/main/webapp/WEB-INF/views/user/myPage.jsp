@@ -501,11 +501,7 @@ div.btn_area {
         // 삭제가 취소된 경우 실행할 코드를 작성할 수 있습니다.
       }
     }
-      
-
-      // 유효성 검사
-
-      
+            
         
     </script>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
