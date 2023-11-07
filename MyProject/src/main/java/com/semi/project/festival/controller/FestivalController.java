@@ -4,6 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.beans.Encoder;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,3 +60,27 @@ public class FestivalController {
 
 
     }
+	
+	private final FestivalService service;
+	
+	//시즌별 축제조회(비동기)
+//	@GetMapping("/ftvList")
+//	@ResponseBody
+//	public List<FtvResponseDTO> getFtvList(String season){
+//		log.info("/festival/ftvList 요청: GET!  {}", season);
+//       return service.getFtvList(season);
+//	}
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
