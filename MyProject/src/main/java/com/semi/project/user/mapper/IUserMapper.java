@@ -23,7 +23,7 @@ public interface IUserMapper {
 
 	//이메일 중복 확인
 	
-	//로그아웃
+	
 	
 	//회원탈퇴
 	void delete(String userId);

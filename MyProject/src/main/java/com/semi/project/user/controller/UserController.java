@@ -78,6 +78,12 @@ public class UserController {
 	     return "redirect:/"; //메인페이지로
 	}
 	
+	//로그아웃
+	@GetMapping("/logout")
+	public void logout(HttpSession session) {
+		session.removeAttribute("login");
+	}
+	
 	//마이페이지(동기)
 	@GetMapping("/myPage")
 	public void myPage() {}
