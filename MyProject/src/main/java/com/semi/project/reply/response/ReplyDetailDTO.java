@@ -26,9 +26,9 @@ public class ReplyDetailDTO {
 		this.content = reply.getContent();
 		this.content = reply.getContent();
 		if(reply.getUpdateDate() == null) {
-			this.date = userReplyResponseDTO.makePrettierDateString(reply.getRegDate());
+			this.date = UserReplyResponseDTO.makePrettierDateString(reply.getRegDate());
 		} else {
-			this.date = userReplyResponseDTO.makePrettierDateString(reply.getUpdateDate()) + " (수정됨)";
+			this.date = UserReplyResponseDTO.makePrettierDateString(reply.getUpdateDate()) + " (수정됨)";
 		}
 	
 	}

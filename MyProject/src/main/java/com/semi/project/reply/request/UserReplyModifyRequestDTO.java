@@ -11,7 +11,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class userReplyModifyRequestDTO {
+public class UserReplyModifyRequestDTO {
 	
 	private int commentNum;
 	private String userId;

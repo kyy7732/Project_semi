@@ -18,14 +18,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class userReplyResponseDTO {
+public class UserReplyResponseDTO {
 
 	private int commentNum;
 	private String content;
 	private String userId;
 	private String date;
 	
-	public userReplyResponseDTO(Reply reply) {
+	public UserReplyResponseDTO(Reply reply) {
 		super();
 		this.userId = reply.getUserId();
 		this.commentNum = reply.getCommentNum();

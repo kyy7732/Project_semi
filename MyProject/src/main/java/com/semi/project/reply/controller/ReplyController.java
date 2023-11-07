@@ -4,11 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.semi.project.reply.dto.Page;
 import com.semi.project.reply.dto.PageCreator;
-import com.semi.project.reply.request.userReplyRequestDTO;
+import com.semi.project.reply.request.UserReplyModifyRequestDTO;
+import com.semi.project.reply.request.UserReplyRequestDTO;
 import com.semi.project.reply.service.ReplyService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,21 +43,37 @@ public class ReplyController {
 		model.addAttribute("pc", creator);
 	}
 	
-	// 댓글쓰기 페이지를 열어주는 메서드
+	// 댓글 등록 처리
 	@GetMapping("/userRegist")
-	public String regist(userReplyRequestDTO dto) {
+	public String regist(UserReplyRequestDTO dto) {
 		service.regist(dto);
 		return "redirect:/user/userList"; // 댓글 등록시 어떤화면을 띄워야 하능가??~?~?~?
 	}
 	
-	// 댓글 등록 처리
+	// 댓글 상세보기 필요 한가~?~?~~?~?~?~?~
 	@GetMapping("/userContent")
 	public String content(int commentNum, 
 						Model model, 
 						@ModelAttribute("p") Page page) {
 		model.addAttribute("userContent", service.getContent(commentNum));
-		return "user/user
+		return "user/userList";
 	}
+	
+	// 댓글 수정하기
+	@PostMapping("/userModify")
+	public String modify(UserReplyModifyRequestDTO dto) {
+		service.update(dto);
+		return "redirect:/user/userList";   // 어디로 보내하 하능가~?~?~?~?~?
+	}
+	
+	// 댓글 삭제하기
+	@PostMapping("/delete")
+	public String delete(int commentNum) {
+		service.delete(commentNum);
+		return "/redirect:/user/userList"; // 어디로 보내야 하능가~?~?~?~?~?~?
+	}
+	
+		
 	
 }
 

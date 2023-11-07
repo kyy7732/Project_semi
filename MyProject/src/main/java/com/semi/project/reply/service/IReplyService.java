@@ -3,18 +3,18 @@ package com.semi.project.reply.service;
 import java.util.List;
 
 import com.semi.project.reply.dto.Page;
-import com.semi.project.reply.request.userReplyModifyRequestDTO;
-import com.semi.project.reply.request.userReplyRequestDTO;
+import com.semi.project.reply.request.UserReplyModifyRequestDTO;
+import com.semi.project.reply.request.UserReplyRequestDTO;
 import com.semi.project.reply.response.ReplyDetailDTO;
-import com.semi.project.reply.response.userReplyResponseDTO;
+import com.semi.project.reply.response.UserReplyResponseDTO;
 
 public interface IReplyService {
 	
 	// 댓글 등록
-	void regist(userReplyRequestDTO dto);
+	void regist(UserReplyRequestDTO dto);
 	
 	// 댓글 목록
-	List<userReplyResponseDTO> getList(Page page);
+	List<UserReplyResponseDTO> getList(Page page);
 	
 	// 총 댓글 개수
 	int getTotal(Page page);
@@ -23,7 +23,7 @@ public interface IReplyService {
 	ReplyDetailDTO getContent(int commentNum);
 	
 	// 수정
-	void update(userReplyModifyRequestDTO dto);
+	void update(UserReplyModifyRequestDTO dto);
 	
 	// 삭제
 	void delete(int commentNum);
