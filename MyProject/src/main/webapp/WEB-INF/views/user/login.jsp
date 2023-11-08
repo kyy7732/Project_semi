@@ -59,6 +59,10 @@ pageEncoding="UTF-8"%>
         font-size: 16px;
         background-color: #0356a9;
       }
+
+      #log button {
+        display: inline;
+      }
     </style>
   </head>
 
@@ -98,12 +102,7 @@ pageEncoding="UTF-8"%>
 
           <!-- 네이버 로그인 -->
           <button>
-            <a
-              href="naverLogin.jsp"
-              style="height: 300px; height: 52px"
-            >
-            </a>
-            naver
+            <div id="naver_id_login"></div>
           </button>
 
           <!-- 카카오로그인 -->
@@ -115,6 +114,23 @@ pageEncoding="UTF-8"%>
         </form>
       </div>
     </div>
+
+    <script
+      type="text/javascript"
+      src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+      charset="utf-8"
+    ></script>
+    <script type="text/javascript">
+      var clientId = 'XmmhhALGCdL5aknyTbYR';
+      var callbackUrl = 'https://localhost:80/project/user/login.jsp';
+      var naver_id_login = new naver_id_login(clientId, callbackUrl);
+      var state = naver_id_login.getUniqState();
+      naver_id_login.setButton('green', 2, 40);
+      naver_id_login.setDomain('localhost:8000/BBS/main.jsp');
+      naver_id_login.setState(state);
+      naver_id_login.setPopup();
+      naver_id_login.init_naver_id_login();
+    </script>
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
@@ -137,6 +153,7 @@ pageEncoding="UTF-8"%>
 
         document.loginForm.submit();
       };
+      ////////////
 
       ////////////카카오 ///////////////
       window.Kakao.init('');
