@@ -4,7 +4,7 @@
     
 <mapper namespace="com.semi.project.user.mapper.IUserMapper">
 
-	<insert id="join" >
+	<insert id="join">
 		INSERT INTO users
 		VALUES (#{userId}, #{userPw}, #{email}, #{name})
 	</insert>

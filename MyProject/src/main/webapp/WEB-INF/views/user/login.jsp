@@ -59,10 +59,6 @@ pageEncoding="UTF-8"%>
         font-size: 16px;
         background-color: #0356a9;
       }
-
-      #log button {
-        display: inline;
-      }
     </style>
   </head>
 
@@ -102,7 +98,12 @@ pageEncoding="UTF-8"%>
 
           <!-- 네이버 로그인 -->
           <button>
-            <div id="naver_id_login"></div>
+            <a
+              href="naverLogin.jsp"
+              style="height: 300px; height: 52px"
+            >
+            </a>
+            naver
           </button>
 
           <!-- 카카오로그인 -->
@@ -153,7 +154,6 @@ pageEncoding="UTF-8"%>
 
         document.loginForm.submit();
       };
-      ////////////
 
       ////////////카카오 ///////////////
       window.Kakao.init('');
