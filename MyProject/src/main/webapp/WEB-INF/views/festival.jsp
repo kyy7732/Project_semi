@@ -38,6 +38,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       /* vertical-align: middle; */
       /* align-content: space-around; */
     }
+
     body > #wrap > #wrap2 {
       display: flex;
       flex-direction: row;
@@ -47,6 +48,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       margin-bottom: 3px;
       z-index: 10;
     }
+
     /* 지도 영역 */
     body > #wrap > .map-area {
       flex-direction: row;
@@ -54,6 +56,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       height: 100%;
       margin-bottom: 10px;
     }
+
     body > #wrap #map {
       /* display: inline-block; */
       width: 100%;
@@ -69,6 +72,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       /* align-content: space-around; */
       /* z-index: 10; */
     }
+
     /* 버튼 스타일 */
     .custom-btn {
       display: inline-block;
@@ -96,6 +100,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
       outline: none;
     }
+
     .custom-btn:hover {
       /* background: rgb(0, 3, 255); */
       background: linear-gradient(
@@ -104,6 +109,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         rgba(2, 126, 251, 1) 100%
       );
     }
+
     .custom-btn:active {
       background: rgb(0, 3, 255);
       background: linear-gradient(
@@ -156,7 +162,102 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       border-radius: 10px;
       margin-bottom: 15px;
     }
+
+    /* 마커 누르면 뜨는 창 */
+    .wrap {
+      position: absolute;
+      left: 0;
+      bottom: 40px;
+      width: 350px;
+      height: 400px;
+      margin-left: -144px;
+      text-align: left;
+      overflow: hidden;
+      font-size: 12px;
+      font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+      line-height: 1.5;
+    }
+    .wrap * {
+      padding: 0;
+      margin: 0;
+    }
+    .wrap .info {
+      width: 350px; /*286 */
+      height: 420px;
+      border-radius: 5px;
+      border-bottom: 2px solid #ccc;
+      border-right: 1px solid #ccc;
+      overflow: hidden;
+      background: #fff;
+    }
+    .wrap .info:nth-child(1) {
+      border: 0;
+      box-shadow: 0px 1px 2px #888;
+    }
+    .info .title {
+      padding: 5px 0 0 10px;
+      height: 30px;
+      background: #eee;
+      border-bottom: 1px solid #ddd;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .info .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: #888;
+      width: 17px;
+      height: 17px;
+      background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+    }
+    .info .close:hover {
+      cursor: pointer;
+    }
+    .info .body {
+      position: relative;
+      overflow: hidden;
+    }
+    .info .desc {
+      position: relative;
+      margin: 13px 0 0 90px;
+      height: 75px;
+    }
+    .desc .ellipsis {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .desc .jibun {
+      font-size: 11px;
+      color: #888;
+      margin-top: -2px;
+    }
+    .info .img {
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      width: 73px;
+      height: 71px;
+      border: 1px solid #ddd;
+      color: #888;
+      overflow: hidden;
+    }
+    .info:after {
+      content: '';
+      position: absolute;
+      margin-left: -12px;
+      left: 50%;
+      bottom: 0;
+      width: 22px;
+      height: 12px;
+      background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
+    }
+    .info .link {
+      color: #5085bb;
+    }
   </style>
+
   <body>
     <div id="wrap">
       <div id="wrap2">
@@ -241,6 +342,50 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         });
       });
 
+      // 지도에 마커를 표시합니다
+      var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(33.450701, 126.570667),
+      });
+
+      var content =
+        '<div class="wrap">' +
+        '    <div class="info">' +
+        '        <div class="title">' +
+        '            강릉커피축제' +
+        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+        '        </div>' +
+        '        <div class="body">' +
+        '            <div class="img">' +
+        '                <img src="/resources/static/img/강릉 커피.png" width="73" height="70">' +
+        '           </div>' +
+        '            <div class="desc">' +
+        '                <div class="ellipsis">강원도 강릉시 임영로131번길 6 (용강동)</div>' +
+        '                <div class="jibun ellipsis">강원도 강릉시</div>' +
+        '                <div><a href="https://www.coffeefestival.net" target="_blank" class="link">홈페이지</a></div>' +
+        '            </div>' +
+        '        </div>' +
+        '    </div>' +
+        '</div>';
+
+      // 마커 위에 커스텀오버레이를 표시합니다
+      // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+      var overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: map,
+        position: marker.getPosition(),
+      });
+
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, 'click', function () {
+        overlay.setMap(map);
+      });
+
+      // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+      function closeOverlay() {
+        overlay.setMap(null);
+      }
+
       //줌 전역으로?
       //폴리곤 표시
       function displayArea(coordinates, name) {
@@ -271,7 +416,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         kakao.maps.event.addListener(map, 'zoom_changed', function () {
           level = map.getLevel();
 
-          // console.log('현재 지도 레벨은 ' + level + ' 입니다');
+          //console.log('현재 지도 레벨은 ' + level + ' 입니다');
 
           if (!detailMode && level <= 10) {
             // level 에 따라 다른 json 파일을 사용한다.
@@ -283,6 +428,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           } else if (detailMode && level > 10) {
             // level 에 따라 다른 json 파일을 사용한다.
             console.log('디테일모드 아니다!');
+
             detailMode = false;
             removePolygon();
             init('json/sido.json');
@@ -295,11 +441,13 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           function (mouseEvent) {
             // console.log('마우스 오버!');
 
-            polygon.setOptions({ fillColor: '#09f' });
-            setTimeout(
-              customOverlay.setContent('<div class="area">' + name + '</div>'),
-              10
-            );
+            polygon.setOptions({
+              fillColor: '#09f',
+            });
+            // setTimeout(
+            //   100
+
+            // );
             customOverlay.setPosition(mouseEvent.latLng);
             // customOverlay.setContent('<div class="area">' + name + '</div>');
             customOverlay.setMap(map);
@@ -314,12 +462,14 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         );
 
+        // focus??
         kakao.maps.event.addListener(
           polygon,
           'mouseout',
           function (mouseEvent) {
             // console.log('마우스아웃!');
-            customOverlay.setPosition(mouseEvent.latLng); // 추가
+
+            //customOverlay.setPosition(mouseEvent.latLng); // 추가
             polygon.setOptions({ fillColor: '#EFFFED' });
             // setTimeout(customOverlay.setMap(null), 10);
             customOverlay.setMap(null);
@@ -334,9 +484,9 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             // 지도의 중심을 부드럽게 클릭한 위치로 이동시킵니다.
             map.panTo(latlng);
           } else {
-            // polygon.setOptions({ fillOpacity: 0 });
+            polygon.setOptions({ fillOpacity: 2 });
             // 클릭 이벤트 함수
-            // callFunctionWithRegionCode(area.location);
+            callFunctionWithRegionCode(area.location);
           }
         });
       } // displayArea() end
@@ -372,7 +522,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         for (var i = 0, len = areas.length; i < len; i++) {
           displayArea(areas[i]);
         }
-
         /////init 안
       } // init() end
 
@@ -417,191 +566,192 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       // 마커를 담을 배열 선언
       var markers = [];
 
-      document.querySelector('.find-btn1').addEventListener('click', () => {
-        //봄 눌렀을 때
-        if (markers) {
-          // 배열이 비어있지 않으면 반복문을 돌면서 marker.setMap(null);을 호출
+      document.querySelector('.custom-btn').addEventListener('click', (e) => {
+        if (e.target.matches('.find-btn1')) {
+          //봄 눌렀을 때
+          fetch(
+            '${pageContext.request.contextPath}/festival/ftvList/' + 'spring'
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              // console.log('통신 성공!: ', data); // dto리스트 가져옴
+              for (let i = 0; i < data.length; i++) {
+                // console.log(data[i].roadAddr);
+
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch(
+                  data[i].roadAddr,
+                  function (result, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === kakao.maps.services.Status.OK) {
+                      var coords = new kakao.maps.LatLng(
+                        result[0].y,
+                        result[0].x
+                      );
+
+                      // 결과값으로 받은 위치를 마커로 표시합니다
+                      marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords,
+                      });
+
+                      markers.push(marker); // 배열에 마커 넣기
+
+                      // 인포윈도우로 장소에 대한 설명을 표시합니다
+                      // var infowindow = new kakao.maps.InfoWindow({
+                      //   content:
+                      //     '<div style="width:150px;text-align:center;padding:6px 0;">' +
+                      //     data[i].ftvName +
+                      //     '</div>',
+                      // });
+                      //infowindow.open(map, marker);
+
+                      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                      map.setCenter(coords);
+                    }
+                  }
+                ); // End of addressSearch
+              } // End of For문
+            });
+        } else if (e.target.matches('.find-btn2')) {
+          //여름 눌렀을 때
+          fetch(
+            '${pageContext.request.contextPath}/festival/ftvList/' + 'summer'
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              // console.log('통신 성공!: ', data); // dto리스트 가져옴
+              for (let i = 0; i < data.length; i++) {
+                // console.log(data[i].roadAddr);
+
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch(
+                  data[i].roadAddr,
+                  function (result, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === kakao.maps.services.Status.OK) {
+                      var coords = new kakao.maps.LatLng(
+                        result[0].y,
+                        result[0].x
+                      );
+
+                      // 결과값으로 받은 위치를 마커로 표시합니다
+                      var marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords,
+                      });
+
+                      markers.push(marker); // 배열에 마커 넣기
+
+                      // 인포윈도우로 장소에 대한 설명을 표시합니다
+                      // var infowindow = new kakao.maps.InfoWindow({
+                      //   content:
+                      //     '<div style="width:150px;text-align:center;padding:6px 0;">' +
+                      //     data[i].ftvName +
+                      //     '</div>',
+                      // });
+                      //infowindow.open(map, marker);
+
+                      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                      map.setCenter(coords);
+                    }
+                  }
+                ); // End of addressSearch
+              } // End of For문
+            });
+        } else if (e.target.matches('.find-btn3')) {
+          //가을 눌렀을 때
+          fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'fall')
+            .then((res) => res.json())
+            .then((data) => {
+              // console.log('통신 성공!: ', data); // dto리스트 가져옴
+              for (let i = 0; i < data.length; i++) {
+                // console.log(data[i].roadAddr);
+
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch(
+                  data[i].roadAddr,
+                  function (result, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === kakao.maps.services.Status.OK) {
+                      var coords = new kakao.maps.LatLng(
+                        result[0].y,
+                        result[0].x
+                      );
+
+                      // 결과값으로 받은 위치를 마커로 표시합니다
+                      var marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords,
+                      });
+
+                      markers.push(marker); // 배열에 마커 넣기
+
+                      // 인포윈도우로 장소에 대한 설명을 표시합니다
+                      // var infowindow = new kakao.maps.InfoWindow({
+                      //   content:
+                      //     '<div style="width:150px;text-align:center;padding:6px 0;">' +
+                      //     data[i].ftvName +
+                      //     '</div>',
+                      // });
+                      //infowindow.open(map, marker);
+
+                      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                      map.setCenter(coords);
+                    }
+                  }
+                ); // End of addressSearch
+              } // End of For문
+            });
+        } else if (e.target.matches('.find-btn4')) {
+          //겨울 눌렀을 때
+          fetch(
+            '${pageContext.request.contextPath}/festival/ftvList/' + 'winter'
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              // console.log('통신 성공!: ', data); // dto리스트 가져옴
+              for (let i = 0; i < data.length; i++) {
+                // console.log(data[i].roadAddr);
+
+                // 주소로 좌표를 검색합니다
+                geocoder.addressSearch(
+                  data[i].roadAddr,
+                  function (result, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === kakao.maps.services.Status.OK) {
+                      var coords = new kakao.maps.LatLng(
+                        result[0].y,
+                        result[0].x
+                      );
+
+                      // 결과값으로 받은 위치를 마커로 표시합니다
+                      var marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords,
+                      });
+
+                      markers.push(marker); // 배열에 마커 넣기
+
+                      // 인포윈도우로 장소에 대한 설명을 표시합니다
+                      // var infowindow = new kakao.maps.InfoWindow({
+                      //   content:
+                      //     '<div style="width:150px;text-align:center;padding:6px 0;">' +
+                      //     data[i].ftvName +
+                      //     '</div>',
+                      // });
+                      //infowindow.open(map, marker);
+
+                      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                      map.setCenter(coords);
+                    }
+                  }
+                ); // End of addressSearch
+              } // End of For문
+            });
         }
 
-        fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'spring')
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log('통신 성공!: ', data); // dto리스트 가져옴
-            for (let i = 0; i < data.length; i++) {
-              // console.log(data[i].roadAddr);
-
-              // 주소로 좌표를 검색합니다
-              geocoder.addressSearch(
-                data[i].roadAddr,
-                function (result, status) {
-                  // 정상적으로 검색이 완료됐으면
-                  if (status === kakao.maps.services.Status.OK) {
-                    var coords = new kakao.maps.LatLng(
-                      result[0].y,
-                      result[0].x
-                    );
-
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
-                      map: map,
-                      position: coords,
-                    });
-
-                    markers.push(marker); // 배열에 마커 넣기
-
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //   content:
-                    //     '<div style="width:150px;text-align:center;padding:6px 0;">' +
-                    //     data[i].ftvName +
-                    //     '</div>',
-                    // });
-                    //infowindow.open(map, marker);
-
-                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                    map.setCenter(coords);
-                  }
-                }
-              ); // End of addressSearch
-            } // End of For문
-          });
-      }); // End of event
-
-      document.querySelector('.find-btn2').addEventListener('click', () => {
-        //여름 눌렀을 때
-
-        fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'summer')
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log('통신 성공!: ', data); // dto리스트 가져옴
-            for (let i = 0; i < data.length; i++) {
-              // console.log(data[i].roadAddr);
-
-              // 주소로 좌표를 검색합니다
-              geocoder.addressSearch(
-                data[i].roadAddr,
-                function (result, status) {
-                  // 정상적으로 검색이 완료됐으면
-                  if (status === kakao.maps.services.Status.OK) {
-                    var coords = new kakao.maps.LatLng(
-                      result[0].y,
-                      result[0].x
-                    );
-
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
-                      map: map,
-                      position: coords,
-                    });
-
-                    markers.push(marker); // 배열에 마커 넣기
-
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //   content:
-                    //     '<div style="width:150px;text-align:center;padding:6px 0;">' +
-                    //     data[i].ftvName +
-                    //     '</div>',
-                    // });
-                    //infowindow.open(map, marker);
-
-                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                    map.setCenter(coords);
-                  }
-                }
-              ); // End of addressSearch
-            } // End of For문
-          });
-      }); // End of event
-
-      document.querySelector('.find-btn3').addEventListener('click', () => {
-        //가을 눌렀을 때
-
-        fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'fall')
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log('통신 성공!: ', data); // dto리스트 가져옴
-            for (let i = 0; i < data.length; i++) {
-              // console.log(data[i].roadAddr);
-
-              // 주소로 좌표를 검색합니다
-              geocoder.addressSearch(
-                data[i].roadAddr,
-                function (result, status) {
-                  // 정상적으로 검색이 완료됐으면
-                  if (status === kakao.maps.services.Status.OK) {
-                    var coords = new kakao.maps.LatLng(
-                      result[0].y,
-                      result[0].x
-                    );
-
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
-                      map: map,
-                      position: coords,
-                    });
-
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //   content:
-                    //     '<div style="width:150px;text-align:center;padding:6px 0;">' +
-                    //     data[i].ftvName +
-                    //     '</div>',
-                    // });
-                    //infowindow.open(map, marker);
-
-                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                    map.setCenter(coords);
-                  }
-                }
-              ); // End of addressSearch
-            } // End of For문
-          });
-      }); // End of event
-
-      document.querySelector('.find-btn4').addEventListener('click', () => {
-        //겨울 눌렀을 때
-
-        fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'winter')
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log('통신 성공!: ', data); // dto리스트 가져옴
-            for (let i = 0; i < data.length; i++) {
-              // console.log(data[i].roadAddr);
-
-              // 주소로 좌표를 검색합니다
-              geocoder.addressSearch(
-                data[i].roadAddr,
-                function (result, status) {
-                  // 정상적으로 검색이 완료됐으면
-                  if (status === kakao.maps.services.Status.OK) {
-                    var coords = new kakao.maps.LatLng(
-                      result[0].y,
-                      result[0].x
-                    );
-
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
-                      map: map,
-                      position: coords,
-                    });
-
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //   content:
-                    //     '<div style="width:150px;text-align:center;padding:6px 0;">' +
-                    //     data[i].ftvName +
-                    //     '</div>',
-                    // });
-                    //infowindow.open(map, marker);
-
-                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                    map.setCenter(coords);
-                  }
-                }
-              ); // End of addressSearch
-            } // End of For문
-          });
+        //
       }); // End of event
     </script>
   </body>
