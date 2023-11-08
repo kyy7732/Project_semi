@@ -241,7 +241,7 @@
                                 </select>&nbsp;&nbsp;
                                 <span class="btn b_bdcheck">
                                     <input type="button" class="btn btn_primary" id="check_btn_dup" value="이메일 중복확인">
-                                    <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
+                                    <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증" style="display: none;">
                                 </span>
                                 <div class="mail_check_box">
                                     <input type="text" class="form_control mail_check_input"
@@ -371,7 +371,7 @@
         
         
 
-        document.getElementById('check_btn').onclick = function () {
+        document.getElementById('check_btn_dup').onclick = function () {
             const email =
             document.getElementById('email').value +
             '@' +
@@ -386,14 +386,14 @@
                     return;
                 } 
             })
+        };
             
             document.getElementById('check_btn').onclick = function () {
                 const email =
                 document.getElementById('email').value +
                 '@' +
                 document.getElementById('email1').value;
-                
-                console.log(emailFlag);
+
                 fetch('${pageContext.request.contextPath}/user/email', {
                         method: 'post',
                         headers: {
@@ -416,7 +416,6 @@
                     });
 
             }
-        };
 
 
         document.querySelector('.mail_check_input').onblur = function (e) {
