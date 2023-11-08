@@ -310,6 +310,9 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       let map = new kakao.maps.Map(mapContainer, mapOption),
         customOverlay = new kakao.maps.CustomOverlay({});
 
+      // 주소-좌표 변환 객체를 생성합니다
+      var geocoder = new kakao.maps.services.Geocoder();
+
       // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
       var zoomControl = new kakao.maps.ZoomControl();
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
@@ -420,6 +423,8 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             detailMode = true;
             removePolygon();
             init('json/sig.json');
+
+            //여기서 계절 버튼 누르면 요청.
           } else if (detailMode && level > 10) {
             // level 에 따라 다른 json 파일을 사용한다.
             console.log('디테일모드 아니다!');
