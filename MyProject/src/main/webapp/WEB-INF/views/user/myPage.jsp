@@ -496,24 +496,6 @@ div.btn_area {
       //회원정보 수정 요청 검사 스크립트
       
 
-      //유효성 검사
-      if (!uId || !uName || !uMail || !userPw || !userPw2) {
-        alert("모든 필수 필드를 입력하세요.");
-      }
-      if (!isValidEmail(uMail)){
-        alert("올바른 이메일 주소를 입력하세요.");
-        return;
-      }
-      if (userPw !== userPw2) {
-        alert("비밀번호가 일치하지 않습니다.")
-        return;
-      }
-
-      function isValidEmail(email) {
-        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        return emailPattern.test(email);
-      }
-
       
     </script>
 	<%@ include file="../include/footer.jsp" %>
