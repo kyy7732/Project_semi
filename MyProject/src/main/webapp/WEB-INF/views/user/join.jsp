@@ -232,15 +232,15 @@
                             <td class="pn_td">
                                 <input type="text" id="email" name="email" class="join">
                                 @
-                                <input class="join" type="text" class="box" id="email1" name="email1">&nbsp;
+                                <input class="join email box" type="text" id="email1" name="email1" />&nbsp;
                                 <select type="select" class="box" id="email2" name="email2">
-                                    <option value="type" selected>직접입력</option>
+                                    <option value="type"  selected>직접입력</option>
                                     <option value="naver.com">naver.com</option>
                                     <option value="gmail.com">gmail.com</option>
                                     <option value="daum.net">daum.net</option>
                                 </select>&nbsp;&nbsp;
                                 <span class="btn b_bdcheck">
-                                    <input type="button" class="btn btn_primary" id="check_btn_dup" value="중복확인">
+                                    <input type="button" class="btn btn_primary" id="check_btn_dup" value="중복확인" >
                                     <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증" style="display: none;">
                                 </span>
                                 <div class="mail_check_box">
@@ -368,10 +368,14 @@
                 emailInput.readOnly = false;
             }
         })
-        
-        
 
         document.getElementById('check_btn_dup').onclick = function () {
+            
+            if(document.getElementById('email').value ==='' || document.getElementById('email1').value === ''){
+                alert('이메일을 입력해주세요.')
+                return;
+            }
+
             const email =
             document.getElementById('email').value +
             '@' +
