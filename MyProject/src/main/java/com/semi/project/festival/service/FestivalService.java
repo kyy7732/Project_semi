@@ -24,7 +24,6 @@ public class FestivalService {
     //메서드
     public List<FtvResponseDTO> getFestivalBySeason(String season) {
         List<Festival> ftvList = mapper.getFestival(season); // 받기
-
         List<FtvResponseDTO> dtoList = new ArrayList<>();
 
         for(Festival ftv : ftvList) {
@@ -35,4 +34,5 @@ public class FestivalService {
 
     }
   }
+
 
