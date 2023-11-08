@@ -240,7 +240,7 @@
                                     <option value="daum.net">daum.net</option>
                                 </select>&nbsp;&nbsp;
                                 <span class="btn b_bdcheck">
-                                    <input type="button" class="btn btn_primary" id="check_btn_dup" value="이메일 중복확인">
+                                    <input type="button" class="btn btn_primary" id="check_btn_dup" value="중복확인">
                                     <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증" style="display: none;">
                                 </span>
                                 <div class="mail_check_box">
@@ -272,6 +272,8 @@
         let code = '';
         let idFlag, pwFlag, emailFlag;
         const $msgId = document.getElementById('msgId');
+
+        
         
         //아이디 중복 검사 스크립트
         const $idCheck = document.joinForm.idCheck;
@@ -382,7 +384,11 @@
                     alert('이미 존재하는 이메일 입니다.');
                     emailFlag = true;
                     return;
-                } 
+                } else if(text === 'possible'){
+                    alert('사용 가능한 이메일 입니다. \n이메일 인증을 완료해주세요.')
+                    document.getElementById('check_btn_dup').style.display = 'none';
+                    document.getElementById('check_btn').style.display = 'block';
+                }
             })
         };
             
@@ -464,10 +470,13 @@
                 if (confirm('회원가입을 진행합니다.')) {
                     document.joinForm.submit();
                 } else return;
-                } else {
-                    alert('입력값을 다시 한번 확인해주세요.');
-                    return;
-                }
+            } else {
+                alert('입력값을 다시 한번 확인해주세요.');
+                return;
+            }
+
+                    
+
         }
 
 	</script>
