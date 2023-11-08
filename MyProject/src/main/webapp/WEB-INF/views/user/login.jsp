@@ -48,20 +48,16 @@ pageEncoding="UTF-8"%>
         margin-bottom: 10px;
         border-radius: 6px;
         background-color: #f8f8f8;
+        border: none; /* 버튼 테두리 없애기 */
       }
 
-      #loginForm > button[type='submit'] {
+      #loginForm > button[type='button'] {
         text-align: center;
-        width: 95%;
+        width: 300px;
+        height: 45px;
         color: #fff;
         font-size: 16px;
         background-color: #0356a9;
-      }
-
-      #loginForm > button > a img,
-      #loginForm > botton > a img {
-        width: 300px; /* 이미지의 원하는 너비 설정 */
-        height: 40px; /* 이미지의 원하는 높이 설정 */
       }
     </style>
   </head>

@@ -416,7 +416,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         kakao.maps.event.addListener(map, 'zoom_changed', function () {
           level = map.getLevel();
 
-          // console.log('현재 지도 레벨은 ' + level + ' 입니다');
+          //console.log('현재 지도 레벨은 ' + level + ' 입니다');
 
           if (!detailMode && level <= 10) {
             // level 에 따라 다른 json 파일을 사용한다.
@@ -428,6 +428,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           } else if (detailMode && level > 10) {
             // level 에 따라 다른 json 파일을 사용한다.
             console.log('디테일모드 아니다!');
+
             detailMode = false;
             removePolygon();
             init('json/sido.json');
@@ -445,6 +446,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             });
             // setTimeout(
             //   100
+
             // );
             customOverlay.setPosition(mouseEvent.latLng);
             // customOverlay.setContent('<div class="area">' + name + '</div>');
@@ -466,10 +468,9 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           'mouseout',
           function (mouseEvent) {
             // console.log('마우스아웃!');
-            // customOverlay.setPosition(mouseEvent.latLng); // 추가
-            polygon.setOptions({
-              fillColor: '#EFFFED',
-            });
+
+            //customOverlay.setPosition(mouseEvent.latLng); // 추가
+            polygon.setOptions({ fillColor: '#EFFFED' });
             // setTimeout(customOverlay.setMap(null), 10);
             customOverlay.setMap(null);
           }
