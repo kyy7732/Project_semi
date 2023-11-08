@@ -1,18 +1,10 @@
 package com.semi.project.festival.controller;
 
-import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-=======
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.beans.Encoder;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
->>>>>>> c09930276bd89d173fe90deaf61791526fd6afbc
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
