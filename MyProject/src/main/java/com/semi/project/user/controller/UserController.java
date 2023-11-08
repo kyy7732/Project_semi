@@ -71,7 +71,8 @@ public class UserController {
 	@PostMapping("/join")
 	public String join(RequestDTO dto){
 		log.info("/user/join 요청: POST! {}", dto);
-	    service.regist();
+		log.info(dto.getEmail1());
+	    service.join(dto);
 	    return "redirect:/user/login";
 	}
 	

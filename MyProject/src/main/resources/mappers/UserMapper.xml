@@ -4,6 +4,11 @@
     
 <mapper namespace="com.semi.project.user.mapper.IUserMapper">
 
+	<insert id="join">
+		INSERT INTO users
+		VALUES (#{userId}, #{userPw}, #{email}, #{name})
+	</insert>
+
 	<select id="getEmail" resultType="int">
 		SELECT COUNT(*) FROM users
 		WHERE email = #{email}
