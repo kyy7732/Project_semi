@@ -13,8 +13,8 @@
   </head>
   <body>
     <script type="text/javascript">
-      var clientId = 'XmmhhALGCdL5aknyTbYR';
-      var callbackUrl = 'https://localhost:80/project/user/login.jsp';
+      var clientId = '클라리언트아이디';
+      var callbackUrl = 'url';
       var naver_id_login = new naver_id_login(clientId, callbackUrl);
       // 접근 토큰 값 출력
       alert(naver_id_login.oauthParams.access_token);

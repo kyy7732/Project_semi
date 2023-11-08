@@ -121,8 +121,8 @@ pageEncoding="UTF-8"%>
       charset="utf-8"
     ></script>
     <script type="text/javascript">
-      var clientId = 'XmmhhALGCdL5aknyTbYR';
-      var callbackUrl = 'https://localhost:80/project/user/login.jsp';
+      var clientId = '클라이언트 아이디';
+      var callbackUrl = 'url';
       var naver_id_login = new naver_id_login(clientId, callbackUrl);
       var state = naver_id_login.getUniqState();
       naver_id_login.setButton('green', 2, 40);
