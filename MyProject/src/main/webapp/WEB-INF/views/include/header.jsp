@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
         align-items: flex-end;
       }
       .title {
-        background: transparent url(/resources/static/img/logoHeader.png)
+        background: transparent url('/img/logoHeader.png')
           no-repeat center;
         flex-grow: 3;
         min-width: 298px;
@@ -43,7 +43,7 @@ pageEncoding="UTF-8"%>
       .real-time .sound-icon {
         width: 20px;
         height: 30px;
-        background: transparent url(/resources/static/img/soundIcon.png)
+        background: transparent url('/img/soundIcon.png')
           no-repeat center;
         margin-right: 10px;
       }
@@ -69,7 +69,7 @@ pageEncoding="UTF-8"%>
       }
       #increase {
         margin-bottom: 5px;
-        background: url(/resources/static/img/upper.png) no-repeat center;
+        background: url('/img/upper.png') no-repeat center;
         text-indent: -9999px;
         width: 49px;
         height: 29px;
@@ -77,7 +77,7 @@ pageEncoding="UTF-8"%>
       }
       #decrease {
         margin-bottom: 5px;
-        background: url(/resources/static/img/lower.png) no-repeat center;
+        background: url('/img/lower.png') no-repeat center;
         text-indent: -9999px;
         width: 49px;
         height: 29px;
@@ -99,12 +99,12 @@ pageEncoding="UTF-8"%>
         border: none;
       }
       .btn-area .like {
-        background: url(/resources/static/img/like.png) no-repeat center;
+        background: url('/img/like.png') no-repeat center;
         text-indent: -9999px;
         margin-bottom: 7px;
       }
       .btn-area .like:hover {
-        background: url(/resources/static/img/likeDarker.png) no-repeat center;
+        background: url('/img/likeDarker.png') no-repeat center;
         text-indent: -9999px;
         margin-bottom: 7px;
       }
@@ -276,6 +276,10 @@ pageEncoding="UTF-8"%>
               <input type="hidden" name="pageNo" value="${pc.page.pageNo}">
               <input type="hidden" name="amount" value="${pc.page.amount}">
               <input type="hidden" name="keyword" value="${pc.page.keyword}">
+              <input type="hidden" name="condition" value="${pc.page.condition}"> 
+              
+      </div>
+      <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
               <input type="hidden" name="condition" value="${pc.page.condition}">  -->
     </div>
 

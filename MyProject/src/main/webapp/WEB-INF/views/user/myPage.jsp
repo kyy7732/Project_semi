@@ -503,4 +503,4 @@ div.btn_area {
             
         
     </script>
-	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>

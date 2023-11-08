@@ -1,6 +1,6 @@
 package com.semi.project.user.service;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,9 +23,15 @@ public class UserService {
 
 	private final IUserMapper mapper;
 	private final BCryptPasswordEncoder encoder;
-	public void regist() {
-		// TODO Auto-generated method stub
+	
+	public void join(RequestDTO dto) {
 		
+		mapper.join(User.builder()
+				.userId(dto.getUserId())
+				.userPw(encoder.encode(dto.getUserPw()))
+				.email(dto.getEmail()+ "@" + dto.getEmail1())
+				.name(dto.getName())
+				.build());
 	}
 
 	public List<FtvResponseDTO> getLikeList(String userId) {
@@ -41,22 +47,6 @@ public class UserService {
 	public int idCheck(String userId) {
 		return mapper.idCheck(userId);
 	}
-	
-	public void join(User user) {
-		log.info("암호화 하기 전 비번: ", user.getUserPw());	
-		
-		String securePw = encoder.encode(user.getUserPw());
-		log.info("암호화 후 비번: ", securePw);
-		user.setUserPw(securePw);
-		
-		mapper.join(User.builder()
-						.userId(user.getUserId())
-						.userPw(user.getUserPw())
-						.email(user.getEmail())
-						.name(user.getName())
-						.build());
-	}
-
 
 	
 	public String login(String userId, String userPw) {
@@ -87,6 +77,10 @@ public class UserService {
 
 	public void delete(String userId) {
 		mapper.delete(userId);
+	}
+
+	public int getEmail(String email) {
+		return mapper.getEmail(email);
 	}
 }
 

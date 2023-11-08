@@ -1,16 +1,22 @@
 package com.semi.project.festival.controller;
 
+import org.springframework.stereotype.Controller;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.beans.Encoder;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+>>>>>>> c09930276bd89d173fe90deaf61791526fd6afbc
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
-import com.semi.project.festival.dto.ReplyResponseDTO;
 import com.semi.project.festival.service.FestivalService;
 
 import lombok.RequiredArgsConstructor;
@@ -35,21 +41,11 @@ public class FestivalController {
 	@ResponseBody
 	public List<FtvResponseDTO> getFtvList(@PathVariable String season){
 		log.info("/festival/ftvList 요청: GET!  {}", season);
-		service.getFestivalBySeason(season);
-		//       return service.getFtvList(season);
-		return null;
+		return service.getFestivalBySeason(season);
 	}
 
 
 
-	//댓글 조회(비동기)
-	@GetMapping("/reply")
-	@ResponseBody
-	public List<ReplyResponseDTO> getReplyList(@RequestBody int ftvNum){
-		log.info("/festival/reply 요청: GET! {}", ftvNum);
-		//        return service.getReplyList(ftvNum);
-		return null;
-	}
 
 
 }

@@ -174,13 +174,13 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_id">아이디</label>
+                                <label for="userId">아이디</label>
 
                             </th>
                             <td>
                                 <p class="guide_txt">
                                     <input type="text" id="userId" name="userId" class="join">
-                                    <input type="button" id="idCheck" value="중복확인">
+                                    <input type="button" id="idCheck" name="idCheck" value="중복확인">
                                     <br />
                                     <span id="msgId">6~12자리의 영문, 숫자(혼용가능)를 입력해 주세요.
                                     </span>
@@ -191,12 +191,11 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_pw">비밀번호</label>
+                                <label for="userPw">비밀번호</label>
                             </th>
                             <td>
                                 <p class="guide_txt">
                                     <input type="password" id="userPw" name="userPw" class="join">
-                                    <br />
                                     <span id="msgPw">8개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.</span>
                                 </p>
                             </td>
@@ -204,11 +203,11 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_pw2">비밀번호 확인</label>
+                                <label for="userPwC">비밀번호 확인</label>
                             </th>
                             <td>
                                 <p class="guide_txt">
-                                    <input type="password" id="userPwC" name="userPwC" class="join"><br />
+                                    <input type="password" id="userPwC" name="userPwC" class="join">
                                     <span id="msgPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                                 </p>
                             </td>
@@ -217,10 +216,10 @@
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="userName">이름</label>
+                                <label for="name">이름</label>
                             </th>
                             <td>
-                                <input type="text" id="userName" name="userName" class="join">
+                                <input type="text" id="name" name="name" class="join">
                             </td>
                         </tr>
 
@@ -233,7 +232,7 @@
                             <td class="pn_td">
                                 <input type="text" id="email" name="email" class="join">
                                 @
-                                <input class="join type=" text" class="box" id="email1" name="email1">&nbsp;
+                                <input class="join" type="text" class="box" id="email1" name="email1">&nbsp;
                                 <select type="select" class="box" id="email2" name="email2">
                                     <option value="type" selected>직접입력</option>
                                     <option value="naver.com">naver.com</option>
@@ -241,6 +240,7 @@
                                     <option value="daum.net">daum.net</option>
                                 </select>&nbsp;&nbsp;
                                 <span class="btn b_bdcheck">
+                                    <input type="button" class="btn btn_primary" id="check_btn_dup" value="이메일 중복확인">
                                     <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
                                 </span>
                                 <div class="mail_check_box">
@@ -270,11 +270,12 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         let code = '';
-        let idFlag, pwFlag;
+        let idFlag, pwFlag, emailFlag;
         const $msgId = document.getElementById('msgId');
-        //id 중복확인 요청
 
-        //const userId = document.joinForm.userId.value;
+        
+        
+        //아이디 중복 검사 스크립트
         const $idCheck = document.joinForm.idCheck;
         const $userId = document.getElementById('userId');
 
@@ -348,52 +349,73 @@
             }
         }
 
-
-
-
-
-
+        
+        
+        
+		// 이메일 중복 검사 스크립트
         // 이메일 직접입력 구현
         const emailInput = document.querySelector('#email1')
         const emailBox = document.querySelector('#email2')
-
+        
         emailBox.addEventListener('change', (event) => {
             if (event.target.value !== "type") {
                 emailInput.value = event.target.value;
-                emailInput.disabled = true;
+                emailInput.readOnly = true;
+                console.log(emailInput.value);
             } else {
                 emailInput.value = "";
                 emailInput.value = document.getElementById('email1').value;
-                emailInput.disabled = false;
+                emailInput.readOnly = false;
             }
         })
-
+        
+        
 
         document.getElementById('check_btn').onclick = function () {
             const email =
+            document.getElementById('email').value +
+            '@' +
+            document.getElementById('email1').value;
+            
+            fetch('${pageContext.request.contextPath}/user/email/' + email)
+            .then(res => res.text())
+            .then(text => {
+                if(text === 'duplicated'){
+                    alert('이미 존재하는 이메일 입니다.');
+                    emailFlag = true;
+                    return;
+                } 
+            })
+            
+            document.getElementById('check_btn').onclick = function () {
+                const email =
                 document.getElementById('email').value +
                 '@' +
                 document.getElementById('email1').value;
+                
+                console.log(emailFlag);
+                fetch('${pageContext.request.contextPath}/user/email', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'text/plain',
+                        },
+                        body: email,
+                    })
+                    .then((res) => res.text())
+                    .then((data) => {
+                        console.log('인증번호: ', data);
+    
+                        document.querySelector('.mail_check_input').disabled = false;
+                        code = data;
+                        alert('인증번호가 전송되었습니다. 확인 후 입력란에 정확히 입력하세요.');
+                         //중복된 이메일이면 이거 안떠야되는데 플래그
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        alert('알 수 없는 문제가 발생했습니다. 관리자에게 문의하세요!');
+                    });
 
-            fetch('${pageContext.request.contextPath}/user/email', {
-                    method: 'post',
-                    headers: {
-                        'Content-Type': 'text/plain',
-                    },
-                    body: email,
-                })
-                .then((res) => res.text())
-                .then((data) => {
-                    console.log('인증번호: ', data);
-
-                    document.querySelector('.mail_check_input').disabled = false;
-                    code = data;
-                    alert('인증번호가 전송되었습니다. 확인 후 입력란에 정확히 입력하세요.');
-                })
-                .catch((error) => {
-                    console.log(error);
-                    alert('알 수 없는 문제가 발생했습니다. 관리자에게 문의하세요!');
-                });
+            }
         };
 
 
@@ -434,7 +456,7 @@
                     alert('아이디 중복체크는 필수입니다.')
                     return;
                 }
-                if (document.getElementById('userName').value == '') {
+                if (document.getElementById('name').value == '') {
                     alert('이름은 필수 입력값입니다.')
                     return;
                 }
