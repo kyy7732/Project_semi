@@ -514,7 +514,6 @@ div.btn_area {
         return emailPattern.test(email);
       }
 
-
       
     </script>
 	<%@ include file="../include/footer.jsp" %>
