@@ -2,97 +2,93 @@
     pageEncoding="UTF-8"%>
     
  <%@ include file="../include/header.jsp" %>
-<!DOCTYPE html>
-<html>
     
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
-<title>myPage</title>
-<style>
+  <meta charset="UTF-8">
+  <title>myPage</title>
+  <style>
   /* myPage css  */
-  body{
-            margin: 0px;
-            padding: 0px;
-        }
-        .header {
-            padding-top: 0px;
-            border: solid 1px black;
-            height: 100px;
-            margin: 0%;
-            padding: 0px;
-        }
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.header {
+    padding-top: 0px;
+    border: solid 1px black;
+    height: 100px;
+    margin: 0%;
+    padding: 0px;
+}
 
-        .foter {
-            width: 100%;
-            padding: 0 25px;
-            line-height: 60px;
-            color: #8a8c8f;
-            border-top: 1px solid #dee5e7;
-            background-color: #f2f2f2;
-            border: solid 1px;
-            position: absolute;
-            bottom: 0px;
-        }
+.foter {
+    width: 100%;
+    padding: 0 25px;
+    line-height: 60px;
+    color: #8a8c8f;
+    border-top: 1px solid #dee5e7;
+    background-color: #f2f2f2;
+    border: solid 1px;
+    position: absolute;
+    bottom: 0px;
+}
 
-        #nav{
-            list-style-type: none;
-            margin: 0px;
-            overflow: auto;
-        }
-        ul#menu {
-            position: relative;
-            list-style: none;
-            padding-left: 0px;
-            margin: 0px;
-            margin-top: 30px;
-        }
-        li.border {
-            width: 200px;
-            border-right: solid 2px rgb(186, 199, 216);
-            border-bottom: #cbdef1 dotted 2px;
-            font-size: 12px;
-            border-top: 1px solid #ddd;
-            border-left: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-        }
-        .aButton{
-            display: block;
-            padding: 12px;
-            text-decoration-line: none;
-            color: #0356A9;
+#nav{
+    list-style-type: none;
+    margin: 0px;
+    overflow: auto;
+    margin-top: 0px;
+}
+ul#menu {
+    position: relative;
+    list-style: none;
+    padding-left: 0px;
+    margin: 0px;
+    margin-top: 30px;
+}
+li.border {
+    width: 200px;
+    border-right: solid 2px rgb(186, 199, 216);
+    border-bottom: #cbdef1 dotted 2px;
+    font-size: 13px;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    height: 70px;
+}
+.aButton{
+    display: block;
+    padding: 12px;
+    text-decoration-line: none;
+    color: #0356A9;
 
-        }
-        .aButton:hover{
-            display: block;
-            padding: 12px;
-            text-decoration-line: none;
-            color: #fff;
-            background-color: #0356A9;
-        }
-        .hTable{
-            position: relative;
-            left: 5px;
-        }
-        a:hover{
-            color: #158aff;
-        }
-        #page5 {
-            margin-top: 100px;
-            text-align: center;
-            line-height: 100px;
-            margin-left: 100px;
-            
-        }
-        #no:hover {
-            color: #000;
-        }
-        /* #menu2>li{
-            
-            display: inline-block;
-        } */
+}
+.aButton:hover{
+    display: block;
+    padding: 12px;
+    text-decoration-line: none;
+    color: #fff;
+    background-color: #0356A9;
+}
+.hTable{
+    position: relative;
+    left: 5px;
+}
+a:hover{
+    color: #158aff;
+}
+#page5 {
+    margin-top: 100px;
+    text-align: center;
+    line-height: 100px;
+    margin-left: 100px;
+    
+}
+#no:hover {
+    color: #000;
+}
+        
 
 #wrap {
   margin-left: -00px;
@@ -191,7 +187,7 @@
 /************* 테이블 작업 ************/
 table.table_type {
   position: relative;
-  top: -325px;
+  top: -288px;
   left: 215px;
   width: 800px;
   border-collapse: collapse;
@@ -243,20 +239,14 @@ table.table_type td {
 div.btn_area {
   text-align: center;
   margin: -280px;
-  margin-left: 150px;
+  margin-left: -150px;
 }
-
-
-
 
 </style>
 
-
-
 </head>
 <body>
-    
-    <div id="wrap">
+        <div id="wrap">
         <!--  상단영역  -->
         
             
@@ -287,7 +277,7 @@ div.btn_area {
             </ul>
     </table>
             <div id="contents">
-            <form action="" method="post">
+            <form action="${pageContext.request.contextPath}/user/update" method="post">
                 <table class="table_type">
                     <colgroup>
                         <col width="150px" />
@@ -363,7 +353,6 @@ div.btn_area {
                                     	<input type="text" class="form_control mail_check_input" placeholder="인증번호 6자리를 입력하세요." maxlength="6" style="width: 185px;">
                                     	<span id="mail_check_warn"></span>
                                     </div>
-                                
                             </td>
                         </tr>
                         
@@ -376,7 +365,6 @@ div.btn_area {
                     <span class="btn b_ok">
                         <a href="" class="button">수정</a>
                     </span>
-                    
                 </div>
         </form>
         </div>
@@ -392,22 +380,24 @@ div.btn_area {
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    // 비밀번호 유효성 검사 스크립트
-    const $userPw = document.getElementById('userPw');
-    const $msgPw = document.getElementById('msgPw');
+  let code = '';
+  let idFlag, pwFlag;
+  const $msgId = document.getElementById('msgId');
+  // 비밀번호 유효성 검사 스크립트
+  const $userPw = document.getElementById('userPw');
+  const $msgPw = document.getElementById('msgPw');
     $userPw.onkeyup = () => {
+      var regex = /^[A-Za-z0-9+]{8,16}$/;
+      if(regex.test($userPw.value)){
+          $userPw.style.borderColor = 'green';
+          $msgPw.innerHTML = '사용가능합니다.';
+          pwFlag = true;
 
-        var regex = /^[A-Za-z0-9+]{8,16}$/;
-        if(regex.test($userPw.value)){
-            $userPw.style.borderColor = 'green';
-            $msgPw.innerHTML = '사용가능합니다.';
-            pwFlag = true;
-
-        } else{
-            $userPw.style.borderColor = 'red';
-            $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
-            pwFlag = false;
-        }
+      } else{
+          $userPw.style.borderColor = 'red';
+          $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
+          pwFlag = false;
+      }
     }
 
     const $userPwC = document.getElementById('userPwC');
@@ -480,7 +470,7 @@ div.btn_area {
     	    select.disabled = true;
     	    input.readOnly = true;
 
-            select.addEventListener('change', function() {
+          select.addEventListener('change', function() {
     	    input.value = select.value;
     	  })	
           e.target.style.display = 'none';
@@ -500,7 +490,12 @@ div.btn_area {
         // 삭제가 취소된 경우 실행할 코드를 작성할 수 있습니다.
       }
     }
-            
-        
+
+
+      // update로 보내기
+      //회원정보 수정 요청 검사 스크립트
+      
+
+      
     </script>
 	<%@ include file="../include/footer.jsp" %>
