@@ -304,7 +304,7 @@
         //아이디 유효성 검사 스크립트
         $userId.onkeyup = () => {
 
-            var regex = /^[A-Za-z0-9+]{8,12}$/;
+            var regex = /^[A-Za-z0-9+]{6,12}$/;
             if (regex.test($userId.value)) {
                 $userId.style.borderColor = 'green';
                 $msgId.innerHTML = '아이디 중복 체크는 필수 입니다.';
@@ -370,7 +370,7 @@
         })
 
         document.getElementById('check_btn_dup').onclick = function () {
-            
+
             if(document.getElementById('email').value ==='' || document.getElementById('email1').value === ''){
                 alert('이메일을 입력해주세요.')
                 return;
