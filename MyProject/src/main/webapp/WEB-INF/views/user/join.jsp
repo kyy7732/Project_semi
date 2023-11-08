@@ -271,8 +271,6 @@
         let code = '';
         let idFlag, pwFlag;
         const $msgId = document.getElementById('msgId');
-
-        
         
         //아이디 중복 검사 스크립트
         const $idCheck = document.joinForm.idCheck;
@@ -445,13 +443,10 @@
                 if (confirm('회원가입을 진행합니다.')) {
                     document.joinForm.submit();
                 } else return;
-            } else {
-                alert('입력값을 다시 한번 확인해주세요.');
-                return;
-            }
-
-                    
-
+                } else {
+                    alert('입력값을 다시 한번 확인해주세요.');
+                    return;
+                }
         }
 
 	</script>

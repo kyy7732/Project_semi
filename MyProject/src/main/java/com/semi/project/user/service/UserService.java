@@ -56,8 +56,6 @@ public class UserService {
 						.build());
 	}
 
-
-	
 	public String login(String userId, String userPw) {
 		String dbPw = mapper.login(userId);
 		if(dbPw != null) {
