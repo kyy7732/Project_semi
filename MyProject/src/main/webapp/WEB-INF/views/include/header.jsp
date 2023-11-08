@@ -19,8 +19,7 @@ pageEncoding="UTF-8"%>
         align-items: flex-end;
       }
       .title {
-        background: transparent url('/img/logoHeader.png')
-          no-repeat center;
+        background: transparent url('/img/logoHeader.png') no-repeat center;
         flex-grow: 3;
         min-width: 298px;
         min-height: 75px;
@@ -43,8 +42,7 @@ pageEncoding="UTF-8"%>
       .real-time .sound-icon {
         width: 20px;
         height: 30px;
-        background: transparent url('/img/soundIcon.png')
-          no-repeat center;
+        background: transparent url('/img/soundIcon.png') no-repeat center;
         margin-right: 10px;
       }
       .real-time .real-time-icon {
@@ -223,7 +221,10 @@ pageEncoding="UTF-8"%>
         <button
           type="button"
           class="close"
-          onClick={ () => setModal(false)}>X</button>
+          onClick="setModal(false)"
+        >
+          X
+        </button>
       </div>
       <div class="board_list_wrap">
         <div class="board_list">
@@ -303,7 +304,6 @@ pageEncoding="UTF-8"%>
       // closeBtn.addEventListener('click', (e) => {
       //   modal.style.display = 'none';
       // });
-      
 
       function openModal(modalname) {
         $('#modal').fadeIn(300);

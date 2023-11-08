@@ -21,6 +21,61 @@
      		WHERE season = '겨울'
      	</if>
      </sql>
+     
+     <sql id="searchArea">
+     	<if test="name =='서울특별시'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '서울특별시'
+     	</if>
+     	<if test="name =='강원도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '강원도'
+     	</if>
+     	<if test="name =='경기도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '경기도'
+     	</if>
+     	<if test="name =='경상남도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '경상남도'
+     	</if>
+     	<if test="name =='경상북도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '경상북도'
+     	</if>
+     	<if test="name =='대구광역시'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '대구광역시'
+     	</if>
+     	<if test="name =='대전광역시'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '대전광역시'
+     	</if>
+     	<if test="name =='부산광역시'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '부산광역시'
+     	</if>
+     	<if test="name =='세종특별자치시'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '세종특별자치시'
+     	</if>
+     	<if test="name =='울산광역시'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '울산광역시'
+     	</if>
+     	<if test="name =='인천광역시'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '인천광역시'
+     	</if>
+     	<if test="name =='전라남도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '전라남도'
+     	</if>
+     	<if test="name =='전라북도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '전라북도'
+     	</if>
+     	<if test="name =='제주특별자치도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '제주특별자치도'
+     	</if>
+     	<if test="name =='충청남도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '충청남도'
+     	</if>
+     	<if test="name =='충청북도'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '충정북도'
+     	</if>
+     	<if test="name =='광주광역시'"> <!-- 엔티티에서 get set 생략한 것으로 쓰기 -->
+     		WHERE admn_area = '광주광역시'
+     	</if>
+     	
+     </sql>
 
 	<select id="getFestival" resultType="Festival">
 		SELECT
@@ -29,5 +84,14 @@
 		road_addr, latitude, longitude
 		FROM festival
 		<include refid="search" />
+	</select>
+	
+	<select id="getFestivalByArea" resultType="Festival">
+		SELECT
+		ftv_num,
+		ftv_name, place, url, start_date, end_date,
+		road_addr, latitude, longitude
+		FROM festival
+		<include refid="searchArea" />
 	</select>
 </mapper>
