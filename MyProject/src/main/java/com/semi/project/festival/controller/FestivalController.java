@@ -1,9 +1,14 @@
 package com.semi.project.festival.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.service.FestivalService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,15 +28,14 @@ public class FestivalController {
 
 	}
 
-//	//시즌별 축제조회(비동기)
-//	@GetMapping("/ftvList/{season}")
-//	@ResponseBody
-//	public List<FtvResponseDTO> getFtvList(@PathVariable String season){
-//		log.info("/festival/ftvList 요청: GET!  {}", season);
-//		service.getFestivalBySeason(season);
-//		//       return service.getFtvList(season);
-//		return null;
-//	}
+	//시즌별 축제조회(비동기)
+	@GetMapping("/ftvList/{season}")
+	@ResponseBody
+	public List<FtvResponseDTO> getFtvList(@PathVariable String season){
+		log.info("/festival/ftvList 요청: GET!  {}", season);
+		return service.getFestivalBySeason(season);
+	}
+
 
 
 
