@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
@@ -69,10 +70,10 @@ public class UserController {
 	
 	//회원가입(동기)
 	@PostMapping("/join")
-	public String join(RequestDTO dto){
+	public String join(RequestDTO dto, RedirectAttributes ra){
 		log.info("/user/join 요청: POST! {}", dto);
-		log.info(dto.getEmail1());
 	    service.join(dto);
+	    ra.addFlashAttribute("msg", "joinSuccess");
 	    return "redirect:/user/login";
 	}
 	
@@ -89,8 +90,9 @@ public class UserController {
 	
 	//로그아웃
 	@GetMapping("/logout")
-	public void logout(HttpSession session) {
+	public String logout(HttpSession session) {
 		session.removeAttribute("login");
+		return "redirect:/";
 	}
 	
 	//마이페이지(동기)
@@ -133,6 +135,7 @@ public class UserController {
 	      log.info("/festival/likeList 요청: GET! {}", userId);   
 	      return service.getLikeList(userId);
 	}
+	
 	
 	
 	

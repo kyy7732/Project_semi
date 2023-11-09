@@ -484,7 +484,7 @@ div.btn_area {
       document.getElementById('deleteBtn').onclick = e => {
       if (confirm("정말로 삭제하시겠습니까?")) {
         alert("삭제되었습니다.");
-        location.href = "${pageContext.request.contextPath}/user/delete?userId=${userId}";
+        location.href = "${pageContext.request.contextPath}/user/delete?userId=${sessionScope.login}";
       } else {
         return;
         // 삭제가 취소된 경우 실행할 코드를 작성할 수 있습니다.

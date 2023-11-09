@@ -232,16 +232,16 @@
                             <td class="pn_td">
                                 <input type="text" id="email" name="email" class="join">
                                 @
-                                <input class="join" type="text" class="box" id="email1" name="email1">&nbsp;
+                                <input class="join email box" type="text" id="email1" name="email1" />&nbsp;
                                 <select type="select" class="box" id="email2" name="email2">
-                                    <option value="type" selected>직접입력</option>
+                                    <option value="type"  selected>직접입력</option>
                                     <option value="naver.com">naver.com</option>
                                     <option value="gmail.com">gmail.com</option>
                                     <option value="daum.net">daum.net</option>
                                 </select>&nbsp;&nbsp;
                                 <span class="btn b_bdcheck">
-                                    <input type="button" class="btn btn_primary" id="check_btn_dup" value="이메일 중복확인">
-                                    <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
+                                    <input type="button" class="btn btn_primary" id="check_btn_dup" value="중복확인" >
+                                    <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증" style="display: none;">
                                 </span>
                                 <div class="mail_check_box">
                                     <input type="text" class="form_control mail_check_input"
@@ -272,6 +272,8 @@
         let code = '';
         let idFlag, pwFlag, emailFlag;
         const $msgId = document.getElementById('msgId');
+
+        
         
         //아이디 중복 검사 스크립트
         const $idCheck = document.joinForm.idCheck;
@@ -302,7 +304,7 @@
         //아이디 유효성 검사 스크립트
         $userId.onkeyup = () => {
 
-            var regex = /^[A-Za-z0-9+]{8,12}$/;
+            var regex = /^[A-Za-z0-9+]{6,12}$/;
             if (regex.test($userId.value)) {
                 $userId.style.borderColor = 'green';
                 $msgId.innerHTML = '아이디 중복 체크는 필수 입니다.';
@@ -366,10 +368,14 @@
                 emailInput.readOnly = false;
             }
         })
-        
-        
 
-        document.getElementById('check_btn').onclick = function () {
+        document.getElementById('check_btn_dup').onclick = function () {
+
+            if(document.getElementById('email').value ==='' || document.getElementById('email1').value === ''){
+                alert('이메일을 입력해주세요.')
+                return;
+            }
+
             const email =
             document.getElementById('email').value +
             '@' +
@@ -382,16 +388,20 @@
                     alert('이미 존재하는 이메일 입니다.');
                     emailFlag = true;
                     return;
-                } 
+                } else if(text === 'possible'){
+                    alert('사용 가능한 이메일 입니다. \n이메일 인증을 완료해주세요.')
+                    document.getElementById('check_btn_dup').style.display = 'none';
+                    document.getElementById('check_btn').style.display = 'block';
+                }
             })
+        };
             
             document.getElementById('check_btn').onclick = function () {
                 const email =
                 document.getElementById('email').value +
                 '@' +
                 document.getElementById('email1').value;
-                
-                console.log(emailFlag);
+
                 fetch('${pageContext.request.contextPath}/user/email', {
                         method: 'post',
                         headers: {
@@ -414,7 +424,6 @@
                     });
 
             }
-        };
 
 
         document.querySelector('.mail_check_input').onblur = function (e) {
@@ -465,10 +474,13 @@
                 if (confirm('회원가입을 진행합니다.')) {
                     document.joinForm.submit();
                 } else return;
-                } else {
-                    alert('입력값을 다시 한번 확인해주세요.');
-                    return;
-                }
+            } else {
+                alert('입력값을 다시 한번 확인해주세요.');
+                return;
+            }
+
+                    
+
         }
 
 	</script>

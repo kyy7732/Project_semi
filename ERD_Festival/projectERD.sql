@@ -81,7 +81,7 @@ CREATE TABLE reply
 CREATE TABLE users
 (
 	user_id varchar2(50) NOT NULL,
-	user_pw varchar2(50) NOT NULL,
+	user_pw varchar2(500) NOT NULL,
 	email varchar2(500) NOT NULL,
 	name varchar2(500) NOT NULL,
 	PRIMARY KEY (user_id)

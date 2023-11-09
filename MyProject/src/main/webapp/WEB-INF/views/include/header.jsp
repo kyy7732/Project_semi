@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -189,8 +190,14 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
       <div class="btn-area">
-        <button class="btn login-btn">로그인</button>
-        <button class="btn join-btn">회원가입</button>
+        <c:if test="${login == null}">
+        <button id="loginBtn" class="btn login-btn">로그인</button>
+        <button id="joinBtn" class="btn join-btn">회원가입</button>
+        </c:if>
+        <c:if test="${login != null}">
+        <button id="myPageBtn" class="btn myPage-btn" onclick="location.href='${pageContext.request.contextPath}/user/myPage'">마이페이지</button>
+        <button id="logoutBtn" class="btn logout-btn" onclick="location.href='${pageContext.request.contextPath}/user/logout'">로그아웃</button>
+        </c:if>
         <a
           href="javascript:openModal('modal1');"
           class="btn like"
@@ -286,18 +293,18 @@ pageEncoding="UTF-8"%>
 
     <script>
       //main logo 클릭 시 main으로 이동
-      document.querySelector('.title').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}';
-      });
+      document.querySelector('.title').onclick = (e) => {
+        location.href = '${pageContext.request.contextPath}/';
+      };
 
       //로그인페이지로 이동
-      document.querySelector('.login-btn').addEventListener('click', (e) => {
+      document.getElementById('loginBtn').onclick = () => {
         location.href = '${pageContext.request.contextPath}/user/login';
-      });
+      };
       //회원가입 페이지로 이동
-      document.querySelector('.join-btn').addEventListener('click', (e) => {
+      document.getElementById('joinBtn').onclick = (e) => {
         location.href = '${pageContext.request.contextPath}/user/join';
-      });
+      };
 
       // const closeBtn = modal.querySelector('.modal1');
 
