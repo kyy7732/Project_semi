@@ -77,19 +77,11 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     .custom-btn {
       display: inline-block;
       width: 100px;
-      background: #0356a9;
-      /* background: rgb(11, 19, 134); */
-      background: linear-gradient(
-        0deg,
-        rgba(6, 14, 131, 1) 0%,
-        rgba(12, 25, 180, 1) 100%
-      );
       border: none;
       height: 40px;
       color: #fff;
       border-radius: 10px;
       padding: 10px 25px;
-
       font-family: 'Lato', sans-serif;
       font-weight: 500;
       cursor: pointer;
@@ -99,24 +91,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
         7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
       outline: none;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 10 0 20px #f0ecec;
+      background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
     }
 
     .custom-btn:hover {
-      /* background: rgb(0, 3, 255); */
-      background: linear-gradient(
-        0deg,
-        rgba(0, 3, 255, 1) 0%,
-        rgba(2, 126, 251, 1) 100%
-      );
-    }
-
-    .custom-btn:active {
-      background: rgb(0, 3, 255);
-      background: linear-gradient(
-        0deg,
-        rgba(0, 3, 255, 1) 0%,
-        rgba(2, 126, 251, 1) 100%
-      );
+      background-position: right center; 
     }
 
     /* 검색창 스타일 */
@@ -142,12 +125,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       right: 12px;
       margin: 0;
     }
-
-    /* .container {
-      width: 100vw;
-      height: 100vh;
-      background: pink;
-    }  */
 
     /* 마우스 오버레이 박스 */
     .area {
@@ -364,7 +341,45 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         '                <div class="jibun ellipsis">강원도 강릉시</div>' +
         '                <div><a href="https://www.coffeefestival.net" target="_blank" class="link">홈페이지</a></div>' +
         '            </div>' +
-        '        </div>' +
+        '<div class="reply">' +
+        '<div class="form-group">' +
+        '<form method="post" encType = "multipart/form-data" action="#">' +
+          '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+            '<tr>' +
+              '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
+              '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
+              '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
+            '</tr>' +
+          '</table>' +
+        '</form>' +
+      '</div>' +
+    '</div>' +
+    '<div class="container">' +
+	'<div class="row">' +
+		'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
+			'<tbody>' +
+				'<tr>' +
+					'<td align="left" bgcolor="beige">댓글</td>' +
+				'</tr>' +
+				'<tr>' +
+						'<div class="container">' +		//댓글하나당 container만들어서 보여줌
+							'<div class="row">' +
+								'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+									'<tbody>' +
+										'<tr>' +							
+											'<td colspan="2"></td>' +
+											'<td align="right">' +
+											'</td>' +
+										'</tr>' +
+									'</tbody>' +
+								'</table>' +			
+							'</div>' +
+						'</div>' +
+				'</tr>' +
+		'</table>' +
+	'</div>' +
+'</div>' +
+        '</div>' +
         '    </div>' +
         '</div>';
 
