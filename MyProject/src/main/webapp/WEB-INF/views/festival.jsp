@@ -127,6 +127,28 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       /* align-content: space-around; */
     }
 
+    /* 검색 버튼 스타일 */
+    #search {
+      position: absolute;
+      width: 17px;
+      top: 10px;
+      right: 1px;
+      margin: 0;
+    }
+
+    #search_btn {
+      top: 6px;
+      right: -10px;
+      position: absolute;
+      background-image: url(/resources/static/img/search.png);
+      background-color: white;
+      border: none;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      background-size: 24px;
+    }
+
     input {
       width: 100%;
       border: 1px solid #bbb;
@@ -134,15 +156,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       padding: 10px 12px;
       font-size: 14px;
     }
-
-    img {
-      position: absolute;
-      width: 17px;
-      top: 10px;
-      right: 12px;
-      margin: 0;
-    }
-
     /* .container {
       width: 100vw;
       height: 100vh;
@@ -160,13 +173,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       font-weight: bold;
       text-align: center;
       border-radius: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 30px;
+      background-color: black;
+      top: -50px;
     }
 
     /* 마커 누르면 뜨는 창 */
     .wrap {
       position: absolute;
-      left: 0;
+      left: -30px;
       bottom: 40px;
       width: 350px;
       height: 400px;
@@ -271,12 +286,16 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         <!-- 검색창 -->
         <div class="search">
           <input
+            class="search_box"
+            name="search_box"
             type="text"
             placeholder="축제명 입력"
           />
-          <img
-            src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
-          />
+          <button
+            id="search_btn"
+            class="search_box"
+            type="button"
+          ></button>
         </div>
       </div>
       <!-- 지도영역 -->
@@ -359,50 +378,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       //   });
       // }
 
-      // 지도에 마커를 표시합니다
-      // var marker = new kakao.maps.Marker({
-      //   map: map,
-      //   position: new kakao.maps.LatLng(33.450701, 126.570667),
-      // });
-
-      // var content =
-      //   '<div class="wrap">' +
-      //   '    <div class="info">' +
-      //   '        <div class="title">' +
-      //   '            강릉커피축제' +
-      //   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-      //   '        </div>' +
-      //   '        <div class="body">' +
-      //   '            <div class="img">' +
-      //   '                <img src="/resources/static/img/강릉 커피.png" width="73" height="70">' +
-      //   '           </div>' +
-      //   '            <div class="desc">' +
-      //   '                <div class="ellipsis">강원도 강릉시 임영로131번길 6 (용강동)</div>' +
-      //   '                <div class="jibun ellipsis">강원도 강릉시</div>' +
-      //   '                <div><a href="https://www.coffeefestival.net" target="_blank" class="link">홈페이지</a></div>' +
-      //   '            </div>' +
-      //   '        </div>' +
-      //   '    </div>' +
-      //   '</div>';
-
-      // // 마커 위에 커스텀오버레이를 표시합니다
-      // // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-      // var overlay = new kakao.maps.CustomOverlay({
-      //   content: content,
-      //   map: map,
-      //   position: marker.getPosition(),
-      // });
-
-      // // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-      // kakao.maps.event.addListener(marker, 'click', function () {
-      //   overlay.setMap(map);
-      // });
-
-      // // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-      // function closeOverlay() {
-      //   overlay.setMap(null);
-      // }
-
       //줌 전역으로?
       //폴리곤 표시
       function displayArea(coordinates, name) {
@@ -437,6 +412,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
           if (!detailMode && level <= 10) {
             // level 에 따라 다른 json 파일을 사용한다.
+            console.log('디테일 모드다!');
             detailMode = true;
             Colorflag = false;
             removePolygon();
@@ -445,7 +421,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             //여기서 계절 버튼 누르면 요청.
           } else if (detailMode && level > 10) {
             // level 에 따라 다른 json 파일을 사용한다.
-            console.log('디테일모드 아니다!');
+            console.log('디테일 모드 아니다!');
 
             detailMode = false;
             Colorflag = true;
