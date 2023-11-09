@@ -27,8 +27,8 @@ public class FtvResponseDTO {
 	private String url;
 
 	private String roadAddr;
-	private int latitude;
-	private int longitude;
+	private double latitude;
+	private double longitude;
 	private String endDate;
 	private String startDate;
 

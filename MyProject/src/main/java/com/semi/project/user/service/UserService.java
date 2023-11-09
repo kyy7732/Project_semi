@@ -6,10 +6,12 @@ import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
 import com.semi.project.user.dto.RequestDTO;
+import com.semi.project.user.dto.ResponseDTO;
 import com.semi.project.user.entity.User;
 import com.semi.project.user.mapper.IUserMapper;
 
@@ -60,10 +62,9 @@ public class UserService {
 		return null;
 	}
 	
-
-	public ReplyResponseDTO getInfo(String id) {
-		User user = mapper.getInfo(id);
-		return ReplyResponseDTO.toDTO(user);	
+	public ResponseDTO getInfo(String userId) {
+		User user = mapper.getInfo(userId);
+		return ResponseDTO.dto(user);	
 	}
 
 	public void update(RequestDTO dto) {

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,8 +37,23 @@ public class FestivalController {
 		log.info("/festival/ftvList 요청: GET!  {}", season);
 		return service.getFestivalBySeason(season);
 	}
+	//행정구역 요청(비동기)
+	@PostMapping("/ftvList")
+	@ResponseBody
+	public List<FtvResponseDTO> getArea(@RequestBody String name) {
+		log.info("/festival/ftvList 요청: GET!  {}", name);
+		return service.getFestivalByArea(name);
+	}
+	
+	
 
-
+	// 검색창에 축제명 입력(비동기)
+	@PostMapping("/search")
+	@ResponseBody
+	public List<FtvResponseDTO> getFtvNameList(@RequestBody String filterValue){
+		log.info("/festival/search 요청: GET! {}", filterValue);
+		return service.getFestivalByName(filterValue);
+	}
 
 
 
