@@ -26,8 +26,8 @@ public class Festival {
 	private String organizerOrg;
 	private String admnArea;
 	private String roadAddr;
-	private int latitude;
-	private int longitude;
+	private double latitude;
+	private double longitude;
 	private LocalDateTime endDate;
 	private LocalDateTime startDate;
 	private String season;

@@ -3,43 +3,25 @@ package com.semi.project.festival.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.entity.Festival;
 import com.semi.project.festival.mapper.IFestivalMapper;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.RequiredArgsConstructor;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import com.semi.project.festival.dto.FtvResponseDTO;
-import com.semi.project.festival.dto.ReplyResponseDTO;
-import com.semi.project.festival.entity.Festival;
-import com.semi.project.festival.entity.FtvLike;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 @PropertySource("classpath:/properties/FestivalApi.properties")
 public class FestivalService {
 	//필드
 	private final IFestivalMapper mapper;
 
-	//메서드
+	// 시즌별 축제 데이터 메서드
 	public List<FtvResponseDTO> getFestivalBySeason(String season) {
 		List<Festival> ftvList = mapper.getFestival(season); // 받기
 		
@@ -52,6 +34,20 @@ public class FestivalService {
 		return dtoList;
 
 	}
+
+	// 검색창에 축제명 입력시 데이터 메서드
+	public List<FtvResponseDTO> getFestivalByName(String ftvName){
+		List<Festival> ftvList = mapper.getFestivalName(ftvName);
+		
+		List<FtvResponseDTO> dtoList = new ArrayList<>();
+		
+		for( Festival ftv : ftvList) {
+			dtoList.add(new FtvResponseDTO(ftv));
+		}
+		
+		return dtoList;
+	}
+	//
 	//
 	//	private final IFestivalMapper mapper;
 	//	
