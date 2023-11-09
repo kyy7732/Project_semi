@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://www.springframework.org/tags"
+prefix="spring"%>
+<spring:eval
+  expression="@customProperties['clientId']"
+  var="clientId"
+/>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,20 +54,52 @@ pageEncoding="UTF-8"%>
         margin-bottom: 10px;
         border-radius: 6px;
         background-color: #f8f8f8;
+        border: none; /* 버튼 테두리 없애기 */
       }
 
-      #loginForm > button[type='submit'] {
+      #loginForm > button[type='button'] {
         text-align: center;
-        width: 95%;
+        width: 300px;
+        height: 45px;
         color: #fff;
         font-size: 16px;
         background-color: #0356a9;
       }
 
-      #loginForm > button > a img,
-      #loginForm > botton > a img {
-        width: 300px; /* 이미지의 원하는 너비 설정 */
-        height: 40px; /* 이미지의 원하는 높이 설정 */
+      #loginButtonsContainer {
+        display: flex; /* 가로로 나열하기 위해 flex 컨테이너로 설정 */
+        justify-content: space-between; /* 두 버튼 간격을 최대로 벌리기 위해 간격을 늘립니다. */
+        width: 300px; /* 컨테이너의 적절한 너비를 설정합니다. */
+        margin: 0 auto; /* 수평 중앙 정렬을 위해 margin을 사용합니다. */
+      }
+
+      #loginButtonsContainer button {
+        align-items: center;
+        padding: 0px;
+        justify-content: space-between;
+      }
+
+      #joinDiv {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 295px;
+        padding-left: 10px;
+        height: 45px;
+        font-size: 11px;
+        margin-top: 5px;
+      }
+
+      #joinDiv button {
+        height: 40px;
+      }
+
+      #joinDiv .joinimage {
+        width: 100px;
+        background-color: #f8f8f8;
+        border: none;
+        text-align: center;
+        border-radius: 6px;
       }
     </style>
   </head>
@@ -69,10 +107,12 @@ pageEncoding="UTF-8"%>
   <body>
     <div>
       <div class="login-wrapper">
-        <img
-          src="/resources/static/img/logoHeader.png"
-          class="mainLogo"
-        />
+        <a href="${pageContext.request.contextPath}/">
+          <img
+            src="/resources/static/img/logoHeader.png"
+            class="mainLogo"
+          />
+        </a>
 
         <h2>Login</h2>
         <form
@@ -101,26 +141,67 @@ pageEncoding="UTF-8"%>
           </button>
 
           <!-- 네이버 로그인 -->
-          <button>
-            <a
-              href="naverLogin.jsp"
-              style="height: 300px; height: 52px"
-            >
-            </a>
-            naver
-          </button>
+          <div id="loginButtonsContainer">
+            <div id="naver_id_login">
+              <a href="naverLogin.jsp">
+                <img
+                  src="../img/naver.png"
+                  width="300px"
+                />
+              </a>
+              naver
+            </div>
 
-          <!-- 카카오로그인 -->
-          <botton>
-            <a href="javascript:kakaoLogin()">
-              <img src="../img/kakaoLoginBtn.png" />
+            <!-- 카카오로그인 -->
+            <botton>
+              <a href="javascript:kakaoLogin()">
+                <img
+                  src="../img/kakao_login_btb_s.png"
+                  width="160px "
+                  height="45px"
+                />
+              </a>
+            </botton>
+          </div>
+
+          <!-- 회원가입 -->
+          <div id="joinDiv">
+            <p>
+              회원가입을 하시면 다양한 축제와 <br />
+              정보 알림을 받아보실 수 있습니다.
+            </p>
+            <a href="${pageContext.request.contextPath}/user/join">
+              <img
+                src="/img/join.png"
+                class="joinBtn"
+              />
             </a>
-          </botton>
+          </div>
         </form>
       </div>
     </div>
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script
+      type="text/javascript"
+      src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+      charset="utf-8"
+    ></script>
+    <script type="text/javascript">
+      var clientId = `${clientId}`;
+      var callbackUrl = 'https://localhost:80/project/user/login.jsp';
+      var naver_id_login = new naver_id_login(
+        `${clientId}`,
+        'https://localhost:80/project/user/login.jsp'
+      );
+      var state = naver_id_login.getUniqState();
+      naver_id_login.setButton('green', 2, 45);
+      naver_id_login.setDomain('localhost:8000/BBS/main.jsp');
+      naver_id_login.setState(state);
+      naver_id_login.setPopup();
+      naver_id_login.init_naver_id_login();
+    </script>
+
     <script>
       const msg = '${msg}';
       if (msg === 'joinSuccess') {
@@ -159,9 +240,6 @@ pageEncoding="UTF-8"%>
           },
         });
       }
-      document.querySelector('.mainLogo').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}/';
-      });
     </script>
   </body>
 </html>

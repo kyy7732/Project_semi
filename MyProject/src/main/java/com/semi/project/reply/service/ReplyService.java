@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.semi.project.reply.dto.Page;
 import com.semi.project.reply.entity.Reply;
 import com.semi.project.reply.mapper.IReplyMapper;
 import com.semi.project.reply.request.UserReplyModifyRequestDTO;
 import com.semi.project.reply.request.UserReplyRequestDTO;
 import com.semi.project.reply.response.ReplyDetailDTO;
 import com.semi.project.reply.response.UserReplyResponseDTO;
+import com.semi.project.util.page.Page;
 
 import lombok.RequiredArgsConstructor;
 

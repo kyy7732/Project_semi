@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
 
 import com.semi.project.user.dto.RequestDTO;
+import com.semi.project.user.dto.ResponseDTO;
 import com.semi.project.user.entity.User;
 import com.semi.project.user.mapper.IUserMapper;
 
@@ -19,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
+
 
 	private final IUserMapper mapper;
 	private final BCryptPasswordEncoder encoder;
@@ -58,10 +61,9 @@ public class UserService {
 		return null;
 	}
 	
-
-	public ReplyResponseDTO getInfo(String id) {
-		User user = mapper.getInfo(id);
-		return ReplyResponseDTO.toDTO(user);	
+	public ResponseDTO getInfo(String userId) {
+		User user = mapper.getInfo(userId);
+		return ResponseDTO.dto(user);	
 	}
 
 	public void update(RequestDTO dto) {

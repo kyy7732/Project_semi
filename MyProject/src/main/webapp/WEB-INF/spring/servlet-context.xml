@@ -20,6 +20,7 @@
 			<beans:list>
 				<beans:value>classpath:/properties/Email.properties</beans:value>
 				<beans:value>classpath:/properties/FestivalApi.properties</beans:value>
+				<beans:value>classpath:/properties/loginApi.properties</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

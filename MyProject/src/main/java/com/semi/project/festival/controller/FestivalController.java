@@ -37,6 +37,15 @@ public class FestivalController {
 		log.info("/festival/ftvList 요청: GET!  {}", season);
 		return service.getFestivalBySeason(season);
 	}
+	//행정구역 요청(비동기)
+	@PostMapping("/ftvList")
+	@ResponseBody
+	public List<FtvResponseDTO> getArea(@RequestBody String name) {
+		log.info("/festival/ftvList 요청: GET!  {}", name);
+		return service.getFestivalByArea(name);
+	}
+	
+	
 
 	// 검색창에 축제명 입력(비동기)
 	@PostMapping("/search")

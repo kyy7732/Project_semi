@@ -1,12 +1,14 @@
 package com.semi.project.festival.service;
 
 import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
+import com.semi.project.festival.entity.Festival;
 import com.semi.project.festival.entity.Festival;
 import com.semi.project.festival.mapper.IFestivalMapper;
 
@@ -24,13 +26,13 @@ public class FestivalService {
 	// 시즌별 축제 데이터 메서드
 	public List<FtvResponseDTO> getFestivalBySeason(String season) {
 		List<Festival> ftvList = mapper.getFestival(season); // 받기
-		
+
 		List<FtvResponseDTO> dtoList = new ArrayList<>();
-		
+
 		for(Festival ftv : ftvList) {
 			dtoList.add(new FtvResponseDTO(ftv));
 		}
-		
+
 		return dtoList;
 
 	}
@@ -173,5 +175,19 @@ public class FestivalService {
 	//	public FtvLike likeList(int ftvNum) {
 	//
 	//		return null;
+	} // 메서드의 끝
+	
+	public List<FtvResponseDTO> getFestivalByArea(String name) {
+		List<Festival> ftvList = mapper.getFestivalByArea(name); // 받기
+
+		List<FtvResponseDTO> dtoList = new ArrayList<>();
+
+		for(Festival ftv : ftvList) {
+			dtoList.add(new FtvResponseDTO(ftv));
+		}
+
+		return dtoList;
+	} // 메서드의 끝
+
 
 }

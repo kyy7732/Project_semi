@@ -10,9 +10,12 @@
   <title>myPage</title>
   <style>
   /* myPage css  */
-body{
+
+html body{
     margin: 0px;
     padding: 0px;
+      
+        height: 80vh;
 }
 .header {
     padding-top: 0px;
@@ -288,27 +291,27 @@ div.btn_area {
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="sId">아이디</label>
+                                <label for="userId">아이디</label>
                             </th>
                             <td>
-                                    <input class="join" type="text" id="sId" name="uId" disabled="disabled" />
+                                    <input class="join" type="text" id="userId" name="userId" value="${login}" disabled="disabled" />
                             </td>
                         </tr>
                         
                         <tr>
                             <th>
                                 <span class="req"></span>
-                                <label for="s_name" >이름</label>
+                                <label for="name" >이름</label>
                             </th>
                             <td>
-                                <input class="join" type="text" id="sName" name="uName" disabled="disabled" />
+                                <input class="join" type="text" id="name" name="name" value="${userInfo.name}" disabled="disabled" />
                             </td>
                         </tr>
 
                         <tr>
                           <th>
                               <span class="req"></span>
-                              <label for="s_pw">비밀번호</label>
+                              <label for="uesrPw">비밀번호</label>
                           </th>
                           <td>
                               <p class="guide_txt">
@@ -320,11 +323,11 @@ div.btn_area {
                       <tr>
                           <th>
                               <span class="req"></span>
-                              <label for="s_pw2">비밀번호 확인</label>
+                              <label for="userPwC">비밀번호 확인</label>
                           </th>
                           <td>
                               <p class="guide_txt">
-                                  <input type="password" id="userPw2" name="userPw2" class="join"><br/>
+                                  <input type="password" id="userPwC" name="userPwC" class="join"><br/>
                                   <span id="userPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                               </p>
                           </td>
@@ -336,14 +339,14 @@ div.btn_area {
                                 <label for="email">이메일</label>
                             </th>
                             <td class="pn_td">
-                                <input type="text" id="sMail" name="uMail" class="join" >
+                                <input type="text" id="email" name="email" class="join" value="${userInfo.useremail}" disabled="disabled">
                                 @
-                                <input class="join type="text" class="box" id="email1" name="email1">&nbsp;
+                                <input class="join type="text" class="box" id="email1" name="email1" value="${userInfo.emailDomain}" disabled="disabled" >&nbsp;
                                     <select type="select" class="box" id="email2" name="email2">
-                                    	<option value="type">직접입력</option>
-                                        <option value="@naver.com">naver.com</option>
-                                        <option value="@gmail.com">gmail.com</option>
-                                        <option value="@daum.net">daum.net</option>
+                                    	<option value="type">::직접입력::</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
                                     </select>&nbsp;&nbsp;
                                     <span class="btn b_bdcheck">
                                         <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
@@ -374,7 +377,7 @@ div.btn_area {
         
         <!-- 하단영역 끝 -->
     </div>
-
+    <%@ include file="../include/footer.jsp" %>
 </body>
 </html>
 
@@ -481,13 +484,14 @@ div.btn_area {
         }
      
     	};
+
+      // 회원탈퇴
       document.getElementById('deleteBtn').onclick = e => {
       if (confirm("정말로 삭제하시겠습니까?")) {
         alert("삭제되었습니다.");
-        location.href = "${pageContext.request.contextPath}/user/delete?userId=${userId}";
+        location.href = "${pageContext.request.contextPath}/user/delete?userId=${sessionScope.login}";
       } else {
         return;
-        // 삭제가 취소된 경우 실행할 코드를 작성할 수 있습니다.
       }
     }
 
@@ -498,4 +502,4 @@ div.btn_area {
 
       
     </script>
-	<%@ include file="../include/footer.jsp" %>
+

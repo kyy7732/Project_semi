@@ -2,8 +2,8 @@ package com.semi.project.reply.mapper;
 
 import java.util.List;
 
-import com.semi.project.reply.dto.Page;
 import com.semi.project.reply.entity.Reply;
+import com.semi.project.util.page.Page;
 
 public interface IReplyMapper {
 	

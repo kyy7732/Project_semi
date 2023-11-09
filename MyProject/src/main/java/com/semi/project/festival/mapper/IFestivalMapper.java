@@ -13,6 +13,9 @@ public interface IFestivalMapper {
 	
 	//좋아요 목록 조회
 	List<Festival> likeList(int likeNum);
+
+	//행정구역별 축제 조회
+	List<Festival> getFestivalByArea(String name);
 	
 	// 축제명 검색 기능
 	List<Festival> getFestivalName(String ftvName);

@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,9 @@ public class MailSenderService {
 	
 	private final JavaMailSender mailSender;
 	
+	@Value("${naver.account}")
+	private String naverAccount;
+	
 	// 난수 발생
 	private int makeRandemNumber() {
 		Random r = new Random();
@@ -28,7 +32,7 @@ public class MailSenderService {
 	public String joinEmail(String email) {
 		int authNum = makeRandemNumber();
 		
-		String setFrom = "kyy77321@naver.com";
+		String setFrom = naverAccount;
 		String toMail = email;
 		String title = "전국축제알리미 회원 가입 인증 이메일 입니다.";
 		String content = "전국축제알리미 가입을 신청해 주셔서 감사합니다." + 

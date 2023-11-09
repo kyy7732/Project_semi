@@ -27,6 +27,13 @@
 		WHERE user_id = #{userId}
 	</select>
 	
+ 
+	<select id="getInfo" resultType="user">
+		SELECT user_id, name, email
+		FROM users
+		WHERE user_id = #{userId}
+	</select> 
+	
 	<update id="update">
 		UPDATE users 
 		SET user_pw = #{userPw}, email = #{email}, name = #{name}
@@ -37,6 +44,8 @@
 		DELETE FROM users
 		WHERE user_id = #{userId}
 	</delete>
+	
+
 <!-- 	
 	<select id="getLikeList">
 		SELECT * FROM festival
