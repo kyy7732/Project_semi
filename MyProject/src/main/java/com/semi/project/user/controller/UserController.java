@@ -97,7 +97,11 @@ public class UserController {
 	
 	//마이페이지(동기)
 	@GetMapping("/myPage")
-	public void myPage() {}
+	public void myPage(HttpSession session, Model model) {
+		String userId = (String) session.getAttribute("login");
+		model.addAttribute("userInfo", service.getInfo(userId));
+	}
+	
 	
 	//나의정보관리 페이지(동기)
 	@GetMapping("/myInfo")

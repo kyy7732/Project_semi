@@ -13,9 +13,12 @@
   </head>
   <body>
     <script type="text/javascript">
-      var clientId = '클라리언트아이디';
-      var callbackUrl = 'url';
-      var naver_id_login = new naver_id_login(clientId, callbackUrl);
+      var clientId = `${clientId}`;
+      var callbackUrl = 'https://localhost:80/project/user/login.jsp';
+      var naver_id_login = new naver_id_login(
+        `${clientId}`,
+        'https://localhost:80/project/user/login.jsp'
+      );
       // 접근 토큰 값 출력
       alert(naver_id_login.oauthParams.access_token);
       // 네이버 사용자 프로필 조회
