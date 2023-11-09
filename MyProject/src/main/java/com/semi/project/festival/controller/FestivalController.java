@@ -47,7 +47,13 @@ public class FestivalController {
 	
 	
 
-
+	// 검색창에 축제명 입력(비동기)
+	@PostMapping("/search")
+	@ResponseBody
+	public List<FtvResponseDTO> getFtvNameList(@RequestBody String filterValue){
+		log.info("/festival/search 요청: GET! {}", filterValue);
+		return service.getFestivalByName(filterValue);
+	}
 
 
 

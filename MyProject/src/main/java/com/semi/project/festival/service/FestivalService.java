@@ -23,7 +23,7 @@ public class FestivalService {
 	//필드
 	private final IFestivalMapper mapper;
 
-	// 메서드
+	// 시즌별 축제 데이터 메서드
 	public List<FtvResponseDTO> getFestivalBySeason(String season) {
 		List<Festival> ftvList = mapper.getFestival(season); // 받기
 
@@ -34,7 +34,21 @@ public class FestivalService {
 		}
 
 		return dtoList;
-	} // 메서드의 끝
+
+	}
+
+	// 검색창에 축제명 입력시 데이터 메서드
+	public List<FtvResponseDTO> getFestivalByName(String ftvName){
+		List<Festival> ftvList = mapper.getFestivalName(ftvName);
+		
+		List<FtvResponseDTO> dtoList = new ArrayList<>();
+		
+		for( Festival ftv : ftvList) {
+			dtoList.add(new FtvResponseDTO(ftv));
+		}
+		
+		return dtoList;
+	}
 	
 	public List<FtvResponseDTO> getFestivalByArea(String name) {
 		List<Festival> ftvList = mapper.getFestivalByArea(name); // 받기

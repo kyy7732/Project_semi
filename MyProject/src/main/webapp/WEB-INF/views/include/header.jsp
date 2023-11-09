@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -205,7 +205,10 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div class="container">
-      <a href="${pageContext.request.contextPath}/" class="title"></a>
+      <a
+        href="${pageContext.request.contextPath}/"
+        class="title"
+      ></a>
       <div class="popular">
         <div class="real-time">
           <div class="sound-icon"></div>
@@ -219,18 +222,38 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="btn-area">
         <c:if test="${login == null}">
-        <a id="loginBtn" class="btn login-btn" href = '${pageContext.request.contextPath}/user/login'>로그인</a>
-        <a id="joinBtn" class="btn join-btn" href='${pageContext.request.contextPath}/user/join'>회원가입</a>
+          <a
+            id="loginBtn"
+            class="btn login-btn"
+            href="${pageContext.request.contextPath}/user/login"
+            >로그인</a
+          >
+          <a
+            id="joinBtn"
+            class="btn join-btn"
+            href="${pageContext.request.contextPath}/user/join"
+            >회원가입</a
+          >
         </c:if>
         <c:if test="${login != null}">
-        <a id="myPageBtn" class="btn myPage-btn" href='${pageContext.request.contextPath}/user/myPage'>마이페이지</a>
-        <a id="logoutBtn" class="btn logout-btn" href='${pageContext.request.contextPath}/user/logout'>로그아웃</a>
-        <a
-        href="javascript:openModal('modal1');"
-        class="btn like"
-        >좋아요목록</a
-        >
-      </c:if>
+          <a
+            id="myPageBtn"
+            class="btn myPage-btn"
+            href="${pageContext.request.contextPath}/user/myPage"
+            >마이페이지</a
+          >
+          <a
+            id="logoutBtn"
+            class="btn logout-btn"
+            href="${pageContext.request.contextPath}/user/logout"
+            >로그아웃</a
+          >
+          <a
+            href="javascript:openModal('modal1');"
+            class="btn like"
+            >좋아요목록</a
+          >
+        </c:if>
       </div>
     </div>
 

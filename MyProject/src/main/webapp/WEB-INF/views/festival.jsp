@@ -148,7 +148,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       margin: 0;
     }
 
-
     /* 마우스 오버레이 박스 */
     .area {
       position: relative;
@@ -179,12 +178,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
       line-height: 1.5;
     }
+
     .wrap * {
       padding: 0;
       margin: 0;
     }
+
     .wrap .info {
-      width: 350px; /*286 */
+      width: 350px;
+      /*286 */
       height: 420px;
       border-radius: 5px;
       border-bottom: 2px solid #ccc;
@@ -192,10 +194,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       overflow: hidden;
       background: #fff;
     }
+
     .wrap .info:nth-child(1) {
       border: 0;
       box-shadow: 0px 1px 2px #888;
     }
+
     .info .title {
       padding: 5px 0 0 10px;
       height: 30px;
@@ -204,6 +208,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       font-size: 18px;
       font-weight: bold;
     }
+
     .info .close {
       position: absolute;
       top: 10px;
@@ -213,28 +218,34 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       height: 17px;
       background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
     }
+
     .info .close:hover {
       cursor: pointer;
     }
+
     .info .body {
       position: relative;
       overflow: hidden;
     }
+
     .info .desc {
       position: relative;
       margin: 13px 0 0 90px;
       height: 75px;
     }
+
     .desc .ellipsis {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
     .desc .jibun {
       font-size: 11px;
       color: #888;
       margin-top: -2px;
     }
+
     .info .img {
       position: absolute;
       top: 6px;
@@ -245,6 +256,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       color: #888;
       overflow: hidden;
     }
+
     .info:after {
       content: '';
       position: absolute;
@@ -255,6 +267,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       height: 12px;
       background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
     }
+
     .info .link {
       color: #5085bb;
     }
@@ -273,7 +286,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         <!-- 검색창 -->
         <div class="search">
           <input
-            class="search_box"
+            class="search_box find"
             name="search_box"
             type="text"
             placeholder="축제명 입력"
@@ -302,6 +315,8 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     ></script>
 
     <script>
+      var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
           center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -436,11 +451,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       //         coordinates = val.geometry.coordinates;
       //         name = val.properties.SIG_KOR_NM;
 
-      //         displayArea(coordinates, name); // 호출!!
-      //       }
-      //     });
-      //   });
-      // }
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, 'click', function () {
+        overlay.setMap(map);
+      });
+
+      // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+      function closeOverlay() {
+        overlay.setMap(null);
+      }
 
       //줌 전역으로?
       //폴리곤 표시
@@ -472,7 +491,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         kakao.maps.event.addListener(map, 'zoom_changed', function () {
           level = map.getLevel();
 
-          //console.log('현재 지도 레벨은 ' + level + ' 입니다');
+          // console.log('현재 지도 레벨은 ' + level + ' 입니다');
 
           if (!detailMode && level <= 10) {
             // level 에 따라 다른 json 파일을 사용한다.
@@ -499,28 +518,13 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           'mouseover',
           function (mouseEvent) {
             // console.log('마우스 오버!');
-
             polygon.setOptions({
               fillColor: '#09f',
             });
 
             customOverlay.setPosition(mouseEvent.latLng);
             // customOverlay.setContent('<div class="area">' + name + '</div>');
-            // customOverlay.setMap(map);
-            // var iwContent = '<div style="padding:5px;">' + name + '</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-            //   iwPosition = new kakao.maps.LatLng(mouseEvent.latLng), //인포윈도우 표시 위치입니다
-            //   iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-
-            // // 인포윈도우를 생성하고 지도에 표시합니다
-            // var infowindow = new kakao.maps.InfoWindow({
-            //   map: map, // 인포윈도우가 표시될 지도
-            //   position: iwPosition,
-            //   content: iwContent,
-            //   removable: iwRemoveable,
-            // });
-
-            // 아래 코드는 인포윈도우를 지도에서 제거합니다
-            // infowindow.close();
+            customOverlay.setMap(map);
           }
         );
 
@@ -735,7 +739,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         fillOpacity: 0.8, // 채우기 불투명도 입니다
       };
 
-      /*****************************************축제명 검색 이벤트***********************************/
       // 장소 검색 객체를 생성합니다
       var ps = new kakao.maps.services.Places();
 
@@ -785,10 +788,27 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                   console.log(data[i]);
                   displayMarker(data[i]);
                   bounds.extend(
-                    new kakao.maps.LatLng(data[i].latitude, data[i].longitude)
+                    geocoder.addressSearch(
+                      data[i].roadAddr,
+                      function (result, status) {
+                        // 정상적으로 검색이 완료됐으면
+                        if (status === kakao.maps.services.Status.OK) {
+                          var coords = new kakao.maps.LatLng(
+                            result[i].latitude,
+                            result[i].longitude
+                          );
+
+                          // 결과값으로 받은 위치를 마커로 표시합니다
+                          var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: coords,
+                          });
+                        }
+                      }
+                    )
                   );
-                  console.log(data[i].latitude, data[i].longitude);
                 }
+                console.log(data[i].roadAddr);
                 // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
                 map.setBounds(bounds);
               });
@@ -814,6 +834,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           });
         }
       }
+
       /*****************************************계절 버튼 클릭 이벤트***********************************/
       // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
       var markers = [];

@@ -86,6 +86,15 @@
 		<include refid="search" />
 	</select>
 	
+	<select id="getFestivalName" resultType="Festival">
+		SELECT
+		ftv_num,
+		ftv_name, place, url, start_date, end_date,
+		road_addr, latitude, longitude
+		FROM festival
+		WHERE ftv_name LIKE '%'||#{ftvName}||'%'
+	</select>
+	
 	<select id="getFestivalByArea" resultType="Festival">
 		SELECT
 		ftv_num,
