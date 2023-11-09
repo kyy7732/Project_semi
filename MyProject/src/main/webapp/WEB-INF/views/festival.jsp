@@ -77,19 +77,11 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     .custom-btn {
       display: inline-block;
       width: 100px;
-      background: #0356a9;
-      /* background: rgb(11, 19, 134); */
-      background: linear-gradient(
-        0deg,
-        rgba(6, 14, 131, 1) 0%,
-        rgba(12, 25, 180, 1) 100%
-      );
       border: none;
       height: 40px;
       color: #fff;
       border-radius: 10px;
       padding: 10px 25px;
-
       font-family: 'Lato', sans-serif;
       font-weight: 500;
       cursor: pointer;
@@ -99,24 +91,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
         7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
       outline: none;
+      transition: 0.5s;
+      background-size: 200% auto;
+      color: white;
+      box-shadow: 10 0 20px #f0ecec;
+      background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
     }
 
     .custom-btn:hover {
-      /* background: rgb(0, 3, 255); */
-      background: linear-gradient(
-        0deg,
-        rgba(0, 3, 255, 1) 0%,
-        rgba(2, 126, 251, 1) 100%
-      );
-    }
-
-    .custom-btn:active {
-      background: rgb(0, 3, 255);
-      background: linear-gradient(
-        0deg,
-        rgba(0, 3, 255, 1) 0%,
-        rgba(2, 126, 251, 1) 100%
-      );
+      background-position: right center; 
     }
 
     /* 검색창 스타일 */
@@ -156,11 +139,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       padding: 10px 12px;
       font-size: 14px;
     }
-    /* .container {
-      width: 100vw;
-      height: 100vh;
-      background: pink;
-    }  */
+
+    img {
+      position: absolute;
+      width: 17px;
+      top: 10px;
+      right: 12px;
+      margin: 0;
+    }
+
 
     /* 마우스 오버레이 박스 */
     .area {
@@ -358,6 +345,87 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         });
       });
 
+      // 지도에 마커를 표시합니다
+      var marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(33.450701, 126.570667),
+      });
+
+      var content =
+        '<div class="wrap">' +
+        '    <div class="info">' +
+        '        <div class="title">' +
+        '            강릉커피축제' +
+        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+        '        </div>' +
+        '        <div class="body">' +
+        '            <div class="img">' +
+        '                <img src="/resources/static/img/강릉 커피.png" width="73" height="70">' +
+        '           </div>' +
+        '            <div class="desc">' +
+        '                <div class="ellipsis">강원도 강릉시 임영로131번길 6 (용강동)</div>' +
+        '                <div class="jibun ellipsis">강원도 강릉시</div>' +
+        '                <div><a href="https://www.coffeefestival.net" target="_blank" class="link">홈페이지</a></div>' +
+        '            </div>' +
+        '<div class="reply">' +
+        '<div class="form-group">' +
+        '<form method="post" encType = "multipart/form-data" action="#">' +
+          '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+            '<tr>' +
+              '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
+              '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
+              '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
+            '</tr>' +
+          '</table>' +
+        '</form>' +
+      '</div>' +
+    '</div>' +
+    '<div class="container">' +
+	'<div class="row">' +
+		'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
+			'<tbody>' +
+				'<tr>' +
+					'<td align="left" bgcolor="beige">댓글</td>' +
+				'</tr>' +
+				'<tr>' +
+						'<div class="container">' +		//댓글하나당 container만들어서 보여줌
+							'<div class="row">' +
+								'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+									'<tbody>' +
+										'<tr>' +							
+											'<td colspan="2"></td>' +
+											'<td align="right">' +
+											'</td>' +
+										'</tr>' +
+									'</tbody>' +
+								'</table>' +			
+							'</div>' +
+						'</div>' +
+				'</tr>' +
+		'</table>' +
+	'</div>' +
+'</div>' +
+        '</div>' +
+        '    </div>' +
+        '</div>';
+
+      // 마커 위에 커스텀오버레이를 표시합니다
+      // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+      var overlay = new kakao.maps.CustomOverlay({
+        content: content,
+        map: map,
+        position: marker.getPosition(),
+      });
+
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, 'click', function () {
+        overlay.setMap(map);
+      });
+
+      // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+      function closeOverlay() {
+        overlay.setMap(null);
+      }
       // if (!Colorflag) {
       //   $.getJSON(jsonLocation, function (data) {
       //     var data = data.features;
