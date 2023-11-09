@@ -95,11 +95,16 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       background-size: 200% auto;
       color: white;
       box-shadow: 10 0 20px #f0ecec;
-      background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+      background-image: linear-gradient(
+        to right,
+        #457acf 0%,
+        #83bad1 51%,
+        #a1c4fd 100%
+      );
     }
 
     .custom-btn:hover {
-      background-position: right center; 
+      background-position: right center;
     }
 
     /* 검색창 스타일 */
@@ -138,14 +143,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       border-radius: 8px;
       padding: 10px 12px;
       font-size: 14px;
-    }
-
-    img {
-      position: absolute;
-      width: 17px;
-      top: 10px;
-      right: 12px;
-      margin: 0;
     }
 
     /* 마우스 오버레이 박스 */
@@ -315,8 +312,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     ></script>
 
     <script>
-      var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
           center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -385,41 +380,41 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         '<div class="reply">' +
         '<div class="form-group">' +
         '<form method="post" encType = "multipart/form-data" action="#">' +
-          '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-            '<tr>' +
-              '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
-              '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
-              '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
-            '</tr>' +
-          '</table>' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+        '<tr>' +
+        '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
+        '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
+        '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
+        '</tr>' +
+        '</table>' +
         '</form>' +
-      '</div>' +
-    '</div>' +
-    '<div class="container">' +
-	'<div class="row">' +
-		'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
-			'<tbody>' +
-				'<tr>' +
-					'<td align="left" bgcolor="beige">댓글</td>' +
-				'</tr>' +
-				'<tr>' +
-						'<div class="container">' +		//댓글하나당 container만들어서 보여줌
-							'<div class="row">' +
-								'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-									'<tbody>' +
-										'<tr>' +							
-											'<td colspan="2"></td>' +
-											'<td align="right">' +
-											'</td>' +
-										'</tr>' +
-									'</tbody>' +
-								'</table>' +			
-							'</div>' +
-						'</div>' +
-				'</tr>' +
-		'</table>' +
-	'</div>' +
-'</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="container">' +
+        '<div class="row">' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
+        '<tbody>' +
+        '<tr>' +
+        '<td align="left" bgcolor="beige">댓글</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<div class="container">' + //댓글하나당 container만들어서 보여줌
+        '<div class="row">' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+        '<tbody>' +
+        '<tr>' +
+        '<td colspan="2"></td>' +
+        '<td align="right">' +
+        '</td>' +
+        '</tr>' +
+        '</tbody>' +
+        '</table>' +
+        '</div>' +
+        '</div>' +
+        '</tr>' +
+        '</table>' +
+        '</div>' +
+        '</div>' +
         '</div>' +
         '    </div>' +
         '</div>';
@@ -431,25 +426,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         map: map,
         position: marker.getPosition(),
       });
-
-      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-      kakao.maps.event.addListener(marker, 'click', function () {
-        overlay.setMap(map);
-      });
-
-      // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-      function closeOverlay() {
-        overlay.setMap(null);
-      }
-      // if (!Colorflag) {
-      //   $.getJSON(jsonLocation, function (data) {
-      //     var data = data.features;
-      //     var coordinates = [];
-      //     var name = '';
-      //     $.each(data, function (i, val) {
-      //       if (val.geometry.type == 'Polygon') {
-      //         coordinates = val.geometry.coordinates;
-      //         name = val.properties.SIG_KOR_NM;
 
       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
       kakao.maps.event.addListener(marker, 'click', function () {
@@ -625,7 +601,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         content: content,
                         map: map,
                         position: marker.getPosition(),
-                        display: setVisible(invisible),
                       });
                       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                       kakao.maps.event.addListener(
@@ -651,6 +626,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                 );
               } // for문 끝
             }); //.then(data)끝
+
           if (!detailMode) {
             Colorflag = false;
             map.setLevel(10); // level에 따라 이벤트 변경
@@ -668,39 +644,39 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         });
       } // displayArea() end
 
-      // 폴리곤 생성!!!!!!!!!
-      // function init(path) {
-      //   //path 경로의 json 파일 파싱
-      //   $.getJSON(path, function (geojson) {
-      //     var units = geojson.features; // json key값이 "features"인 것의 value를 통으로 가져온다.
+      //  폴리곤 생성!!!!!!!!!
+      function init(path) {
+        //path 경로의 json 파일 파싱
+        $.getJSON(path, function (geojson) {
+          var units = geojson.features; // json key값이 "features"인 것의 value를 통으로 가져온다.
 
-      //     $.each(units, function (index, unit) {
-      //       // 1개 지역씩 꺼내서 사용. val은 그 1개 지역에 대한 정보를 담는다
-      //       var coordinates = []; //좌표 저장할 배열
-      //       var name = ''; // 지역 이름
-      //       var cd_location = '';
-      //       coordinates = unit.geometry.coordinates; // 1개 지역의 영역을 구성하는 다각형의 모든 좌표 배열
-      //       name = unit.properties.SIG_KOR_NM; // 1개 지역의 이름
-      //       cd_location = unit.properties.SIG_CD;
+          $.each(units, function (index, unit) {
+            // 1개 지역씩 꺼내서 사용. val은 그 1개 지역에 대한 정보를 담는다
+            var coordinates = []; //좌표 저장할 배열
+            var name = ''; // 지역 이름
+            var cd_location = '';
+            coordinates = unit.geometry.coordinates; // 1개 지역의 영역을 구성하는 다각형의 모든 좌표 배열
+            name = unit.properties.SIG_KOR_NM; // 1개 지역의 이름
+            cd_location = unit.properties.SIG_CD;
 
-      //       var ob = new Object();
-      //       ob.name = name;
-      //       ob.path = [];
-      //       ob.location = cd_location;
-      //       $.each(coordinates[0], function (index, coordinate) {
-      //         ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
-      //       });
+            var ob = new Object();
+            ob.name = name;
+            ob.path = [];
+            ob.location = cd_location;
+            $.each(coordinates[0], function (index, coordinate) {
+              ob.path.push(new kakao.maps.LatLng(coordinate[1], coordinate[0]));
+            });
 
-      //       areas[index] = ob;
-      //     }); //each
-      //   }); //getJSON
+            areas[index] = ob;
+          }); //each
+        }); //getJSON
 
-      //   // 지도에 영역데이터를 폴리곤으로 표시
-      //   for (var i = 0, len = areas.length; i < len; i++) {
-      //     displayArea(areas[i]);
-      //   }
-      //   /////init 안
-      // } // init() end
+        // 지도에 영역데이터를 폴리곤으로 표시
+        for (var i = 0, len = areas.length; i < len; i++) {
+          displayArea(areas[i]);
+        }
+        // init 안
+      } // init() end
 
       // kakao.maps.event.addListener(map, 'zoom_changed', function () {
       //   level = map.getLevel();
@@ -749,18 +725,24 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         const searchBtn = document.querySelector('#search_btn');
 
         searchVal.addEventListener('keypress', function () {
+          hideMarkers();
           filterValue = searchVal.value;
           console.log(filterValue);
           searchMarker(filterValue);
+          searchVal.value = '';
         });
 
         searchBtn.addEventListener('click', function () {
+          hideMarkers();
           filterValue = searchVal.value;
           console.log(filterValue);
           searchMarker(filterValue);
+          searchVal.value = '';
         });
       });
 
+      var markers = [];
+      var marker;
       // 키워드명 출력 함수
       function searchMarker(filterValue) {
         let keywordSearchVal = "'" + filterValue + "'";
@@ -785,53 +767,31 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
               .then((res) => res.json())
               .then((data) => {
                 for (var i = 0; i < data.length; i++) {
-                  console.log(data[i]);
-                  displayMarker(data[i]);
-                  bounds.extend(
-                    geocoder.addressSearch(
-                      data[i].roadAddr,
-                      function (result, status) {
-                        // 정상적으로 검색이 완료됐으면
-                        if (status === kakao.maps.services.Status.OK) {
-                          var coords = new kakao.maps.LatLng(
-                            result[i].latitude,
-                            result[i].longitude
-                          );
+                  geocoder.addressSearch(
+                    data[i].roadAddr,
+                    function (result, status) {
+                      // 정상적으로 검색이 완료됐으면
+                      if (status === kakao.maps.services.Status.OK) {
+                        var coords = new kakao.maps.LatLng(
+                          result[0].y,
+                          result[0].x
+                        );
 
-                          // 결과값으로 받은 위치를 마커로 표시합니다
-                          var marker = new kakao.maps.Marker({
-                            map: map,
-                            position: coords,
-                          });
-                        }
+                        // 결과값으로 받은 위치를 마커로 표시합니다
+                        var marker = new kakao.maps.Marker({
+                          map: map,
+                          position: coords,
+                        });
+                        markers.push(marker);
+                        console.log('축제명: ', data[i].ftvName);
+                        console.log('marker의 개수: ', markers);
                       }
-                    )
+                    }
                   );
                 }
-                console.log(data[i].roadAddr);
                 // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-                map.setBounds(bounds);
               });
           }
-        }
-
-        // 지도에 마커를 표시하는 함수입니다
-        function displayMarker(place) {
-          // 마커를 생성하고 지도에 표시합니다
-          var marker = new kakao.maps.Marker({
-            map: map,
-            position: new kakao.maps.LatLng(place.latitude, place.longitude),
-          });
-
-          console.log('place.latitude', place.latitude);
-          console.log('place.longitude', place.longitude);
-          // 마커에 클릭이벤트를 등록합니다
-          kakao.maps.event.addListener(marker, 'click', function () {
-            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-            console.log('검색하고 마커 클릭!!');
-            overlay.setMap(map);
-            // infowindow.open(map, marker);
-          });
         }
       }
 
