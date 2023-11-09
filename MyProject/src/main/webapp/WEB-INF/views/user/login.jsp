@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://www.springframework.org/tags"
+prefix="spring"%>
+
+<spring:eval
+  expression="@environment.getProperty('clientId')"
+  var="clientId"
+/>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,10 +72,12 @@ pageEncoding="UTF-8"%>
   <body>
     <div>
       <div class="login-wrapper">
-        <img
-          src="/resources/static/img/logoHeader.png"
-          class="mainLogo"
-        />
+        <a href="${pageContext.request.contextPath}/">
+          <img
+            src="/resources/static/img/logoHeader.png"
+            class="mainLogo"
+          />
+        </a>
 
         <h2>Login</h2>
         <form
@@ -116,6 +125,23 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
 
+    <script
+      type="text/javascript"
+      src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+      charset="utf-8"
+    ></script>
+    <script type="text/javascript">
+      var clientId = ${clientId};
+      var callbackUrl = 'url';
+      var naver_id_login = new naver_id_login(clientId, callbackUrl);
+      var state = naver_id_login.getUniqState();
+      naver_id_login.setButton('green', 2, 40);
+      naver_id_login.setDomain('localhost:8000/BBS/main.jsp');
+      naver_id_login.setState(state);
+      naver_id_login.setPopup();
+      naver_id_login.init_naver_id_login();
+    </script>
+
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
       const msg = '${msg}';
@@ -155,9 +181,6 @@ pageEncoding="UTF-8"%>
           },
         });
       }
-      document.querySelector('.mainLogo').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}/';
-      });
     </script>
   </body>
 </html>
