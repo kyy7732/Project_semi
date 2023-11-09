@@ -89,9 +89,10 @@ prefix="c" %>
         align-items: center;
         margin-left: 50px;
       }
+
       .btn-area .btn {
-        background-color: #0356a9;
-        color: #fff;
+        /* background-color: #0356a9; */
+        color: black;
         width: 100px;
         height: 30px;
         border-radius: 20px;
@@ -103,6 +104,8 @@ prefix="c" %>
         background: url('/img/like.png') no-repeat center;
         text-indent: -9999px;
         margin-bottom: 7px;
+        /* border: 1px solid black; */
+        
       }
       .btn-area .like:hover {
         background: url('/img/likeDarker.png') no-repeat center;
@@ -111,11 +114,30 @@ prefix="c" %>
       }
       .login-btn {
         margin-bottom: 7px;
+
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 10 0 20px #ece8e8;
+        background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+      }
+      .login-btn:hover{
+        background-position: right center; 
       }
       .join-btn {
         margin-bottom: 7px;
+
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 10 0 20px #eee;
+        background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+      }
+      .join-btn:hover{
+        background-position: right center; 
       }
 
+      /*****모달창*****/
       * {
         margin: 0;
         padding: 0;
@@ -143,15 +165,14 @@ prefix="c" %>
         top: 50%;
         left: 15%;
         transform: translate(-50%, -50%);
-        max-width: 60%;
-        min-height: 30%;
+        width: 300px;
+        height: 500px;
         background: #fff;
       }
       .modal-header {
         font-size: 20px;
         padding: 20px;
-        background: gold;
-        border: 1px solid black;
+        background: skyblue;
       }
       .modal-con .con {
         font-size: 15px;
@@ -174,6 +195,11 @@ prefix="c" %>
         right: 10px;
         top: 10px;
       }
+
+      .portal{
+        font-size: 15px;
+      }
+     
     </style>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
@@ -188,7 +214,7 @@ prefix="c" %>
           <div class="sound-icon"></div>
           <div class="real-time-icon">실시간 인기많은 축제</div>
         </div>
-        <div class="fest-name"><span>1위 여수밤바다불꽃축제</span></div>
+        <div class="fest-name"><span id="quote">축제0</span></div>
         <div class="counter-container">
           <button id="increase">↑</button>
           <button id="decrease">↓</button>
@@ -232,31 +258,13 @@ prefix="c" %>
     </div>
 
     <!-- 좋아요 목록 모달-->
-
-    <!-- <div id="wrap">
-      <a href="javascript:openModal('modal1');" class="button modal-open">모달열기</a>
-     
-    </div> -->
-
     <div id="modal"></div>
     <div class="modal-con modal1">
       <div class="modal-header">
-        <input
-          type="text"
-          placeholder="좋아요 리스트"
-        />
-        <a
-          href="javascript:;"
-          class="portal"
-          >검색</a
-        >
-        <button
-          type="button"
-          class="close"
-          onClick="setModal(false)"
-        >
-          X
-        </button>
+        <input type="text" placeholder="좋아요 리스트"/>
+        <a href="#" class="portal">검색</a>
+        <button type="button" class="close-area">X</button>
+
       </div>
       <div class="board_list_wrap">
         <div class="board_list">
@@ -331,22 +339,57 @@ prefix="c" %>
         location.href = '${pageContext.request.contextPath}/user/join';
       });
 
-      // const closeBtn = modal.querySelector('.modal1');
-
-      // closeBtn.addEventListener('click', (e) => {
-      //   modal.style.display = 'none';
-      // });
-
       function openModal(modalname) {
         $('#modal').fadeIn(300);
         $('.' + modalname).fadeIn(300);
         document.querySelector('.modal1').style.zIndex = '10';
       }
 
-      $('#modal, .close').on('click', function () {
+      $('#modal, .close-area').on('click', function () {
         $('#modal').fadeOut(300);
-        $('.modal-con').fadeOut(300);
+        $('.modal1').fadeOut(300);
       });
+
+      // 헤더 랜덤 축제에 관련된 변수
+      var quote = document.getElementById('quote');
+      var btn = document.getElementById('increase');
+      var btn2 = document.getElementById('decrease');
+
+      // 축제 배열로 담은 것
+      var arr = [
+    {
+      quote: "축제1",
+    },
+    {
+      quote: "축제2",
+    },
+    {
+      quote: "축제3",
+    },
+    {
+      quote: "축제4",
+    },
+    {
+      quote: "축제5",
+    },
+  ];
+
+    //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn
+    btn.addEventListener('click', function(){
+
+    var random = Math.floor(Math.random() * arr.length);
+
+    quote.textContent = arr[random].quote;
+    });
+
+    //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn2
+    btn2.addEventListener('click', function(){
+
+    var random = Math.floor(Math.random() * arr.length);
+
+    quote.textContent = arr[random].quote;
+});
+
     </script>
   </body>
 </html>
