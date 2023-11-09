@@ -90,8 +90,9 @@ public class UserController {
 	
 	//로그아웃
 	@GetMapping("/logout")
-	public void logout(HttpSession session) {
+	public String logout(HttpSession session) {
 		session.removeAttribute("login");
+		return "redirect:/";
 	}
 	
 	//마이페이지(동기)
@@ -138,6 +139,7 @@ public class UserController {
 	      log.info("/festival/likeList 요청: GET! {}", userId);   
 	      return service.getLikeList(userId);
 	}
+	
 	
 	
 	

@@ -487,8 +487,8 @@ div.btn_area {
 
       // 회원탈퇴
       document.getElementById('deleteBtn').onclick = e => {
-      if (confirm("정말로 탈퇴하시겠습니까?")) {
-        alert("회원탈퇴가 되었습니다.")
+      if (confirm("정말로 삭제하시겠습니까?")) {
+        alert("삭제되었습니다.");
         location.href = "${pageContext.request.contextPath}/user/delete?userId=${sessionScope.login}";
       } else {
         return;
