@@ -57,7 +57,10 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     .btn-hover.color-9 {
       background-image: linear-gradient(
-        to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%
+        to right,
+        #457acf 0%,
+        #83bad1 51%,
+        #a1c4fd 100%
       );
       box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
     }

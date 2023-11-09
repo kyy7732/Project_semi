@@ -105,7 +105,6 @@ prefix="c" %>
         text-indent: -9999px;
         margin-bottom: 7px;
         /* border: 1px solid black; */
-        
       }
       .btn-area .like:hover {
         background: url('/img/likeDarker.png') no-repeat center;
@@ -119,10 +118,15 @@ prefix="c" %>
         background-size: 200% auto;
         color: white;
         box-shadow: 10 0 20px #ece8e8;
-        background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+        background-image: linear-gradient(
+          to right,
+          #457acf 0%,
+          #83bad1 51%,
+          #a1c4fd 100%
+        );
       }
-      .login-btn:hover{
-        background-position: right center; 
+      .login-btn:hover {
+        background-position: right center;
       }
       .join-btn {
         margin-bottom: 7px;
@@ -131,10 +135,15 @@ prefix="c" %>
         background-size: 200% auto;
         color: white;
         box-shadow: 10 0 20px #eee;
-        background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+        background-image: linear-gradient(
+          to right,
+          #457acf 0%,
+          #83bad1 51%,
+          #a1c4fd 100%
+        );
       }
-      .join-btn:hover{
-        background-position: right center; 
+      .join-btn:hover {
+        background-position: right center;
       }
 
       /*****모달창*****/
@@ -196,10 +205,9 @@ prefix="c" %>
         top: 10px;
       }
 
-      .portal{
+      .portal {
         font-size: 15px;
       }
-     
     </style>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
@@ -261,10 +269,21 @@ prefix="c" %>
     <div id="modal"></div>
     <div class="modal-con modal1">
       <div class="modal-header">
-        <input type="text" placeholder="좋아요 리스트"/>
-        <a href="#" class="portal">검색</a>
-        <button type="button" class="close-area">X</button>
-
+        <input
+          type="text"
+          placeholder="좋아요 리스트"
+        />
+        <a
+          href="#"
+          class="portal"
+          >검색</a
+        >
+        <button
+          type="button"
+          class="close-area"
+        >
+          X
+        </button>
       </div>
       <div class="board_list_wrap">
         <div class="board_list">
@@ -325,7 +344,6 @@ prefix="c" %>
     </div>
 
     <script>
-
       function openModal(modalname) {
         $('#modal').fadeIn(300);
         $('.' + modalname).fadeIn(300);
@@ -344,39 +362,36 @@ prefix="c" %>
 
       // 축제 배열로 담은 것
       var arr = [
-    {
-      quote: "축제1",
-    },
-    {
-      quote: "축제2",
-    },
-    {
-      quote: "축제3",
-    },
-    {
-      quote: "축제4",
-    },
-    {
-      quote: "축제5",
-    },
-  ];
+        {
+          quote: '축제1',
+        },
+        {
+          quote: '축제2',
+        },
+        {
+          quote: '축제3',
+        },
+        {
+          quote: '축제4',
+        },
+        {
+          quote: '축제5',
+        },
+      ];
 
-    //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn
-    btn.addEventListener('click', function(){
+      //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn
+      btn.addEventListener('click', function () {
+        var random = Math.floor(Math.random() * arr.length);
 
-    var random = Math.floor(Math.random() * arr.length);
+        quote.textContent = arr[random].quote;
+      });
 
-    quote.textContent = arr[random].quote;
-    });
+      //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn2
+      btn2.addEventListener('click', function () {
+        var random = Math.floor(Math.random() * arr.length);
 
-    //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn2
-    btn2.addEventListener('click', function(){
-
-    var random = Math.floor(Math.random() * arr.length);
-
-    quote.textContent = arr[random].quote;
-});
-
+        quote.textContent = arr[random].quote;
+      });
     </script>
   </body>
 </html>
