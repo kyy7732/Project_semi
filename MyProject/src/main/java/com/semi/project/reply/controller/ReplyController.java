@@ -1,6 +1,6 @@
 package com.semi.project.reply.controller;
 
-import org.springframework.stereotype.Controller; 
+import org.springframework.stereotype.Controller;  
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,16 +16,16 @@ import com.semi.project.util.page.PageCreator;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/reply")
 @RequiredArgsConstructor
 public class ReplyController {
 	
 	private final ReplyService service;
 
 	// 페이징 들어간 목록창
-	@GetMapping("/reply")
+	@GetMapping("/replyList")
 	public void replyList(Page page, Model model) {
-		System.out.println("/user/reply: GET!");
+		System.out.println("/reply: GET!");
 		
 		// 검색 시 데이터가 없을 때
 		PageCreator creator; 
@@ -43,20 +43,14 @@ public class ReplyController {
 		model.addAttribute("pc", creator);
 	}
 	
+	
+	
+	
 	// 댓글 등록 처리
 	@GetMapping("/userRegist")
 	public String regist(UserReplyRequestDTO dto) {
 		service.regist(dto);
 		return "redirect:/user/userList"; // 댓글 등록시 어떤화면을 띄워야 하능가??~?~?~?
-	}
-	
-	// 댓글 상세보기 필요 한가~?~?~~?~?~?~?~
-	@GetMapping("/userContent")
-	public String content(int commentNum, 
-						Model model, 
-						@ModelAttribute("p") Page page) {
-		model.addAttribute("userContent", service.getContent(commentNum));
-		return "user/userList";
 	}
 	
 	// 댓글 수정하기
