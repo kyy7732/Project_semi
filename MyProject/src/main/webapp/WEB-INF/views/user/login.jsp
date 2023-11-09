@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%> <%@ taglib uri="http://www.springframework.org/tags"
+prefix="spring"%>
+
+<spring:eval
+  expression="@environment.getProperty('clientId')"
+  var="clientId"
+/>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -65,10 +72,12 @@ pageEncoding="UTF-8"%>
   <body>
     <div>
       <div class="login-wrapper">
-        <img
-          src="/resources/static/img/logoHeader.png"
-          class="mainLogo"
-        />
+        <a href="${pageContext.request.contextPath}/">
+          <img
+            src="/resources/static/img/logoHeader.png"
+            class="mainLogo"
+          />
+        </a>
 
         <h2>Login</h2>
         <form
@@ -122,7 +131,7 @@ pageEncoding="UTF-8"%>
       charset="utf-8"
     ></script>
     <script type="text/javascript">
-      var clientId = '클라이언트 아이디';
+      var clientId = ${clientId};
       var callbackUrl = 'url';
       var naver_id_login = new naver_id_login(clientId, callbackUrl);
       var state = naver_id_login.getUniqState();
@@ -172,9 +181,6 @@ pageEncoding="UTF-8"%>
           },
         });
       }
-      document.querySelector('.mainLogo').addEventListener('click', (e) => {
-        location.href = '${pageContext.request.contextPath}/';
-      });
     </script>
   </body>
 </html>

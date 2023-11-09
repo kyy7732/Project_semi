@@ -96,6 +96,8 @@ pageEncoding="UTF-8"%>
         height: 30px;
         border-radius: 20px;
         border: none;
+        text-align: center;
+        text-decoration: none;
       }
       .btn-area .like {
         background: url('/img/like.png') no-repeat center;
@@ -177,7 +179,7 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div class="container">
-      <div class="title"></div>
+      <a href="${pageContext.request.contextPath}/" class="title"></a>
       <div class="popular">
         <div class="real-time">
           <div class="sound-icon"></div>
@@ -191,18 +193,18 @@ pageEncoding="UTF-8"%>
       </div>
       <div class="btn-area">
         <c:if test="${login == null}">
-        <button id="loginBtn" class="btn login-btn">로그인</button>
-        <button id="joinBtn" class="btn join-btn">회원가입</button>
+        <a id="loginBtn" class="btn login-btn" href = '${pageContext.request.contextPath}/user/login'>로그인</a>
+        <a id="joinBtn" class="btn join-btn" href='${pageContext.request.contextPath}/user/join'>회원가입</a>
         </c:if>
         <c:if test="${login != null}">
-        <button id="myPageBtn" class="btn myPage-btn" onclick="location.href='${pageContext.request.contextPath}/user/myPage'">마이페이지</button>
-        <button id="logoutBtn" class="btn logout-btn" onclick="location.href='${pageContext.request.contextPath}/user/logout'">로그아웃</button>
-        </c:if>
+        <a id="myPageBtn" class="btn myPage-btn" href='${pageContext.request.contextPath}/user/myPage'>마이페이지</a>
+        <a id="logoutBtn" class="btn logout-btn" href='${pageContext.request.contextPath}/user/logout'>로그아웃</a>
         <a
-          href="javascript:openModal('modal1');"
-          class="btn like"
-          >좋아요목록</a
+        href="javascript:openModal('modal1');"
+        class="btn like"
+        >좋아요목록</a
         >
+      </c:if>
       </div>
     </div>
 
@@ -292,19 +294,6 @@ pageEncoding="UTF-8"%>
     </div>
 
     <script>
-      //main logo 클릭 시 main으로 이동
-      document.querySelector('.title').onclick = (e) => {
-        location.href = '${pageContext.request.contextPath}/';
-      };
-
-      //로그인페이지로 이동
-      document.getElementById('loginBtn').onclick = () => {
-        location.href = '${pageContext.request.contextPath}/user/login';
-      };
-      //회원가입 페이지로 이동
-      document.getElementById('joinBtn').onclick = (e) => {
-        location.href = '${pageContext.request.contextPath}/user/join';
-      };
 
       // const closeBtn = modal.querySelector('.modal1');
 

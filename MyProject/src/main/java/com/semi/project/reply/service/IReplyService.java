@@ -2,11 +2,11 @@ package com.semi.project.reply.service;
 
 import java.util.List;
 
-import com.semi.project.reply.dto.Page;
 import com.semi.project.reply.request.UserReplyModifyRequestDTO;
 import com.semi.project.reply.request.UserReplyRequestDTO;
 import com.semi.project.reply.response.ReplyDetailDTO;
 import com.semi.project.reply.response.UserReplyResponseDTO;
+import com.semi.project.util.page.Page;
 
 public interface IReplyService {
 	

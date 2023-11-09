@@ -1,10 +1,18 @@
 package com.semi.project.util.page;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter @Setter @ToString
 public class Page {
 
 	private int pageNo;
 	private int amount;
 	private int begin, end;
+	
+	private String keyword;
+	private String Condition;
 	
 	public Page() {
 		this.pageNo = 1;

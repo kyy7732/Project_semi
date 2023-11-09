@@ -16,8 +16,13 @@ public class PageCreator {
 	}
 
 	private void calcDataOfPage() {
-		// TODO Auto-generated method stub
-		
+		this.end = (int)Math.ceil(page.getPageNo() / (double)BUTTON_NUM) * BUTTON_NUM;
+		this.begin = end - BUTTON_NUM + 1;
+		this.prev = begin > 1;
+		this.next = (articleTotalCount / page.getAmount()) >= end ? true : false;
+		if(!next) {
+			this.end = (int) Math.ceil(articleTotalCount / (double)page.getAmount());  
+		}
 	}
 	
 	
