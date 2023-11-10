@@ -190,10 +190,8 @@ prefix="spring"%>
     <script type="text/javascript">
       var clientId = `${clientId}`;
       var callbackUrl = 'https://localhost:80/project/user/login.jsp';
-      var naver_id_login = new naver_id_login(
-        `${clientId}`,
-        'https://localhost:80/project/user/login.jsp'
-      );
+      var naver_id_login = new naver_id_login(clientId, callbackUrl);
+
       var state = naver_id_login.getUniqState();
       naver_id_login.setButton('green', 2, 45);
       naver_id_login.setDomain('localhost:8000/BBS/main.jsp');

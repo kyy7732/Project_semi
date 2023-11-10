@@ -95,12 +95,24 @@
           flex-grow: 0.5;
           justify-content: space-around;
           align-items: center;
-          margin-left: 50px;
+          margin-left: 44px;
+        }
+
+        .btn-area>.botton {
+          width: 14rem;
+          padding: 0px;
+          margin: 0px;
+          display: flex;
+          position: relative;
+          left: 66px;
+          top: -15px;
+          justify-content: space-between;
         }
 
         .btn-area .btn {
           /* background-color: #0356a9; */
           color: white;
+          line-height: 30px;
           width: 100px;
           height: 30px;
           border-radius: 20px;
@@ -114,7 +126,6 @@
           text-indent: -9999px;
           margin-bottom: 7px;
           /* border: 1px solid black; */
-
         }
 
         .btn-area .like:hover {
@@ -125,12 +136,14 @@
 
         .login-btn {
           margin-bottom: 7px;
-
+          padding: 3px;
           transition: 0.5s;
           background-size: 200% auto;
           color: white;
-          box-shadow: 10 0 20px #ece8e8;
-          background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+          background-image: linear-gradient(to right,
+              #457acf 0%,
+              #83bad1 51%,
+              #a1c4fd 100%);
         }
 
         .login-btn:hover {
@@ -139,12 +152,14 @@
 
         .join-btn {
           margin-bottom: 7px;
-
+          padding: 3px;
           transition: 0.5s;
           background-size: 200% auto;
           color: white;
-          box-shadow: 10 0 20px #eee;
-          background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+          background-image: linear-gradient(to right,
+              #457acf 0%,
+              #83bad1 51%,
+              #a1c4fd 100%);
         }
 
         .join-btn:hover {
@@ -238,15 +253,17 @@
           </div>
         </div>
         <div class="btn-area">
-          <c:if test="${login == null}">
-            <a id="loginBtn" class="btn login-btn" href="${pageContext.request.contextPath}/user/login">로그인</a>
-            <a id="joinBtn" class="btn join-btn" href="${pageContext.request.contextPath}/user/join">회원가입</a>
-          </c:if>
-          <c:if test="${login != null}">
-            <a id="myPageBtn" class="btn myPage-btn" href="${pageContext.request.contextPath}/user/myPage">마이페이지</a>
-            <a id="logoutBtn" class="btn logout-btn" href="${pageContext.request.contextPath}/user/logout">로그아웃</a>
-            <a href="javascript:openModal('modal1');" class="btn like">좋아요목록</a>
-          </c:if>
+          <div class="btn-area botton">
+            <c:if test="${login == null}">
+              <a id="loginBtn" class="btn login-btn" href="${pageContext.request.contextPath}/user/login">로그인</a>
+              <a id="joinBtn" class="btn join-btn" href="${pageContext.request.contextPath}/user/join">회원가입</a>
+            </c:if>
+            <c:if test="${login != null}">
+              <a id="myPageBtn" class="btn myPage-btn" href="${pageContext.request.contextPath}/user/myPage">마이페이지</a>
+              <a id="logoutBtn" class="btn logout-btn" href="${pageContext.request.contextPath}/user/logout">로그아웃</a>
+              <a href="javascript:openModal('modal1');" class="btn like">좋아요목록</a>
+            </c:if>
+          </div>
         </div>
       </div>
 
@@ -256,8 +273,9 @@
         <div class="modal-header">
           <input type="text" placeholder="좋아요 리스트" />
           <a href="#" class="portal">검색</a>
-          <button type="button" class="close-area">X</button>
-
+          <button type="button" class="close-area">
+            X
+          </button>
         </div>
         <div class="board_list_wrap">
           <div class="board_list">
@@ -318,7 +336,6 @@
       </div>
 
       <script>
-
         function openModal(modalname) {
           $('#modal').fadeIn(300);
           $('.' + modalname).fadeIn(300);
@@ -338,25 +355,24 @@
         // 축제 배열로 담은 것
         var arr = [
           {
-            quote: "축제1",
+            quote: '축제1',
           },
           {
-            quote: "축제2",
+            quote: '축제2',
           },
           {
-            quote: "축제3",
+            quote: '축제3',
           },
           {
-            quote: "축제4",
+            quote: '축제4',
           },
           {
-            quote: "축제5",
+            quote: '축제5',
           },
         ];
 
         //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn
         btn.addEventListener('click', function () {
-
           var random = Math.floor(Math.random() * arr.length);
 
           quote.textContent = arr[random].quote;
@@ -364,16 +380,10 @@
 
         //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn2
         btn2.addEventListener('click', function () {
-
           var random = Math.floor(Math.random() * arr.length);
 
           quote.textContent = arr[random].quote;
         });
-
-        var mysqlClient = require("mysql").mysqlClient;
-
-        /* const url = "#" */
-
       </script>
     </body>
 

@@ -36,7 +36,7 @@
 	
 	<update id="update">
 		UPDATE users 
-		SET user_pw = #{userPw}, email = #{email}, name = #{name}
+		SET user_pw = #{userPw}
 		WHERE user_id = #{userId}
 	</update>
 	
@@ -45,6 +45,11 @@
 		WHERE user_id = #{userId}
 	</delete>
 	
+	<insert id="registFtvLike">
+		INSERT INTO ftv_like
+		(ftv_num, user_id)
+		VALUES (#{ftvNum}, #{userId})	
+	</insert>
 
 <!-- 	
 	<select id="getLikeList">
