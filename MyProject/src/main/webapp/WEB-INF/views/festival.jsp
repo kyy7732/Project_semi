@@ -68,12 +68,20 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       z-index: 1;
     }
 
-    /* 버튼 정렬 */
+    /*버튼 정렬 */
     .btn-area {
       text-align: center;
       justify-content: center;
-      /* align-content: space-around; */
-      /* z-index: 10; */
+      /* align-content: space-around;
+      z-index: 10; */
+    }
+
+    .btn-area > .spring-select {
+      position: relative;
+      right: 400px;
+      display: flex;
+      width: 535px;
+      justify-content: space-between;
     }
 
     .btn-area > .spring-select {
@@ -221,6 +229,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       border-bottom: 1px solid #ddd;
       font-size: 18px;
       font-weight: bold;
+      text-align: center;
     }
 
     .info .close {
@@ -581,7 +590,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         });
       } // displayArea() end
 
-      //  폴리곤 생성!!!!!!!!!
+      // 폴리곤 생성!!!!!!!!!
       function init(path) {
         //path 경로의 json 파일 파싱
         $.getJSON(path, function (geojson) {
@@ -652,6 +661,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         fillOpacity: 0.8, // 채우기 불투명도 입니다
       };
 
+      /*************************************** 축제명 검색 이벤트 ****************************************/
       // 장소 검색 객체를 생성합니다
       var ps = new kakao.maps.services.Places();
 
@@ -730,6 +740,25 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
               });
           }
         }
+
+        // 지도에 마커를 표시하는 함수입니다
+        function displayMarker(place) {
+          // 마커를 생성하고 지도에 표시합니다
+          var marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(place.latitude, place.longitude),
+          });
+
+          console.log('place.latitude', place.latitude);
+          console.log('place.longitude', place.longitude);
+          // 마커에 클릭이벤트를 등록합니다
+          kakao.maps.event.addListener(marker, 'click', function () {
+            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+            console.log('검색하고 마커 클릭!!');
+            overlay.setMap(map);
+            // infowindow.open(map, marker);
+          });
+        }
       }
 
       /*****************************************계절 버튼 클릭 이벤트***********************************/
@@ -748,6 +777,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
+            var positions = [];
             for (let i = 0; i < data.length; i++) {
               // 주소로 좌표를 검색합니다
               geocoder.addressSearch(
@@ -765,49 +795,67 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       map: map,
                       position: coords,
                     });
-
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //   content:
-                    //     '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
-                    // });
-                    // infowindow.open(map, marker);
-
-                    //
+                    positions.push(coords);
                     // 커스텀 오버레이에 표시할 컨텐츠 입니다
                     // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
                     // 별도의 이벤트 메소드를 제공하지 않습니다
-                    content =
-                      '<div class="wrap">' +
-                      '    <div class="info">' +
-                      '        <div class="title">' +
-                      data[i].ftvName +
-                      '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                      '        </div>' +
-                      '        <div class="body">' +
-                      // '            <div class="img">' +
-                      // '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
-                      // '           </div>' +
-                      '            <div class="desc">' +
-                      '                <div class="ellipsis">' +
-                      data[i].roadAddr +
-                      '</div>' +
-                      '                <div class="jibun ellipsis">' +
-                      data[i].startDate +
-                      '~' +
-                      data[i].endDate +
-                      '</div>' +
-                      '                <div><a href=' +
-                      data[i].url +
-                      ' target="_blank" class="link">홈페이지</a></div>' +
-                      '            </div>' +
-                      '        </div>' +
-                      '    </div>' +
-                      '</div>';
+                    // content =
+                    //   '<div class="wrap">' +
+                    //   '    <div class="info">' +
+                    //   '        <div class="title">' +
+                    //   data[i].ftvName +
+                    //   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                    //   '        </div>' +
+                    //   '        <div class="body">' +
+                    //   // '            <div class="img">' +
+                    //   // '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
+                    //   // '           </div>' +
+                    //   '            <div class="desc">' +
+                    //   '                <div class="ellipsis">' +
+                    //   data[i].roadAddr +
+                    //   '</div>' +
+                    //   '                <div class="jibun ellipsis">' +
+                    //   data[i].startDate +
+                    //   '~' +
+                    //   data[i].endDate +
+                    //   '</div>' +
+                    //   '                <div><a href=' +
+                    //   data[i].url +
+                    //   ' target="_blank" class="link">홈페이지</a></div>' +
+                    //   '            </div>' +
+                    //   '        </div>' +
+                    //   '    </div>' +
+                    //   '</div>';
+                    content = document.createElement('div');
+                    content.innerHTML = data[i].ftvName;
+                    content.style.cssText =
+                      'background: white; border: 1px solid black';
+
+                    var closeBtn = document.createElement('button');
+                    closeBtn.innerHTML = '닫기';
+                    closeBtn.onclick = function () {
+                      overlay.setMap(null);
+                    };
+                    content.appendChild(closeBtn);
+
+                    // 마커 위에 커스텀오버레이를 표시합니다
+                    // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+                    var overlay = new kakao.maps.CustomOverlay({
+                      content: content,
+                      map: map,
+                      position: marker.getPosition(),
+                    });
 
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       overlay.setMap(map);
+
+                      fetch(
+                        '${pageContext.request.contextPath}/reply/replyList/' +
+                          data[i].ftvNum +
+                          '/' +
+                          pageNo
+                      );
                     });
 
                     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
@@ -819,18 +867,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     // map.setCenter(coords);
                     // 생성된 마커를 배열에 추가합니다
                     markers.push(marker);
-                  }
+                  } // 좌표 검색 정상인 경우
                 }
-              );
+              ); // 좌표 검색
             } // for문 끝
 
-            // 마커 위에 커스텀오버레이를 표시합니다
-            // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-            var overlay = new kakao.maps.CustomOverlay({
-              content: content,
-              map: map,
-              position: marker.getPosition(),
-            });
+            //오버레이 여기에 두면 안뜸
           }); // .then(data => ) 끝
       }); // 클릭 이벤트 끝
 

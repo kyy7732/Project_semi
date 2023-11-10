@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.semi.project.Reply.mapper.IReplyMapper">
+<mapper namespace="com.semi.project.reply.mapper.IReplyMapper">
 	
 	<insert id="replyRegist">
 		INSERT INTO reply
@@ -16,8 +16,9 @@
 			SELECT ROWNUM AS RN, tbl.* FROM
 				(
 				SELECT * FROM reply
-				WHERE comment_num = #{commentNum}
-				ORDER BY reply_no DESC
+				WHERE ftv_num = #{ftvNum}
+				ORDER BY comment_num DESC
+
 				) tbl
 			)
 		<![CDATA[
@@ -28,7 +29,7 @@
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*)
 		FROM reply
-		WHERE comment_num = #{commentNum}
+		WHERE ftv_num = #{ftvNum}
 	</select>
 	
 	

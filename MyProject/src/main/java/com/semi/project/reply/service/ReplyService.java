@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.semi.project.reply.dto.ReplyDetailDTO;
+import com.semi.project.reply.dto.UserReplyModifyRequestDTO;
+import com.semi.project.reply.dto.UserReplyRequestDTO;
+import com.semi.project.reply.dto.UserReplyResponseDTO;
 import com.semi.project.reply.entity.Reply;
 import com.semi.project.reply.mapper.IReplyMapper;
-import com.semi.project.reply.request.UserReplyModifyRequestDTO;
-import com.semi.project.reply.request.UserReplyRequestDTO;
-import com.semi.project.reply.response.ReplyDetailDTO;
-import com.semi.project.reply.response.UserReplyResponseDTO;
 import com.semi.project.util.page.Page;
 
 import lombok.RequiredArgsConstructor;
@@ -43,8 +43,8 @@ public class ReplyService implements IReplyService {
 	}
 
 	@Override
-	public int getTotal(Page page) {
-		return mapper.getTotal(page);
+	public int getTotal(int ftvNum) {
+		return mapper.getTotal(ftvNum);
 	}
 
 	@Override

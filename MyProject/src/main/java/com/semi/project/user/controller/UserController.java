@@ -90,8 +90,9 @@ public class UserController {
 	
 	//로그아웃
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, RedirectAttributes ra) {
 		session.removeAttribute("login");
+		ra.addFlashAttribute("logout", true);
 		return "redirect:/";
 	}
 	
@@ -100,6 +101,15 @@ public class UserController {
 	public void myPage(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("login");
 		model.addAttribute("userInfo", service.getInfo(userId));
+	}
+	
+	//마이페이지 비밀번호 중복 확인 (비동기)
+	@GetMapping("/pwCheck/{pw}")
+	public String pwCheck(@PathVariable String pw, HttpSession session) {
+		
+		if(service.login((String)session.getAttribute("login"), pw) == null) {
+			return "possible";
+		} else return "pwDuplicated";
 	}
 	
 	
@@ -123,14 +133,12 @@ public class UserController {
 		service.delete(userId);
 		return "redirect:/";
 	}
-	
-	//나의활동 페이지
-	
+		
 	//좋아요 목록 저장(비동기)
 	@PostMapping("/likeList")
 	@ResponseBody
 	public void registFtvLike(@RequestParam String userId, @RequestParam int ftvNum) {
-		
+		service.registFtvLike(userId, ftvNum);
 	}
 	
 	//좋아요 목록 요청(동기)
