@@ -4,6 +4,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="./bootstrapt/css/bootstrap.min.css"
+    />
+    <script src="./bootstrapt/js/bootstrap.min.js"></script>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link
       rel="stylesheet"
@@ -15,22 +21,13 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
     />
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link
-      href="${pageContext.request.contextPath }/css/bootstrap.css"
+      href="../../resources/static/css/bootstrap.css"
       rel="stylesheet"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!--개인 디자인 추가-->
-    <link
-      href="${pageContext.request.contextPath }/css/style.css"
-      rel="stylesheet"
-    />
-    <!-- <script src="${pageContext.request.contextPath }/js/bootstrap.js"></script>
-    <link
-      href="/resources/static/css/bootstrap.css"
-      rel="stylesheet"
-    />
-    <script src="/resources/static/js/bootstrap.js"></script> -->
 
     <meta charset="UTF-8" />
     <title>Insert title here</title>
@@ -401,7 +398,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     </div>
 
     <!-- 모달 -->
-    <div
+    <!-- <div
       class="modal fade"
       id="snsModal"
       role="dialog"
@@ -411,7 +408,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           <div class="modal-body row">
             <div class="modal-img col-sm-8 col-xs-6">
               <img
-                src="${pageContext.request.contextPath}/img/img_ready.png"
+                src="../../resources/static/img/blueSearchIcon.png"
                 id="snsImg"
                 width="100%"
               />
@@ -419,9 +416,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             <div class="modal-con col-sm-4 col-xs-6">
               <div class="modal-inner">
                 <div class="profile">
-                  <img
-                    src="${pageContext.request.contextPath}/img/profile.png"
-                  />
+                  <img src="../../resources/static/img/profile.png" />
                 </div>
                 <div class="title">
                   <p id="snsWriter">테스트</p>
@@ -450,6 +445,113 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           </div>
         </div>
       </div>
+    </div> -->
+    <div
+      class="modal fade"
+      id="testModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title"
+              id="exampleModalLabel"
+            >
+              축제명
+            </h5>
+            <small id="date">축제기간</small>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label
+              for="roadAddr"
+              class="col-form-label"
+              >도로명 주소:</label
+            >
+            <div
+              class="mb-3"
+              id="roadAddr"
+            >
+              주소
+            </div>
+            <label
+              for="phone"
+              class="col-form-label"
+              >전화번호:</label
+            >
+            <div
+              class="mb-3"
+              id="phone"
+            >
+              전화번호
+            </div>
+            <label
+              for="content"
+              class="col-form-label"
+              >내용:</label
+            >
+            <div
+              class="mb-3"
+              id="content"
+            >
+              축제내용
+            </div>
+            <label
+              for="url"
+              class="col-form-label"
+              >홈페이지:</label
+            >
+            <div
+              class="mb-3"
+              id="urlBox"
+            >
+              <a
+                id="url"
+                href="##"
+                target="_blank"
+                ><span id="aContent"></span
+              ></a>
+            </div>
+          </div>
+          <div class="link-inner">
+            <a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
+            <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
+            <a href="##"
+              ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
+            >
+          </div>
+          <div class="modal-footer">
+            <a
+              class="btn"
+              id="modalY"
+              href="#"
+              target="_blank"
+              >예</a
+            >
+            <button
+              class="btn"
+              type="button"
+              data-dismiss="modal"
+            >
+              아니요
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script
@@ -461,8 +563,8 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
       crossorigin="anonymous"
     ></script>
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../resources/static/js/bootstrap.js"></script>
 
     <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -963,6 +1065,25 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     });
                     positions.push({ latlng: coords });
 
+                    // 마커에 표시할 인포윈도우를 생성합니다
+                    var infowindow = new kakao.maps.InfoWindow({
+                      content: data[i].ftvName, // 인포윈도우에 표시할 내용
+                    });
+
+                    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                    // 이벤트 리스너로는 클로저를 만들어 등록합니다
+                    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                    kakao.maps.event.addListener(
+                      marker,
+                      'mouseover',
+                      makeOverListener(map, marker, infowindow)
+                    );
+                    kakao.maps.event.addListener(
+                      marker,
+                      'mouseout',
+                      makeOutListener(infowindow)
+                    );
+
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
@@ -971,15 +1092,30 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       // document
                       //   .getElementById('snsImg')
                       //   .setAttribute('src', src);
-                      document.getElementById('snsWriter').textContent =
+                      document.getElementById('exampleModalLabel').textContent =
                         data[i].ftvName;
-                      document.getElementById('snsRegdate').textContent =
+                      document.getElementById('date').textContent =
                         data[i].startDate + ' ~ ' + data[i].endDate;
-                      document.getElementById('snsContent').textContent =
+                      document.getElementById('roadAddr').textContent =
                         data[i].roadAddr;
+                      document.getElementById('phone').textContent =
+                        data[i].phone;
+                      document.getElementById('content').textContent =
+                        data[i].ftvContent;
+                      document
+                        .getElementById('url')
+                        .setAttribute('href', data[i].url);
+                      document.getElementById('aContent').textContent =
+                        data[i].url;
+
+                      document
+                        .getElementById('modalY')
+                        .setAttribute('href', data[i].url);
+                      document.getElementById('modalY').textContent =
+                        '축제 상세보기';
                       // addMarker(mouseEvent.latLng);
 
-                      $('#snsModal').modal('show');
+                      $('#testModal').modal('show');
 
                       // overlay.setMap(map);
                     });
@@ -1148,6 +1284,20 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       // "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
       function hideMarkers() {
         setMarkers(null);
+      }
+
+      // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+      function makeOverListener(map, marker, infowindow) {
+        return function () {
+          infowindow.open(map, marker);
+        };
+      }
+
+      // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+      function makeOutListener(infowindow) {
+        return function () {
+          infowindow.close();
+        };
       }
     </script>
   </body>
