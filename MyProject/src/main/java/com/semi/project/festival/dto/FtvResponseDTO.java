@@ -23,8 +23,10 @@ public class FtvResponseDTO {
 	private int ftvNum;
 	private String ftvName;
 
+	private String phone;
 	private String place;
 	private String url;
+	private String ftvContent;
 
 	private String roadAddr;
 	private double latitude;
@@ -38,8 +40,12 @@ public class FtvResponseDTO {
 		super();
 		this.ftvNum = ftv.getFtvNum();
 		this.ftvName = ftv.getFtvName();
+		
+		this.phone = ftv.getPhone();
 		this.place = ftv.getPlace();
 		this.url = ftv.getUrl();
+		this.ftvContent = ftv.getFtvContent();
+		
 		this.roadAddr = ftv.getRoadAddr();
 		this.latitude = ftv.getLatitude();
 		this.longitude = ftv.getLongitude();

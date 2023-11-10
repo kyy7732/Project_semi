@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
   <%@ include file="./include/header.jsp" %>
 
+<<<<<<< HEAD
     <!DOCTYPE html>
     <html>
 
@@ -20,6 +21,35 @@
       rel="stylesheet"
     />
     <script src="/resources/static/js/bootstrap.js"></script> -->
+=======
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="./bootstrapt/css/bootstrap.min.css"
+    />
+    <script src="./bootstrapt/js/bootstrap.min.js"></script>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+    />
+
+    <!-- 부가적인 테마 -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
+    />
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link
+      href="../../resources/static/css/bootstrap.css"
+      rel="stylesheet"
+    />
+>>>>>>> 124929e529464d5f9313d4e8c298be0baf6e393e
 
       <meta charset="UTF-8" />
       <title>Insert title here</title>
@@ -407,6 +437,7 @@
         </div>
       </div>
 
+<<<<<<< HEAD
       <!-- 모달 -->
       <div class="modal fade" id="snsModal" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -436,12 +467,57 @@
                     <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
                     <a href="##"><i class="glyphicon glyphicon-share-alt"></i>공유하기</a>
                   </div>
+=======
+    <!-- 모달 -->
+    <!-- <div
+      class="modal fade"
+      id="snsModal"
+      role="dialog"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body row">
+            <div class="modal-img col-sm-8 col-xs-6">
+              <img
+                src="../../resources/static/img/blueSearchIcon.png"
+                id="snsImg"
+                width="100%"
+              />
+            </div>
+            <div class="modal-con col-sm-4 col-xs-6">
+              <div class="modal-inner">
+                <div class="profile">
+                  <img src="../../resources/static/img/profile.png" />
+                </div>
+                <div class="title">
+                  <p id="snsWriter">테스트</p>
+                  <small id="snsRegdate">21시간전</small>
+                </div>
+                <div class="content-inner">
+                  <p id="snsContent">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam vulputate elit libero, quis mattis enim tincidunt
+                    non. Mauris consequat ante vel urna posuere consequat.
+                  </p>
+                </div>
+                <div class="link-inner">
+                  <a href="##"
+                    ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
+                  >
+                  <a href="##"
+                    ><i class="glyphicon glyphicon-comment"></i>댓글달기</a
+                  >
+                  <a href="##"
+                    ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
+                  >
+>>>>>>> 124929e529464d5f9313d4e8c298be0baf6e393e
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+<<<<<<< HEAD
 
       <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"></script>
@@ -449,6 +525,128 @@
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
       <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+=======
+    </div> -->
+    <div
+      class="modal fade"
+      id="testModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title"
+              id="exampleModalLabel"
+            >
+              축제명
+            </h5>
+            <small id="date">축제기간</small>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label
+              for="roadAddr"
+              class="col-form-label"
+              >도로명 주소:</label
+            >
+            <div
+              class="mb-3"
+              id="roadAddr"
+            >
+              주소
+            </div>
+            <label
+              for="phone"
+              class="col-form-label"
+              >전화번호:</label
+            >
+            <div
+              class="mb-3"
+              id="phone"
+            >
+              전화번호
+            </div>
+            <label
+              for="content"
+              class="col-form-label"
+              >내용:</label
+            >
+            <div
+              class="mb-3"
+              id="content"
+            >
+              축제내용
+            </div>
+            <label
+              for="url"
+              class="col-form-label"
+              >홈페이지:</label
+            >
+            <div
+              class="mb-3"
+              id="urlBox"
+            >
+              <a
+                id="url"
+                href="##"
+                target="_blank"
+                ><span id="aContent"></span
+              ></a>
+            </div>
+          </div>
+          <div class="link-inner">
+            <a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
+            <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
+            <a href="##"
+              ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
+            >
+          </div>
+          <div class="modal-footer">
+            <a
+              class="btn"
+              id="modalY"
+              href="#"
+              target="_blank"
+              >예</a
+            >
+            <button
+              class="btn"
+              type="button"
+              data-dismiss="modal"
+            >
+              아니요
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.min.js"
+      integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../resources/static/js/bootstrap.js"></script>
+>>>>>>> 124929e529464d5f9313d4e8c298be0baf6e393e
 
       <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -1139,4 +1337,278 @@
 
     </html>
 
+<<<<<<< HEAD
     <%@ include file="./include/footer.jsp" %>
+=======
+      var content = '';
+      //계절버튼 클릭 이벤트
+      document.querySelector('.find-btn1').addEventListener('click', (e) => {
+        if (markers.length > 0) {
+          hideMarkers();
+        }
+        var overlay;
+        //봄 클릭
+        fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'spring')
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            var positions = [];
+            for (let i = 0; i < data.length; i++) {
+              // 주소로 좌표를 검색합니다
+              geocoder.addressSearch(
+                data[i].roadAddr,
+                function (result, status) {
+                  // 정상적으로 검색이 완료됐으면
+                  if (status === kakao.maps.services.Status.OK) {
+                    var coords = new kakao.maps.LatLng(
+                      result[0].y,
+                      result[0].x
+                    );
+
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    marker = new kakao.maps.Marker({
+                      map: map,
+                      position: coords,
+                    });
+                    positions.push({ latlng: coords });
+
+                    // 마커에 표시할 인포윈도우를 생성합니다
+                    var infowindow = new kakao.maps.InfoWindow({
+                      content: data[i].ftvName, // 인포윈도우에 표시할 내용
+                    });
+
+                    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                    // 이벤트 리스너로는 클로저를 만들어 등록합니다
+                    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                    kakao.maps.event.addListener(
+                      marker,
+                      'mouseover',
+                      makeOverListener(map, marker, infowindow)
+                    );
+                    kakao.maps.event.addListener(
+                      marker,
+                      'mouseout',
+                      makeOutListener(infowindow)
+                    );
+
+                    // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                    kakao.maps.event.addListener(marker, 'click', function () {
+                      console.log('클릭한 마커의 번호: ', data[i].ftvNum);
+
+                      // const src = '/resources/static/img/강릉 커피.png';
+                      // document
+                      //   .getElementById('snsImg')
+                      //   .setAttribute('src', src);
+                      document.getElementById('exampleModalLabel').textContent =
+                        data[i].ftvName;
+                      document.getElementById('date').textContent =
+                        data[i].startDate + ' ~ ' + data[i].endDate;
+                      document.getElementById('roadAddr').textContent =
+                        data[i].roadAddr;
+                      document.getElementById('phone').textContent =
+                        data[i].phone;
+                      document.getElementById('content').textContent =
+                        data[i].ftvContent;
+                      document
+                        .getElementById('url')
+                        .setAttribute('href', data[i].url);
+                      document.getElementById('aContent').textContent =
+                        data[i].url;
+
+                      document
+                        .getElementById('modalY')
+                        .setAttribute('href', data[i].url);
+                      document.getElementById('modalY').textContent =
+                        '축제 상세보기';
+                      // addMarker(mouseEvent.latLng);
+
+                      $('#testModal').modal('show');
+
+                      // overlay.setMap(map);
+                    });
+
+                    // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+                    function closeOverlay() {
+                      overlay.setMap(null);
+                    }
+
+                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                    // map.setCenter(coords);
+                    // 생성된 마커를 배열에 추가합니다
+                    markers.push(marker);
+                  } // 좌표 검색 정상인 경우
+                }
+              ); // 좌표 검색
+            } // for문 끝
+
+            //오버레이 여기에 두면 안뜸
+          }); // .then(data => ) 끝
+      }); // 클릭 이벤트 끝
+
+      document.querySelector('.find-btn2').addEventListener('click', (e) => {
+        //여름 클릭
+        if (markers.length > 0) {
+          hideMarkers();
+        }
+        fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'summer')
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+              // 주소로 좌표를 검색합니다
+              geocoder.addressSearch(
+                data[i].roadAddr,
+                function (result, status) {
+                  // 정상적으로 검색이 완료됐으면
+                  if (status === kakao.maps.services.Status.OK) {
+                    var coords = new kakao.maps.LatLng(
+                      result[0].y,
+                      result[0].x
+                    );
+
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    var marker = new kakao.maps.Marker({
+                      map: map,
+                      position: coords,
+                    });
+
+                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+                    // var infowindow = new kakao.maps.InfoWindow({
+                    //   content:
+                    //     '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
+                    // });
+                    // infowindow.open(map, marker);
+
+                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                    // map.setCenter(coords);
+                    // 생성된 마커를 배열에 추가합니다
+                    markers.push(marker);
+                  }
+                }
+              );
+            } // for문 끝
+          }); // .then(data => ) 끝
+      }); // 클릭 이벤트 끝
+
+      document.querySelector('.find-btn3').addEventListener('click', (e) => {
+        //가을 클릭
+        if (markers.length > 0) {
+          hideMarkers();
+        }
+        fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'fall')
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+              // 주소로 좌표를 검색합니다
+              geocoder.addressSearch(
+                data[i].roadAddr,
+                function (result, status) {
+                  // 정상적으로 검색이 완료됐으면
+                  if (status === kakao.maps.services.Status.OK) {
+                    var coords = new kakao.maps.LatLng(
+                      result[0].y,
+                      result[0].x
+                    );
+
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    var marker = new kakao.maps.Marker({
+                      map: map,
+                      position: coords,
+                    });
+
+                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                    // map.setCenter(coords);
+                    // 생성된 마커를 배열에 추가합니다
+                    markers.push(marker);
+                  }
+                }
+              );
+            } // for문 끝
+          }); // .then(data => ) 끝
+      }); // 클릭 이벤트 끝
+
+      document.querySelector('.find-btn4').addEventListener('click', (e) => {
+        //겨울 클릭
+        if (markers.length > 0) {
+          // for (var i = 0; i < markers.length; i++) {
+          //   markers[i].setMap(map);
+          // }
+          // marker.setMap(null);
+          hideMarkers();
+        }
+        fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'winter')
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+              // 주소로 좌표를 검색합니다
+              geocoder.addressSearch(
+                data[i].roadAddr,
+                function (result, status) {
+                  // 정상적으로 검색이 완료됐으면
+                  if (status === kakao.maps.services.Status.OK) {
+                    var coords = new kakao.maps.LatLng(
+                      result[0].y,
+                      result[0].x
+                    );
+
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    var marker = new kakao.maps.Marker({
+                      map: map,
+                      position: coords,
+                    });
+
+                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+                    // var infowindow = new kakao.maps.InfoWindow({
+                    //   content:
+                    //     '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
+                    // });
+                    // infowindow.open(map, marker);
+
+                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                    // map.setCenter(coords);
+
+                    // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+                    // marker.setMap(null);
+
+                    // 생성된 마커를 배열에 추가합니다
+                    markers.push(marker);
+                  }
+                }
+              );
+            } // for문 끝
+          }); // .then(data => ) 끝
+      }); // 클릭 이벤트 끝
+
+      // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
+      function setMarkers(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+      // "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+      function hideMarkers() {
+        setMarkers(null);
+      }
+
+      // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+      function makeOverListener(map, marker, infowindow) {
+        return function () {
+          infowindow.open(map, marker);
+        };
+      }
+
+      // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+      function makeOutListener(infowindow) {
+        return function () {
+          infowindow.close();
+        };
+      }
+    </script>
+  </body>
+</html>
+
+<%@ include file="./include/footer.jsp" %>
+>>>>>>> 124929e529464d5f9313d4e8c298be0baf6e393e
