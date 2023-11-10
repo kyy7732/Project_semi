@@ -14,13 +14,16 @@ import com.semi.project.util.page.Page;
 import com.semi.project.util.page.PageCreator;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/reply")
 @RequiredArgsConstructor
+@Slf4j
 public class ReplyController {
 	
 	private final ReplyService service;
+
 
 	// 댓글 목록 요청
 	@GetMapping("/replyList/{ftvNum}")
@@ -54,21 +57,21 @@ public class ReplyController {
 	@GetMapping("/userRegist")
 	public String regist(UserReplyRequestDTO dto) {
 		service.regist(dto);
-		return "redirect:/user/userList"; // 댓글 등록시 어떤화면을 띄워야 하능가??~?~?~?
+		return "redirect:/user/userList"; 
 	}
 	
 	// 댓글 수정하기
 	@PostMapping("/userModify")
 	public String modify(UserReplyModifyRequestDTO dto) {
 		service.update(dto);
-		return "redirect:/user/userList";   // 어디로 보내하 하능가~?~?~?~?~?
+		return "redirect:/user/userList";   
 	}
 	
 	// 댓글 삭제하기
 	@PostMapping("/delete")
 	public String delete(int commentNum) {
 		service.delete(commentNum);
-		return "/redirect:/user/userList"; // 어디로 보내야 하능가~?~?~?~?~?~?
+		return "/redirect:/user/userList"; 
 	}
 	
 		

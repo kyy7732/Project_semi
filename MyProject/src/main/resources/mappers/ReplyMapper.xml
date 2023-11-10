@@ -17,7 +17,8 @@
 				(
 				SELECT * FROM reply
 				WHERE ftv_num = #{ftvNum}
-				ORDER BY reply_no DESC
+				ORDER BY comment_num DESC
+
 				) tbl
 			)
 		<![CDATA[

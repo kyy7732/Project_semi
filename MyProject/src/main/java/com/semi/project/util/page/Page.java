@@ -14,6 +14,9 @@ public class Page {
 	private String keyword;
 	private String Condition;
 	
+	private String ftvNum;  // 추가된 부분
+    private String paging;  // 추가된 부분
+	
 	public Page() {
 		this.pageNo = 1;
 		this.amount = 5;

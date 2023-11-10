@@ -65,12 +65,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       z-index: 1;
     }
 
-    /* 버튼 정렬 */
+    /*버튼 정렬 */
     .btn-area {
       text-align: center;
       justify-content: center;
-      /* align-content: space-around; */
-      /* z-index: 10; */
+      /* align-content: space-around;
+      z-index: 10; */
     }
 
     /* 버튼 스타일 */
@@ -145,14 +145,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       font-size: 14px;
     }
 
-    img {
-      position: absolute;
-      width: 17px;
-      top: 10px;
-      right: 12px;
-      margin: 0;
-    }
-
     /* 마우스 오버레이 박스 */
     .area {
       position: relative;
@@ -212,6 +204,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       border-bottom: 1px solid #ddd;
       font-size: 18px;
       font-weight: bold;
+      text-align: center;
     }
 
     .info .close {
