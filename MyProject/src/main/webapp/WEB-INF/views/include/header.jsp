@@ -87,12 +87,23 @@ prefix="c" %>
         flex-grow: 0.5;
         justify-content: space-around;
         align-items: center;
-        margin-left: 50px;
+        margin-left: 44px;
+      }
+      .btn-area > .botton {
+        width: 14rem;
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+        position: relative;
+        left: 66px;
+        top: -15px;
+        justify-content: space-between;
       }
 
       .btn-area .btn {
         /* background-color: #0356a9; */
         color: white;
+        line-height: 30px;
         width: 100px;
         height: 30px;
         border-radius: 20px;
@@ -113,11 +124,10 @@ prefix="c" %>
       }
       .login-btn {
         margin-bottom: 7px;
-
+        padding: 3px;
         transition: 0.5s;
         background-size: 200% auto;
         color: white;
-        box-shadow: 10 0 20px #ece8e8;
         background-image: linear-gradient(
           to right,
           #457acf 0%,
@@ -130,11 +140,10 @@ prefix="c" %>
       }
       .join-btn {
         margin-bottom: 7px;
-
+        padding: 3px;
         transition: 0.5s;
         background-size: 200% auto;
         color: white;
-        box-shadow: 10 0 20px #eee;
         background-image: linear-gradient(
           to right,
           #457acf 0%,
@@ -233,39 +242,41 @@ prefix="c" %>
         </div>
       </div>
       <div class="btn-area">
-        <c:if test="${login == null}">
-          <a
-            id="loginBtn"
-            class="btn login-btn"
-            href="${pageContext.request.contextPath}/user/login"
-            >로그인</a
-          >
-          <a
-            id="joinBtn"
-            class="btn join-btn"
-            href="${pageContext.request.contextPath}/user/join"
-            >회원가입</a
-          >
-        </c:if>
-        <c:if test="${login != null}">
-          <a
-            id="myPageBtn"
-            class="btn myPage-btn"
-            href="${pageContext.request.contextPath}/user/myPage"
-            >마이페이지</a
-          >
-          <a
-            id="logoutBtn"
-            class="btn logout-btn"
-            href="${pageContext.request.contextPath}/user/logout"
-            >로그아웃</a
-          >
-          <a
-            href="javascript:openModal('modal1');"
-            class="btn like"
-            >좋아요목록</a
-          >
-        </c:if>
+        <div class="btn-area botton">
+          <c:if test="${login == null}">
+            <a
+              id="loginBtn"
+              class="btn login-btn"
+              href="${pageContext.request.contextPath}/user/login"
+              >로그인</a
+            >
+            <a
+              id="joinBtn"
+              class="btn join-btn"
+              href="${pageContext.request.contextPath}/user/join"
+              >회원가입</a
+            >
+          </c:if>
+          <c:if test="${login != null}">
+            <a
+              id="myPageBtn"
+              class="btn myPage-btn"
+              href="${pageContext.request.contextPath}/user/myPage"
+              >마이페이지</a
+            >
+            <a
+              id="logoutBtn"
+              class="btn logout-btn"
+              href="${pageContext.request.contextPath}/user/logout"
+              >로그아웃</a
+            >
+            <a
+              href="javascript:openModal('modal1');"
+              class="btn like"
+              >좋아요목록</a
+            >
+          </c:if>
+        </div>
       </div>
     </div>
 
