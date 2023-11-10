@@ -105,7 +105,7 @@ pageEncoding="UTF-8"%>
           <li><a href="#">광고문의</a></li>
         </ul>
         <p class="addr middle">서울특별시 마포구 백범로 23 대표이사: 김준혁</p>
-        <p class="copyright middle">Copyright (c) 2023 ICT</p>
+        <p class="copyright middle">Copyright (c) 2023 ICT인재개발 교육원</p>
       </div>
     </footer>
   </body>
