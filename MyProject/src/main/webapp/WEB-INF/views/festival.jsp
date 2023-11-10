@@ -4,6 +4,34 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
+    />
+
+    <!-- 부가적인 테마 -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
+    />
+    <link
+      href="${pageContext.request.contextPath }/css/bootstrap.css"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!--개인 디자인 추가-->
+    <link
+      href="${pageContext.request.contextPath }/css/style.css"
+      rel="stylesheet"
+    />
+    <!-- <script src="${pageContext.request.contextPath }/js/bootstrap.js"></script>
+    <link
+      href="/resources/static/css/bootstrap.css"
+      rel="stylesheet"
+    />
+    <script src="/resources/static/js/bootstrap.js"></script> -->
+
     <meta charset="UTF-8" />
     <title>Insert title here</title>
   </head>
@@ -161,112 +189,156 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       top: -50px;
     }
 
-    /* 마커 누르면 뜨는 창 */
-    .wrap {
-      position: absolute;
-      left: -30px;
-      bottom: 40px;
-      width: 350px;
-      height: 400px;
-      margin-left: -144px;
-      text-align: left;
+    /* 부트스트랩 모달 */
+    .modal-open {
       overflow: hidden;
-      font-size: 12px;
-      font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-      line-height: 1.5;
     }
-
-    .wrap * {
-      padding: 0;
-      margin: 0;
-    }
-
-    .wrap .info {
-      width: 350px;
-      /*286 */
-      height: 420px;
-      border-radius: 5px;
-      border-bottom: 2px solid #ccc;
-      border-right: 1px solid #ccc;
+    .modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1040;
+      display: none;
       overflow: hidden;
-      background: #fff;
+      -webkit-overflow-scrolling: touch;
+      outline: 0;
     }
-
-    .wrap .info:nth-child(1) {
-      border: 0;
-      box-shadow: 0px 1px 2px #888;
+    .modal.fade .modal-dialog {
+      -webkit-transition: -webkit-transform 0.3s ease-out;
+      -o-transition: -o-transform 0.3s ease-out;
+      transition: transform 0.3s ease-out;
+      -webkit-transform: translate(0, -25%);
+      -ms-transform: translate(0, -25%);
+      -o-transform: translate(0, -25%);
+      transform: translate(0, -25%);
     }
-
-    .info .title {
-      padding: 5px 0 0 10px;
-      height: 30px;
-      background: #eee;
-      border-bottom: 1px solid #ddd;
-      font-size: 18px;
-      font-weight: bold;
+    .modal.in .modal-dialog {
+      -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+      -o-transform: translate(0, 0);
+      transform: translate(0, 0);
     }
-
-    .info .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      color: #888;
-      width: 17px;
-      height: 17px;
-      background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+    .modal-open .modal {
+      overflow-x: hidden;
+      overflow-y: auto;
     }
-
-    .info .close:hover {
-      cursor: pointer;
-    }
-
-    .info .body {
+    .modal-dialog {
       position: relative;
-      overflow: hidden;
+      width: auto;
+      margin: 10px;
     }
-
-    .info .desc {
+    .modal-content {
       position: relative;
-      margin: 13px 0 0 90px;
-      height: 75px;
+      background-color: #fff;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      border: 1px solid #999;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      outline: 0;
+      -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
     }
-
-    .desc .ellipsis {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    .modal-backdrop {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      background-color: #000;
     }
-
-    .desc .jibun {
-      font-size: 11px;
-      color: #888;
+    .modal-backdrop.fade {
+      filter: alpha(opacity=0);
+      opacity: 0;
+    }
+    .modal-backdrop.in {
+      filter: alpha(opacity=50);
+      opacity: 0.5;
+    }
+    .modal-header {
+      min-height: 16.42857143px;
+      padding: 15px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .modal-header .close {
       margin-top: -2px;
     }
-
-    .info .img {
+    .modal-title {
+      margin: 0;
+      line-height: 1.42857143;
+    }
+    .modal-body {
+      position: relative;
+      padding: 15px;
+    }
+    .modal-footer {
+      padding: 15px;
+      text-align: right;
+      border-top: 1px solid #e5e5e5;
+    }
+    .modal-footer .btn + .btn {
+      margin-bottom: 0;
+      margin-left: 5px;
+    }
+    .modal-footer .btn-group .btn + .btn {
+      margin-left: -1px;
+    }
+    .modal-footer .btn-block + .btn-block {
+      margin-left: 0;
+    }
+    .modal-scrollbar-measure {
       position: absolute;
-      top: 6px;
-      left: 5px;
-      width: 73px;
-      height: 71px;
-      border: 1px solid #ddd;
-      color: #888;
-      overflow: hidden;
+      top: -9999px;
+      width: 50px;
+      height: 50px;
+      overflow: scroll;
+    }
+    @media (min-width: 768px) {
+      .modal-dialog {
+        width: 600px;
+        margin: 30px auto;
+      }
+      .modal-content {
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+      .modal-sm {
+        width: 300px;
+      }
+    }
+    @media (min-width: 992px) {
+      .modal-lg {
+        width: 900px;
+      }
     }
 
-    .info:after {
-      content: '';
-      position: absolute;
-      margin-left: -12px;
-      left: 50%;
-      bottom: 0;
-      width: 22px;
-      height: 12px;
-      background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png');
+    /* 모달창 조절 */
+    .modal-body {
+      padding: 0px;
     }
-
-    .info .link {
-      color: #5085bb;
+    .modal-content > .row {
+      margin: 0px;
+    }
+    .modal-body > .modal-img {
+      padding: 0px;
+    }
+    .modal-body > .modal-con {
+      padding: 15px;
+    }
+    .modal-inner {
+      position: relative;
+    }
+    .modal-inner .profile {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+    .modal-inner .title {
+      padding-left: 50px;
+    }
+    .modal-inner p {
+      margin: 0px;
     }
   </style>
 
@@ -301,6 +373,58 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       </div>
     </div>
 
+    <!-- 모달 -->
+    <div
+      class="modal fade"
+      id="snsModal"
+      role="dialog"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body row">
+            <div class="modal-img col-sm-8 col-xs-6">
+              <img
+                src="${pageContext.request.contextPath}/img/img_ready.png"
+                id="snsImg"
+                width="100%"
+              />
+            </div>
+            <div class="modal-con col-sm-4 col-xs-6">
+              <div class="modal-inner">
+                <div class="profile">
+                  <img
+                    src="${pageContext.request.contextPath}/img/profile.png"
+                  />
+                </div>
+                <div class="title">
+                  <p id="snsWriter">테스트</p>
+                  <small id="snsRegdate">21시간전</small>
+                </div>
+                <div class="content-inner">
+                  <p id="snsContent">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam vulputate elit libero, quis mattis enim tincidunt
+                    non. Mauris consequat ante vel urna posuere consequat.
+                  </p>
+                </div>
+                <div class="link-inner">
+                  <a href="##"
+                    ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
+                  >
+                  <a href="##"
+                    ><i class="glyphicon glyphicon-comment"></i>댓글달기</a
+                  >
+                  <a href="##"
+                    ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"
@@ -310,6 +434,8 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
       crossorigin="anonymous"
     ></script>
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -355,89 +481,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         });
       });
 
-      /* 양우가 한 실험 */
-      // 지도에 마커를 표시합니다
-      // var marker = new kakao.maps.Marker({
-      //   map: map,
-      //   position: new kakao.maps.LatLng(33.450701, 126.570667),
-      // });
-
-      // var content =
-      //   '<div class="wrap">' +
-      //   '    <div class="info">' +
-      //   '        <div class="title">' +
-      //   '            강릉커피축제' +
-      //   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-      //   '        </div>' +
-      //   '        <div class="body">' +
-      //   '            <div class="img">' +
-      //   '                <img src="/resources/static/img/강릉 커피.png" width="73" height="70">' +
-      //   '           </div>' +
-      //   '            <div class="desc">' +
-      //   '                <div class="ellipsis">강원도 강릉시 임영로131번길 6 (용강동)</div>' +
-      //   '                <div class="jibun ellipsis">강원도 강릉시</div>' +
-      //   '                <div><a href="https://www.coffeefestival.net" target="_blank" class="link">홈페이지</a></div>' +
-      //   '            </div>' +
-      //   '<div class="reply">' +
-      //   '<div class="form-group">' +
-      //   '<form method="post" encType = "multipart/form-data" action="#">' +
-      //   '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-      //   '<tr>' +
-      //   '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
-      //   '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
-      //   '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
-      //   '</tr>' +
-      //   '</table>' +
-      //   '</form>' +
-      //   '</div>' +
-      //   '</div>' +
-      //   '<div class="container">' +
-      //   '<div class="row">' +
-      //   '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
-      //   '<tbody>' +
-      //   '<tr>' +
-      //   '<td align="left" bgcolor="beige">댓글</td>' +
-      //   '</tr>' +
-      //   '<tr>' +
-      //   '<div class="container">' + //댓글하나당 container만들어서 보여줌
-      //   '<div class="row">' +
-      //   '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-      //   '<tbody>' +
-      //   '<tr>' +
-      //   '<td colspan="2"></td>' +
-      //   '<td align="right">' +
-      //   '</td>' +
-      //   '</tr>' +
-      //   '</tbody>' +
-      //   '</table>' +
-      //   '</div>' +
-      //   '</div>' +
-      //   '</tr>' +
-      //   '</table>' +
-      //   '</div>' +
-      //   '</div>' +
-      //   '</div>' +
-      //   '    </div>' +
-      //   '</div>';
-
-      // // 마커 위에 커스텀오버레이를 표시합니다
-      // // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-      // var overlay = new kakao.maps.CustomOverlay({
-      //   content: content,
-      //   map: map,
-      //   position: marker.getPosition(),
-      // });
-
-      // // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-      // kakao.maps.event.addListener(marker, 'click', function () {
-      //   overlay.setMap(map);
-      // });
-
-      // // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-      // function closeOverlay() {
-      //   overlay.setMap(null);
-      // }
-
       /* 색깔 */
       // if (!Colorflag) {
       //   $.getJSON(jsonLocation, function (data) {
@@ -448,16 +491,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       //       if (val.geometry.type == 'Polygon') {
       //         coordinates = val.geometry.coordinates;
       //         name = val.properties.SIG_KOR_NM;
-
-      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-      // kakao.maps.event.addListener(marker, 'click', function () {
-      //   overlay.setMap(map);
-      // });
-
-      // // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-      // function closeOverlay() {
-      //   overlay.setMap(null);
-      // }
 
       //줌 전역으로?
       //폴리곤 표시
@@ -484,8 +517,9 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         });
 
         polygon.setMap(map); // 지도에 다각형 표시
+        // polygons.push(polygon); // 폴리곤 제거하기 위한 배열(추가함)
 
-        // 수정
+        // 줌 이벤트
         kakao.maps.event.addListener(map, 'zoom_changed', function () {
           level = map.getLevel();
 
@@ -495,7 +529,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             // level 에 따라 다른 json 파일을 사용한다.
             console.log('디테일 모드다!');
             detailMode = true;
-            Colorflag = false;
+            Colorflag = true; // 색 없어야
             removePolygon();
             init('/resources/external_json/sig.json');
 
@@ -505,11 +539,11 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             console.log('디테일 모드 아니다!');
 
             detailMode = false;
-            Colorflag = true;
+            Colorflag = false; // 색 있어야
             removePolygon();
             init('/resources/external_json/sido.json');
           }
-        });
+        }); // 줌 이벤트 끝
 
         kakao.maps.event.addListener(
           polygon,
@@ -530,7 +564,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           polygon,
           'mousemove',
           function (mouseEvent) {
-            Colorflag = false;
+            Colorflag = false; // 색 있어야
             customOverlay.setPosition(mouseEvent.latLng);
           }
         );
@@ -567,7 +601,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
-              //마커
+              //요청한 행정구역명에 맞는 축제 마커 찍기
               for (let i = 0; i < data.length; i++) {
                 // 주소로 좌표를 검색합니다
                 geocoder.addressSearch(
@@ -590,33 +624,64 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       // 커스텀 오버레이에 표시할 컨텐츠 입니다
                       // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
                       // 별도의 이벤트 메소드를 제공하지 않습니다
-                      content =
-                        '<div class="wrap">' +
-                        '    <div class="info">' +
-                        '        <div class="title">' +
-                        data[i].ftvName +
-                        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                        '        </div>' +
-                        '        <div class="body">' +
-                        // '            <div class="img">' +
-                        // '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
-                        // '           </div>' +
-                        '            <div class="desc">' +
-                        '                <div class="ellipsis">' +
-                        data[i].roadAddr +
-                        '</div>' +
-                        '                <div class="jibun ellipsis">' +
-                        data[i].startDate +
-                        '~' +
-                        data[i].endDate +
-                        '</div>' +
-                        '                <div><a href=' +
-                        data[i].url +
-                        ' target="_blank" class="link">홈페이지</a></div>' +
-                        '            </div>' +
-                        '        </div>' +
-                        '    </div>' +
-                        '</div>';
+                      content = document.createElement('div');
+                      content.innerHTML = data[i].ftvName;
+                      content.style.cssText =
+                        'background: white; border: 1px solid black';
+
+                      like = document.createElement('img');
+                      like.setAttribute(
+                        'src',
+                        '/resources/static/img/like.png'
+                      );
+                      like.setAttribute(
+                        'alt',
+                        'likeIconNotClicked:' + data[i].ftvNum
+                      );
+                      like.setAttribute('height', 24); //px
+                      like.setAttribute('width', 24);
+                      content.appendChild(like);
+
+                      like.onclick = function () {
+                        console.log('좋아요 클릭했다!');
+                        like.setAttribute(
+                          'src',
+                          '/resources/static/img/likeDarker.png'
+                        );
+                        like.setAttribute('alt', 'likeIconClicked');
+                        like.setAttribute('height', 24); //px
+                        like.setAttribute('width', 24);
+                        content.appendChild(like);
+                      };
+
+                      urlDiv = document.createElement('div');
+                      url = document.createElement('a');
+                      url.setAttribute('href', data[i].url);
+                      url.setAttribute('target', '_blank');
+                      url.innerHTML = '홈페이지';
+                      urlDiv.appendChild(url);
+                      content.appendChild(urlDiv);
+                      url.onclick = function () {
+                        if (data[i].url === null)
+                          alert('해당 링크가 존재하지 않습니다!');
+                      };
+
+                      roadAddr = document.createElement('div');
+                      roadAddr.innerHTML = data[i].roadAddr;
+                      content.appendChild(roadAddr);
+
+                      time = document.createElement('div');
+                      time.innerHTML =
+                        data[i].startDate + ' ~ ' + data[i].endDate;
+                      content.appendChild(time);
+
+                      var closeBtn = document.createElement('button');
+                      closeBtn.innerHTML = '닫기';
+                      closeBtn.onclick = function () {
+                        overlay.setMap(null);
+                      };
+                      content.appendChild(closeBtn);
+
                       // 마커 위에 커스텀오버레이를 표시합니다
                       // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
                       var overlay = new kakao.maps.CustomOverlay({
@@ -624,6 +689,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         map: map,
                         position: marker.getPosition(),
                       });
+
                       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                       kakao.maps.event.addListener(
                         marker,
@@ -648,8 +714,14 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                 );
               } // for문 끝
             }); //.then(data)끝
+
+          // 클릭시 확대
+          //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
+
+          // removePolygon();
+
           if (!detailMode) {
-            Colorflag = false;
+            Colorflag = false; // 색 있어야
             map.setLevel(10); // level에 따라 이벤트 변경
             var latlng = mouseEvent.latLng;
             polygon.setOptions({ fillOpacity: 0.7 });
@@ -657,12 +729,18 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             // 지도의 중심을 부드럽게 클릭한 위치로 이동시킵니다.
             map.panTo(latlng);
           } else {
-            // polygon.setOptions({ fillOpacity: 0 });
-            Colorflag = true;
+            Colorflag = true; // 색 없어야
+
+            while (Colorflag) {
+              polygon.setOptions({ fillOpacity: 0 });
+              Colorflag = false;
+            }
+            var latlng = mouseEvent.latLng;
+            map.panTo(latlng);
             // 클릭 이벤트 함수
             // callFunctionWithRegionCode(area.location);
           }
-        });
+        }); // 폴리곤 클릭 이벤트 끝
       } // displayArea() end
 
       // 폴리곤 생성!!!!!!!!!
@@ -698,21 +776,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         }
         // init 안
       } // init() end
-
-      // kakao.maps.event.addListener(map, 'zoom_changed', function () {
-      //   level = map.getLevel();
-      //   if (!detailMode && level <= 10) {
-      //     // level 에 따라 다른 json 파일을 사용한다.
-      //     detailMode = true;
-      //     removePolygon();
-      //     init('json/sig.json');
-      //   } else if (detailMode && level > 10) {
-      //     // level 에 따라 다른 json 파일을 사용한다.
-      //     detailMode = false;
-      //     removePolygon();
-      //     init('json/sido.json');
-      //   }
-      // });
 
       // 모든 폴리곤을 지우는 함수
       function removePolygon() {
@@ -843,6 +906,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         if (markers.length > 0) {
           hideMarkers();
         }
+        var overlay;
         //봄 클릭
         fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'spring')
           .then((res) => res.json())
@@ -866,60 +930,27 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       map: map,
                       position: coords,
                     });
-                    positions.push(coords);
-                    // 커스텀 오버레이에 표시할 컨텐츠 입니다
-                    // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-                    // 별도의 이벤트 메소드를 제공하지 않습니다
-                    // content =
-                    //   '<div class="wrap">' +
-                    //   '    <div class="info">' +
-                    //   '        <div class="title">' +
-                    //   data[i].ftvName +
-                    //   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                    //   '        </div>' +
-                    //   '        <div class="body">' +
-                    //   // '            <div class="img">' +
-                    //   // '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
-                    //   // '           </div>' +
-                    //   '            <div class="desc">' +
-                    //   '                <div class="ellipsis">' +
-                    //   data[i].roadAddr +
-                    //   '</div>' +
-                    //   '                <div class="jibun ellipsis">' +
-                    //   data[i].startDate +
-                    //   '~' +
-                    //   data[i].endDate +
-                    //   '</div>' +
-                    //   '                <div><a href=' +
-                    //   data[i].url +
-                    //   ' target="_blank" class="link">홈페이지</a></div>' +
-                    //   '            </div>' +
-                    //   '        </div>' +
-                    //   '    </div>' +
-                    //   '</div>';
-                    content = document.createElement('div');
-                    content.innerHTML = data[i].ftvName;
-                    content.style.cssText =
-                      'background: white; border: 1px solid black';
-
-                    var closeBtn = document.createElement('button');
-                    closeBtn.innerHTML = '닫기';
-                    closeBtn.onclick = function () {
-                      overlay.setMap(null);
-                    };
-                    content.appendChild(closeBtn);
-
-                    // 마커 위에 커스텀오버레이를 표시합니다
-                    // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-                    var overlay = new kakao.maps.CustomOverlay({
-                      content: content,
-                      map: map,
-                      position: marker.getPosition(),
-                    });
+                    positions.push({ latlng: coords });
 
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
-                      overlay.setMap(map);
+                      console.log('클릭한 마커의 번호: ', data[i].ftvNum);
+
+                      // const src = '/resources/static/img/강릉 커피.png';
+                      // document
+                      //   .getElementById('snsImg')
+                      //   .setAttribute('src', src);
+                      document.getElementById('snsWriter').textContent =
+                        data[i].ftvName;
+                      document.getElementById('snsRegdate').textContent =
+                        data[i].startDate + ' ~ ' + data[i].endDate;
+                      document.getElementById('snsContent').textContent =
+                        data[i].roadAddr;
+                      // addMarker(mouseEvent.latLng);
+
+                      $('#snsModal').modal('show');
+
+                      // overlay.setMap(map);
                     });
 
                     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
