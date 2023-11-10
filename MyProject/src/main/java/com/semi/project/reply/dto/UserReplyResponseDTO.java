@@ -1,4 +1,4 @@
-package com.semi.project.reply.response;
+package com.semi.project.reply.dto;
 
 import java.time.LocalDateTime; 
 import java.time.format.DateTimeFormatter;

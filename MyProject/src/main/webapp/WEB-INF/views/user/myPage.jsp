@@ -322,8 +322,8 @@ h2{
                           <td>
                               <p class="guide_txt">
                                   <input type="password" id="userPw" name="userPw" class="join"><br/>
-                                  <span id="msgPw">10개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.</span>
-                              </p>
+                                  <span id="msgPw">8개 이상의 문자조합(영문 대소문자 + 숫자 또는 기호(!~#@))을 입력해 주세요.</span>
+                                </p>
                           </td>
                       </tr>
                       <tr>
@@ -334,7 +334,7 @@ h2{
                           <td>
                               <p class="guide_txt">
                                   <input type="password" id="userPwC" name="userPwC" class="join"><br/>
-                                  <span id="userPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
+                                  <span id="msgPwC">입력하신 비밀번호 확인을 위해 다시 한번 입력해 주세요</span>
                               </p>
                           </td>
                       </tr>
@@ -370,7 +370,7 @@ h2{
               </div>
                 <div class="btn_area">
                     <span class="btn b_ok">
-                        <a href="" class="button">수정</a>
+                        <button href="$" class="button"><a>수정</a></button>
                     </span>
                 </div>
         </form>
@@ -393,19 +393,33 @@ h2{
   // 비밀번호 유효성 검사 스크립트
   const $userPw = document.getElementById('userPw');
   const $msgPw = document.getElementById('msgPw');
-    $userPw.onkeyup = () => {
-      var regex = /^[A-Za-z0-9+]{8,16}$/;
-      if(regex.test($userPw.value)){
-          $userPw.style.borderColor = 'green';
-          $msgPw.innerHTML = '사용가능합니다.';
-          pwFlag = true;
+        $userPw.onkeyup = () => {
 
-      } else{
-          $userPw.style.borderColor = 'red';
-          $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
-          pwFlag = false;
-      }
-    }
+            var regex = /^[A-Za-z0-9~!@#$%^&*()_+|<>?:{}+]{8,16}$/;
+            var pattern_spc = /[~!@#$%^&*()_+|<>?:]/
+            if (regex.test($userPw.value) && pattern_spc.test($userPw.value)) {
+                $userPw.style.borderColor = 'green';
+                $msgPw.innerHTML = '사용가능합니다.';
+                pwFlag = true;
+            } else {
+                $userPw.style.borderColor = 'red';
+                $msgPw.innerHTML = '비밀번호를 제대로 입력하세요.';
+                pwFlag = false;
+            }
+
+            // let pw = document.getElementById('userPw').value;
+            // fetch('${pageContext.request.contextPath}/user/pwCheck/' + pw)
+            // .then(res => res.text())
+            // .then(text => {
+            //   if(text === 'pwDuplicated'){
+            //     $msgPw.innerHTML = '다른 비밀번호를 입력해주세요.';
+            //   } else if(text === 'possible'){
+            //     $msgPw.innerHTML = '사용 가능한 비밀번호 입니다.';
+            //   }
+            // })
+        }
+
+    
 
     const $userPwC = document.getElementById('userPwC');
     const $msgPwC = document.getElementById('msgPwC');

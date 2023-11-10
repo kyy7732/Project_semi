@@ -1,14 +1,14 @@
 package com.semi.project.reply.controller;
 
-import org.springframework.stereotype.Controller; 
+import org.springframework.stereotype.Controller;  
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.semi.project.reply.request.UserReplyModifyRequestDTO;
-import com.semi.project.reply.request.UserReplyRequestDTO;
+import com.semi.project.reply.dto.UserReplyModifyRequestDTO;
+import com.semi.project.reply.dto.UserReplyRequestDTO;
 import com.semi.project.reply.service.ReplyService;
 import com.semi.project.util.page.Page;
 import com.semi.project.util.page.PageCreator;
@@ -17,25 +17,30 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/reply")
 @RequiredArgsConstructor
 @Slf4j
 public class ReplyController {
 	
 	private final ReplyService service;
 
-	// 페이징 들어간 목록창
-	@GetMapping("/reply")
-	public void replyList(Page page, Model model) {
-		log.info("/user/reply: GET!");
+
+	// 댓글 목록 요청
+	@GetMapping("/replyList/{ftvNum}")
+	public void replyList(Page page, int ftvNum, Model model) {
+		System.out.println("/reply: GET!");
 		
 		// 검색 시 데이터가 없을 때
 		PageCreator creator; 
-		int totalCount = service.getTotal(page); // 조회될 댓글 개수를 구해옴
+		int totalCount = service.getTotal(ftvNum); // 조회될 댓글 개수를 구해옴
+		
 		if(totalCount == 0) { // 에초에 검색을 안했을때로 
+			
 			page.setKeyword(null); 
 			page.setCondition(null);
-			creator = new PageCreator(page, service.getTotal(page));
+			
+			
+			creator = new PageCreator(page, service.getTotal(ftvNum));
 			model.addAttribute("msg", "searchFail");
 		} else {
 			creator = new PageCreator(page, totalCount);
@@ -46,6 +51,9 @@ public class ReplyController {
 
 		 
 	}
+	
+	
+	
 	
 	// 댓글 등록 처리
 	@PostMapping("/userRegist")
