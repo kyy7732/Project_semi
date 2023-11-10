@@ -43,22 +43,15 @@ public class ReplyController {
 			
 		model.addAttribute("replyList", service.getList(page));
 		model.addAttribute("pc", creator);
+
+		 
 	}
 	
 	// 댓글 등록 처리
-	@GetMapping("/userRegist")
+	@PostMapping("/userRegist")
 	public String regist(UserReplyRequestDTO dto) {
 		service.regist(dto);
 		return "redirect:/user/userList"; 
-	}
-	
-	// 댓글 상세보기 필요 한가~?~?~~?~?~?~?~
-	@GetMapping("/userContent")
-	public String content(int commentNum, 
-						Model model, 
-						@ModelAttribute("p") Page page) {
-		model.addAttribute("userContent", service.getContent(commentNum));
-		return "user/userList";
 	}
 	
 	// 댓글 수정하기
@@ -72,7 +65,7 @@ public class ReplyController {
 	@PostMapping("/delete")
 	public String delete(int commentNum) {
 		service.delete(commentNum);
-		return "/redirect:/user/userList"; 
+		return "redirect:/user/userList"; 
 	}
 	
 		

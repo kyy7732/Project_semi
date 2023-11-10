@@ -19,9 +19,6 @@ public interface IReplyService {
 	// 총 댓글 개수
 	int getTotal(Page page);
 	
-	// 상세 보기
-	ReplyDetailDTO getContent(int commentNum);
-	
 	// 수정
 	void update(UserReplyModifyRequestDTO dto);
 	

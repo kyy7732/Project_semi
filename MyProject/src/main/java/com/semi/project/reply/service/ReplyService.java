@@ -25,10 +25,9 @@ public class ReplyService implements IReplyService {
 	@Override
 	public void regist(UserReplyRequestDTO dto) {
 		mapper.regist(Reply.builder()
-				.commentNum(0)
-				.content("나 돌아갈래~!~~!")
-				.userId("김춘식")
-				.ftvNum(1)
+				.commentNum(dto.getCommentNum())
+				.content(dto.getContent())
+				.userId(dto.getUserId())
 				.build());
 	}
 
@@ -47,10 +46,6 @@ public class ReplyService implements IReplyService {
 		return mapper.getTotal(page);
 	}
 
-	@Override
-	public ReplyDetailDTO getContent(int commentNum) {
-		return new ReplyDetailDTO(mapper.getContent(commentNum));
-	}
 
 	@Override
 	public void update(UserReplyModifyRequestDTO dto) {

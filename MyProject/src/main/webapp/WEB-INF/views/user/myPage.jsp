@@ -65,6 +65,9 @@ li.border {
     padding: 12px;
     text-decoration-line: none;
     color: #0356A9;
+    height: 48px;
+    text-align: center;
+    margin: 0 auto;
 
 }
 .aButton:hover{
@@ -245,6 +248,9 @@ div.btn_area {
   margin-left: -150px;
 }
 
+h2{
+  text-align: center;
+}
 </style>
 
 </head>

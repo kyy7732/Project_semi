@@ -314,33 +314,6 @@ prefix="c" %>
           </div>
         </div>
       </div>
-
-      <!-- <form action="${pageContext.request.contextPath}" name="pageForm">
-              <div class="text-center">
-                  <hr>
-                  <ul id="pagination" class="pagination pagination-sm">
-                      <c:if test="${pc.prev}">
-                          <li><a href="#" data-pagenum="${pc.begin-1}">이전</a></li>
-                      </c:if>
-                      
-                      <c:forEach var="num" begin="${pc.begin}" end="${pc.end}">               
-                          <li class="${pc.page.pageNo == num ? 'active' : ''}"><a href="#" data-pagenum="${num}">${num}</a></li>
-                      </c:forEach>
-                      
-                      <c:if test="${pc.next}">
-                          <li><a href="#" data-pagenum="${pc.end+1}">다음</a></li>
-                      </c:if>
-                  </ul>
-              </div>
-
-              <input type="hidden" name="pageNo" value="${pc.page.pageNo}">
-              <input type="hidden" name="amount" value="${pc.page.amount}">
-              <input type="hidden" name="keyword" value="${pc.page.keyword}">
-              <input type="hidden" name="condition" value="${pc.page.condition}"> 
-              
-      </div>
-      <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-              <input type="hidden" name="condition" value="${pc.page.condition}">  -->
     </div>
 
     <script>
