@@ -65,12 +65,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       z-index: 1;
     }
 
-    /* 버튼 정렬 */
+    /*버튼 정렬 */
     .btn-area {
       text-align: center;
       justify-content: center;
-      /* align-content: space-around; */
-      /* z-index: 10; */
+      /* align-content: space-around;
+      z-index: 10; */
     }
 
     /* 버튼 스타일 */
@@ -95,11 +95,16 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       background-size: 200% auto;
       color: white;
       box-shadow: 10 0 20px #f0ecec;
-      background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+      background-image: linear-gradient(
+        to right,
+        #457acf 0%,
+        #83bad1 51%,
+        #a1c4fd 100%
+      );
     }
 
     .custom-btn:hover {
-      background-position: right center; 
+      background-position: right center;
     }
 
     /* 검색창 스타일 */
@@ -138,14 +143,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       border-radius: 8px;
       padding: 10px 12px;
       font-size: 14px;
-    }
-
-    img {
-      position: absolute;
-      width: 17px;
-      top: 10px;
-      right: 12px;
-      margin: 0;
     }
 
     /* 마우스 오버레이 박스 */
@@ -207,6 +204,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       border-bottom: 1px solid #ddd;
       font-size: 18px;
       font-weight: bold;
+      text-align: center;
     }
 
     .info .close {
@@ -385,41 +383,41 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         '<div class="reply">' +
         '<div class="form-group">' +
         '<form method="post" encType = "multipart/form-data" action="#">' +
-          '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-            '<tr>' +
-              '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
-              '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
-              '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
-            '</tr>' +
-          '</table>' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+        '<tr>' +
+        '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
+        '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
+        '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
+        '</tr>' +
+        '</table>' +
         '</form>' +
-      '</div>' +
-    '</div>' +
-    '<div class="container">' +
-	'<div class="row">' +
-		'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
-			'<tbody>' +
-				'<tr>' +
-					'<td align="left" bgcolor="beige">댓글</td>' +
-				'</tr>' +
-				'<tr>' +
-						'<div class="container">' +		//댓글하나당 container만들어서 보여줌
-							'<div class="row">' +
-								'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-									'<tbody>' +
-										'<tr>' +							
-											'<td colspan="2"></td>' +
-											'<td align="right">' +
-											'</td>' +
-										'</tr>' +
-									'</tbody>' +
-								'</table>' +			
-							'</div>' +
-						'</div>' +
-				'</tr>' +
-		'</table>' +
-	'</div>' +
-'</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="container">' +
+        '<div class="row">' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
+        '<tbody>' +
+        '<tr>' +
+        '<td align="left" bgcolor="beige">댓글</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<div class="container">' + //댓글하나당 container만들어서 보여줌
+        '<div class="row">' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+        '<tbody>' +
+        '<tr>' +
+        '<td colspan="2"></td>' +
+        '<td align="right">' +
+        '</td>' +
+        '</tr>' +
+        '</tbody>' +
+        '</table>' +
+        '</div>' +
+        '</div>' +
+        '</tr>' +
+        '</table>' +
+        '</div>' +
+        '</div>' +
         '</div>' +
         '    </div>' +
         '</div>';

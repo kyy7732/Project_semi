@@ -14,10 +14,12 @@ import com.semi.project.util.page.Page;
 import com.semi.project.util.page.PageCreator;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
+@Slf4j
 public class ReplyController {
 	
 	private final ReplyService service;
@@ -25,7 +27,7 @@ public class ReplyController {
 	// 페이징 들어간 목록창
 	@GetMapping("/reply")
 	public void replyList(Page page, Model model) {
-		System.out.println("/user/reply: GET!");
+		log.info("/user/reply: GET!");
 		
 		// 검색 시 데이터가 없을 때
 		PageCreator creator; 
@@ -47,7 +49,7 @@ public class ReplyController {
 	@GetMapping("/userRegist")
 	public String regist(UserReplyRequestDTO dto) {
 		service.regist(dto);
-		return "redirect:/user/userList"; // 댓글 등록시 어떤화면을 띄워야 하능가??~?~?~?
+		return "redirect:/user/userList"; 
 	}
 	
 	// 댓글 상세보기 필요 한가~?~?~~?~?~?~?~
@@ -63,14 +65,14 @@ public class ReplyController {
 	@PostMapping("/userModify")
 	public String modify(UserReplyModifyRequestDTO dto) {
 		service.update(dto);
-		return "redirect:/user/userList";   // 어디로 보내하 하능가~?~?~?~?~?
+		return "redirect:/user/userList";   
 	}
 	
 	// 댓글 삭제하기
 	@PostMapping("/delete")
 	public String delete(int commentNum) {
 		service.delete(commentNum);
-		return "/redirect:/user/userList"; // 어디로 보내야 하능가~?~?~?~?~?~?
+		return "/redirect:/user/userList"; 
 	}
 	
 		
