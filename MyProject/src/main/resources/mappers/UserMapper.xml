@@ -47,8 +47,7 @@
 	
 	<insert id="registFtvLike">
 		INSERT INTO ftv_like
-		(ftv_num, user_id)
-		VALUES (#{ftvNum}, #{userId})	
+		VALUES (seq_like_num.NEXTVAL, #{ftvNum}, #{userId})	
 	</insert>
 
 	

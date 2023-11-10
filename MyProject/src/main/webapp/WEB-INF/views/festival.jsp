@@ -528,7 +528,11 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             </div>
           </div>
           <div class="link-inner">
-            <a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
+            <a
+              href="##"
+              class="glyphicon-thumbs-up"
+              ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
+            >
             <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
             <a href="##"
               ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
@@ -556,7 +560,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c6f403205c2f67b836ea3a0e1fc26f5&libraries=services,clusterer,drawing"
     ></script>
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -609,7 +613,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         });
       });
-
 
       /* 색깔 */
       // if (!Colorflag) {
@@ -694,7 +697,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           polygon,
           'mousemove',
           function (mouseEvent) {
-
             Colorflag = false; // 색 있어야
             customOverlay.setPosition(mouseEvent.latLng);
           }
@@ -751,7 +753,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         position: coords,
                       });
 
-
                       content = document.createElement('div');
                       content.innerHTML = data[i].ftvName;
                       content.style.cssText =
@@ -769,6 +770,8 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       like.setAttribute('height', 24); //px
                       like.setAttribute('width', 24);
                       content.appendChild(like);
+
+                      ftvNum = data[i].ftvNum;
 
                       like.onclick = function () {
                         console.log('좋아요 클릭했다!');
@@ -842,7 +845,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                 );
               } // for문 끝
             }); //.then(data)끝
-
 
           // 클릭시 확대
           //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
@@ -1138,6 +1140,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }); // .then(data => ) 끝
       }); // 클릭 이벤트 끝
 
+      let getFtvNum;
       document.querySelector('.find-btn2').addEventListener('click', (e) => {
         //여름 클릭
         if (markers.length > 0) {
@@ -1299,6 +1302,25 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           infowindow.close();
         };
       }
+
+      document.querySelector('.link-inner').addEventListener('click', (e) => {
+        e.preventDefault();
+        if (e.target.matches('.glyphicon-thumbs-up')) {
+          if('${login}' === null){
+            alert('로그인이 필요합니다.');
+            return;
+          }
+
+          fetch('${pageContext.request.contextPath}/user/likeList', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              userId: '${login}',
+              ftvNum: getFtvNum,
+            }),
+          });
+        }
+      });
     </script>
   </body>
 </html>

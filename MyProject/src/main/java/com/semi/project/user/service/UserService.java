@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
@@ -74,7 +76,7 @@ public class UserService {
 	}
 
 	public void update(RequestDTO dto) {
-		
+
 		mapper.update(User.builder()
 				.userId(dto.getUserId())
 				.userPw(encoder.encode(dto.getUserPw()))
@@ -89,11 +91,11 @@ public class UserService {
 		return mapper.getEmail(email);
 	}
 
-	public void registFtvLike(String userId, int ftvNum) {
+	public void registFtvLike(RequestDTO dto) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userId", userId);
-		map.put("ftvNum", ftvNum);
-		mapper.registFtvLike(map);
+		map.put("userId", dto.getUserId());
+		map.put("ftvNum", dto.getFtvNum());
+		mapper.registFtvLike(map);		
 	}
 }
 

@@ -120,7 +120,7 @@ public class UserController {
 	
 	//회원정보 수정 요청(동기)
 	@PostMapping("/update")
-	public String update(RequestDTO dto) {
+	public String update(RequestDTO dto, HttpSession session) {
 		log.info("/user/update 요청: POST! {}", dto);
 		service.update(dto);
 		return "redirect:/user/myPage";
@@ -145,8 +145,9 @@ public class UserController {
 	//좋아요 목록 저장(비동기)
 	@PostMapping("/likeList")
 	@ResponseBody
-	public void registFtvLike(@RequestParam String userId, @RequestParam int ftvNum) {
-		service.registFtvLike(userId, ftvNum);
+	public void registFtvLike(@RequestBody RequestDTO dto) {
+		log.info("userId: {}, ftvNum: {}", dto.getUserId(), dto.getFtvNum());
+		service.registFtvLike(dto);
 	}
 	
 	
