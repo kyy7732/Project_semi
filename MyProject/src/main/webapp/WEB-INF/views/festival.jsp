@@ -65,12 +65,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       z-index: 1;
     }
 
-    /* 버튼 정렬 */
+    /*버튼 정렬 */
     .btn-area {
       text-align: center;
       justify-content: center;
-      /* align-content: space-around; */
-      /* z-index: 10; */
+      /* align-content: space-around;
+      z-index: 10; */
     }
 
     /* 버튼 스타일 */
@@ -204,6 +204,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       border-bottom: 1px solid #ddd;
       font-size: 18px;
       font-weight: bold;
+      text-align: center;
     }
 
     .info .close {
@@ -427,6 +428,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       //   map: map,
       //   position: marker.getPosition(),
       // });
+
 
       // // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
       // kakao.maps.event.addListener(marker, 'click', function () {
@@ -920,6 +922,13 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       overlay.setMap(map);
+
+                      fetch(
+                        '${pageContext.request.contextPath}/reply/replyList/' +
+                          data[i].ftvNum +
+                          '/' +
+                          pageNo
+                      );
                     });
 
                     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
