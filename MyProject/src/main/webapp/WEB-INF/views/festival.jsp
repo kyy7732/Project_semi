@@ -398,54 +398,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     </div>
 
     <!-- 모달 -->
-    <!-- <div
-      class="modal fade"
-      id="snsModal"
-      role="dialog"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-body row">
-            <div class="modal-img col-sm-8 col-xs-6">
-              <img
-                src="../../resources/static/img/blueSearchIcon.png"
-                id="snsImg"
-                width="100%"
-              />
-            </div>
-            <div class="modal-con col-sm-4 col-xs-6">
-              <div class="modal-inner">
-                <div class="profile">
-                  <img src="../../resources/static/img/profile.png" />
-                </div>
-                <div class="title">
-                  <p id="snsWriter">테스트</p>
-                  <small id="snsRegdate">21시간전</small>
-                </div>
-                <div class="content-inner">
-                  <p id="snsContent">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aliquam vulputate elit libero, quis mattis enim tincidunt
-                    non. Mauris consequat ante vel urna posuere consequat.
-                  </p>
-                </div>
-                <div class="link-inner">
-                  <a href="##"
-                    ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
-                  >
-                  <a href="##"
-                    ><i class="glyphicon glyphicon-comment"></i>댓글달기</a
-                  >
-                  <a href="##"
-                    ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div
       class="modal fade"
       id="testModal"
@@ -477,6 +429,17 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             </button>
           </div>
           <div class="modal-body">
+            <label
+              for="place"
+              class="col-form-label"
+              >장소:</label
+            >
+            <div
+              class="mb-3"
+              id="place"
+            >
+              축제장소
+            </div>
             <label
               for="roadAddr"
               class="col-form-label"
@@ -510,7 +473,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             >
               축제내용
             </div>
-            <label
+            <!-- <label
               for="url"
               class="col-form-label"
               >홈페이지:</label
@@ -525,7 +488,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                 target="_blank"
                 ><span id="aContent"></span
               ></a>
-            </div>
+            </div> -->
           </div>
           <div class="link-inner">
             <a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
@@ -547,7 +510,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
               type="button"
               data-dismiss="modal"
             >
-              아니요
+              닫기
             </button>
           </div>
         </div>
@@ -609,7 +572,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         });
       });
-
 
       /* 색깔 */
       // if (!Colorflag) {
@@ -694,7 +656,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           polygon,
           'mousemove',
           function (mouseEvent) {
-
             Colorflag = false; // 색 있어야
             customOverlay.setPosition(mouseEvent.latLng);
           }
@@ -750,7 +711,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         map: map,
                         position: coords,
                       });
-
 
                       content = document.createElement('div');
                       content.innerHTML = data[i].ftvName;
@@ -842,7 +802,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                 );
               } // for문 끝
             }); //.then(data)끝
-
 
           // 클릭시 확대
           //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
@@ -1039,7 +998,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         if (markers.length > 0) {
           hideMarkers();
         }
-        var overlay;
+
         //봄 클릭
         fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'spring')
           .then((res) => res.json())
@@ -1088,42 +1047,32 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
 
-                      // const src = '/resources/static/img/강릉 커피.png';
-                      // document
-                      //   .getElementById('snsImg')
-                      //   .setAttribute('src', src);
                       document.getElementById('exampleModalLabel').textContent =
                         data[i].ftvName;
                       document.getElementById('date').textContent =
                         data[i].startDate + ' ~ ' + data[i].endDate;
+                      document.getElementById('place').textContent =
+                        data[i].place;
                       document.getElementById('roadAddr').textContent =
                         data[i].roadAddr;
                       document.getElementById('phone').textContent =
                         data[i].phone;
                       document.getElementById('content').textContent =
                         data[i].ftvContent;
-                      document
-                        .getElementById('url')
-                        .setAttribute('href', data[i].url);
-                      document.getElementById('aContent').textContent =
-                        data[i].url;
+                      // document
+                      //   .getElementById('url')
+                      //   .setAttribute('href', data[i].url);
+                      // document.getElementById('aContent').textContent =
+                      //   data[i].url;
 
                       document
                         .getElementById('modalY')
                         .setAttribute('href', data[i].url);
                       document.getElementById('modalY').textContent =
                         '축제 상세보기';
-                      // addMarker(mouseEvent.latLng);
 
                       $('#testModal').modal('show');
-
-                      // overlay.setMap(map);
                     });
-
-                    // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-                    function closeOverlay() {
-                      overlay.setMap(null);
-                    }
 
                     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                     // map.setCenter(coords);
@@ -1165,12 +1114,24 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       position: coords,
                     });
 
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //   content:
-                    //     '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
-                    // });
-                    // infowindow.open(map, marker);
+                    // 마커에 표시할 인포윈도우를 생성합니다
+                    var infowindow = new kakao.maps.InfoWindow({
+                      content: data[i].ftvName, // 인포윈도우에 표시할 내용
+                    });
+
+                    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                    // 이벤트 리스너로는 클로저를 만들어 등록합니다
+                    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                    kakao.maps.event.addListener(
+                      marker,
+                      'mouseover',
+                      makeOverListener(map, marker, infowindow)
+                    );
+                    kakao.maps.event.addListener(
+                      marker,
+                      'mouseout',
+                      makeOutListener(infowindow)
+                    );
 
                     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                     // map.setCenter(coords);
