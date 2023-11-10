@@ -242,7 +242,7 @@ table.table_type td {
 div.btn_area {
   text-align: center;
   margin: -280px;
-  margin-left: -150px;
+  margin-left: 180px;
 }
 
 </style>

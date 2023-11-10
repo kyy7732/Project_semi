@@ -148,8 +148,4 @@ public class UserController {
 	      return service.getLikeList(userId);
 	}
 	
-	
-	
-	
-	
 }
