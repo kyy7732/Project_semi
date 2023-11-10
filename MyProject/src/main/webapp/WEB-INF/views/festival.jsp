@@ -40,10 +40,11 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     }
 
     body > #wrap > #wrap2 {
+      position: absolute;
+      top: 1px;
+      left: 570px;
       display: flex;
       flex-direction: row;
-      /* width: max-content;
-      height: max-content; */
       margin-top: 2px;
       margin-bottom: 3px;
       z-index: 10;
@@ -51,8 +52,10 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     /* 지도 영역 */
     body > #wrap > .map-area {
+      position: absolute;
+      top: 50px;
       flex-direction: row;
-      width: 100%;
+      width: 2200px;
       height: 100%;
       margin-bottom: 10px;
     }
@@ -71,6 +74,14 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       justify-content: center;
       /* align-content: space-around; */
       /* z-index: 10; */
+    }
+
+    .btn-area > .spring-select {
+      position: relative;
+      right: 400px;
+      display: flex;
+      width: 535px;
+      justify-content: space-between;
     }
 
     /* 버튼 스타일 */
@@ -110,9 +121,14 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     /* 검색창 스타일 */
     .search {
       position: relative;
-      width: 300px;
+      left: -120px;
+      width: 400px;
       justify-content: center;
-      /* align-content: space-around; */
+      border: 1px solid #bbb;
+      border-radius: 10px;
+      padding: 8px 8px;
+      font-size: 15px;
+      margin-bottom: -3px;
     }
 
     /* 검색 버튼 스타일 */
@@ -126,7 +142,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     #search_btn {
       top: 6px;
-      right: -10px;
+      right: 10px;
       position: absolute;
       background-image: url(/resources/static/img/search.png);
       background-color: white;
@@ -138,11 +154,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     }
 
     input {
-      width: 100%;
-      border: 1px solid #bbb;
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 14px;
+      width: 348px;
+      position: relative;
+      left: -13px;
+      padding: 4px;
+      border: none;
+      font-size: 15px;
     }
 
     /* 마우스 오버레이 박스 */
@@ -275,10 +292,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       <div id="wrap2">
         <!-- 계절선택버튼 -->
         <div class="btn-area">
-          <button class="custom-btn find-btn1">봄</button>
-          <button class="custom-btn find-btn2">여름</button>
-          <button class="custom-btn find-btn3">가을</button>
-          <button class="custom-btn find-btn4">겨울</button>
+          <div class="btn-area spring-select">
+            <button class="custom-btn find-btn1">봄</button>
+            <button class="custom-btn find-btn2">여름</button>
+            <button class="custom-btn find-btn3">가을</button>
+            <button class="custom-btn find-btn4">겨울</button>
+          </div>
         </div>
         <!-- 검색창 -->
         <div class="search">
@@ -314,7 +333,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
-          center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+          center: new kakao.maps.LatLng(36.050701, 129.370667), // 지도의 중심좌표
           level: 13, // 지도의 확대 레벨
         };
 
@@ -354,88 +373,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         });
       });
-
-      // 지도에 마커를 표시합니다
-      var marker = new kakao.maps.Marker({
-        map: map,
-        position: new kakao.maps.LatLng(33.450701, 126.570667),
-      });
-
-      var content =
-        '<div class="wrap">' +
-        '    <div class="info">' +
-        '        <div class="title">' +
-        '            강릉커피축제' +
-        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-        '        </div>' +
-        '        <div class="body">' +
-        '            <div class="img">' +
-        '                <img src="/resources/static/img/강릉 커피.png" width="73" height="70">' +
-        '           </div>' +
-        '            <div class="desc">' +
-        '                <div class="ellipsis">강원도 강릉시 임영로131번길 6 (용강동)</div>' +
-        '                <div class="jibun ellipsis">강원도 강릉시</div>' +
-        '                <div><a href="https://www.coffeefestival.net" target="_blank" class="link">홈페이지</a></div>' +
-        '            </div>' +
-        '<div class="reply">' +
-        '<div class="form-group">' +
-        '<form method="post" encType = "multipart/form-data" action="#">' +
-        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-        '<tr>' +
-        '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
-        '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
-        '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
-        '</tr>' +
-        '</table>' +
-        '</form>' +
-        '</div>' +
-        '</div>' +
-        '<div class="container">' +
-        '<div class="row">' +
-        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
-        '<tbody>' +
-        '<tr>' +
-        '<td align="left" bgcolor="beige">댓글</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<div class="container">' + //댓글하나당 container만들어서 보여줌
-        '<div class="row">' +
-        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-        '<tbody>' +
-        '<tr>' +
-        '<td colspan="2"></td>' +
-        '<td align="right">' +
-        '</td>' +
-        '</tr>' +
-        '</tbody>' +
-        '</table>' +
-        '</div>' +
-        '</div>' +
-        '</tr>' +
-        '</table>' +
-        '</div>' +
-        '</div>' +
-        '</div>' +
-        '    </div>' +
-        '</div>';
-
-      // 마커 위에 커스텀오버레이를 표시합니다
-      // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-      var overlay = new kakao.maps.CustomOverlay({
-        content: content,
-        map: map,
-        position: marker.getPosition(),
-      });
-
-      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-      kakao.maps.event.addListener(marker, 'click', function () {
-        overlay.setMap(map);
-      });
-
-      // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-      function closeOverlay() {
-        overlay.setMap(null);
-      }
 
       //줌 전역으로?
       //폴리곤 표시
@@ -508,7 +445,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           polygon,
           'mousemove',
           function (mouseEvent) {
-            Colorflag = false;
+            // Colorflag = false;
             customOverlay.setPosition(mouseEvent.latLng);
           }
         );
@@ -568,33 +505,33 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       // 커스텀 오버레이에 표시할 컨텐츠 입니다
                       // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
                       // 별도의 이벤트 메소드를 제공하지 않습니다
-                      content =
-                        '<div class="wrap">' +
-                        '    <div class="info">' +
-                        '        <div class="title">' +
-                        data[i].ftvName +
-                        '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                        '        </div>' +
-                        '        <div class="body">' +
-                        // '            <div class="img">' +
-                        // '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
-                        // '           </div>' +
-                        '            <div class="desc">' +
-                        '                <div class="ellipsis">' +
-                        data[i].roadAddr +
-                        '</div>' +
-                        '                <div class="jibun ellipsis">' +
-                        data[i].startDate +
-                        '~' +
-                        data[i].endDate +
-                        '</div>' +
-                        '                <div><a href=' +
-                        data[i].url +
-                        ' target="_blank" class="link">홈페이지</a></div>' +
-                        '            </div>' +
-                        '        </div>' +
-                        '    </div>' +
-                        '</div>';
+                      // content =
+                      //   '<div class="wrap">' +
+                      //   '    <div class="info">' +
+                      //   '        <div class="title">' +
+                      //   data[i].ftvName +
+                      //   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                      //   '        </div>' +
+                      //   '        <div class="body">' +
+                      //   // '            <div class="img">' +
+                      //   // '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
+                      //   // '           </div>' +
+                      //   '            <div class="desc">' +
+                      //   '                <div class="ellipsis">' +
+                      //   data[i].roadAddr +
+                      //   '</div>' +
+                      //   '                <div class="jibun ellipsis">' +
+                      //   data[i].startDate +
+                      //   '~' +
+                      //   data[i].endDate +
+                      //   '</div>' +
+                      //   '                <div><a href=' +
+                      //   data[i].url +
+                      //   ' target="_blank" class="link">홈페이지</a></div>' +
+                      //   '            </div>' +
+                      //   '        </div>' +
+                      //   '    </div>' +
+                      //   '</div>';
                       // 마커 위에 커스텀오버레이를 표시합니다
                       // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
                       var overlay = new kakao.maps.CustomOverlay({
