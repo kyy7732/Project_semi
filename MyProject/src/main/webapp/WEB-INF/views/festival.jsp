@@ -65,10 +65,11 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     }
 
     body > #wrap > #wrap2 {
+      position: absolute;
+      top: 1px;
+      left: 570px;
       display: flex;
       flex-direction: row;
-      /* width: max-content;
-      height: max-content; */
       margin-top: 2px;
       margin-bottom: 3px;
       z-index: 10;
@@ -76,8 +77,10 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     /* 지도 영역 */
     body > #wrap > .map-area {
+      position: absolute;
+      top: 50px;
       flex-direction: row;
-      width: 100%;
+      width: 2200px;
       height: 100%;
       margin-bottom: 10px;
     }
@@ -96,6 +99,22 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       justify-content: center;
       /* align-content: space-around;
       z-index: 10; */
+    }
+
+    .btn-area > .spring-select {
+      position: relative;
+      right: 400px;
+      display: flex;
+      width: 535px;
+      justify-content: space-between;
+    }
+
+    .btn-area > .spring-select {
+      position: relative;
+      right: 400px;
+      display: flex;
+      width: 535px;
+      justify-content: space-between;
     }
 
     /* 버튼 스타일 */
@@ -135,9 +154,14 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     /* 검색창 스타일 */
     .search {
       position: relative;
-      width: 300px;
+      left: -120px;
+      width: 400px;
       justify-content: center;
-      /* align-content: space-around; */
+      border: 1px solid #bbb;
+      border-radius: 10px;
+      padding: 8px 8px;
+      font-size: 15px;
+      margin-bottom: -3px;
     }
 
     /* 검색 버튼 스타일 */
@@ -151,7 +175,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     #search_btn {
       top: 6px;
-      right: -10px;
+      right: 10px;
       position: absolute;
       background-image: url(/resources/static/img/search.png);
       background-color: white;
@@ -163,11 +187,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     }
 
     input {
-      width: 100%;
-      border: 1px solid #bbb;
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 14px;
+      width: 348px;
+      position: relative;
+      left: -13px;
+      padding: 4px;
+      border: none;
+      font-size: 15px;
     }
 
     /* 마우스 오버레이 박스 */
@@ -344,10 +369,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       <div id="wrap2">
         <!-- 계절선택버튼 -->
         <div class="btn-area">
-          <button class="custom-btn find-btn1">봄</button>
-          <button class="custom-btn find-btn2">여름</button>
-          <button class="custom-btn find-btn3">가을</button>
-          <button class="custom-btn find-btn4">겨울</button>
+          <div class="btn-area spring-select">
+            <button class="custom-btn find-btn1">봄</button>
+            <button class="custom-btn find-btn2">여름</button>
+            <button class="custom-btn find-btn3">가을</button>
+            <button class="custom-btn find-btn4">겨울</button>
+          </div>
         </div>
         <!-- 검색창 -->
         <div class="search">
@@ -542,7 +569,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
-          center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+          center: new kakao.maps.LatLng(36.050701, 129.370667), // 지도의 중심좌표
           level: 13, // 지도의 확대 레벨
         };
 
@@ -582,6 +609,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         });
       });
+
 
       /* 색깔 */
       // if (!Colorflag) {
@@ -666,6 +694,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           polygon,
           'mousemove',
           function (mouseEvent) {
+
             Colorflag = false; // 색 있어야
             customOverlay.setPosition(mouseEvent.latLng);
           }
@@ -722,10 +751,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         position: coords,
                       });
 
-                      //
-                      // 커스텀 오버레이에 표시할 컨텐츠 입니다
-                      // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-                      // 별도의 이벤트 메소드를 제공하지 않습니다
+
                       content = document.createElement('div');
                       content.innerHTML = data[i].ftvName;
                       content.style.cssText =
@@ -816,6 +842,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                 );
               } // for문 끝
             }); //.then(data)끝
+
 
           // 클릭시 확대
           //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
@@ -912,18 +939,24 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         const searchBtn = document.querySelector('#search_btn');
 
         searchVal.addEventListener('keypress', function () {
+          hideMarkers();
           filterValue = searchVal.value;
           console.log(filterValue);
           searchMarker(filterValue);
+          searchVal.value = '';
         });
 
         searchBtn.addEventListener('click', function () {
+          hideMarkers();
           filterValue = searchVal.value;
           console.log(filterValue);
           searchMarker(filterValue);
+          searchVal.value = '';
         });
       });
 
+      var markers = [];
+      var marker;
       // 키워드명 출력 함수
       function searchMarker(filterValue) {
         let keywordSearchVal = "'" + filterValue + "'";
@@ -948,32 +981,29 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
               .then((res) => res.json())
               .then((data) => {
                 for (var i = 0; i < data.length; i++) {
-                  console.log(data[i]);
-                  displayMarker(data[i]);
-                  bounds.extend(
-                    geocoder.addressSearch(
-                      data[i].roadAddr,
-                      function (result, status) {
-                        // 정상적으로 검색이 완료됐으면
-                        if (status === kakao.maps.services.Status.OK) {
-                          var coords = new kakao.maps.LatLng(
-                            result[i].latitude,
-                            result[i].longitude
-                          );
+                  geocoder.addressSearch(
+                    data[i].roadAddr,
+                    function (result, status) {
+                      // 정상적으로 검색이 완료됐으면
+                      if (status === kakao.maps.services.Status.OK) {
+                        var coords = new kakao.maps.LatLng(
+                          result[0].y,
+                          result[0].x
+                        );
 
-                          // 결과값으로 받은 위치를 마커로 표시합니다
-                          var marker = new kakao.maps.Marker({
-                            map: map,
-                            position: coords,
-                          });
-                        }
+                        // 결과값으로 받은 위치를 마커로 표시합니다
+                        var marker = new kakao.maps.Marker({
+                          map: map,
+                          position: coords,
+                        });
+                        markers.push(marker);
+                        console.log('축제명: ', data[i].ftvName);
+                        console.log('marker의 개수: ', markers);
                       }
-                    )
+                    }
                   );
                 }
-                console.log(data[i].roadAddr);
                 // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-                map.setBounds(bounds);
               });
           }
         }
@@ -993,6 +1023,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
             console.log('검색하고 마커 클릭!!');
             overlay.setMap(map);
+            // infowindow.open(map, marker);
           });
         }
       }
