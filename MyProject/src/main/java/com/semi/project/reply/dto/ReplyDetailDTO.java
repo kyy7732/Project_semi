@@ -1,4 +1,4 @@
-package com.semi.project.reply.response;
+package com.semi.project.reply.dto;
 
 import com.semi.project.reply.entity.Reply;
 

@@ -909,6 +909,13 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       overlay.setMap(map);
+
+                      fetch(
+                        '${pageContext.request.contextPath}/reply/replyList/' +
+                          data[i].ftvNum +
+                          '/' +
+                          pageNo
+                      );
                     });
 
                     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다

@@ -45,6 +45,11 @@
 		WHERE user_id = #{userId}
 	</delete>
 	
+	<insert id="registFtvLike">
+		INSERT INTO ftv_like
+		(ftv_num, user_id)
+		VALUES (#{ftvNum}, #{userId})	
+	</insert>
 
 <!-- 	
 	<select id="getLikeList">

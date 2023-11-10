@@ -75,6 +75,11 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       document.querySelector('.color-9').addEventListener('click', (e) => {
         location.href = '${pageContext.request.contextPath}/festival/';
       });
+
+      const logout = '${logout}';
+      if (logout) {
+        alert('정상적으로 로그아웃 되었습니다.');
+      }
     </script>
   </body>
 </html>
