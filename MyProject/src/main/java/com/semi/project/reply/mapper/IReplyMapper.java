@@ -14,7 +14,7 @@ public interface IReplyMapper {
 	List<Reply> getList(Page page);
 	
 	// 총 댓글 개수 구하기
-	int getTotal(Page page);
+	int getTotal(int ftvNum);
 	
 	// 상세 보기
 	Reply getContent(int bno);

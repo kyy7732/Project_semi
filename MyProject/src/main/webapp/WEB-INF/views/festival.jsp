@@ -95,11 +95,16 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       background-size: 200% auto;
       color: white;
       box-shadow: 10 0 20px #f0ecec;
-      background-image: linear-gradient(to right, #457acf 0%, #83bad1 51%, #a1c4fd 100%);
+      background-image: linear-gradient(
+        to right,
+        #457acf 0%,
+        #83bad1 51%,
+        #a1c4fd 100%
+      );
     }
 
     .custom-btn:hover {
-      background-position: right center; 
+      background-position: right center;
     }
 
     /* 검색창 스타일 */
@@ -385,41 +390,41 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         '<div class="reply">' +
         '<div class="form-group">' +
         '<form method="post" encType = "multipart/form-data" action="#">' +
-          '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-            '<tr>' +
-              '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
-              '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
-              '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
-            '</tr>' +
-          '</table>' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+        '<tr>' +
+        '<td style="border-bottom:none;" valign="middle"><br><br></td>' +
+        '<td><input type="text" style="height:100px;" class="form-control" placeholder="댓글 입력창." name = "commentText"></td>' +
+        '<td><br><br><input type="submit" class="btn-primary pull" value="댓글 작성"></td>' +
+        '</tr>' +
+        '</table>' +
         '</form>' +
-      '</div>' +
-    '</div>' +
-    '<div class="container">' +
-	'<div class="row">' +
-		'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
-			'<tbody>' +
-				'<tr>' +
-					'<td align="left" bgcolor="beige">댓글</td>' +
-				'</tr>' +
-				'<tr>' +
-						'<div class="container">' +		//댓글하나당 container만들어서 보여줌
-							'<div class="row">' +
-								'<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
-									'<tbody>' +
-										'<tr>' +							
-											'<td colspan="2"></td>' +
-											'<td align="right">' +
-											'</td>' +
-										'</tr>' +
-									'</tbody>' +
-								'</table>' +			
-							'</div>' +
-						'</div>' +
-				'</tr>' +
-		'</table>' +
-	'</div>' +
-'</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="container">' +
+        '<div class="row">' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width:50px height:50px">' +
+        '<tbody>' +
+        '<tr>' +
+        '<td align="left" bgcolor="beige">댓글</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<div class="container">' + //댓글하나당 container만들어서 보여줌
+        '<div class="row">' +
+        '<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">' +
+        '<tbody>' +
+        '<tr>' +
+        '<td colspan="2"></td>' +
+        '<td align="right">' +
+        '</td>' +
+        '</tr>' +
+        '</tbody>' +
+        '</table>' +
+        '</div>' +
+        '</div>' +
+        '</tr>' +
+        '</table>' +
+        '</div>' +
+        '</div>' +
         '</div>' +
         '    </div>' +
         '</div>';
@@ -911,6 +916,13 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       overlay.setMap(map);
+
+                      fetch(
+                        '${pageContext.request.contextPath}/reply/replyList/' +
+                          data[i].ftvNum +
+                          '/' +
+                          pageNo
+                      );
                     });
 
                     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다

@@ -103,6 +103,15 @@ public class UserController {
 		model.addAttribute("userInfo", service.getInfo(userId));
 	}
 	
+	//마이페이지 비밀번호 중복 확인 (비동기)
+	@GetMapping("/pwCheck/{pw}")
+	public String pwCheck(@PathVariable String pw, HttpSession session) {
+		
+		if(service.login((String)session.getAttribute("login"), pw) == null) {
+			return "possible";
+		} else return "pwDuplicated";
+	}
+	
 	
 	//나의정보관리 페이지(동기)
 	@GetMapping("/myInfo")

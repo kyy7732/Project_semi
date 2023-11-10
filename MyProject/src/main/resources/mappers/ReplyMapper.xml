@@ -28,6 +28,7 @@
 	<select id="getTotal" resultType="int">
 		SELECT COUNT(*)
 		FROM reply
+		WHERE ftv_num = #{ftvNum}
 	</select>
 	
 	
