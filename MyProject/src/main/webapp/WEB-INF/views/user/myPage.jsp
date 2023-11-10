@@ -268,7 +268,7 @@ div.btn_area {
                     <!--<a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>-->
                 </li>
                 <li class="border">
-                    <a href="${pageContext.request.contextPath}/user/reply" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
+                    <a href="${pageContext.request.contextPath}/reply/replyList" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
                 </li>
                 <li class="border">
                     <a href="${pageContext.request.contextPath}/user/likeList" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>

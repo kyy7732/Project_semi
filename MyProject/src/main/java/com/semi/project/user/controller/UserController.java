@@ -133,6 +133,14 @@ public class UserController {
 		service.delete(userId);
 		return "redirect:/";
 	}
+	
+	//좋아요 목록 요청(비동기)
+		@GetMapping("/likeList/{userId}")
+		@ResponseBody
+		public List<FtvResponseDTO> getFtvLIkeList(@PathVariable String userId){
+		      log.info("/festival/likeList 요청: GET! {}", userId);   
+		      return service.getLikeList(userId);
+		}
 		
 	//좋아요 목록 저장(비동기)
 	@PostMapping("/likeList")
@@ -141,12 +149,7 @@ public class UserController {
 		service.registFtvLike(userId, ftvNum);
 	}
 	
-	//좋아요 목록 요청(동기)
-	@GetMapping("/likeList")
-	public List<FtvResponseDTO> getFtvLIkeList(@RequestParam String userId, @RequestParam int ftvNum){
-	      log.info("/festival/likeList 요청: GET! {}", userId);   
-	      return service.getLikeList(userId);
-	}
+	
 	
 	
 	

@@ -208,6 +208,10 @@ prefix="c" %>
       .portal {
         font-size: 15px;
       }
+
+      .likeBtn {
+        text-decoration: none;
+      }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
@@ -287,61 +291,22 @@ prefix="c" %>
       </div>
       <div class="board_list_wrap">
         <div class="board_list">
-          <div class="ftv1">
-            <div class="num">1</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
-          <div class="ftv2">
-            <div class="num">2</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
-          <div class="ftv3">
-            <div class="num">3</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
-          <div class="ftv4">
-            <div class="num">4</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
-          <div class="ftv5">
-            <div class="num">5</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
+          <c:forEach
+            var="num"
+            begin="${pc.begin}"
+            end="${pc.end}"
+          >
+            <div class="ftv1">
+              <div class="num">${num}</div>
+              <div class="modal_title"><a href="#">${ftvName}</a></div>
+              <a href="#"><div class="likeBtn">♡</div></a>
+            </div>
+          </c:forEach>
         </div>
       </div>
-
-      <!-- <form action="${pageContext.request.contextPath}" name="pageForm">
-              <div class="text-center">
-                  <hr>
-                  <ul id="pagination" class="pagination pagination-sm">
-                      <c:if test="${pc.prev}">
-                          <li><a href="#" data-pagenum="${pc.begin-1}">이전</a></li>
-                      </c:if>
-                      
-                      <c:forEach var="num" begin="${pc.begin}" end="${pc.end}">               
-                          <li class="${pc.page.pageNo == num ? 'active' : ''}"><a href="#" data-pagenum="${num}">${num}</a></li>
-                      </c:forEach>
-                      
-                      <c:if test="${pc.next}">
-                          <li><a href="#" data-pagenum="${pc.end+1}">다음</a></li>
-                      </c:if>
-                  </ul>
-              </div>
-
-              <input type="hidden" name="pageNo" value="${pc.page.pageNo}">
-              <input type="hidden" name="amount" value="${pc.page.amount}">
-              <input type="hidden" name="keyword" value="${pc.page.keyword}">
-              <input type="hidden" name="condition" value="${pc.page.condition}"> 
-              
-      </div>
-      <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-              <input type="hidden" name="condition" value="${pc.page.condition}">  -->
     </div>
+
+    <div></div>
 
     <script>
       function openModal(modalname) {
@@ -392,6 +357,21 @@ prefix="c" %>
 
         quote.textContent = arr[random].quote;
       });
+
+      let str = '';
+
+      document.querySelector('.like').onclick = () => {
+        fetch('${pageContext.request.contextPath}/user/likeList/' + `${login}`)
+          .then((res) => res.json())
+          .then((list) => {
+            console.log(list);
+            for (like of list) {
+              str += `<div>` + like + `</div>`;
+            }
+          });
+      };
+
+      document.querySelector('.likeBtn').onclick = () => {};
     </script>
   </body>
 </html>

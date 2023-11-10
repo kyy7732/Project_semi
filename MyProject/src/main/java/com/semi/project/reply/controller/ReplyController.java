@@ -22,6 +22,10 @@ public class ReplyController {
 	
 	private final ReplyService service;
 
+	// 댓글 페이지
+	@GetMapping("/replyList")
+	public void reply() {};
+	
 	// 댓글 목록 요청
 	@GetMapping("/replyList/{ftvNum}")
 	public void replyList(Page page, int ftvNum, Model model) {

@@ -51,10 +51,11 @@
 		VALUES (#{ftvNum}, #{userId})	
 	</insert>
 
-<!-- 	
-	<select id="getLikeList">
-		SELECT * FROM festival
-		WHERE 
+	
+	<select id="getLikeList" resultType="festival">
+		SELECT * FROM ftv_like
+		JOIN festival
+		ON ftv_like.ftv_num = festival.ftv_num
+		WHERE user_id = #{userId}
 	</select>
-	 -->
 </mapper>
