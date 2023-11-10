@@ -93,12 +93,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       z-index: 1;
     }
 
-    /* 버튼 정렬 */
+    /*버튼 정렬 */
     .btn-area {
       text-align: center;
       justify-content: center;
-      /* align-content: space-around; */
-      /* z-index: 10; */
+      /* align-content: space-around;
+      z-index: 10; */
     }
 
     /* 버튼 스타일 */

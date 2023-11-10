@@ -1,6 +1,8 @@
 package com.semi.project.user.service;
 
-import java.util.List; 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
-
 import com.semi.project.user.dto.RequestDTO;
 import com.semi.project.user.dto.ResponseDTO;
 import com.semi.project.user.entity.User;
@@ -82,6 +83,13 @@ public class UserService {
 
 	public int getEmail(String email) {
 		return mapper.getEmail(email);
+	}
+
+	public void registFtvLike(String userId, int ftvNum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("ftvNum", ftvNum);
+		mapper.registFtvLike(map);
 	}
 }
 

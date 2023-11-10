@@ -92,7 +92,7 @@ prefix="c" %>
 
       .btn-area .btn {
         /* background-color: #0356a9; */
-        color: black;
+        color: white;
         width: 100px;
         height: 30px;
         border-radius: 20px;

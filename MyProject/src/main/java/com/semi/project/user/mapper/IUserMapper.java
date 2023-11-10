@@ -1,5 +1,7 @@
 package com.semi.project.user.mapper;
 
+import java.util.Map;
+
 import com.semi.project.user.entity.User;
 
 public interface IUserMapper {
@@ -32,6 +34,11 @@ public interface IUserMapper {
 	
 	//좋아요 목록 조회
 	void getLikeList(String userId);
+
+
+
+	void registFtvLike(Map<String, Object> map);
+
 
 
 
