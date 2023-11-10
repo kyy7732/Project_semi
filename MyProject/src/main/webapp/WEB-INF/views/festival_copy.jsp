@@ -165,16 +165,17 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     /* 마우스 오버레이 박스 */
     .area {
       position: relative;
-      width: 30px;
-      height: 20px;
+      width: fit-content;
+      height: fit-content;
       padding: 15px 10px;
       font-size: 16px;
       font-family: monospace;
       font-weight: bold;
       text-align: center;
       border-radius: 10px;
-      margin-bottom: 30px;
-      background-color: black;
+      margin-bottom: 100px;
+      /* background-color: black; */
+      border: #0356a9;
       top: -50px;
     }
 
@@ -315,6 +316,38 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     ></script>
 
     <script>
+      document.querySelector('ul#category').onclick = (e) => {
+        console.log(e.target.getAttribute('data-order'));
+        let loc = e.target.getAttribute('data-order');
+        fetch('/gogo/maker/' + loc)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            console.log(data.length);
+            var positions = [];
+            for (let i = 0; i < data.length; i++) {
+              // 마커를 생성합니다
+              positions.push({
+                latlng: new kakao.maps.LatLng(data[i].X_COORD, data[i].Y_COORD),
+              });
+              // 마커가 지도 위에 표시되도록 설정합니다
+              marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng, // 마커를 표시할 위치
+                image: markerImage, // 마커 이미지
+              });
+
+              kakao.maps.event.addListener(marker, 'click', function () {
+                // 마커를 클릭했을 때의 처리 (여기서는 콘솔에 NUM 출력)
+                console.log('Clicked Marker NUM: ' + data[i].NUM);
+                // 여기서 NUM을 활용하여 원하는 작업 수행 가능
+                var clickedNum = data[i].NUM;
+                markerNum.push(clickedNum);
+              });
+            }
+          });
+      };
+      //////////////////////////
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
           center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
@@ -349,7 +382,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       // 줌 이벤트 (위치 중요)
       kakao.maps.event.addListener(map, 'zoom_changed', function () {
         level = map.getLevel();
-        //console.log('현재 지도 레벨은 ' + level + ' 입니다');
+        console.log('현재 지도 레벨은 ' + level + ' 입니다');
 
         if (!detailMode && level <= 10) {
           // level 에 따라 다른 json 파일을 사용한다.
@@ -404,13 +437,17 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             });
 
             areas[index] = ob;
+            // 지도에 영역데이터를 폴리곤으로 표시
+            for (var i = 0, len = areas.length; i < len; i++) {
+              displayArea(areas[i]);
+            }
           }); //each
         }); //getJSON
 
-        // 지도에 영역데이터를 폴리곤으로 표시
-        for (var i = 0, len = areas.length; i < len; i++) {
-          displayArea(areas[i]);
-        }
+        // // 지도에 영역데이터를 폴리곤으로 표시
+        // for (var i = 0, len = areas.length; i < len; i++) {
+        //   displayArea(areas[i]);
+        // }
         /////init 안
         //폴리곤 표시
         function displayArea(area) {
@@ -445,7 +482,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             strokeColor: '#004c80',
             strokeStyle: 'longdash',
             strokeOpacity: 0.8,
-            fillColor: '#fff',
+            fillColor: '#EFFFED',
             fillOpacity: 0.7,
           });
           polygons.push(polygon);
@@ -500,8 +537,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             function (mouseEvent) {
               // console.log('마우스아웃!');
               //customOverlay.setPosition(mouseEvent.latLng); // 추가
-              // polygon.setOptions({ fillColor: '#EFFFED' });
-              polygon.setOptions({ fillColor: '#fff' });
+              polygon.setOptions({ fillColor: '#EFFFED' });
               customOverlay.setMap(null);
             }
           ); // 마우스아웃 이벤트 끝
@@ -569,17 +605,18 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
       ///////////////////////////////////////////////////
       // 다각형에 마우스오버 이벤트가 발생했을 때 변경할 채우기 옵션입니다
-      var mouseoverOption = {
-        fillColor: '#A2FF99', // 채우기 색깔입니다
-        fillOpacity: 0.7, // 채우기 불투명도 입니다
-      };
+      // var mouseoverOption = {
+      //   fillColor: '#A2FF99', // 채우기 색깔입니다
+      //   fillOpacity: 0.7, // 채우기 불투명도 입니다
+      // };
 
-      // 다각형에 마우스아웃 이벤트가 발생했을 때 변경할 채우기 옵션입니다
-      var mouseoutOption = {
-        fillColor: '#EFFFED', // 채우기 색깔입니다
-        fillOpacity: 0.8, // 채우기 불투명도 입니다
-      };
+      // // 다각형에 마우스아웃 이벤트가 발생했을 때 변경할 채우기 옵션입니다
+      // var mouseoutOption = {
+      //   fillColor: '#EFFFED', // 채우기 색깔입니다
+      //   fillOpacity: 0.8, // 채우기 불투명도 입니다
+      // };
 
+      /*****************************************축제명 검색 이벤트***********************************/
       // 장소 검색 객체를 생성합니다
       var ps = new kakao.maps.services.Places();
 
@@ -675,79 +712,105 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           .then((data) => {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
+              var data = data[i];
               // 주소로 좌표를 검색합니다
-              geocoder.addressSearch(
-                data[i].roadAddr,
-                function (result, status) {
-                  // 정상적으로 검색이 완료됐으면
-                  if (status === kakao.maps.services.Status.OK) {
-                    var coords = new kakao.maps.LatLng(
-                      result[0].y,
-                      result[0].x
-                    );
+              geocoder.addressSearch(data.roadAddr, function (result, status) {
+                // 정상적으로 검색이 완료됐으면
+                if (status === kakao.maps.services.Status.OK) {
+                  var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    marker = new kakao.maps.Marker({
+                  // 지도에 마커를 표시하는 함수입니다
+                  function displayMarker(data) {
+                    var marker = new kakao.maps.Marker({
                       map: map,
-                      position: coords,
+                      position: data.latlng,
+                    });
+                    var overlay = new kakao.maps.CustomOverlay({
+                      yAnchor: 3,
+                      position: marker.getPosition(),
                     });
 
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //   content:
-                    //     '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
-                    // });
-                    // infowindow.open(map, marker);
+                    var content = document.createElement('div');
+                    content.innerHTML = data.title;
+                    content.style.cssText =
+                      'background: white; border: 1px solid black';
 
-                    //
-                    // 커스텀 오버레이에 표시할 컨텐츠 입니다
-                    // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-                    // 별도의 이벤트 메소드를 제공하지 않습니다
-                    content =
-                      '<div class="wrap">' +
-                      '    <div class="info">' +
-                      '        <div class="title">' +
-                      data[i].ftvName +
-                      '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                      '        </div>' +
-                      '        <div class="body">' +
-                      // '            <div class="img">' +
-                      // '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
-                      // '           </div>' +
-                      '            <div class="desc">' +
-                      '                <div class="ellipsis">' +
-                      data[i].roadAddr +
-                      '</div>' +
-                      '                <div class="jibun ellipsis">' +
-                      data[i].startDate +
-                      '~' +
-                      data[i].endDate +
-                      '</div>' +
-                      '                <div><a href=' +
-                      data[i].url +
-                      ' target="_blank" class="link">홈페이지</a></div>' +
-                      '            </div>' +
-                      '        </div>' +
-                      '    </div>' +
-                      '</div>';
+                    var closeBtn = document.createElement('button');
+                    closeBtn.innerHTML = '닫기';
+                    closeBtn.onclick = function () {
+                      overlay.setMap(null);
+                    };
+                    content.appendChild(closeBtn);
+                    overlay.setContent(content);
 
-                    // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       overlay.setMap(map);
                     });
-
-                    // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-                    function closeOverlay() {
-                      overlay.setMap(null);
-                    }
-
-                    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-                    map.setCenter(coords);
-                    // 생성된 마커를 배열에 추가합니다
-                    markers.push(marker);
                   }
+
+                  displayMarker(data);
+
+                  // 결과값으로 받은 위치를 마커로 표시합니다
+                  // marker = new kakao.maps.Marker({
+                  //   map: map,
+                  //   position: coords,
+                  // });
+
+                  // 인포윈도우로 장소에 대한 설명을 표시합니다
+                  // var infowindow = new kakao.maps.InfoWindow({
+                  //   content:
+                  //     '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
+                  // });
+                  // infowindow.open(map, marker);
+
+                  //
+                  // 커스텀 오버레이에 표시할 컨텐츠 입니다
+                  // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+                  // 별도의 이벤트 메소드를 제공하지 않습니다
+                  // content =
+                  //   '<div class="wrap">' +
+                  //   '    <div class="info">' +
+                  //   '        <div class="title">' +
+                  //   data[i].ftvName +
+                  //   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
+                  //   '        </div>' +
+                  //   '        <div class="body">' +
+                  //   // '            <div class="img">' +
+                  //   // '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
+                  //   // '           </div>' +
+                  //   '            <div class="desc">' +
+                  //   '                <div class="ellipsis">' +
+                  //   data[i].roadAddr +
+                  //   '</div>' +
+                  //   '                <div class="jibun ellipsis">' +
+                  //   data[i].startDate +
+                  //   '~' +
+                  //   data[i].endDate +
+                  //   '</div>' +
+                  //   '                <div><a href=' +
+                  //   data[i].url +
+                  //   ' target="_blank" class="link">홈페이지</a></div>' +
+                  //   '            </div>' +
+                  //   '        </div>' +
+                  //   '    </div>' +
+                  //   '</div>';
+
+                  // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                  kakao.maps.event.addListener(marker, 'click', function () {
+                    overlay.setMap(map);
+                  });
+
+                  // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+                  function closeOverlay() {
+                    overlay.setMap(null);
+                  }
+
+                  // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                  map.setCenter(coords);
+                  // 생성된 마커를 배열에 추가합니다
+                  markers.push(marker);
                 }
-              );
+              });
             } // for문 끝
 
             // 마커 위에 커스텀오버레이를 표시합니다
