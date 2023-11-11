@@ -32,14 +32,14 @@ public interface IUserMapper {
 	void delete(String userId);
 
 	//좋아요 목록 저장
-	
+	void registFtvLike(Map<String, Object> map);
 	
 	//좋아요 목록 조회
 	List<Festival> getLikeList(String userId);
 
 
 
-	void registFtvLike(Map<String, Object> map);
+
 
 
 

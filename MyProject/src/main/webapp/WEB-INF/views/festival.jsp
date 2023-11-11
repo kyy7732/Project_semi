@@ -533,6 +533,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
               class="glyphicon-thumbs-up"
               ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
             >
+            <!-- src\main\webapp\resources\static\img\like.png -->
             <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
             <a href="##"
               ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
@@ -1034,6 +1035,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
       var markers = [];
       var marker;
+      let getFtvNum; // 축제번호
 
       var content = '';
       //계절버튼 클릭 이벤트
@@ -1120,6 +1122,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       $('#testModal').modal('show');
 
                       // overlay.setMap(map);
+                      getFtvNum = data[i].ftvNum;
                     });
 
                     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
@@ -1140,7 +1143,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }); // .then(data => ) 끝
       }); // 클릭 이벤트 끝
 
-      let getFtvNum;
+
       document.querySelector('.find-btn2').addEventListener('click', (e) => {
         //여름 클릭
         if (markers.length > 0) {
@@ -1303,22 +1306,33 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         };
       }
 
+      let userIdVal = '${login}';
       document.querySelector('.link-inner').addEventListener('click', (e) => {
         e.preventDefault();
+        // console.log(userIdVal);
         if (e.target.matches('.glyphicon-thumbs-up')) {
-          if('${login}' === null){
+          if(userIdVal === null){
+            console.log('login: ', userIdVal);
             alert('로그인이 필요합니다.');
             return;
           }
-
+          
+          console.log('getFtvNum: ', getFtvNum);
           fetch('${pageContext.request.contextPath}/user/likeList', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              userId: '${login}',
+              userId: userIdVal,
               ftvNum: getFtvNum,
-            }),
-          });
+            })
+          })
+          .then(res => res.text())
+          .then(data => {
+            if (data) {
+              alert('좋아요를 눌렀습니다!')
+            }
+            console.log('data: ', data);
+          })
         }
       });
     </script>

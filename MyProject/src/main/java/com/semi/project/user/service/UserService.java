@@ -16,6 +16,7 @@ import com.semi.project.festival.dto.ReplyResponseDTO;
 import com.semi.project.festival.entity.Festival;
 import com.semi.project.user.dto.RequestDTO;
 import com.semi.project.user.dto.ResponseDTO;
+import com.semi.project.user.dto.likeDTO;
 import com.semi.project.user.entity.User;
 import com.semi.project.user.mapper.IUserMapper;
 
@@ -91,7 +92,7 @@ public class UserService {
 		return mapper.getEmail(email);
 	}
 
-	public void registFtvLike(RequestDTO dto) {
+	public void registFtvLike(likeDTO dto) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", dto.getUserId());
 		map.put("ftvNum", dto.getFtvNum());

@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
-import com.semi.project.festival.dto.ReplyResponseDTO;
 import com.semi.project.user.dto.RequestDTO;
+import com.semi.project.user.dto.likeDTO;
 import com.semi.project.user.service.UserService;
 import com.semi.project.util.MailSenderService;
 
@@ -142,12 +141,21 @@ public class UserController {
 		      return service.getLikeList(userId);
 		}
 		
+		
 	//좋아요 목록 저장(비동기)
 	@PostMapping("/likeList")
 	@ResponseBody
-	public void registFtvLike(@RequestBody RequestDTO dto) {
+	public String registFtvLike(@RequestBody likeDTO dto) {
 		log.info("userId: {}, ftvNum: {}", dto.getUserId(), dto.getFtvNum());
 		service.registFtvLike(dto);
+		if (dto.getUserId() != null) {
+			return "true";
+		} else {
+			return "false";
+		}
+		
+	// 
+		
 	}
 	
 	

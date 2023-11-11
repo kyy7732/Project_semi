@@ -52,9 +52,9 @@
 
 	
 	<select id="getLikeList" resultType="festival">
-		SELECT * FROM ftv_like
-		JOIN festival
-		ON ftv_like.ftv_num = festival.ftv_num
+		SELECT f.*, fl.like_num FROM ftv_like fl
+		JOIN festival f
+		ON fl.ftv_num = f.ftv_num
 		WHERE user_id = #{userId}
 	</select>
 </mapper>

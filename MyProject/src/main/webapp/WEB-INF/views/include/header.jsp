@@ -300,6 +300,8 @@ prefix="c" %>
           X
         </button>
       </div>
+
+      <!-- 페이징 목록 -->
       <div class="board_list_wrap">
         <div class="board_list">
           <c:forEach
@@ -307,7 +309,7 @@ prefix="c" %>
             begin="${pc.begin}"
             end="${pc.end}"
           >
-            <div class="ftv1">
+            <div class="ftv">
               <div class="num">${num}</div>
               <div class="modal_title"><a href="#">${ftvName}</a></div>
               <a href="#"><div class="likeBtn">♡</div></a>
@@ -377,8 +379,10 @@ prefix="c" %>
           .then((list) => {
             console.log(list);
             for (like of list) {
-              str += `<div>` + like + `</div>`;
+              str += `<div>` + like.ftvName + `/` + like.url + `</div>`;
             }
+
+            document.getElementById('')
           });
       };
 
