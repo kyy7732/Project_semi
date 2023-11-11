@@ -401,7 +401,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     </div>
 
     <!-- 모달 -->
-    <div
+    <!-- <div
       class="modal fade"
       id="snsModal"
       role="dialog"
@@ -450,11 +450,11 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c6f403205c2f67b836ea3a0e1fc26f5&libraries=services,clusterer,drawing"
     ></script>
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -490,8 +490,9 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       let polygons = [];
       // var polygonPath = [];
       var points = [];
-      //
-      let Colorflag = false;
+      // 지도 클릭시 색상 변경
+      let colorflag = false;
+      let moveflag = false;
 
       // init('json/sido.json');
       $.getJSON(jsonLocation, function (data) {
@@ -507,18 +508,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         });
       });
-
-
-      /* 색깔 */
-      // if (!Colorflag) {
-      //   $.getJSON(jsonLocation, function (data) {
-      //     var data = data.features;
-      //     var coordinates = [];
-      //     var name = '';
-      //     $.each(data, function (i, val) {
-      //       if (val.geometry.type == 'Polygon') {
-      //         coordinates = val.geometry.coordinates;
-      //         name = val.properties.SIG_KOR_NM;
 
       //줌 전역으로?
       //폴리곤 표시
@@ -557,17 +546,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             // level 에 따라 다른 json 파일을 사용한다.
             console.log('디테일 모드다!');
             detailMode = true;
-            Colorflag = true; // 색 없어야
+            moveflag = true;
+            // colorflag = true; // 색 없어야
             removePolygon();
             init('/resources/external_json/sig.json');
-
-            //여기서 계절 버튼 누르면 요청.
           } else if (detailMode && level > 10) {
             // level 에 따라 다른 json 파일을 사용한다.
             console.log('디테일 모드 아니다!');
-
             detailMode = false;
-            Colorflag = false; // 색 있어야
+            // colorflag = false; // 색 있어야
             removePolygon();
             init('/resources/external_json/sido.json');
           }
@@ -588,24 +575,49 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         );
 
+        /* 색깔 */
+        // if (!colorflag) {
+        //   $.getJSON(jsonLocation, function (data) {
+        //     var data = data.features;
+        //     var coordinates = [];
+        //     var name = '';
+        //     $.each(data, function (i, val) {
+        //       if (val.geometry.type == 'Polygon') {
+        //         coordinates = val.geometry.coordinates;
+        //         name = val.properties.SIG_KOR_NM;
+        //       }
+        //     });
+        //   });
+        // }
+
         kakao.maps.event.addListener(
           polygon,
           'mousemove',
           function (mouseEvent) {
-
-            Colorflag = false; // 색 있어야
+            // colorflag = false; // 색 있어야
             customOverlay.setPosition(mouseEvent.latLng);
           }
         );
+
+        kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+          // for (let i = 0; i < 5; i++) {
+          // console.log('반복문 실행?');
+          map.setLevel(11); // level에 따라 이벤트 변경
+          var latlng = mouseEvent.latLng;
+          // 지도의 중심을 부드럽게 클릭한 위치로 이동시킵니다.
+          map.panTo(latlng);
+          polygon.setOptions({ fillColor: '#00ff0000' });
+          // }
+        });
 
         kakao.maps.event.addListener(
           polygon,
           'mouseout',
           function (mouseEvent) {
             // console.log('마우스아웃!');
-
             //customOverlay.setPosition(mouseEvent.latLng); // 추가
             polygon.setOptions({ fillColor: '#EFFFED' });
+            // 00ff0000
             // setTimeout(customOverlay.setMap(null), 10);
             customOverlay.setMap(null);
           }
@@ -649,64 +661,64 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         position: coords,
                       });
 
+                      // content = document.createElement('div');
+                      // content.innerHTML = data[i].ftvName;
+                      // content.style.cssText =
+                      //   'background: white; border: 1px solid black';
 
-                      content = document.createElement('div');
-                      content.innerHTML = data[i].ftvName;
-                      content.style.cssText =
-                        'background: white; border: 1px solid black';
+                      // like = document.createElement('img');
+                      // like.setAttribute(
+                      //   'src',
+                      //   '/resources/static/img/like.png'
+                      // );
+                      // like.setAttribute(
+                      //   'alt',
+                      //   'likeIconNotClicked:' + data[i].ftvNum
+                      // );
+                      // like.setAttribute('height', 24); //px
+                      // like.setAttribute('width', 24);
+                      // content.appendChild(like);
 
-                      like = document.createElement('img');
-                      like.setAttribute(
-                        'src',
-                        '/resources/static/img/like.png'
-                      );
-                      like.setAttribute(
-                        'alt',
-                        'likeIconNotClicked:' + data[i].ftvNum
-                      );
-                      like.setAttribute('height', 24); //px
-                      like.setAttribute('width', 24);
-                      content.appendChild(like);
+                      // like.onclick = function () {
+                      //   console.log('좋아요 클릭했다!');
+                      //   like.setAttribute(
+                      //     'src',
+                      //     '/resources/static/img/likeDarker.png'
+                      //   );
+                      //   like.setAttribute('alt', 'likeIconClicked');
+                      //   like.setAttribute('height', 24); //px
+                      //   like.setAttribute('width', 24);
+                      //   content.appendChild(like);
+                      // };
 
-                      like.onclick = function () {
-                        console.log('좋아요 클릭했다!');
-                        like.setAttribute(
-                          'src',
-                          '/resources/static/img/likeDarker.png'
-                        );
-                        like.setAttribute('alt', 'likeIconClicked');
-                        like.setAttribute('height', 24); //px
-                        like.setAttribute('width', 24);
-                        content.appendChild(like);
-                      };
+                      // urlDiv = document.createElement('div');
+                      // url = document.createElement('a');
+                      // url.setAttribute('href', data[i].url);
+                      // url.setAttribute('target', '_blank');
+                      // url.innerHTML = '홈페이지';
+                      // urlDiv.appendChild(url);
+                      // content.appendChild(urlDiv);
+                      // url.onclick = function () {
+                      //   if (data[i].url === null)
+                      //     alert('해당 링크가 존재하지 않습니다!');
+                      //   return;
+                      // };
 
-                      urlDiv = document.createElement('div');
-                      url = document.createElement('a');
-                      url.setAttribute('href', data[i].url);
-                      url.setAttribute('target', '_blank');
-                      url.innerHTML = '홈페이지';
-                      urlDiv.appendChild(url);
-                      content.appendChild(urlDiv);
-                      url.onclick = function () {
-                        if (data[i].url === null)
-                          alert('해당 링크가 존재하지 않습니다!');
-                      };
+                      // roadAddr = document.createElement('div');
+                      // roadAddr.innerHTML = data[i].roadAddr;
+                      // content.appendChild(roadAddr);
 
-                      roadAddr = document.createElement('div');
-                      roadAddr.innerHTML = data[i].roadAddr;
-                      content.appendChild(roadAddr);
+                      // time = document.createElement('div');
+                      // time.innerHTML =
+                      //   data[i].startDate + ' ~ ' + data[i].endDate;
+                      // content.appendChild(time);
 
-                      time = document.createElement('div');
-                      time.innerHTML =
-                        data[i].startDate + ' ~ ' + data[i].endDate;
-                      content.appendChild(time);
-
-                      var closeBtn = document.createElement('button');
-                      closeBtn.innerHTML = '닫기';
-                      closeBtn.onclick = function () {
-                        overlay.setMap(null);
-                      };
-                      content.appendChild(closeBtn);
+                      // var closeBtn = document.createElement('button');
+                      // closeBtn.innerHTML = '닫기';
+                      // closeBtn.onclick = function () {
+                      //   overlay.setMap(null);
+                      // };
+                      // content.appendChild(closeBtn);
 
                       // 마커 위에 커스텀오버레이를 표시합니다
                       // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -739,34 +751,65 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                   }
                 );
               } // for문 끝
-            }); //.then(data)끝
 
+              // console.log('name:if전', name);
+
+              // if (detailMode) {
+              //   kakao.maps.event.addListener(polygon, 'click', function () {
+              //     console.log('name에서 커서 빠졌을때', detailMode);
+              //     // setTimeout(() => {
+              //     displayArea(coordinates, name);
+              //     // }, 200);
+              //   });
+              //   console.log('디테일모드??:', detailMode);
+
+              //   // colorflag = true; // 색 있어야
+              //   map.setLevel(11); // level에 따라 이벤트 변경
+              //   var latlng = mouseEvent.latLng;
+              //   polygon.setOptions({ fillOpacity: 0 });
+              //   // 지도의 중심을 부드럽게 클릭한 위치로 이동시킵니다.
+              //   map.panTo(latlng);
+              //   detailMode = false;
+              // }
+              // // }, 100);
+              // else if (!detailMode) {
+              //   console.log('디테일모드??:', detailMode);
+              //   // colorflag = true; // 색 있어야
+              //   map.setLevel(11); // level에 따라 이벤트 변경
+              //   var latlng = mouseEvent.latLng;
+              //   polygon.setOptions({ fillOpacity: 0 });
+              //   // 지도의 중심을 부드럽게 클릭한 위치로 이동시킵니다.
+              //   map.panTo(latlng);
+              //   kakao.maps.event.addListener(polygon, 'click', function () {
+              //     console.log('name에서 커서 빠졌을때', detailMode);
+              //     // setTimeout(() => {
+              //     displayArea(coordinates, name);
+              //     // }, 200);
+              //   });
+              //   detailMode = true;
+              // }
+            }); //.then(data)끝
 
           // 클릭시 확대
           //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
 
           // removePolygon();
 
-          if (!detailMode) {
-            Colorflag = false; // 색 있어야
-            map.setLevel(10); // level에 따라 이벤트 변경
-            var latlng = mouseEvent.latLng;
-            polygon.setOptions({ fillOpacity: 0.7 });
+          // setTimeout(() => {
 
-            // 지도의 중심을 부드럽게 클릭한 위치로 이동시킵니다.
-            map.panTo(latlng);
-          } else {
-            Colorflag = true; // 색 없어야
+          // else {
+          //   colorflag = true; // 색 없어야
 
-            while (Colorflag) {
-              polygon.setOptions({ fillOpacity: 0 });
-              Colorflag = false;
-            }
-            var latlng = mouseEvent.latLng;
-            map.panTo(latlng);
-            // 클릭 이벤트 함수
-            // callFunctionWithRegionCode(area.location);
-          }
+          //   while (colorflag) {
+          //     console.log('디테임모드?? true');
+          //     polygon.setOptions({ fillOpacity: 0 });
+          //     colorflag = false;
+          //   }
+          //   var latlng = mouseEvent.latLng;
+          //   map.panTo(latlng);
+          //   // 클릭 이벤트 함수
+          //   // callFunctionWithRegionCode(area.location);
+          // }
         }); // 폴리곤 클릭 이벤트 끝
       } // displayArea() end
 
@@ -878,6 +921,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             })
               .then((res) => res.json())
               .then((data) => {
+                console.log(data);
                 for (var i = 0; i < data.length; i++) {
                   geocoder.addressSearch(
                     data[i].roadAddr,
