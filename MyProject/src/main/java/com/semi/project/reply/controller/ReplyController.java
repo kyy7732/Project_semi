@@ -31,7 +31,7 @@ public class ReplyController {
 		System.out.println("/reply: GET!");
 		
 		// 검색 시 데이터가 없을 때
-		PageCreator creator; 
+		PageCreator creator; 	
 		int totalCount = service.getTotal(ftvNum); // 조회될 댓글 개수를 구해옴
 		
 		if(totalCount == 0) { // 에초에 검색을 안했을때로 
