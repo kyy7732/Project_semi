@@ -341,7 +341,7 @@ div.btn_area {
                             <td class="pn_td">
                                 <input type="text" id="email" name="email" class="join" value="${userInfo.useremail}" disabled="disabled">
                                 @
-                                <input class="join type="text" class="box" id="email1" name="email1" value="${userInfo.emailDomain}" disabled="disabled" >&nbsp;
+                                <input class="join" type="text" class="box" id="email1" name="email1" value="${userInfo.emailDomain}" disabled="disabled" >&nbsp;
                                     <select type="select" class="box" id="email2" name="email2">
                                     	<option value="type">::직접입력::</option>
                                         <option value="naver.com">naver.com</option>
