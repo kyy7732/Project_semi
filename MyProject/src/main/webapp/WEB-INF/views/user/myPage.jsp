@@ -242,7 +242,7 @@ table.table_type td {
 div.btn_area {
   text-align: center;
   margin: -280px;
-  margin-left: -150px;
+  margin-left: 180px;
 }
 
 </style>
@@ -434,11 +434,9 @@ div.btn_area {
       }
     }
 
-
       // update로 보내기
       //회원정보 수정 요청 검사 스크립트
       
-
       
     </script>
 
