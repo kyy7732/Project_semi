@@ -1,8 +1,7 @@
-package com.semi.project.user.dto;
-
-import com.semi.project.user.entity.FtvLike;
+package com.semi.project.user.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,16 +12,11 @@ import lombok.ToString;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class likeDTO {
+@Builder
+public class FtvLike {
 	
 	private String userId;
 	private int ftvNum;
+	private int likeNum;
 
-	public FtvLike toEntity(likeDTO dto) {
-		return FtvLike.builder()
-					.userId(this.userId)
-					.ftvNum(this.ftvNum)
-					.build();
-	}
-	
 }

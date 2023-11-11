@@ -493,8 +493,9 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           <div class="link-inner">
             <a
               href="##"
-              class="glyphicon-thumbs-up"
-              ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
+              class="likeSelect"
+              id="likeSelect"
+              >좋아요<img class="likeSelect" id="likeSelectImg" src="${pageContext.request.contextPath}/img/like.png"></img></a
             >
             <!-- src\main\webapp\resources\static\img\like.png -->
             <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
@@ -524,7 +525,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c6f403205c2f67b836ea3a0e1fc26f5&libraries=services,clusterer,drawing"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"
     ></script>
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
@@ -824,27 +825,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                 );
               } // for문 끝
             }); //.then(data)끝
-
-          // 클릭시 확대
-          //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
-
-          // removePolygon();
-
-          // setTimeout(() => {
-
-          // else {
-          //   colorflag = true; // 색 없어야
-
-          //   while (colorflag) {
-          //     console.log('디테임모드?? true');
-          //     polygon.setOptions({ fillOpacity: 0 });
-          //     colorflag = false;
-          //   }
-          //   var latlng = mouseEvent.latLng;
-          //   map.panTo(latlng);
-          //   // 클릭 이벤트 함수
-          //   // callFunctionWithRegionCode(area.location);
-          // }
         }); // 폴리곤 클릭 이벤트 끝
       } // displayArea() end
 
@@ -1484,34 +1464,63 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         };
       }
 
-      let userIdVal = '${login}';
-      document.querySelector('.link-inner').addEventListener('click', (e) => {
-        e.preventDefault();
-        // console.log(userIdVal);
-        if (e.target.matches('.glyphicon-thumbs-up')) {
-          if (userIdVal === null) {
-            console.log('login: ', userIdVal);
-            alert('로그인이 필요합니다.');
-            return;
-          }
+      // 좋아요 관련 함수
+      const $likeSelete = document.querySelector('.likeSelect');
 
-          console.log('getFtvNum: ', getFtvNum);
-          fetch('${pageContext.request.contextPath}/user/likeList', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              userId: userIdVal,
-              ftvNum: getFtvNum,
-            }),
-          })
-            .then((res) => res.text())
-            .then((data) => {
-              if (data) {
-                alert('좋아요를 눌렀습니다!');
-              }
-              console.log('data: ', data);
-            });
+      $likeSelete.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('좋아요 버튼 클릭!');
+
+        const userIdVal = '${login}';
+        if (userIdVal === '') {
+          alert('로그인이 필요합니다.');
+          return;
         }
+
+        fetch('${pageContext.request.contextPath}/user/like', {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId: userIdVal,
+            ftvNum: getFtvNum,
+          }),
+        })
+          .then((res) => res.text())
+          .then((data) => {
+            console.log('data: ', data);
+            if (getFtvNum != ftvNum) {
+              console.log('getFtvNum, ftvNum', getFtvNum, ftvNum);
+              e.target.firstElementChild.setAttribute(
+                'src',
+                '${pageContext.request.contextPath}/img/like.png'
+              );
+            }
+            if (data === 'like') {
+
+                document.getElementById('likeSelectImg').setAttribute(
+                  'src',
+                  '${pageContext.request.contextPath}/img/likeDarker.png'
+                );likeSelect
+                document.getElementById('likeSelect').setAttribute(
+                  'src',
+                  '${pageContext.request.contextPath}/img/likeDarker.png'
+                ); 
+
+
+            } else {
+              document.getElementById('likeSelectImg').setAttribute(
+                  'src',
+                  '${pageContext.request.contextPath}/img/like.png'
+                );
+                document.getElementById('likeSelect').setAttribute(
+                'src',
+                '${pageContext.request.contextPath}/img/like.png'
+              );
+
+            } 
+          });
       });
     </script>
   </body>

@@ -5,11 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
+import org.springframework.ui.Model;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
 import com.semi.project.festival.dto.ReplyResponseDTO;
@@ -97,6 +95,17 @@ public class UserService {
 		map.put("userId", dto.getUserId());
 		map.put("ftvNum", dto.getFtvNum());
 		mapper.registFtvLike(map);		
+	}
+
+	// 좋아요 취소
+	public String likeDelete(Map<String, String> params) {
+		if(mapper.searchLike(params) == 0) {
+			mapper.createLike(params);
+			return "like";
+		} else {
+			mapper.deleteLike(params);
+			return "delete";
+		}
 	}
 }
 

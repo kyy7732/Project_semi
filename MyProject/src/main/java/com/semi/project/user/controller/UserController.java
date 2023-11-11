@@ -1,11 +1,13 @@
 package com.semi.project.user.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -153,15 +155,22 @@ public class UserController {
 		} else {
 			return "false";
 		}
-		
-	// 
-		
 	}
-	
-	
-	
-	
-	
+		
+	// 좋아요 확인, 취소
+	@PostMapping("/like")
+	@ResponseBody
+	public String likeDelete(@RequestBody Map<String, String> params) {
+		log.info("/like: POST, params: {}", params);
+		return service.likeDelete(params);
+	}
+		
 	
 	
 }
+	
+	
+	
+	
+	
+

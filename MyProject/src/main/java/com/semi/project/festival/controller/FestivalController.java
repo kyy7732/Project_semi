@@ -54,10 +54,7 @@ public class FestivalController {
 		return service.getFestivalByName(filterValue);
 	}
 
-//	// 축제 번호 조회
-//	@GetMapping("/ftvNum")
-//	@ResponseBody
-//	public int getFtvNum(@RequestBody )
+
 
 }
 
