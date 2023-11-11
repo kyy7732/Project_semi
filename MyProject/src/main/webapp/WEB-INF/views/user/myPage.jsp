@@ -264,7 +264,7 @@ div.btn_area {
                 </li>
                 <div id="menu2">
                 <li class="border">
-                    <a href="${pageContext.request.contextPath}/user/myPage" class="aButton"><h2 class="hTable">비밀번호 변경</h2></a>
+                    <a href="${pageContext.request.contextPath}/user/myPage" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
                     <!--<a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>-->
                 </li>
                 <li class="border">
@@ -342,6 +342,20 @@ div.btn_area {
                                 <input type="text" id="email" name="email" class="join" value="${userInfo.useremail}" disabled="disabled">
                                 @
                                 <input class="join" type="text" class="box" id="email1" name="email1" value="${userInfo.emailDomain}" disabled="disabled" >&nbsp;
+                                    <select type="select" class="box" id="email2" name="email2">
+                                    	<option value="type">::직접입력::</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
+                                    </select>&nbsp;&nbsp;
+                                    <span class="btn b_bdcheck">
+                                        <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
+                                    </span>
+
+                                    <div class="mail_check_box">
+                                    	<input type="text" class="form_control mail_check_input" placeholder="인증번호 6자리를 입력하세요." maxlength="6" style="width: 185px;">
+                                    	<span id="mail_check_warn"></span>
+                                    </div>
                             </td>
                         </tr>
                     </tbody>
