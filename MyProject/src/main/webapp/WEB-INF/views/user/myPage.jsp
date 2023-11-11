@@ -507,11 +507,9 @@ div.btn_area {
       }
     }
 
-
       // update로 보내기
       //회원정보 수정 요청 검사 스크립트
       
-
       
     </script>
 

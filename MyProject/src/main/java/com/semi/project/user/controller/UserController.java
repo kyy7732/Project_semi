@@ -144,7 +144,7 @@ public class UserController {
 	//좋아요 목록 요청(동기)
 	@GetMapping("/likeList")
 	public List<FtvResponseDTO> getFtvLIkeList(@RequestParam String userId, @RequestParam int ftvNum){
-	      log.info("/festival/likeList 요청: GET! {}", userId);   
+	      log.info("/festival/likeList 요청: GET! {}", userId);
 	      return service.getLikeList(userId);
 	}
 	
