@@ -201,6 +201,10 @@ prefix="c" %>
       .portal {
         font-size: 15px;
       }
+
+      .likeBtn {
+        text-decoration: none;
+      }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
@@ -279,36 +283,26 @@ prefix="c" %>
           X
         </button>
       </div>
+
+      <!-- 페이징 목록 -->
       <div class="board_list_wrap">
         <div class="board_list">
-          <div class="ftv1">
-            <div class="num">1</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
-          <div class="ftv2">
-            <div class="num">2</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
-          <div class="ftv3">
-            <div class="num">3</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
-          <div class="ftv4">
-            <div class="num">4</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
-          <div class="ftv5">
-            <div class="num">5</div>
-            <div class="modal_title"><a href="#">글제목</a></div>
-            <div class="likebtn">♡</div>
-          </div>
+          <c:forEach
+            var="num"
+            begin="${pc.begin}"
+            end="${pc.end}"
+          >
+            <div class="ftv">
+              <div class="num">${num}</div>
+              <div class="modal_title"><a href="#">${ftvName}</a></div>
+              <a href="#"><div class="likeBtn">♡</div></a>
+            </div>
+          </c:forEach>
         </div>
       </div>
     </div>
+
+    <div></div>
 
     <script>
       function openModal(modalname) {

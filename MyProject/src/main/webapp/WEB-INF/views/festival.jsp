@@ -4,6 +4,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="./bootstrapt/css/bootstrap.min.css"
+    />
+    <script src="./bootstrapt/js/bootstrap.min.js"></script>
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link
       rel="stylesheet"
@@ -15,22 +21,13 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
     />
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link
-      href="${pageContext.request.contextPath }/css/bootstrap.css"
+      href="../../resources/static/css/bootstrap.css"
       rel="stylesheet"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!--개인 디자인 추가-->
-    <link
-      href="${pageContext.request.contextPath }/css/style.css"
-      rel="stylesheet"
-    />
-    <!-- <script src="${pageContext.request.contextPath }/js/bootstrap.js"></script>
-    <link
-      href="/resources/static/css/bootstrap.css"
-      rel="stylesheet"
-    />
-    <script src="/resources/static/js/bootstrap.js"></script> -->
 
     <meta charset="UTF-8" />
     <title>Insert title here</title>
@@ -401,7 +398,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     </div>
 
     <!-- 모달 -->
-    <div
+    <!-- <div
       class="modal fade"
       id="snsModal"
       role="dialog"
@@ -411,7 +408,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           <div class="modal-body row">
             <div class="modal-img col-sm-8 col-xs-6">
               <img
-                src="${pageContext.request.contextPath}/img/img_ready.png"
+                src="../../resources/static/img/blueSearchIcon.png"
                 id="snsImg"
                 width="100%"
               />
@@ -419,9 +416,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             <div class="modal-con col-sm-4 col-xs-6">
               <div class="modal-inner">
                 <div class="profile">
-                  <img
-                    src="${pageContext.request.contextPath}/img/profile.png"
-                  />
+                  <img src="../../resources/static/img/profile.png" />
                 </div>
                 <div class="title">
                   <p id="snsWriter">테스트</p>
@@ -450,19 +445,131 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           </div>
         </div>
       </div>
+    </div> -->
+    <div
+      class="modal fade"
+      id="testModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog"
+        role="document"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title"
+              id="exampleModalLabel"
+            >
+              축제명
+            </h5>
+            <small id="date">축제기간</small>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <label
+              for="roadAddr"
+              class="col-form-label"
+              >도로명 주소:</label
+            >
+            <div
+              class="mb-3"
+              id="roadAddr"
+            >
+              주소
+            </div>
+            <label
+              for="phone"
+              class="col-form-label"
+              >전화번호:</label
+            >
+            <div
+              class="mb-3"
+              id="phone"
+            >
+              전화번호
+            </div>
+            <label
+              for="content"
+              class="col-form-label"
+              >내용:</label
+            >
+            <div
+              class="mb-3"
+              id="content"
+            >
+              축제내용
+            </div>
+            <label
+              for="url"
+              class="col-form-label"
+              >홈페이지:</label
+            >
+            <div
+              class="mb-3"
+              id="urlBox"
+            >
+              <a
+                id="url"
+                href="##"
+                target="_blank"
+                ><span id="aContent"></span
+              ></a>
+            </div>
+          </div>
+          <div class="link-inner">
+            <a
+              href="##"
+              class="glyphicon-thumbs-up"
+              ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
+            >
+            <!-- src\main\webapp\resources\static\img\like.png -->
+            <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
+            <a href="##"
+              ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
+            >
+          </div>
+          <div class="modal-footer">
+            <a
+              class="btn"
+              id="modalY"
+              href="#"
+              target="_blank"
+              >예</a
+            >
+            <button
+              class="btn"
+              type="button"
+              data-dismiss="modal"
+            >
+              아니요
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c6f403205c2f67b836ea3a0e1fc26f5&libraries=services,clusterer,drawing"
     ></script>
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
       integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
       crossorigin="anonymous"
     ></script>
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../../resources/static/js/bootstrap.js"></script>
 
     <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -507,7 +614,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         });
       });
-
 
       /* 색깔 */
       // if (!Colorflag) {
@@ -592,7 +698,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           polygon,
           'mousemove',
           function (mouseEvent) {
-
             Colorflag = false; // 색 있어야
             customOverlay.setPosition(mouseEvent.latLng);
           }
@@ -649,7 +754,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         position: coords,
                       });
 
-
                       content = document.createElement('div');
                       content.innerHTML = data[i].ftvName;
                       content.style.cssText =
@@ -667,6 +771,8 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       like.setAttribute('height', 24); //px
                       like.setAttribute('width', 24);
                       content.appendChild(like);
+
+                      ftvNum = data[i].ftvNum;
 
                       like.onclick = function () {
                         console.log('좋아요 클릭했다!');
@@ -740,7 +846,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                 );
               } // for문 끝
             }); //.then(data)끝
-
 
           // 클릭시 확대
           //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
@@ -930,6 +1035,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
       var markers = [];
       var marker;
+      let getFtvNum; // 축제번호
 
       var content = '';
       //계절버튼 클릭 이벤트
@@ -963,6 +1069,25 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     });
                     positions.push({ latlng: coords });
 
+                    // 마커에 표시할 인포윈도우를 생성합니다
+                    var infowindow = new kakao.maps.InfoWindow({
+                      content: data[i].ftvName, // 인포윈도우에 표시할 내용
+                    });
+
+                    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                    // 이벤트 리스너로는 클로저를 만들어 등록합니다
+                    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                    kakao.maps.event.addListener(
+                      marker,
+                      'mouseover',
+                      makeOverListener(map, marker, infowindow)
+                    );
+                    kakao.maps.event.addListener(
+                      marker,
+                      'mouseout',
+                      makeOutListener(infowindow)
+                    );
+
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
@@ -971,17 +1096,33 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       // document
                       //   .getElementById('snsImg')
                       //   .setAttribute('src', src);
-                      document.getElementById('snsWriter').textContent =
+                      document.getElementById('exampleModalLabel').textContent =
                         data[i].ftvName;
-                      document.getElementById('snsRegdate').textContent =
+                      document.getElementById('date').textContent =
                         data[i].startDate + ' ~ ' + data[i].endDate;
-                      document.getElementById('snsContent').textContent =
+                      document.getElementById('roadAddr').textContent =
                         data[i].roadAddr;
+                      document.getElementById('phone').textContent =
+                        data[i].phone;
+                      document.getElementById('content').textContent =
+                        data[i].ftvContent;
+                      document
+                        .getElementById('url')
+                        .setAttribute('href', data[i].url);
+                      document.getElementById('aContent').textContent =
+                        data[i].url;
+
+                      document
+                        .getElementById('modalY')
+                        .setAttribute('href', data[i].url);
+                      document.getElementById('modalY').textContent =
+                        '축제 상세보기';
                       // addMarker(mouseEvent.latLng);
 
-                      $('#snsModal').modal('show');
+                      $('#testModal').modal('show');
 
                       // overlay.setMap(map);
+                      getFtvNum = data[i].ftvNum;
                     });
 
                     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
@@ -1001,6 +1142,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             //오버레이 여기에 두면 안뜸
           }); // .then(data => ) 끝
       }); // 클릭 이벤트 끝
+
 
       document.querySelector('.find-btn2').addEventListener('click', (e) => {
         //여름 클릭
@@ -1149,6 +1291,50 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       function hideMarkers() {
         setMarkers(null);
       }
+
+      // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+      function makeOverListener(map, marker, infowindow) {
+        return function () {
+          infowindow.open(map, marker);
+        };
+      }
+
+      // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+      function makeOutListener(infowindow) {
+        return function () {
+          infowindow.close();
+        };
+      }
+
+      let userIdVal = '${login}';
+      document.querySelector('.link-inner').addEventListener('click', (e) => {
+        e.preventDefault();
+        // console.log(userIdVal);
+        if (e.target.matches('.glyphicon-thumbs-up')) {
+          if(userIdVal === null){
+            console.log('login: ', userIdVal);
+            alert('로그인이 필요합니다.');
+            return;
+          }
+          
+          console.log('getFtvNum: ', getFtvNum);
+          fetch('${pageContext.request.contextPath}/user/likeList', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              userId: userIdVal,
+              ftvNum: getFtvNum,
+            })
+          })
+          .then(res => res.text())
+          .then(data => {
+            if (data) {
+              alert('좋아요를 눌렀습니다!')
+            }
+            console.log('data: ', data);
+          })
+        }
+      });
     </script>
   </body>
 </html>
