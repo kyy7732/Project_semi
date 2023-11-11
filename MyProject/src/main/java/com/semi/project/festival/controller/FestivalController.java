@@ -45,8 +45,7 @@ public class FestivalController {
 		return service.getFestivalByArea(name);
 	}
 	
-	
-
+		
 	// 검색창에 축제명 입력(비동기)
 	@PostMapping("/search")
 	@ResponseBody
@@ -62,6 +61,12 @@ public class FestivalController {
 		log.info("/festival/ftvList2 요청! GET!", ftvname);
 		return service.getFestivalByName(ftvname);
 	}
+
+//	// 축제 번호 조회
+//	@GetMapping("/ftvNum")
+//	@ResponseBody
+//	public int getFtvNum(@RequestBody )
+
 }
 
 

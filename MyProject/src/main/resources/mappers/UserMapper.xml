@@ -47,14 +47,14 @@
 	
 	<insert id="registFtvLike">
 		INSERT INTO ftv_like
-		(ftv_num, user_id)
-		VALUES (#{ftvNum}, #{userId})	
+		VALUES (seq_like_num.NEXTVAL, #{ftvNum}, #{userId})	
 	</insert>
 
-<!-- 	
-	<select id="getLikeList">
-		SELECT * FROM festival
-		WHERE 
+	
+	<select id="getLikeList" resultType="festival">
+		SELECT f.* FROM ftv_like fl
+		JOIN festival f
+		ON fl.ftv_num = f.ftv_num
+		WHERE user_id = #{userId}
 	</select>
-	 -->
 </mapper>
