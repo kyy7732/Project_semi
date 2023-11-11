@@ -118,7 +118,7 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
             
             <!-- 게시물이 출력될 영역 -->
             
-            <c:forEach var="vo" items="${replyList}">
+            <!-- <c:forEach var="vo" items="${replyList}">
 	                            <tr>
 	                                <td>${vo.}</td>
 	                                <td>
@@ -127,7 +127,7 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
 	                                <td>${vo.writer}</td>
 	                                <td>${vo.date}</td>
 	                            </tr>
-                            </c:forEach>
+                            </c:forEach>-->
             <li>
               <ul>
                 <li>1</li>

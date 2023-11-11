@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
-import com.semi.project.festival.dto.ReplyResponseDTO;
 import com.semi.project.user.dto.RequestDTO;
+import com.semi.project.user.dto.likeDTO;
 import com.semi.project.user.service.UserService;
 import com.semi.project.util.MailSenderService;
 
@@ -120,7 +119,7 @@ public class UserController {
 	
 	//회원정보 수정 요청(동기)
 	@PostMapping("/update")
-	public String update(RequestDTO dto) {
+	public String update(RequestDTO dto, HttpSession session) {
 		log.info("/user/update 요청: POST! {}", dto);
 		service.update(dto);
 		return "redirect:/user/myPage";
@@ -133,20 +132,33 @@ public class UserController {
 		service.delete(userId);
 		return "redirect:/";
 	}
+	
+	//좋아요 목록 요청(비동기)
+		@GetMapping("/likeList/{userId}")
+		@ResponseBody
+		public List<FtvResponseDTO> getFtvLIkeList(@PathVariable String userId){
+		      log.info("/festival/likeList 요청: GET! {}", userId);   
+		      return service.getLikeList(userId);
+		}
+		
 		
 	//좋아요 목록 저장(비동기)
 	@PostMapping("/likeList")
 	@ResponseBody
-	public void registFtvLike(@RequestParam String userId, @RequestParam int ftvNum) {
-		service.registFtvLike(userId, ftvNum);
+	public String registFtvLike(@RequestBody likeDTO dto) {
+		log.info("userId: {}, ftvNum: {}", dto.getUserId(), dto.getFtvNum());
+		service.registFtvLike(dto);
+		if (dto.getUserId() != null) {
+			return "true";
+		} else {
+			return "false";
+		}
+		
+	// 
+		
 	}
 	
-	//좋아요 목록 요청(동기)
-	@GetMapping("/likeList")
-	public List<FtvResponseDTO> getFtvLIkeList(@RequestParam String userId, @RequestParam int ftvNum){
-	      log.info("/festival/likeList 요청: GET! {}", userId);   
-	      return service.getLikeList(userId);
-	}
+	
 	
 	
 	
