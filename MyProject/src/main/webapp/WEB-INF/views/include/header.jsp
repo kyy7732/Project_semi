@@ -382,11 +382,11 @@ prefix="c" %>
               str += `<div>` + like.ftvName + `/` + like.url + `</div>`;
             }
 
-            document.getElementById('')
+            document.getElementById('');
           });
       };
 
-      document.querySelector('.likeBtn').onclick = () => {};
+      // document.querySelector('.likeBtn').onclick = () => {};
     </script>
   </body>
 </html>
