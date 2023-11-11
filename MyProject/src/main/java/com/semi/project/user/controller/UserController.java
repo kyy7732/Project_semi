@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.context.annotation.Description;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.semi.project.festival.dto.FtvResponseDTO;
-import com.semi.project.festival.dto.ReplyResponseDTO;
 import com.semi.project.user.dto.RequestDTO;
 import com.semi.project.user.service.UserService;
 import com.semi.project.util.MailSenderService;
@@ -147,9 +148,5 @@ public class UserController {
 	      log.info("/festival/likeList 요청: GET! {}", userId);   
 	      return service.getLikeList(userId);
 	}
-	
-	
-	
-	
 	
 }

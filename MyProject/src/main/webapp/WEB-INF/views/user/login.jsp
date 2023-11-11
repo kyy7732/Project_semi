@@ -181,25 +181,6 @@ prefix="spring"%>
       </div>
     </div>
 
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script
-      type="text/javascript"
-      src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-      charset="utf-8"
-    ></script>
-    <script type="text/javascript">
-      var clientId = `${clientId}`;
-      var callbackUrl = 'https://localhost:80/project/user/login.jsp';
-      var naver_id_login = new naver_id_login(clientId, callbackUrl);
-
-      var state = naver_id_login.getUniqState();
-      naver_id_login.setButton('green', 2, 45);
-      naver_id_login.setDomain('localhost:8000/BBS/main.jsp');
-      naver_id_login.setState(state);
-      naver_id_login.setPopup();
-      naver_id_login.init_naver_id_login();
-    </script>
-
     <script>
       const msg = '${msg}';
       if (msg === 'joinSuccess') {
@@ -220,24 +201,50 @@ prefix="spring"%>
 
         document.loginForm.submit();
       };
+    </script>
+    <script
+      type="text/javascript"
+      src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+      charset="utf-8"
+    ></script>
+    <script type="text/javascript">
+      var clientId = `${clientId}`;
+      var callbackUrl = 'https://localhost:80/project/user/login.jsp';
+      var naver_id_login = new naver_id_login(clientId, callbackUrl);
 
-      ////////////카카오 ///////////////
-      window.Kakao.init('');
+      var state = naver_id_login.getUniqState();
+      naver_id_login.setButton('green', 2, 45);
+      naver_id_login.setDomain('localhost:8000/BBS/main.jsp');
+      naver_id_login.setState(state);
+      naver_id_login.setPopup();
+      naver_id_login.init_naver_id_login();
+    </script>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      window.Kakao.init('7de3b0c0985fa8044b6661bdd8144459');
+
       function kakaoLogin() {
         window.Kakao.Auth.login({
           scope: 'profile_nickname',
-          success: function (authObj) {
+          success: (authObj) => {
+            console.log('authObj : ');
             console.log(authObj);
+
             window.Kakao.API.request({
               url: '/v2/user/me',
               success: (res) => {
-                const kakao_account = res.kakao_account;
-                console.log(kakao_account);
+                console.log('success: ');
+                console.log(res);
+              },
+              fail: (res) => {
+                console.log(res);
               },
             });
           },
         });
       }
+     
     </script>
   </body>
 </html>

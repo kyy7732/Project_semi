@@ -1,11 +1,10 @@
 package com.semi.project.reply.service;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.semi.project.reply.dto.ReplyDetailDTO;
 import com.semi.project.reply.dto.UserReplyModifyRequestDTO;
 import com.semi.project.reply.dto.UserReplyRequestDTO;
 import com.semi.project.reply.dto.UserReplyResponseDTO;
@@ -28,6 +27,7 @@ public class ReplyService implements IReplyService {
 				.commentNum(dto.getCommentNum())
 				.content(dto.getContent())
 				.userId(dto.getUserId())
+				
 				.build());
 	}
 

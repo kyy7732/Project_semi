@@ -1,9 +1,9 @@
 package com.semi.project.reply.controller;
 
-import org.springframework.stereotype.Controller;  
+import org.springframework.stereotype.Controller; 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,8 +27,8 @@ public class ReplyController {
 
 	// 댓글 목록 요청
 	@GetMapping("/replyList/{ftvNum}")
-	public void replyList(Page page, int ftvNum, Model model) {
-		System.out.println("/reply: GET!");
+	public void replyList(Page page,Model model, int ftvNum) {
+		log.info("/reply: GET!");
 		
 		// 검색 시 데이터가 없을 때
 		PageCreator creator; 

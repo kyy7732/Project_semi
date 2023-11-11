@@ -65,9 +65,6 @@ li.border {
     padding: 12px;
     text-decoration-line: none;
     color: #0356A9;
-    height: 48px;
-    text-align: center;
-    margin: 0 auto;
 
 }
 .aButton:hover{
@@ -248,9 +245,6 @@ div.btn_area {
   margin-left: -150px;
 }
 
-h2{
-  text-align: center;
-}
 </style>
 
 </head>
@@ -270,11 +264,11 @@ h2{
                 </li>
                 <div id="menu2">
                 <li class="border">
-                    <a href="${pageContext.request.contextPath}/user/myPage" class="aButton"><h2 class="hTable">비밀번호 변경</h2></a>
+                    <a href="${pageContext.request.contextPath}/user/myPage" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
                     <!--<a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>-->
                 </li>
                 <li class="border">
-                    <a href="${pageContext.request.contextPath}/user/reply" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
+                    <a href="${pageContext.request.contextPath}/reply/replyList" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
                 </li>
                 <li class="border">
                     <a href="${pageContext.request.contextPath}/user/likeList" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
@@ -354,7 +348,9 @@ h2{
                                         <option value="gmail.com">gmail.com</option>
                                         <option value="daum.net">daum.net</option>
                                     </select>&nbsp;&nbsp;
-                                    
+                                    <span class="btn b_bdcheck">
+                                        <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
+                                    </span>
 
                                     <div class="mail_check_box">
                                     	<input type="text" class="form_control mail_check_input" placeholder="인증번호 6자리를 입력하세요." maxlength="6" style="width: 185px;">
