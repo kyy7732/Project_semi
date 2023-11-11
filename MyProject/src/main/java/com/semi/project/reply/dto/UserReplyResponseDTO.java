@@ -23,14 +23,14 @@ public class UserReplyResponseDTO {
 	private int commentNum;
 	private String content;
 	private String userId;
-	private String date;
+	private String regDate;
 	
 	public UserReplyResponseDTO(Reply reply) {
 		super();
 		this.userId = reply.getUserId();
 		this.commentNum = reply.getCommentNum();
 		this.content = reply.getContent();
-		this.date = makePrettierDateString(reply.getRegDate());
+		this.regDate = makePrettierDateString(reply.getRegDate());
 	}
 	
 	static String makePrettierDateString(LocalDateTime regDate) { //DTO 패키지 안에서만 사용가능하게 default값으로

@@ -4,11 +4,11 @@
 
 <mapper namespace="com.semi.project.reply.mapper.IReplyMapper">
 	
-	<insert id="replyRegist">
+	<!--  <insert id="replyRegist">
 		INSERT INTO reply
 		(comment_num, content, user_id, ftv_num)
 		VALUES(SEQ_reply_comment_num.NEXTVAL, #{content}, #{userId}, #{ftvNum})
-	</insert>
+	</insert>  -->
 	
 	<select id="getList" resultType="reply">
 		SELECT  * FROM
