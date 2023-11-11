@@ -27,6 +27,7 @@ public class ReplyController {
 	// 댓글 페이지
 	@GetMapping("/replyList")
 	public void reply() {};
+	
 
 	// 댓글 목록 요청
 	@GetMapping("/replyList/{ftvNum}")

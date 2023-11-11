@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
+pageEncoding="UTF-8"%>  
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -120,14 +121,16 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
             
             <!-- 게시물이 출력될 영역 -->
             
-            <!-- <c:forEach var="vo" items="${replyList}">
+            <c:forEach var="vo" items="${replyList}">
 	                            <tr>
 	                                <td>${vo.commentNum}</td>
-	                                <td>${vo.content}</td>
+	                                <td>
+	                                <a href="${pageContext.request.contextPath}/user/userContent?bno=${vo.bno}&pageNo=${pc.page.pageNo}&amount=${pc.page.amount}&keyword=${pc.page.keyword}&condition=${pc.page.condition}">${vo.content}</a>
+	                                </td>
 	                                <td>${vo.userId}</td>
 	                                <td>${vo.regDate}</td>
 	                            </tr>
-                            </c:forEach>-->
+                            </c:forEach>
             <li>
               <ul>
                 <li>1</li>
