@@ -268,7 +268,7 @@ div.btn_area {
                     <!--<a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>-->
                 </li>
                 <li class="border">
-                    <a href="${pageContext.request.contextPath}/user/reply" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
+                    <a href="${pageContext.request.contextPath}/reply/replyList" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
                 </li>
                 <li class="border">
                     <a href="${pageContext.request.contextPath}/user/likeList" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
@@ -294,7 +294,7 @@ div.btn_area {
                                 <label for="userId">아이디</label>
                             </th>
                             <td>
-                                    <input class="join" type="text" id="userId" name="userId" value="${login}" disabled="disabled" />
+                                    <input class="join" type="text" id="userId" name="userId" value="${login}" readonly/>
                             </td>
                         </tr>
                         
@@ -341,30 +341,15 @@ div.btn_area {
                             <td class="pn_td">
                                 <input type="text" id="email" name="email" class="join" value="${userInfo.useremail}" disabled="disabled">
                                 @
-                                <input class="join type="text" class="box" id="email1" name="email1" value="${userInfo.emailDomain}" disabled="disabled" >&nbsp;
-                                    <select type="select" class="box" id="email2" name="email2">
-                                    	<option value="type">::직접입력::</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="daum.net">daum.net</option>
-                                    </select>&nbsp;&nbsp;
-                                    
-
-                                    <div class="mail_check_box">
-                                    	<input type="text" class="form_control mail_check_input" placeholder="인증번호 6자리를 입력하세요." maxlength="6" style="width: 185px;">
-                                    	<span id="mail_check_warn"></span>
-                                    </div>
+                                <input class="join" type="text" class="box" id="email1" name="email1" value="${userInfo.emailDomain}" disabled="disabled" >&nbsp;
                             </td>
                         </tr>
-                        
-                        
-
                     </tbody>
                 </table>
               </div>
                 <div class="btn_area">
                     <span class="btn b_ok">
-                        <button href="$" class="button"><a>수정</a></button>
+                        <button type="submit" href="$" class="button"><a>수정</a></button>
                     </span>
                 </div>
         </form>
@@ -413,8 +398,6 @@ div.btn_area {
             // })
         }
 
-    
-
     const $userPwC = document.getElementById('userPwC');
     const $msgPwC = document.getElementById('msgPwC');
     $userPwC.onkeyup = () => {
@@ -426,76 +409,6 @@ div.btn_area {
             $msgPwC.innerHTML = '비밀번호가 일치하지 않습니다.';
         }
     }
-
-        // 이메일 직접입력 구현
-        const emailInput = document.querySelector('#email1')
-        const emailBox = document.querySelector('#email2')
-        
-        emailBox.addEventListener('change', (event) => {
-            if(event.target.value !== "type"){
-                emailInput.value = event.target.value
-                emailInput.disabled = true
-            } else {
-                emailInput.value = ""
-                emailInput.disabled = false
-            }
-        })
-        
-     document.getElementById('check_btn').onclick = function () {
-    const email =
-      document.getElementById('email').value +
-      document.getElementById('email1').value;
-
-    fetch('${pageContext.request.contextPath}/user/email', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-      body: email,
-    })
-      .then((res) => res.text())
-      .then((data) => {
-        console.log('인증번호: ', data);
- 
-        document.querySelector('.mail_check_input').disabled = false; 
-        code = data; 
-        alert('인증번호가 전송되었습니다. 확인 후 입력란에 정확히 입력하세요.');
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('알 수 없는 문제가 발생했습니다. 관리자에게 문의하세요!');
-      });
-  };
-
-
-  document.querySelector('.mail_check_input').onblur = function (e) {
-    const inputCode = e.target.value;
-    const $resultMsg = document.getElementById('mail_check_warn');
-    console.log('사용자가 입력한 값: ', inputCode);
-
-    if (inputCode === code) {
-      $resultMsg.textContent = '인증번호가 일치합니다.';
-      $resultMsg.style.color = 'green';
-
-        document.getElementById('check_btn').disabled = true;
-        document.getElementById('email').setAttribute('readonly', true);
-    	  const select = document.getElementById('email2');
-    	  const input = document.getElementById('email1');
-        
-    	    select.disabled = true;
-    	    input.readOnly = true;
-
-          select.addEventListener('change', function() {
-    	    input.value = select.value;
-    	  })	
-          e.target.style.display = 'none';
-        } else {
-            $resultMsg.textContent = '인증번호를 다시 확인해 주세요.';
-            $resultMsg.style.color = 'red';
-            e.target.focus();
-        }
-     
-    	};
 
       // 회원탈퇴
       document.getElementById('deleteBtn').onclick = e => {

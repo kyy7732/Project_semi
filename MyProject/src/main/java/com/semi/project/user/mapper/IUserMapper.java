@@ -1,7 +1,9 @@
 package com.semi.project.user.mapper;
 
+import java.util.List;
 import java.util.Map;
 
+import com.semi.project.festival.entity.Festival;
 import com.semi.project.user.entity.User;
 
 public interface IUserMapper {
@@ -30,14 +32,14 @@ public interface IUserMapper {
 	void delete(String userId);
 
 	//좋아요 목록 저장
-	
+	void registFtvLike(Map<String, Object> map);
 	
 	//좋아요 목록 조회
-	void getLikeList(String userId);
+	List<Festival> getLikeList(String userId);
 
 
 
-	void registFtvLike(Map<String, Object> map);
+
 
 
 
