@@ -895,13 +895,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       let filterValue;
       document.addEventListener('DOMContentLoaded', () => {
         const searchVal = document.querySelector('.find');
+        // console.log(searchVal);
         const searchBtn = document.querySelector('#search_btn');
 
         //영어, 스페이스 입력 시 요청되는 문제 있음!
-        searchVal.addEventListener('keypress', function () {
+        searchVal.addEventListener('keypress', function (e) {
+          //엔터키 누른 경우
+          console.log('사용자가 ', e.target.value, '라는 값을 입력하였다!');
           hideMarkers();
           filterValue = searchVal.value; // 사용자가 입력한 값 얻기
-          console.log('사용자가 입력한 값: ', filterValue);
           searchMarker(filterValue);
           searchVal.value = '';
         });
@@ -940,85 +942,97 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log(data);
-                var positions = [];
-                for (var i = 0; i < data.length; i++) {
-                  // 마커를 생성하고 지도에 표시합니다
-                  var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: new kakao.maps.LatLng(
-                      data[i].latitude,
-                      data[i].longitude
-                    ),
-                    // title: data[i].ftvNum,
-                  });
-                  console.log(data[i]);
-                  bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
-                  // 마커에 표시할 인포윈도우를 생성합니다
-                  var infowindow = new kakao.maps.InfoWindow({
-                    // content: data[i].ftvName, // 인포윈도우에 표시할 내용
-                    content:
-                      '<div style="width:200px; padding:5px;">' +
-                      data[i].ftvName +
-                      '</div>',
-                  });
-                  positions.push({
-                    num: data[i].ftvNum,
-                    name: data[i].ftvName,
-                    sdate: data[i].startDate,
-                    edate: data[i].endDate,
-                    pl: data[i].place,
-                    ra: data[i].roadAddr,
-                    ph: data[i].phone,
-                    ct: data[i].ftvContent,
-                  });
+                console.log(data); // Array
 
-                  // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-                  // 이벤트 리스너로는 클로저를 만들어 등록합니다
-                  // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-                  kakao.maps.event.addListener(
-                    marker,
-                    'mouseover',
-                    makeOverListener(map, marker, infowindow)
+                for (let i = 0; i < data.length; i++) {
+                  geocoder.addressSearch(
+                    data[i].roadAddr,
+                    function (result, status) {
+                      // 정상적으로 검색이 완료됐으면
+                      if (status === kakao.maps.services.Status.OK) {
+                        var coords = new kakao.maps.LatLng(
+                          result[0].y,
+                          result[0].x
+                        );
+
+                        // 마커를 생성하고 지도에 표시합니다
+                        var marker = new kakao.maps.Marker({
+                          map: map,
+                          position: new kakao.maps.LatLng(
+                            data[i].latitude,
+                            data[i].longitude
+                          ),
+                          // title: data[i].ftvNum,
+                        });
+                        markers.push(marker);
+                        console.log(data[i]); // Object
+
+                        bounds.extend(
+                          new kakao.maps.LatLng(data[i].y, data[i].x)
+                        );
+                        //
+                        // 마커에 표시할 인포윈도우를 생성합니다
+                        var infowindow = new kakao.maps.InfoWindow({
+                          // content: data[i].ftvName, // 인포윈도우에 표시할 내용
+                          content:
+                            '<div style="width:200px; padding:5px;">' +
+                            data[i].ftvName +
+                            '</div>',
+                        });
+
+                        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                        // 이벤트 리스너로는 클로저를 만들어 등록합니다
+                        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                        kakao.maps.event.addListener(
+                          marker,
+                          'mouseover',
+                          makeOverListener(map, marker, infowindow)
+                        );
+                        kakao.maps.event.addListener(
+                          marker,
+                          'mouseout',
+                          makeOutListener(infowindow)
+                        );
+
+                        // 마커를 클릭했을 때 모달을 표시합니다
+                        kakao.maps.event.addListener(
+                          marker,
+                          'click',
+                          function () {
+                            console.log('클릭한 마커의 번호: ', data[i].ftvNum);
+
+                            document.getElementById(
+                              'exampleModalLabel'
+                            ).textContent = data[i].ftvName;
+                            document.getElementById('date').textContent =
+                              data[i].startDate + ' ~ ' + data[i].endDate;
+                            document.getElementById('place').textContent =
+                              data[i].place;
+                            document.getElementById('roadAddr').textContent =
+                              data[i].roadAddr;
+                            document.getElementById('phone').textContent =
+                              data[i].phone;
+                            document.getElementById('content').textContent =
+                              data[i].ftvContent;
+                            // document
+                            //   .getElementById('url')
+                            //   .setAttribute('href', data[i].url);
+                            // document.getElementById('aContent').textContent =
+                            //   data[i].url;
+
+                            document
+                              .getElementById('modalY')
+                              .setAttribute('href', data[i].url);
+                            document.getElementById('modalY').textContent =
+                              '축제 상세보기';
+
+                            $('#testModal').modal('show');
+                          }
+                        ); // 마커 클릭 이벤트 끝
+                      }
+                    }
                   );
-                  kakao.maps.event.addListener(
-                    marker,
-                    'mouseout',
-                    makeOutListener(infowindow)
-                  );
 
-                  // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-                  kakao.maps.event.addListener(marker, 'click', function () {
-                    console.log('클릭한 마커의 번호: ', data[i].ftvNum);
-                    // console.log(marker.content);//undefined
-                    // console.log(i, data[i]);
-
-                    document.getElementById('exampleModalLabel').textContent =
-                      positions[i].name;
-                    document.getElementById('date').textContent =
-                      positions[i].sdate + ' ~ ' + data[i].edate;
-                    document.getElementById('place').textContent =
-                      positions[i].pl;
-                    document.getElementById('roadAddr').textContent =
-                      positions[i].ra;
-                    document.getElementById('phone').textContent =
-                      positions[i].ph;
-                    document.getElementById('content').textContent =
-                      positions[i].ct;
-                    // document
-                    //   .getElementById('url')
-                    //   .setAttribute('href', data[i].url);
-                    // document.getElementById('aContent').textContent =
-                    //   data[i].url;
-
-                    document
-                      .getElementById('modalY')
-                      .setAttribute('href', data[i].url);
-                    document.getElementById('modalY').textContent =
-                      '축제 상세보기';
-
-                    $('#testModal').modal('show');
-                  });
                   //
                 } // for문 끝
                 // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
@@ -1432,6 +1446,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       // "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
       function hideMarkers() {
         setMarkers(null);
+        console.log('hideMarkers() 동작했다!');
       }
 
       // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
