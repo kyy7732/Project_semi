@@ -382,7 +382,7 @@ prefix="c" %>
               str += `<div>` + like.ftvName + `/` + like.url + `</div>`;
             }
 
-            document.getElementById('')
+            document.querySelector('.ftv').insertAdjacentHTML('beforeend', str);
           });
       };
 
