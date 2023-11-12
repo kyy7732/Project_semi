@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,22 +25,24 @@ pageEncoding="UTF-8"%>
     }
 
     .btn-hover {
-      width: 200px;
+      height: 400px;
+      width: 400px;
+      border-radius: 50%;
       font-size: 16px;
       font-weight: 600;
       color: #fff;
       cursor: pointer;
       margin: 20px;
-      height: 55px;
+      line-height: 50px;
       text-align: center;
       border: none;
       background-size: 300% 100%;
 
-      border-radius: 50px;
       moz-transition: all 0.4s ease-in-out;
       -o-transition: all 0.4s ease-in-out;
       -webkit-transition: all 0.4s ease-in-out;
       transition: all 0.4s ease-in-out;
+      font-size: 35px;
     }
 
     .btn-hover:hover {
@@ -63,10 +66,20 @@ pageEncoding="UTF-8"%>
       );
       box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
     }
+
+ 
+
   </style>
   <body>
     <div class="buttons">
-      <button class="btn-hover color-9">축제 보러가기</button>
+      
+      <button class="btn-hover color-9">
+        <div id=text" style="font-size: 14px;">
+            다양한 축제를 즐기고 싶다면 Click! 
+        </div>
+        축제 보러가기
+
+      </button>
     </div>
 
     <script>

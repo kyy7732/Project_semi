@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -107,7 +109,7 @@ pageEncoding="UTF-8"%>
       <ul>
         <br />
         <li><strong><h3>내 댓글 목록</strong></li>
-
+       
         <li>
           <ul id="ulTable">
             <li>
@@ -118,8 +120,8 @@ pageEncoding="UTF-8"%>
                 <li>작성자</li>
               </ul>
             </li>
-            
-            <!-- 게시물이 출력될 영역 -->
+
+          
             
             <c:forEach var="vo" items="${replyList}">
 	                            <tr>
@@ -134,7 +136,7 @@ pageEncoding="UTF-8"%>
             <li>
               <ul>
                 <li>1</li>
-                <li class="left">제목제목제목제목1</li>
+                <li class="left">제목</li>
                 <li>2014.07.09</li>
                 <li>자바킹</li>
               </ul>
@@ -167,11 +169,11 @@ pageEncoding="UTF-8"%>
               </ul>
             </li>
 
-            <li></li>
+
           </ul>
         </li>
 
-        <form action="${pageContext.request.contextPath}/user/reply" name="pageForm">
+        <form action="${pageContext.request.contextPath}/reply/replyList" name="pageForm">
             <div class="text-center">
                 <hr>
                     <ul id="pagination" class="pagination pagination-sm">
@@ -217,6 +219,14 @@ pageEncoding="UTF-8"%>
       </ul>
     </div>
     <%@ include file="../include/footer.jsp" %>
+
+    
+    <script>
+
+             
+   
+
+    </script>
 
   </body>
 </html>

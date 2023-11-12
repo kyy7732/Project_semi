@@ -25,9 +25,9 @@ public class ReplyService implements IReplyService {
 	public void regist(UserReplyRequestDTO dto) {
 		mapper.regist(Reply.builder()
 				.commentNum(dto.getCommentNum())
-				.content(dto.getContent())
 				.userId(dto.getUserId())
-				
+				.content(dto.getContent())
+			
 				.build());
 	}
 
