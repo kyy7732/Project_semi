@@ -20,14 +20,12 @@ public class UserReplyRequestDTO {
 	private String userId;
 	private String content;
 	private String regDate;
-	
-	
-	
-	
+
 	static String makePrettierDateString(LocalDateTime regDate) { //DTO 패키지 안에서만 사용가능하게 default값으로
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		return dtf.format(regDate);
-	}	
+	}
+
 	
 }
 

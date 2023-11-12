@@ -98,9 +98,8 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
       display: inline-block;
       width: 100px;
       border: none;
-      height: 40px;
       color: #fff;
-      border-radius: 10px;
+      border-radius: 6px;
       padding: 10px 25px;
       font-family: 'Lato', sans-serif;
       font-weight: 500;
@@ -134,7 +133,7 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
       width: 400px;
       justify-content: center;
       border: 1px solid #bbb;
-      border-radius: 10px;
+      border-radius: 6px;
       padding: 8px 8px;
       font-size: 15px;
       margin-bottom: -3px;
@@ -357,7 +356,7 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
 
     /* 모달창 조절 */
     .modal-body {
-      padding: 0px;
+      padding: 15px;
     }
 
     .modal-content > .row {
@@ -381,9 +380,9 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
     .ressk {
       width: 600px;
       height: 300px;
-      /* border: solid 1px black; */
       background: skyblue;
-      border-radius: 10px;
+      border-radius: 6px;
+
     }
 
     /* area-reply - 상세페이지 댓글*/
@@ -410,6 +409,17 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
     .area-reply .box-content {
       width: calc(100% - 64px);
     }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px; /* 원하는 간격 설정 */
+    }
+
+    .col-form-label {
+      flex: 0 0 100px; /* 레이블의 너비 조정 */
+    }
+
 
     /* .area-reply .box-content .box-meta {
         margin-bottom: 4px;
@@ -592,7 +602,8 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
       padding: 10px;
       resize: none;
       box-sizing: border-box;
-      border-radius: 10px;
+      border-radius: 6px;
+
       background-color: #f5f5f5;
     }
 
@@ -844,7 +855,9 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
     .link-inner {
       text-align: center;
     }
-
+    .modal-footer {
+      height: 50px;
+    }
     /* // area-reply - 상세페이지 댓글*/
   </style>
 
@@ -913,49 +926,57 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
             </button>
           </div>
           <div class="modal-body">
-            <label
-              for="place"
-              class="col-form-label"
-              >장소:</label
-            >
-            <div
-              class="mb-3"
-              id="place"
-            >
-              축제장소
+            <div class="form-group">
+              <label
+                for="place"
+                class="col-form-label"
+                >장소</label
+              >
+              <div
+                class="mb-3"
+                id="place"
+              >
+                축제장소
+              </div>
             </div>
-            <label
-              for="roadAddr"
-              class="col-form-label"
-              >도로명 주소:</label
-            >
-            <div
-              class="mb-3"
-              id="roadAddr"
-            >
-              주소
+            <div class="form-group">
+              <label
+                for="roadAddr"
+                class="col-form-label"
+                >도로명 주소</label
+              >
+              <div
+                class="mb-3"
+                id="roadAddr"
+              >
+                주소
+              </div>
             </div>
-            <label
-              for="phone"
-              class="col-form-label"
-              >전화번호:</label
-            >
-            <div
-              class="mb-3"
-              id="phone"
-            >
-              전화번호
+            <div class="form-group">
+              <label
+                for="phone"
+                class="col-form-label"
+                >전화번호</label
+              >
+              <div
+                class="mb-3"
+                id="phone"
+              >
+                전화번호
+              </div>
             </div>
-            <label
-              for="content"
-              class="col-form-label"
-              >내용:</label
-            >
-            <div
-              class="mb-3"
-              id="content"
-            >
-              축제내용
+            <div class="form-group">
+              <label
+                for="content"
+                class="col-form-label"
+                >내용</label
+              >
+              <div
+                class="mb-3"
+                id="content"
+              >
+                축제내용
+              </div>
             </div>
             <!-- <label
         for="url"
@@ -981,6 +1002,7 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
               ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
             >
             <!-- src\main\webapp\resources\static\img\like.png -->
+
             <a href="##" id="ssk"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
             <a
               id="share"
@@ -1047,23 +1069,8 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
                           class="text"
                           aria-placeholder="댓글 입력창 입니다."
                         ></p>
-                        <a
-                          href="#"
-                          class="link-comment"
-                          onclick=""
-                          >답글</a
-                        >
-                        <a
-                          href="#"
-                          onclick=""
-                          >수정/댓글</a
-                        >
                       </div>
-                      <!-- <div class="control">
-                          <a href="#" class="link-comment" onclick="">답글</a>
-                          <a href="#">댓글주소</a>
-                          <a href="#" onclick="">수정/댓글</a>
-                        </div> -->
+
                     </div>
                   </li>
                 </s_rp_rep>
@@ -1373,6 +1380,7 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
                         marker,
                         'click',
                         function () {
+
                           console.log('클릭한 마커의 번호: ', data[i].ftvNum);
 
                           document.getElementById(
@@ -1786,7 +1794,7 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
                       makeOutListener(infowindow)
                     );
 
-                    // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                    // 마커를 클릭했을 때 커스텀 오버레이를 표시합축제 상세니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
 
