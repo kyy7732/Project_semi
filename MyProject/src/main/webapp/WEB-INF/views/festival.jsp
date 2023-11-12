@@ -1,34 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
+pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <script src="./jquery-3.4.1.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="./bootstrapt/css/bootstrap.min.css"
-    />
-    <script src="./bootstrapt/js/bootstrap.min.js"></script> -->
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
-    />
-
-    <!-- 부가적인 테마 -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
-    />
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <link
-      href="../../resources/static/css/bootstrap.css"
-      rel="stylesheet"
-    />
-
+    <script src="./jquery-3.4.1.min.js"></script>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
   </head>
@@ -103,17 +79,17 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     .btn-area > .spring-select {
       position: relative;
-      right: 100px;
+      right: 400px;
       display: flex;
       width: 535px;
       justify-content: space-between;
     }
 
-    .btn-area > .del-area {
+    .btn-area > .spring-select {
       position: relative;
-      right: 130px;
+      right: 400px;
       display: flex;
-      /* width: 535px; */
+      width: 535px;
       justify-content: space-between;
     }
 
@@ -151,51 +127,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       background-position: right center;
     }
 
-    .del-btn {
-      width: 100px;
-      height: 40px;
-      color: #fff;
-      border-radius: 5px;
-      padding: 10px 10px;
-      font-family: 'Lato', sans-serif;
-      font-weight: 500;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      display: inline-block;
-      box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-      outline: none;
-    }
-    .btn-16 {
-      border: none;
-      color: #000;
-    }
-    .btn-16:after {
-      position: absolute;
-      content: '';
-      width: 0;
-      height: 100%;
-      top: 0;
-      left: 0;
-      direction: rtl;
-      z-index: -1;
-      box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
-        7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
-      transition: all 0.3s ease;
-    }
-    /* .btn-16:hover {
-      color: #000;
-    }
-    .btn-16:hover:after {
-      left: auto;
-      right: 0;
-      width: 100%;
-    } */
-    .btn-16:active {
-      top: 2px;
-    }
     /* 검색창 스타일 */
     .search {
       position: relative;
@@ -260,6 +191,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     .modal-open {
       overflow: hidden;
     }
+
     .modal {
       position: fixed;
       top: 0;
@@ -272,6 +204,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       -webkit-overflow-scrolling: touch;
       outline: 0;
     }
+
     .modal.fade .modal-dialog {
       -webkit-transition: -webkit-transform 0.3s ease-out;
       -o-transition: -o-transform 0.3s ease-out;
@@ -281,21 +214,25 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       -o-transform: translate(0, -25%);
       transform: translate(0, -25%);
     }
+
     .modal.in .modal-dialog {
       -webkit-transform: translate(0, 0);
       -ms-transform: translate(0, 0);
       -o-transform: translate(0, 0);
       transform: translate(0, 0);
     }
+
     .modal-open .modal {
       overflow-x: hidden;
       overflow-y: auto;
     }
+
     .modal-dialog {
       position: relative;
       width: auto;
       margin: 10px;
     }
+
     .modal-content {
       position: relative;
       background-color: #fff;
@@ -308,6 +245,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
       box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
     }
+
     .modal-backdrop {
       position: absolute;
       top: 0;
@@ -315,45 +253,56 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       left: 0;
       background-color: #000;
     }
+
     .modal-backdrop.fade {
       filter: alpha(opacity=0);
       opacity: 0;
     }
+
     .modal-backdrop.in {
       filter: alpha(opacity=50);
       opacity: 0.5;
     }
+
     .modal-header {
       min-height: 16.42857143px;
       padding: 15px;
       border-bottom: 1px solid #e5e5e5;
     }
+
     .modal-header .close {
       margin-top: -2px;
     }
+
     .modal-title {
       margin: 0;
       line-height: 1.42857143;
     }
+
     .modal-body {
       position: relative;
       padding: 15px;
     }
+
     .modal-footer {
       padding: 15px;
       text-align: right;
       border-top: 1px solid #e5e5e5;
     }
+
     .modal-footer .btn + .btn {
       margin-bottom: 0;
       margin-left: 5px;
     }
+
     .modal-footer .btn-group .btn + .btn {
       margin-left: -1px;
     }
+
     .modal-footer .btn-block + .btn-block {
       margin-left: 0;
     }
+
     .modal-scrollbar-measure {
       position: absolute;
       top: -9999px;
@@ -361,16 +310,19 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       height: 50px;
       overflow: scroll;
     }
+
     /* 데스크탑 버전 */
     @media (min-width: 768px) {
       .modal-dialog {
         width: 600px;
         margin: 30px auto;
       }
+
       .modal-content {
         -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
       }
+
       .modal-sm {
         width: 300px;
       }
@@ -397,6 +349,9 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       }
       body > #wrap #map {
         /* width: 500px; */
+    @media (min-width: 992px) {
+      .modal-lg {
+        width: 900px;
       }
     }
 
@@ -404,29 +359,493 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     .modal-body {
       padding: 0px;
     }
+
     .modal-content > .row {
       margin: 0px;
     }
-    .modal-body > .modal-img {
-      padding: 0px;
-    }
-    .modal-body > .modal-con {
-      padding: 15px;
-    }
-    .modal-inner {
-      position: relative;
-    }
-    .modal-inner .profile {
+
+    .profile {
       position: absolute;
       top: 0px;
       left: 0px;
     }
-    .modal-inner .title {
+
+    .title {
       padding-left: 50px;
     }
-    .modal-inner p {
+
+    p {
       margin: 0px;
     }
+
+    .ressk {
+      width: 600px;
+      height: 300px;
+      /* border: solid 1px black; */
+      background: skyblue;
+      border-radius: 10px;
+    }
+
+    /* area-reply - 상세페이지 댓글*/
+    .area-reply {
+      margin-bottom: 60px;
+    }
+
+    .area-reply a {
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1.69;
+      color: #909090;
+    }
+
+    .area-reply .item-reply {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 25px 0 24px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .area-reply .box-content {
+      width: calc(100% - 64px);
+    }
+
+    /* .area-reply .box-content .box-meta {
+        margin-bottom: 4px;
+        font-size: 13px;
+        line-height: 1.69;
+      } */
+
+    /*방문자 댓글창*/
+    /* .area-reply .box-content .text {
+        font-size: 14px;
+        line-height: 1.43;
+        color: #000000;
+        word-break: break-all;
+        border: 1px solid #e6e6e6;
+        padding: 10px;
+        box-shadow: 2px 5px 8px 0px #e7e7e794;
+        margin: 0 0px 3px 0;
+        position: relative;
+        border-radius: 20px 20px 20px 20px;
+        background-color: #f5f5f5;
+        margin-right: 45px;
+      }
+
+      .area-reply .box-content .text:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 0.625em solid transparent;
+        border-right-color: #e6e6e6;
+        border-left: 0;
+        border-top: 0;
+        margin-top: -0.312em;
+        margin-left: -0.625em;
+        margin-right: 0;
+        right: auto;
+      }
+
+      .area-reply .list-reply-comment .item-reply:last-child {
+        margin-bottom: 0;
+      } */
+
+    /*관리자 댓글*/
+    .area-reply .text {
+      margin: 0 0px 3px 0;
+      position: relative;
+      border-radius: 20px 20px 20px 20px;
+      background-color: #b0c4de;
+      margin-left: 45px;
+    }
+
+    .area-reply .text:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 0.625em solid transparent;
+      border-left-color: #e6e6e6;
+      border-right: 0;
+      border-top: 0;
+      margin-top: -0.312em;
+      margin-right: -0.625em;
+      margin-left: 0;
+      left: auto;
+    }
+
+    /* ----- media query - mobile ----- */
+    @media screen and (max-width: 1060px) {
+      .area-reply {
+        margin-bottom: 30px;
+      }
+
+      .area-reply .item-reply {
+        padding: 25px 0 19px 0;
+      }
+
+      .area-reply .box-content {
+        margin-top: -3px;
+      }
+
+      /* .area-reply .box-content .box-meta {
+          line-height: 1.59;
+        } */
+
+      .area-reply .box-content .text {
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+
+      /* .area-reply .list-reply-comment .box-meta {
+          margin-top: 6px;
+        } */
+    }
+
+    /* .comments {
+        max-width: 100%;
+        margin-top: 10px;
+        border-top: 1px solid #e6e6e6;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+      } */
+
+    ul li {
+      padding: 30px 0 25px;
+      border-top: 1px solid #e6e6e6;
+      position: relative;
+      min-height: 48px;
+    }
+
+    ul li:first-child {
+      border: none;
+    }
+
+    ul li ul li {
+      padding: 26px 0 0 60px;
+      border-top: 0;
+      border-bottom: 0;
+    }
+
+    /* ul li .author-meta {
+        position: absolute;
+        overflow: hidden;
+        top: 30px;
+        height: 48px;
+        left: 0;
+        right: 0;
+        padding: 4px 0 0 60px;
+      }
+
+      ul li ul li .author-meta {
+        top: 26px;
+        left: 60px;
+      } */
+
+    ul li span {
+      display: inline-block;
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    ul li .control {
+      position: absolute;
+      top: 33px;
+      right: 0;
+    }
+
+    ul li ul li .control {
+      top: 29px;
+    }
+
+    ul li .control a {
+      margin: 0 2px;
+      text-decoration: none;
+      font-size: 12px;
+      color: #999;
+    }
+
+    ul li p {
+      position: relative;
+      margin: 29px 0 0 60px;
+      font-size: 0.875em;
+      line-height: 1.5714;
+      color: #666;
+    }
+
+    .textarea {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      resize: none;
+      box-sizing: border-box;
+      border-radius: 10px;
+      background-color: #f5f5f5;
+    }
+
+    .textarea {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      resize: none;
+      box-sizing: border-box;
+      background-color: #f5f5f5;
+      border: none;
+    }
+
+    .submit {
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    /*댓글 작성 버튼*/
+    .btn {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      padding: 0 10px;
+      border: 1px solid #00008b;
+      text-decoration: none;
+      text-align: left;
+      background-color: #00008b;
+      font-size: 12px;
+      text-align: center;
+      color: #ffffff;
+      border-radius: 20px 20px 20px 20px;
+      -webkit-transition: color 0.2s, background-color 0.2s;
+      transition: color 0.2s, background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #00008b;
+      border-color: #00008b;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    #replytext {
+      width: 530px;
+      height: 52px;
+    }
+
+    /* area-reply - 상세페이지 댓글****************************************/
+    .area-reply {
+      margin-bottom: 60px;
+    }
+
+    .area-reply a {
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1.69;
+      color: #909090;
+    }
+
+    .area-reply .item-reply {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 25px 0 24px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .area-reply .box-content {
+      width: calc(100% - 64px);
+    }
+
+    /*방문자 댓글창 사용자 댓글창*/
+    .area-reply .box-content .text {
+      font-size: 14px;
+      line-height: 1.43;
+      color: #000000;
+      word-break: break-all;
+      border: 1px solid #e6e6e6;
+      padding: 10px;
+      box-shadow: 2px 5px 8px 0px #e7e7e794;
+      margin: 0 0px 3px 0;
+      position: relative;
+      border-radius: 20px 20px 20px 20px;
+      background-color: #f5f5f5;
+      margin-right: 45px;
+    }
+
+    .area-reply .box-content .text:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 0.625em solid transparent;
+      border-right-color: #e6e6e6;
+      border-left: 0;
+      border-top: 0;
+      margin-top: -0.312em;
+      margin-left: -0.625em;
+      margin-right: 0;
+      right: auto;
+    }
+
+    .area-reply .list-reply-comment .item-reply:last-child {
+      margin-bottom: 0;
+    }
+
+    /*관리자 댓글 본인댓글창*/
+    .area-reply .rp_admin .text {
+      margin: 0 0px 3px 0;
+      position: relative;
+      border-radius: 20px 20px 20px 20px;
+      background-color: #b0c4de;
+      margin-left: 45px;
+    }
+
+    .area-reply .rp_admin .text:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 0.625em solid transparent;
+      border-left-color: #e6e6e6;
+      border-right: 0;
+      border-top: 0;
+      margin-top: -0.312em;
+      margin-right: -0.625em;
+      margin-left: 0;
+      left: auto;
+    }
+
+    /* ----- media query - mobile ----- */
+    @media screen and (max-width: 1060px) {
+      .area-reply {
+        margin-bottom: 30px;
+      }
+
+      .area-reply .item-reply {
+        padding: 25px 0 19px 0;
+      }
+
+      .area-reply .box-content {
+        margin-top: -3px;
+      }
+
+      .area-reply .box-content .text {
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+    }
+
+    .comments .comment-list ul li .control {
+      position: absolute;
+      top: 33px;
+      right: 0;
+    }
+
+    .comments .comment-list ul li ul li .control {
+      top: 29px;
+    }
+
+    .comments .comment-list ul li .control a {
+      margin: 0 2px;
+      text-decoration: none;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .comments .comment-list ul li p {
+      position: relative;
+      margin: 29px 0 0 60px;
+      font-size: 0.875em;
+      line-height: 1.5714;
+      color: #666;
+    }
+
+    .comments .comment-form input::-webkit-input-placeholder,
+    .comments .comment-form textarea::-webkit-input-placeholder {
+      color: #d6d6d6;
+    }
+
+    .comments .comment-form textarea {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      resize: none;
+      box-sizing: border-box;
+      background-color: #f5f5f5;
+      border: none;
+    }
+
+    .comments .comment-form .field .secret label:before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin-right: 9px;
+      border: 1px solid #e1e1e1;
+      vertical-align: middle;
+      background-color: #fff;
+    }
+
+    .submit {
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    /*댓글 작성 버튼*/
+    .btn {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      padding: 0 10px;
+      border: 1px solid #00008b;
+      text-decoration: none;
+      text-align: left;
+      background-color: #00008b;
+      font-size: 12px;
+      text-align: center;
+      color: #ffffff;
+      border-radius: 10px;
+      -webkit-transition: color 0.2s, background-color 0.2s;
+      transition: color 0.2s, background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #00008b;
+      border-color: #00008b;
+      color: #ffffff;
+      font-weight: bold;
+    }
+    .regist {
+      height: 52px;
+      margin-left: 3px;
+      margin-top: 3px;
+      width: 65px;
+    }
+
+    .link-inner {
+      text-align: center;
+    }
+
+    /* // area-reply - 상세페이지 댓글*/
   </style>
 
   <body>
@@ -439,10 +858,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             <button class="custom-btn find-btn2">여름</button>
             <button class="custom-btn find-btn3">가을</button>
             <button class="custom-btn find-btn4">겨울</button>
-          </div>
-          <!-- 마커 지우기 버튼 -->
-          <div class="btn-area del-area">
-            <button class="del-btn btn-16">마커 지우기</button>
           </div>
         </div>
         <!-- 검색창 -->
@@ -566,7 +981,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
               ><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a
             >
             <!-- src\main\webapp\resources\static\img\like.png -->
-            <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
+            <a href="##" id="ssk"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
             <a
               id="share"
               data-ftvNumForShare="1"
@@ -591,8 +1006,80 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             </button>
           </div>
         </div>
+        <!-- 댓글창 -->
+        <div
+          class="ressk"
+          style="display: none"
+        >
+          <div
+            class="textarea"
+            style="display: flex; justify-content: space-between"
+          >
+            <textarea
+              name="cols"
+              id="replytext"
+              cols="30"
+              rows="4"
+              placeholder="댓글을 남겨주세요."
+            ></textarea>
+            <div class="submit">
+              <button
+                type="submit"
+                class="btn regist"
+                onclick=""
+              >
+                <a> 등록 </a>
+              </button>
+            </div>
+          </div>
+          <!-- area-reply -->
+          <div class="area-reply">
+            <s_rp_container>
+              <ul class="list-reply">
+                <s_rp_rep>
+                  <li
+                    id=""
+                    class="item-reply"
+                  >
+                    <div class="box-content">
+                      <div class="control">
+                        <p
+                          class="text"
+                          aria-placeholder="댓글 입력창 입니다."
+                        ></p>
+                        <a
+                          href="#"
+                          class="link-comment"
+                          onclick=""
+                          >답글</a
+                        >
+                        <a
+                          href="#"
+                          onclick=""
+                          >수정/댓글</a
+                        >
+                      </div>
+                      <!-- <div class="control">
+                          <a href="#" class="link-comment" onclick="">답글</a>
+                          <a href="#">댓글주소</a>
+                          <a href="#" onclick="">수정/댓글</a>
+                        </div> -->
+                    </div>
+                  </li>
+                </s_rp_rep>
+              </ul>
+            </s_rp_container>
+          </div>
+        </div>
       </div>
     </div>
+
+    <script>
+      $('#ssk').click(function () {
+        $('.ressk').toggle();
+      });
+    </script>
+    <script src="script.js"></script>
 
     <script
       type="text/javascript"
@@ -658,25 +1145,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             displayArea(coordinates, name); // 호출!!
           }
         });
-      });
-
-      var listMarker = [];
-      console.log('listMarker: ', listMarker);
-      var marker;
-      var content = '';
-      const deleteMarker = () => {
-        for (var i = 0; i < listMarker.length; i++) {
-          console.log('delete marker!');
-          listMarker[i].setMap(null);
-        }
-        listMarker = []; // 배열 비우기
-
-        console.log('listMarker: ', listMarker);
-      };
-
-      //마커 지우기 버튼
-      document.querySelector('.del-btn').addEventListener('click', () => {
-        deleteMarker();
       });
 
       //줌 전역으로?
@@ -745,6 +1213,21 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         );
 
+        /* 색깔 */
+        // if (!colorflag) {
+        //   $.getJSON(jsonLocation, function (data) {
+        //     var data = data.features;
+        //     var coordinates = [];
+        //     var name = '';
+        //     $.each(data, function (i, val) {
+        //       if (val.geometry.type == 'Polygon') {
+        //         coordinates = val.geometry.coordinates;
+        //         name = val.properties.SIG_KOR_NM;
+        //       }
+        //     });
+        //   });
+        // }
+
         kakao.maps.event.addListener(
           polygon,
           'mousemove',
@@ -754,9 +1237,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         );
 
-        // 폴리곤 클릭 시 색깔 변경
         kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-          console.log('polygon color change!');
           // for (let i = 0; i < 5; i++) {
           // console.log('반복문 실행?');
           map.setLevel(11); // level에 따라 이벤트 변경
@@ -780,10 +1261,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           }
         );
 
-        // 폴리곤 클릭 시 해당 구역의 축제 마커 찍기
+        var markers = [];
+        var marker;
+        var content = '';
         kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-          console.log('other region click!');
-          deleteMarker();
+          console.log(name);
+          if (markers.length > 0) {
+            // 기존 마커 지우기
+            hideMarkers();
+          }
           fetch('${pageContext.request.contextPath}/festival/ftvList', {
             method: 'post',
             headers: {
@@ -793,7 +1279,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log('응답받은 데이터: ', data);
+              console.log(data);
               //요청한 행정구역명에 맞는 축제 마커 찍기
               for (let i = 0; i < data.length; i++) {
                 // 주소로 좌표를 검색합니다
@@ -812,31 +1298,75 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         map: map,
                         position: coords,
                       });
-                      // 생성된 마커를 배열에 추가합니다
-                      listMarker.push(marker);
 
-                      // 마커에 표시할 인포윈도우를 생성합니다
-                      var infowindow = new kakao.maps.InfoWindow({
-                        // content: data[i].ftvName, // 인포윈도우에 표시할 내용
-                        content:
-                          '<div style="width:200px; padding:5px;">' +
-                          data[i].ftvName +
-                          '</div>',
+                      content = document.createElement('div');
+                      content.innerHTML = data[i].ftvName;
+                      content.style.cssText =
+                        'background: white; border: 1px solid black';
+
+                      like = document.createElement('img');
+                      like.setAttribute(
+                        'src',
+                        '/resources/static/img/like.png'
+                      );
+                      like.setAttribute(
+                        'alt',
+                        'likeIconNotClicked:' + data[i].ftvNum
+                      );
+                      like.setAttribute('height', 24); //px
+                      like.setAttribute('width', 24);
+                      content.appendChild(like);
+
+                      ftvNum = data[i].ftvNum;
+
+                      // like.onclick = function () {
+                      //   console.log('좋아요 클릭했다!');
+                      //   like.setAttribute(
+                      //     'src',
+                      //     '/resources/static/img/likeDarker.png'
+                      //   );
+                      //   like.setAttribute('alt', 'likeIconClicked');
+                      //   like.setAttribute('height', 24); //px
+                      //   like.setAttribute('width', 24);
+                      //   content.appendChild(like);
+                      // };
+
+                      // urlDiv = document.createElement('div');
+                      // url = document.createElement('a');
+                      // url.setAttribute('href', data[i].url);
+                      // url.setAttribute('target', '_blank');
+                      // url.innerHTML = '홈페이지';
+                      // urlDiv.appendChild(url);
+                      // content.appendChild(urlDiv);
+                      // url.onclick = function () {
+                      //   if (data[i].url === null)
+                      //     alert('해당 링크가 존재하지 않습니다!');
+                      //   return;
+                      // };
+
+                      // roadAddr = document.createElement('div');
+                      // roadAddr.innerHTML = data[i].roadAddr;
+                      // content.appendChild(roadAddr);
+
+                      // time = document.createElement('div');
+                      // time.innerHTML =
+                      //   data[i].startDate + ' ~ ' + data[i].endDate;
+                      // content.appendChild(time);
+
+                      // var closeBtn = document.createElement('button');
+                      // closeBtn.innerHTML = '닫기';
+                      // closeBtn.onclick = function () {
+                      //   overlay.setMap(null);
+                      // };
+                      // content.appendChild(closeBtn);
+
+                      // 마커 위에 커스텀오버레이를 표시합니다
+                      // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+                      var overlay = new kakao.maps.CustomOverlay({
+                        content: content,
+                        map: map,
+                        position: marker.getPosition(),
                       });
-
-                      // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-                      // 이벤트 리스너로는 클로저를 만들어 등록합니다
-                      // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-                      kakao.maps.event.addListener(
-                        marker,
-                        'mouseover',
-                        makeOverListener(map, marker, infowindow)
-                      );
-                      kakao.maps.event.addListener(
-                        marker,
-                        'mouseout',
-                        makeOutListener(infowindow)
-                      );
 
                       // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                       kakao.maps.event.addListener(
@@ -929,14 +1459,42 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         }
                       );
 
+                      // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+                      function closeOverlay() {
+                        overlay.setMap(null);
+                      }
+                      //
+
                       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                       // map.setCenter(coords);
-                      //
-                    } // 좌표 검색 정상인 경우
+                      // 생성된 마커를 배열에 추가합니다
+                      markers.push(marker);
+                    }
                   }
-                ); // 좌표 검색
+                );
               } // for문 끝
             }); //.then(data)끝
+
+          // 클릭시 확대
+          //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
+
+          // removePolygon();
+
+          // setTimeout(() => {
+
+          // else {
+          //   colorflag = true; // 색 없어야
+
+          //   while (colorflag) {
+          //     console.log('디테임모드?? true');
+          //     polygon.setOptions({ fillOpacity: 0 });
+          //     colorflag = false;
+          //   }
+          //   var latlng = mouseEvent.latLng;
+          //   map.panTo(latlng);
+          //   // 클릭 이벤트 함수
+          //   // callFunctionWithRegionCode(area.location);
+          // }
         }); // 폴리곤 클릭 이벤트 끝
       } // displayArea() end
 
@@ -1007,36 +1565,26 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
         // console.log(searchVal);
         const searchBtn = document.querySelector('#search_btn');
 
-        searchVal.addEventListener('keydown', function (e) {
+        //영어, 스페이스 입력 시 요청되는 문제 있음!
+        searchVal.addEventListener('keypress', function (e) {
+          //엔터키 누른 경우
           console.log('사용자가 ', e.target.value, '라는 값을 입력하였다!');
-
-          if (e.keyCode == 13) {
-            //엔터키 누른 경우
-            if (e.target.value === '') {
-              alert('내용을 입력해 주세요.');
-              return;
-            }
-            hideMarkers();
-            filterValue = searchVal.value; // 사용자가 입력한 값 얻기
-            searchMarker(filterValue);
-            searchVal.value = '';
-          }
+          hideMarkers();
+          filterValue = searchVal.value; // 사용자가 입력한 값 얻기
+          searchMarker(filterValue);
+          searchVal.value = '';
         });
 
         searchBtn.addEventListener('click', function () {
-          filterValue = searchVal.value; // 사용자가 입력한 값 얻기
-          if (filterValue === '') {
-            alert('내용을 입력해 주세요.');
-            return;
-          }
           hideMarkers();
+          filterValue = searchVal.value; // 사용자가 입력한 값 얻기
           console.log('사용자가 입력한 값: ', filterValue);
           searchMarker(filterValue);
           searchVal.value = '';
         });
       });
 
-      // var markers = [];
+      var markers = [];
       var marker;
       // 키워드명 출력 함수
       function searchMarker(filterValue) {
@@ -1083,7 +1631,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                           ),
                           // title: data[i].ftvNum,
                         });
-                        listMarker.push(marker);
+                        markers.push(marker);
                         console.log(data[i]); // Object
 
                         bounds.extend(
@@ -1179,14 +1727,14 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
       /*****************************************계절 버튼 클릭 이벤트***********************************/
       // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
-      // var markers = [];
+      var markers = [];
       var marker;
       let getFtvNum; // 축제번호
 
       var content = '';
       //계절버튼 클릭 이벤트
       document.querySelector('.find-btn1').addEventListener('click', (e) => {
-        if (listMarker.length > 0) {
+        if (markers.length > 0) {
           hideMarkers();
         }
 
@@ -1275,7 +1823,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                     // map.setCenter(coords);
                     // 생성된 마커를 배열에 추가합니다
-                    listMarker.push(marker);
+                    markers.push(marker);
                   } // 좌표 검색 정상인 경우
                 }
               ); // 좌표 검색
@@ -1287,7 +1835,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
       document.querySelector('.find-btn2').addEventListener('click', (e) => {
         //여름 클릭
-        if (listMarker.length > 0) {
+        if (markers.length > 0) {
           hideMarkers();
         }
         fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'summer')
@@ -1368,7 +1916,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                     // map.setCenter(coords);
                     // 생성된 마커를 배열에 추가합니다
-                    listMarker.push(marker);
+                    markers.push(marker);
                   }
                 }
               );
@@ -1378,7 +1926,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
       document.querySelector('.find-btn3').addEventListener('click', (e) => {
         //가을 클릭
-        if (listMarker.length > 0) {
+        if (markers.length > 0) {
           hideMarkers();
         }
         fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'fall')
@@ -1459,7 +2007,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                     // map.setCenter(coords);
                     // 생성된 마커를 배열에 추가합니다
-                    listMarker.push(marker);
+                    markers.push(marker);
                   }
                 }
               );
@@ -1469,7 +2017,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
       document.querySelector('.find-btn4').addEventListener('click', (e) => {
         //겨울 클릭
-        if (listMarker.length > 0) {
+        if (markers.length > 0) {
           hideMarkers();
         }
         fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'winter')
@@ -1551,7 +2099,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                     // map.setCenter(coords);
 
                     // 생성된 마커를 배열에 추가합니다
-                    listMarker.push(marker);
+                    markers.push(marker);
                   }
                 }
               );
@@ -1561,8 +2109,8 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
       // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
       function setMarkers(map) {
-        for (var i = 0; i < listMarker.length; i++) {
-          listMarker[i].setMap(map);
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
         }
       }
 
