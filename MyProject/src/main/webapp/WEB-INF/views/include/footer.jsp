@@ -39,6 +39,7 @@ pageEncoding="UTF-8"%>
       #footer .foot_menu {
         overflow: hidden;
         padding-bottom: 20px;
+        margin-left: 317px;
       }
       #footer .foot_menu li {
         display: inline-block;
