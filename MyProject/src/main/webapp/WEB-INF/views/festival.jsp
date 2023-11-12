@@ -596,7 +596,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c6f403205c2f67b836ea3a0e1fc26f5&libraries=services,clusterer,drawing"
     ></script>
     <script
       src="https://code.jquery.com/jquery-3.7.0.min.js"
