@@ -1847,6 +1847,7 @@ prefix="c" %>
         1531: '2023 자유공원 벚꽃축제',
         1532: '2023 가족의 달 어린이축제',
         1533: '무의도 춤축제',
+      };
       // 헤더 랜덤 축제에 관련된 변수
       var quote = document.getElementById('quote');
       var btn = document.getElementById('increase');
