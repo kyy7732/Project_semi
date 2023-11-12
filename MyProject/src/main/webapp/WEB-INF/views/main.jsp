@@ -25,7 +25,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     }
 
     .btn-hover {
-
       width: 200px;
       font-size: 16px;
       font-weight: 600;
