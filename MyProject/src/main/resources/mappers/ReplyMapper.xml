@@ -14,7 +14,7 @@
 		SELECT  * FROM
 			(
 			SELECT ROWNUM AS RN, tbl.* FROM
-				(
+				(	
 				SELECT * FROM reply
 				WHERE ftv_num = #{ftvNum}
 				ORDER BY comment_num DESC

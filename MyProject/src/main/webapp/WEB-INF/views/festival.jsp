@@ -374,15 +374,6 @@
         color: #909090;
       }
 
-      .blind {
-        position: absolute;
-        overflow: hidden;
-        clip: rect(0 0 0 0);
-        margin: -1px;
-        width: 1px;
-        height: 1px;
-      }
-
       .area-reply .item-reply {
         position: relative;
         display: flex;
@@ -390,16 +381,6 @@
         width: 100%;
         padding: 25px 0 24px 0;
         border-bottom: 1px solid #eee;
-      }
-
-      .area-reply .thumbnail {
-        display: block;
-        width: 48px;
-        height: 48px;
-        margin-right: 10px;
-        background-size: cover;
-        background-position: 50% 50%;
-        border-radius: 50px;
       }
 
       .area-reply .box-content {
@@ -413,7 +394,7 @@
       } */
 
       /*방문자 댓글창*/
-      .area-reply .box-content .text {
+      /* .area-reply .box-content .text {
         font-size: 14px;
         line-height: 1.43;
         color: #000000;
@@ -445,54 +426,9 @@
         right: auto;
       }
 
-      .area-reply .box-content .button-modify {
-        width: 20px;
-        height: 20px;
-        padding: 10px 0 10px 10px;
-        background: url(./images/icon-modify.svg) no-repeat;
-        background-size: 14px;
-        background-position: 50% 50%;
-        border: none;
-        cursor: pointer;
-      }
-
-      .area-reply .box-content .list-modify {
-        display: none;
-        position: absolute;
-        top: 6px;
-        left: -76px;
-        width: 80px;
-        border: 1px solid #e8e8e8;
-      }
-
-      .area-reply .box-content .list-modify li {
-        border-bottom: 1px solid #e8e8e8;
-      }
-
-      .area-reply .box-content .list-modify li:last-child {
-        border-bottom: none;
-      }
-
-      .area-reply .box-content .list-modify a {
-        display: block;
-        line-height: 29px;
-        text-align: center;
-        color: #333;
-        background-color: #fff;
-      }
-
-      .area-reply .list-reply-comment {
-        width: 100%;
-        /*margin: 30px 0 -30px 0;*/
-        padding: 40px 0 28px 110px;
-
-        /*border-top: 1px solid #f0f0f0;*/
-        /*border-bottom: 1px solid #f0f0f0;*/
-      }
-
       .area-reply .list-reply-comment .item-reply:last-child {
         margin-bottom: 0;
-      }
+      } */
 
       /*관리자 댓글*/
       .area-reply .text {
@@ -520,10 +456,6 @@
         left: auto;
       }
 
-      .area-reply .list-reply-other {
-        margin-bottom: 20px;
-      }
-
       /* ----- media query - mobile ----- */
       @media screen and (max-width: 1060px) {
         .area-reply {
@@ -534,12 +466,6 @@
           padding: 25px 0 19px 0;
         }
 
-        .area-reply .thumbnail {
-          width: 38px;
-          height: 38px;
-          margin-right: 10px;
-        }
-
         .area-reply .box-content {
           margin-top: -3px;
         }
@@ -548,34 +474,10 @@
           line-height: 1.59;
         } */
 
-        .area-reply .box-content strong a {
-          font-size: 12px;
-        }
-
-        .area-reply .box-content .date {
-          padding-left: 0;
-          font-size: 12px;
-        }
-
-        .area-reply .box-content .date:before {
-          background: none;
-          ;
-        }
-
         .area-reply .box-content .text {
           width: 100%;
           margin-bottom: 8px;
           font-size: 12px;
-        }
-
-        .area-reply .box-content .list-modify {
-          background: #fff;
-        }
-
-        .area-reply .list-reply-comment {
-          width: 100vw;
-          margin: 20px -20px -20px -20px;
-          padding: 20px 20px 13px 68px;
         }
 
         /* .area-reply .list-reply-comment .box-meta {
@@ -633,10 +535,6 @@
         color: #000;
       }
 
-      ul li .date a {
-        margin-left: 10px;
-      }
-
       ul li .control {
         position: absolute;
         top: 33px;
@@ -662,30 +560,6 @@
         color: #666;
       }
 
-      .field {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .comment-form input[type=text],
-      .comment-form input[type=password],
-      .textarea {
-        border: 1px solid #e6e6e6;
-        font-size: 0.875em;
-        line-height: 1.25;
-        color: #666;
-      }
-
-      .comment-form input[type=text],
-      .comment-form input[type=password] {
-        width: 120px;
-        height: 40px;
-        padding: 10px;
-        box-sizing: border-box;
-      }
-
       .textarea {
         display: block;
         width: 100%;
@@ -698,11 +572,6 @@
         background-color: #f5f5f5;
       }
 
-      .comment-form input::-webkit-input-placeholder,
-      .textarea::-webkit-input-placeholder {
-        color: #d6d6d6;
-      }
-
       .textarea {
         display: block;
         width: 100%;
@@ -713,39 +582,6 @@
         box-sizing: border-box;
         background-color: #f5f5f5;
         border: none;
-      }
-
-      .secret {
-        float: right;
-      }
-
-      .secret input {
-        display: none;
-      }
-
-      .secret label {
-        font-size: 0.875em;
-        line-height: 40px;
-        color: #666;
-        outline: none;
-        cursor: pointer;
-      }
-
-      .secret label:before {
-        content: "";
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        margin-right: 9px;
-        border: 1px solid #e1e1e1;
-        vertical-align: middle;
-        background-color: #fff;
-      }
-
-      .secret input[type=checkbox]:checked+label:before {
-        background-image: url(./images/ico_package.png);
-        background-repeat: no-repeat;
-        background-position: -97px -295px;
       }
 
       .submit {
@@ -780,7 +616,210 @@
 
       #replytext {
         width: 530px;
+      }
 
+      /* area-reply - 상세페이지 댓글****************************************/
+      .area-reply {
+        margin-bottom: 60px;
+      }
+
+      .area-reply a {
+        text-decoration: none;
+        font-size: 13px;
+        line-height: 1.69;
+        color: #909090;
+      }
+
+      .area-reply .item-reply {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 25px 0 24px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .area-reply .box-content {
+        width: calc(100% - 64px);
+      }
+
+      /*방문자 댓글창 사용자 댓글창*/
+      .area-reply .box-content .text {
+        font-size: 14px;
+        line-height: 1.43;
+        color: #000000;
+        word-break: break-all;
+        border: 1px solid #e6e6e6;
+        padding: 10px;
+        box-shadow: 2px 5px 8px 0px #e7e7e794;
+        margin: 0 0px 3px 0;
+        position: relative;
+        border-radius: 20px 20px 20px 20px;
+        background-color: #f5f5f5;
+        margin-right: 45px;
+      }
+
+      .area-reply .box-content .text:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 0.625em solid transparent;
+        border-right-color: #e6e6e6;
+        border-left: 0;
+        border-top: 0;
+        margin-top: -0.312em;
+        margin-left: -0.625em;
+        margin-right: 0;
+        right: auto;
+      }
+
+      .area-reply .list-reply-comment .item-reply:last-child {
+        margin-bottom: 0;
+      }
+
+      /*관리자 댓글 본인댓글창*/
+      .area-reply .rp_admin .text {
+        margin: 0 0px 3px 0;
+        position: relative;
+        border-radius: 20px 20px 20px 20px;
+        background-color: #b0c4de;
+        margin-left: 45px;
+      }
+
+      .area-reply .rp_admin .text:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 0.625em solid transparent;
+        border-left-color: #e6e6e6;
+        border-right: 0;
+        border-top: 0;
+        margin-top: -0.312em;
+        margin-right: -0.625em;
+        margin-left: 0;
+        left: auto;
+      }
+
+      /* ----- media query - mobile ----- */
+      @media screen and (max-width: 1060px) {
+        .area-reply {
+          margin-bottom: 30px;
+        }
+
+        .area-reply .item-reply {
+          padding: 25px 0 19px 0;
+        }
+
+        .area-reply .box-content {
+          margin-top: -3px;
+        }
+
+        .area-reply .box-content .text {
+          width: 100%;
+          margin-bottom: 8px;
+          font-size: 12px;
+        }
+      }
+
+      .comments .comment-list ul li .control {
+        position: absolute;
+        top: 33px;
+        right: 0;
+      }
+
+      .comments .comment-list ul li ul li .control {
+        top: 29px;
+      }
+
+      .comments .comment-list ul li .control a {
+        margin: 0 2px;
+        text-decoration: none;
+        font-size: 12px;
+        color: #999;
+      }
+
+      .comments .comment-list ul li p {
+        position: relative;
+        margin: 29px 0 0 60px;
+        font-size: 0.875em;
+        line-height: 1.5714;
+        color: #666;
+      }
+
+      .textarea {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        resize: none;
+        box-sizing: border-box;
+        border-radius: 20px 20px 20px 20px;
+        background-color: #f5f5f5;
+      }
+
+      .comments .comment-form input::-webkit-input-placeholder,
+      .comments .comment-form textarea::-webkit-input-placeholder {
+        color: #d6d6d6;
+      }
+
+      .comments .comment-form textarea {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        resize: none;
+        box-sizing: border-box;
+        background-color: #f5f5f5;
+        border: none;
+      }
+
+      .comments .comment-form .field .secret label:before {
+        content: "";
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin-right: 9px;
+        border: 1px solid #e1e1e1;
+        vertical-align: middle;
+        background-color: #fff;
+      }
+
+      .submit {
+        margin-bottom: 10px;
+        text-align: right;
+      }
+
+      /*댓글 작성 버튼*/
+      .btn {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        padding: 0 10px;
+        border: 1px solid #00008b;
+        text-decoration: none;
+        text-align: left;
+        background-color: #00008b;
+        font-size: 12px;
+        text-align: center;
+        color: #ffffff;
+        border-radius: 20px 20px 20px 20px;
+        -webkit-transition: color .2s, background-color .2s;
+        transition: color .2s, background-color .2s;
+      }
+
+      .btn:hover {
+        background-color: #00008b;
+        border-color: #00008b;
+        color: #ffffff;
+        font-weight: bold;
       }
 
       /* // area-reply - 상세페이지 댓글*/
@@ -861,7 +900,7 @@
             <div class="link-inner">
               <a href="##" class="glyphicon-thumbs-up"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
               <!-- src\main\webapp\resources\static\img\like.png -->
-              <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
+              <a href="##" id="ssk"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
               <a href="##"><i class="glyphicon glyphicon-share-alt"></i>공유하기</a>
             </div>
             <div class="modal-footer">
@@ -869,6 +908,40 @@
               <button class="btn" type="button" data-dismiss="modal">
                 닫기
               </button>
+            </div>
+          </div>
+          <!-- 댓글창 -->
+          <div class="ressk" style="display: none;">
+            <div class="textarea">
+              <textarea name="cols" id="replytext" cols="30" rows="4" placeholder="댓글을 남겨주세요.">
+                </textarea>
+              <div class="submit">
+                <button type="submit" class="btn" onclick="">등록</button>
+              </div>
+            </div>
+            <!-- area-reply -->
+            <div class="area-reply">
+              <s_rp_container>
+                <ul class="list-reply">
+                  <s_rp_rep>
+                    <li id="" class="item-reply">
+                      <div class="box-content">
+                        <div class="control">
+                          <p class="text" aria-placeholder="댓글 입력창 입니다."></p>
+                          <a href="#" class="link-comment" onclick="">답글</a>
+                          <a href="#">댓글주소</a>
+                          <a href="#" onclick="">수정/댓글</a>
+                        </div>
+                        <!-- <div class="control">
+                          <a href="#" class="link-comment" onclick="">답글</a>
+                          <a href="#">댓글주소</a>
+                          <a href="#" onclick="">수정/댓글</a>
+                        </div> -->
+                      </div>
+                    </li>
+                  </s_rp_rep>
+                </ul>
+              </s_rp_container>
             </div>
           </div>
         </div>

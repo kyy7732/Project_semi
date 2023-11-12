@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@RequestMapping("/reply")
+@RequestMapping("/festival")
 @RequiredArgsConstructor
 @Slf4j
 public class ReplyController {
@@ -60,10 +60,11 @@ public class ReplyController {
 	
 	
 	// 댓글 등록 처리
-	@PostMapping("/userRegist")
+	@PostMapping()
 	public String regist(UserReplyRequestDTO dto) {
+		System.out.println("댓글 등록 요청이 들어옴!" + dto);
 		service.regist(dto);
-		return "redirect:/user/userList"; 
+		return "regSuccess"; 
 	}
 	
 	// 댓글 수정하기
