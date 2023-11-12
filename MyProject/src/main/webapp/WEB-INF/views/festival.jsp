@@ -5,7 +5,22 @@
     <html>
 
     <head>
-      <script src="./jquery-3.4.1.min.js"></script>
+      <!-- <script src="./jquery-3.4.1.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="./bootstrapt/css/bootstrap.min.css"
+    />
+    <script src="./bootstrapt/js/bootstrap.min.js"></script> -->
+      <!-- 합쳐지고 최소화된 최신 CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+
+      <!-- 부가적인 테마 -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" />
+
+      <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+      <link href="../../resources/static/css/bootstrap.css" rel="stylesheet" />
+
       <meta charset="UTF-8" />
       <title>Insert title here</title>
     </head>
@@ -80,17 +95,17 @@
 
       .btn-area>.spring-select {
         position: relative;
-        right: 400px;
+        right: 100px;
         display: flex;
         width: 535px;
         justify-content: space-between;
       }
 
-      .btn-area>.spring-select {
+      .btn-area>.del-area {
         position: relative;
-        right: 400px;
+        right: 130px;
         display: flex;
-        width: 535px;
+        /* width: 535px; */
         justify-content: space-between;
       }
 
@@ -124,6 +139,55 @@
 
       .custom-btn:hover {
         background-position: right center;
+      }
+
+      .del-btn {
+        width: 100px;
+        height: 40px;
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px 10px;
+        font-family: 'Lato', sans-serif;
+        font-weight: 500;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+          7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+        outline: none;
+      }
+
+      .btn-16 {
+        border: none;
+        color: #000;
+      }
+
+      .btn-16:after {
+        position: absolute;
+        content: '';
+        width: 0;
+        height: 100%;
+        top: 0;
+        left: 0;
+        direction: rtl;
+        z-index: -1;
+        box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9,
+          7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
+        transition: all 0.3s ease;
+      }
+
+      /* .btn-16:hover {
+      color: #000;
+    }
+    .btn-16:hover:after {
+      left: auto;
+      right: 0;
+      width: 100%;
+    } */
+      .btn-16:active {
+        top: 2px;
       }
 
       /* 검색창 스타일 */
@@ -836,6 +900,10 @@
               <button class="custom-btn find-btn3">가을</button>
               <button class="custom-btn find-btn4">겨울</button>
             </div>
+            <!-- 마커 지우기 버튼 -->
+            <div class="btn-area del-area">
+              <button class="del-btn btn-16">마커 지우기</button>
+            </div>
           </div>
           <!-- 검색창 -->
           <div class="search">
@@ -1006,6 +1074,25 @@
           });
         });
 
+        var listMarker = [];
+        console.log('listMarker: ', listMarker);
+        var marker;
+        var content = '';
+        const deleteMarker = () => {
+          for (var i = 0; i < listMarker.length; i++) {
+            console.log('delete marker!');
+            listMarker[i].setMap(null);
+          }
+          listMarker = []; // 배열 비우기
+
+          console.log('listMarker: ', listMarker);
+        };
+
+        //마커 지우기 버튼
+        document.querySelector('.del-btn').addEventListener('click', () => {
+          deleteMarker();
+        });
+
         //줌 전역으로?
         //폴리곤 표시
         function displayArea(coordinates, name) {
@@ -1072,21 +1159,6 @@
             }
           );
 
-          /* 색깔 */
-          // if (!colorflag) {
-          //   $.getJSON(jsonLocation, function (data) {
-          //     var data = data.features;
-          //     var coordinates = [];
-          //     var name = '';
-          //     $.each(data, function (i, val) {
-          //       if (val.geometry.type == 'Polygon') {
-          //         coordinates = val.geometry.coordinates;
-          //         name = val.properties.SIG_KOR_NM;
-          //       }
-          //     });
-          //   });
-          // }
-
           kakao.maps.event.addListener(
             polygon,
             'mousemove',
@@ -1096,7 +1168,9 @@
             }
           );
 
+          // 폴리곤 클릭 시 색깔 변경
           kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
+            console.log('polygon color change!');
             // for (let i = 0; i < 5; i++) {
             // console.log('반복문 실행?');
             map.setLevel(11); // level에 따라 이벤트 변경
@@ -1120,15 +1194,10 @@
             }
           );
 
-          var markers = [];
-          var marker;
-          var content = '';
+          // 폴리곤 클릭 시 해당 구역의 축제 마커 찍기
           kakao.maps.event.addListener(polygon, 'click', function (mouseEvent) {
-            console.log(name);
-            if (markers.length > 0) {
-              // 기존 마커 지우기
-              hideMarkers();
-            }
+            console.log('other region click!');
+            deleteMarker();
             fetch('${pageContext.request.contextPath}/festival/ftvList', {
               method: 'post',
               headers: {
@@ -1138,7 +1207,7 @@
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log(data);
+                console.log('응답받은 데이터: ', data);
                 //요청한 행정구역명에 맞는 축제 마커 찍기
                 for (let i = 0; i < data.length; i++) {
                   // 주소로 좌표를 검색합니다
@@ -1157,121 +1226,79 @@
                           map: map,
                           position: coords,
                         });
+                        // 생성된 마커를 배열에 추가합니다
+                        listMarker.push(marker);
 
-                        content = document.createElement('div');
-                        content.innerHTML = data[i].ftvName;
-                        content.style.cssText =
-                          'background: white; border: 1px solid black';
-
-                        like = document.createElement('img');
-                        like.setAttribute(
-                          'src',
-                          '/resources/static/img/like.png'
-                        );
-                        like.setAttribute(
-                          'alt',
-                          'likeIconNotClicked:' + data[i].ftvNum
-                        );
-                        like.setAttribute('height', 24); //px
-                        like.setAttribute('width', 24);
-                        content.appendChild(like);
-
-                        ftvNum = data[i].ftvNum;
-
-                        // like.onclick = function () {
-                        //   console.log('좋아요 클릭했다!');
-                        //   like.setAttribute(
-                        //     'src',
-                        //     '/resources/static/img/likeDarker.png'
-                        //   );
-                        //   like.setAttribute('alt', 'likeIconClicked');
-                        //   like.setAttribute('height', 24); //px
-                        //   like.setAttribute('width', 24);
-                        //   content.appendChild(like);
-                        // };
-
-                        // urlDiv = document.createElement('div');
-                        // url = document.createElement('a');
-                        // url.setAttribute('href', data[i].url);
-                        // url.setAttribute('target', '_blank');
-                        // url.innerHTML = '홈페이지';
-                        // urlDiv.appendChild(url);
-                        // content.appendChild(urlDiv);
-                        // url.onclick = function () {
-                        //   if (data[i].url === null)
-                        //     alert('해당 링크가 존재하지 않습니다!');
-                        //   return;
-                        // };
-
-                        // roadAddr = document.createElement('div');
-                        // roadAddr.innerHTML = data[i].roadAddr;
-                        // content.appendChild(roadAddr);
-
-                        // time = document.createElement('div');
-                        // time.innerHTML =
-                        //   data[i].startDate + ' ~ ' + data[i].endDate;
-                        // content.appendChild(time);
-
-                        // var closeBtn = document.createElement('button');
-                        // closeBtn.innerHTML = '닫기';
-                        // closeBtn.onclick = function () {
-                        //   overlay.setMap(null);
-                        // };
-                        // content.appendChild(closeBtn);
-
-                        // 마커 위에 커스텀오버레이를 표시합니다
-                        // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-                        var overlay = new kakao.maps.CustomOverlay({
-                          content: content,
-                          map: map,
-                          position: marker.getPosition(),
+                        // 마커에 표시할 인포윈도우를 생성합니다
+                        var infowindow = new kakao.maps.InfoWindow({
+                          // content: data[i].ftvName, // 인포윈도우에 표시할 내용
+                          content:
+                            '<div style="width:200px; padding:5px;">' +
+                            data[i].ftvName +
+                            '</div>',
                         });
+
+                        // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+                        // 이벤트 리스너로는 클로저를 만들어 등록합니다
+                        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+                        kakao.maps.event.addListener(
+                          marker,
+                          'mouseover',
+                          makeOverListener(map, marker, infowindow)
+                        );
+                        kakao.maps.event.addListener(
+                          marker,
+                          'mouseout',
+                          makeOutListener(infowindow)
+                        );
 
                         // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                         kakao.maps.event.addListener(
                           marker,
                           'click',
                           function () {
-                            overlay.setMap(map);
+                            console.log('클릭한 마커의 번호: ', data[i].ftvNum);
+
+                            document.getElementById(
+                              'exampleModalLabel'
+                            ).textContent = data[i].ftvName;
+                            document.getElementById('date').textContent =
+                              data[i].startDate + ' ~ ' + data[i].endDate;
+                            document.getElementById('place').textContent =
+                              data[i].place;
+                            document.getElementById('roadAddr').textContent =
+                              data[i].roadAddr;
+                            document.getElementById('phone').textContent =
+                              data[i].phone;
+                            document.getElementById('content').textContent =
+                              data[i].ftvContent;
+                            // document
+                            //   .getElementById('url')
+                            //   .setAttribute('href', data[i].url);
+                            // document.getElementById('aContent').textContent =
+                            //   data[i].url;
+
+                            document
+                              .getElementById('modalY')
+                              .setAttribute('href', data[i].url);
+                            document.getElementById('modalY').textContent =
+                              '축제 상세보기';
+
+                            $('#testModal').modal('show');
+
+                            // overlay.setMap(map);
+                            getFtvNum = data[i].ftvNum;
                           }
                         );
 
-                        // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
-                        function closeOverlay() {
-                          overlay.setMap(null);
-                        }
-                        //
-
                         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                         // map.setCenter(coords);
-                        // 생성된 마커를 배열에 추가합니다
-                        markers.push(marker);
-                      }
+                        //
+                      } // 좌표 검색 정상인 경우
                     }
-                  );
+                  ); // 좌표 검색
                 } // for문 끝
               }); //.then(data)끝
-
-            // 클릭시 확대
-            //var level = map.getLevel() - 2; // 현재 레벨에서 2레벨 확대 정의
-
-            // removePolygon();
-
-            // setTimeout(() => {
-
-            // else {
-            //   colorflag = true; // 색 없어야
-
-            //   while (colorflag) {
-            //     console.log('디테임모드?? true');
-            //     polygon.setOptions({ fillOpacity: 0 });
-            //     colorflag = false;
-            //   }
-            //   var latlng = mouseEvent.latLng;
-            //   map.panTo(latlng);
-            //   // 클릭 이벤트 함수
-            //   // callFunctionWithRegionCode(area.location);
-            // }
           }); // 폴리곤 클릭 이벤트 끝
         } // displayArea() end
 
@@ -1342,26 +1369,36 @@
           // console.log(searchVal);
           const searchBtn = document.querySelector('#search_btn');
 
-          //영어, 스페이스 입력 시 요청되는 문제 있음!
-          searchVal.addEventListener('keypress', function (e) {
-            //엔터키 누른 경우
+          searchVal.addEventListener('keydown', function (e) {
             console.log('사용자가 ', e.target.value, '라는 값을 입력하였다!');
-            hideMarkers();
-            filterValue = searchVal.value; // 사용자가 입력한 값 얻기
-            searchMarker(filterValue);
-            searchVal.value = '';
+
+            if (e.keyCode == 13) {
+              //엔터키 누른 경우
+              if (e.target.value === '') {
+                alert('내용을 입력해 주세요.');
+                return;
+              }
+              hideMarkers();
+              filterValue = searchVal.value; // 사용자가 입력한 값 얻기
+              searchMarker(filterValue);
+              searchVal.value = '';
+            }
           });
 
           searchBtn.addEventListener('click', function () {
-            hideMarkers();
             filterValue = searchVal.value; // 사용자가 입력한 값 얻기
+            if (filterValue === '') {
+              alert('내용을 입력해 주세요.');
+              return;
+            }
+            hideMarkers();
             console.log('사용자가 입력한 값: ', filterValue);
             searchMarker(filterValue);
             searchVal.value = '';
           });
         });
 
-        var markers = [];
+        // var markers = [];
         var marker;
         // 키워드명 출력 함수
         function searchMarker(filterValue) {
@@ -1408,7 +1445,7 @@
                             ),
                             // title: data[i].ftvNum,
                           });
-                          markers.push(marker);
+                          listMarker.push(marker);
                           console.log(data[i]); // Object
 
                           bounds.extend(
@@ -1504,14 +1541,14 @@
 
         /*****************************************계절 버튼 클릭 이벤트***********************************/
         // 지도에 표시된 마커 객체를 가지고 있을 배열입니다
-        var markers = [];
+        // var markers = [];
         var marker;
         let getFtvNum; // 축제번호
 
         var content = '';
         //계절버튼 클릭 이벤트
         document.querySelector('.find-btn1').addEventListener('click', (e) => {
-          if (markers.length > 0) {
+          if (listMarker.length > 0) {
             hideMarkers();
           }
 
@@ -1600,7 +1637,7 @@
                       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                       // map.setCenter(coords);
                       // 생성된 마커를 배열에 추가합니다
-                      markers.push(marker);
+                      listMarker.push(marker);
                     } // 좌표 검색 정상인 경우
                   }
                 ); // 좌표 검색
@@ -1612,7 +1649,7 @@
 
         document.querySelector('.find-btn2').addEventListener('click', (e) => {
           //여름 클릭
-          if (markers.length > 0) {
+          if (listMarker.length > 0) {
             hideMarkers();
           }
           fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'summer')
@@ -1693,7 +1730,7 @@
                       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                       // map.setCenter(coords);
                       // 생성된 마커를 배열에 추가합니다
-                      markers.push(marker);
+                      listMarker.push(marker);
                     }
                   }
                 );
@@ -1703,7 +1740,7 @@
 
         document.querySelector('.find-btn3').addEventListener('click', (e) => {
           //가을 클릭
-          if (markers.length > 0) {
+          if (listMarker.length > 0) {
             hideMarkers();
           }
           fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'fall')
@@ -1784,7 +1821,7 @@
                       // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                       // map.setCenter(coords);
                       // 생성된 마커를 배열에 추가합니다
-                      markers.push(marker);
+                      listMarker.push(marker);
                     }
                   }
                 );
@@ -1794,7 +1831,7 @@
 
         document.querySelector('.find-btn4').addEventListener('click', (e) => {
           //겨울 클릭
-          if (markers.length > 0) {
+          if (listMarker.length > 0) {
             hideMarkers();
           }
           fetch('${pageContext.request.contextPath}/festival/ftvList/' + 'winter')
@@ -1876,7 +1913,7 @@
                       // map.setCenter(coords);
 
                       // 생성된 마커를 배열에 추가합니다
-                      markers.push(marker);
+                      listMarker.push(marker);
                     }
                   }
                 );
@@ -1886,8 +1923,8 @@
 
         // 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
         function setMarkers(map) {
-          for (var i = 0; i < markers.length; i++) {
-            markers[i].setMap(map);
+          for (var i = 0; i < listMarker.length; i++) {
+            listMarker[i].setMap(map);
           }
         }
 
