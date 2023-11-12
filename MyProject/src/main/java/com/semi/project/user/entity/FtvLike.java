@@ -16,7 +16,7 @@ import lombok.ToString;
 public class FtvLike {
 	
 	private String userId;
-	private int ftvNum;
 	private int likeNum;
+	private int ftvNum;
 
 }

@@ -221,6 +221,38 @@ prefix="c" %>
       .likeBtn {
         text-decoration: none;
       }
+
+      #ftvModalSty {
+        border-bottom: 1px solid #ddd;
+        padding-top: 5px;
+        padding-bottom: 15px;
+      }
+      #ftvName {
+        margin-top: 5px;
+      }
+      #ftvUrl {
+        text-decoration-line: none;
+      }
+      #ftvUrl:hover {
+        color: black;
+      }
+      /* 무한 스크롤*/
+      #container {
+        border: 1px solid #ddd;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .item {
+        border: 1px solid #ccc;
+        margin: 10px 0;
+        padding: 10px;
+      }
+      #contentDiv {
+        height: 50vh;
+        overflow-y: auto;
+      }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
   </head>
@@ -284,10 +316,6 @@ prefix="c" %>
     <div id="modal"></div>
     <div class="modal-con modal1">
       <div class="modal-header">
-        <input
-          type="text"
-          placeholder="좋아요 리스트"
-        />
         <a
           href="#"
           class="portal"
@@ -299,6 +327,10 @@ prefix="c" %>
         >
           X
         </button>
+
+        <div id="contentDiv">
+          <!-- 좋아요 리스트 넣을 태그 -->
+        </div>
       </div>
 
       <!-- 페이징 목록 -->
@@ -331,6 +363,91 @@ prefix="c" %>
       $('#modal, .close-area').on('click', function () {
         $('#modal').fadeOut(300);
         $('.modal1').fadeOut(300);
+      });
+
+      const userIdVal = '${login}';
+      let str = ''; // 좋아요 리스트 불러 올 변수
+      // 좋아요 리스트 구현
+      const $likeBtn = document.querySelector('.like');
+      // 가상의 데이터 배열
+
+      // 보여줄 아이템 개수
+      const itemsPerPage = 1;
+
+      // 현재 페이지
+
+      let currentPage = 1;
+
+      // 컨테이너 엘리먼트
+      const $container = document.getElementById('contentDiv');
+      const item = document.createElement('div');
+
+      $likeBtn.addEventListener('click', (e) => {
+        console.log('좋아요 리스트 클릭', userIdVal);
+
+        fetch('${pageContext.request.contextPath}/user/likeList/' + userIdVal)
+          .then((res) => res.json())
+          .then((list) => {
+            console.log('좋아요리스트 클릭시: ', list);
+
+            for (likeList of list) {
+              str +=
+                `<!-- 축제명 -->
+                            <div class="festivalName">
+                               <strong><h4 id='ftvName'><p>` +
+                likeList.ftvName +
+                `</p></h4></strong></div>
+                                <div class="festivalPhone">
+                                <h6><p id='ftvPhone'>` +
+                likeList.phone +
+                `</p></h6></div>
+                                  <div class="festivalPlace">
+                                    <h6><p id='ftvPlace'>` +
+                likeList.place +
+                `</p></h6></div>
+                                      <div class="festivalRoad">
+                                        <h6><p id='ftvRoad'>` +
+                likeList.roadAddr +
+                `</p></h6></div>
+                                        <div class="festivalUrl">
+                                        <small><h5  id='ftvModalSty'><a href="` +
+                likeList.url +
+                `" id='ftvUrl'>
+                                          홈페이지</a></h5></small></div>
+                                          `;
+            }
+            const data = Array.from({ length: 1 }, (_, index) => str);
+            // 아이템을 생성하여 컨테이너에 추가하는 함수
+            function appendItems(page, itemsPerPage) {
+              const start = (page - 1) * itemsPerPage;
+              const end = start + itemsPerPage;
+              for (let i = start; i < end; i++) {
+                item.className = 'item';
+                $container.appendChild(item);
+                item.innerHTML = data[i];
+              }
+            }
+            // 초기 아이템 추가
+            appendItems(currentPage, itemsPerPage);
+
+            // 스크롤 이벤트 감지
+            // window.addEventListener('scroll', () => {
+            //   const currentScroll = window.scrollY;
+            //   const windowHeight = window.innerHeight;
+            //   const bodyHeight = document.body.clientHeight;
+            //   const paddingBottom = 200;
+            //   // if (
+            //   //   currentScroll + windowHeight + paddingBottom >=
+            //   //   bodyHeight - 10
+            //   // )
+            //   // {
+            //   //   // 스크롤이 바닥에 닿았을 때 새로운 아이템 추가
+            //   //   currentPage++;
+            //   //   appendItems(currentPage, itemsPerPage);
+            //   // }
+            // });
+          });
+        item.innerHTML = '';
       });
 
       // 헤더 랜덤 축제에 관련된 변수
@@ -371,8 +488,6 @@ prefix="c" %>
         quote.textContent = arr[random].quote;
       });
 
-      let str = '';
-
       document.querySelector('.like').onclick = () => {
         fetch('${pageContext.request.contextPath}/user/likeList/' + `${login}`)
           .then((res) => res.json())
@@ -382,7 +497,7 @@ prefix="c" %>
               str += `<div>` + like.ftvName + `/` + like.url + `</div>`;
             }
 
-            document.getElementById('')
+            document.getElementById('');
           });
       };
 

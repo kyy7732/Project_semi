@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.ui.Model;
 
 import com.semi.project.festival.entity.Festival;
+import com.semi.project.user.entity.FtvLike;
 import com.semi.project.user.entity.User;
 
 public interface IUserMapper {

@@ -144,19 +144,6 @@ public class UserController {
 		}
 		
 		
-	//좋아요 목록 저장(비동기)
-	@PostMapping("/likeList")
-	@ResponseBody
-	public String registFtvLike(@RequestBody likeDTO dto) {
-		log.info("userId: {}, ftvNum: {}", dto.getUserId(), dto.getFtvNum());
-		service.registFtvLike(dto);
-		if (dto.getUserId() != null) {
-			return "true";
-		} else {
-			return "false";
-		}
-	}
-		
 	// 좋아요 확인, 취소
 	@PostMapping("/like")
 	@ResponseBody

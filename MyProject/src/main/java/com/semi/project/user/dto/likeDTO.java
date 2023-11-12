@@ -17,11 +17,13 @@ public class likeDTO {
 	
 	private String userId;
 	private int ftvNum;
+	private int likeNum;
 
-	public FtvLike toEntity(likeDTO dto) {
+	public FtvLike toEntity(FtvLike like) {
 		return FtvLike.builder()
-					.userId(this.userId)
-					.ftvNum(this.ftvNum)
+					.userId(like.getUserId())
+					.ftvNum(like.getFtvNum())
+					.likeNum(like.getLikeNum())
 					.build();
 	}
 	
