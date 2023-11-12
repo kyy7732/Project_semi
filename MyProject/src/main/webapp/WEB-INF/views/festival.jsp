@@ -968,14 +968,49 @@
             <div class="link-inner">
               <a href="##" class="glyphicon-thumbs-up"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
               <!-- src\main\webapp\resources\static\img\like.png -->
-              <a href="##" id="ssk"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
-              <a href="##"><i class="glyphicon glyphicon-share-alt"></i>공유하기</a>
+              <a href="##" id="ssk" id="ssk"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
+              <a id="share" data-ftvNumForShare="1" href="javascript:shareMessage()"><i
+                  class="glyphicon glyphicon-share-alt"></i>공유하기</a>
             </div>
             <div class="modal-footer">
               <a class="btn" id="modalY" href="#" target="_blank">예</a>
               <button class="btn" type="button" data-dismiss="modal">
                 닫기
               </button>
+            </div>
+          </div>
+          <!-- 댓글창 -->
+          <div class="ressk" style="display: none">
+            <div class="textarea" style="display: flex; justify-content: space-between">
+              <textarea name="cols" id="replytext" cols="30" rows="4" placeholder="댓글을 남겨주세요."></textarea>
+              <div class="submit">
+                <button type="submit" class="btn regist" onclick="">
+                  <a> 등록 </a>
+                </button>
+              </div>
+            </div>
+            <!-- area-reply -->
+            <div class="area-reply">
+              <s_rp_container>
+                <ul class="list-reply">
+                  <s_rp_rep>
+                    <li id="" class="item-reply">
+                      <div class="box-content">
+                        <div class="control">
+                          <p class="text" aria-placeholder="댓글 입력창 입니다."></p>
+                          <a href="#" class="link-comment" onclick="">답글</a>
+                          <a href="#" onclick="">수정/댓글</a>
+                        </div>
+                        <!-- <div class="control">
+                          <a href="#" class="link-comment" onclick="">답글</a>
+                          <a href="#">댓글주소</a>
+                          <a href="#" onclick="">수정/댓글</a>
+                        </div> -->
+                      </div>
+                    </li>
+                  </s_rp_rep>
+                </ul>
+              </s_rp_container>
             </div>
           </div>
           <!-- 댓글창 -->
@@ -1014,6 +1049,13 @@
           </div>
         </div>
       </div>
+
+      <script>
+        $('#ssk').click(function () {
+          $('.ressk').toggle();
+        });
+      </script>
+      <script src="script.js"></script>
 
       <script type="text/javascript"
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c6f403205c2f67b836ea3a0e1fc26f5&libraries=services,clusterer,drawing"></script>
@@ -1313,6 +1355,14 @@
                             // document.getElementById('aContent').textContent =
                             //   data[i].url;
 
+                            //data 묻히기
+                            document
+                              .getElementById('share')
+                              .setAttribute(
+                                'data-ftvNumForShare',
+                                data[i].ftvNum
+                              );
+
                             document
                               .getElementById('modalY')
                               .setAttribute('href', data[i].url);
@@ -1321,10 +1371,60 @@
 
                             $('#testModal').modal('show');
 
+                            document
+                              .getElementById('share')
+                              .addEventListener('click', (e) => {
+                                //모달 안의 공유하기 버튼 눌렀을 때 이벤트
+                                const bno =
+                                  document.getElementById('share').dataset
+                                    .ftvNumForShare;
+                                console.log('bno: ', bno);
+                                shareMessage();
+                              });
+
                             // overlay.setMap(map);
                             getFtvNum = data[i].ftvNum;
+
+                            /* 카카오 공유하기 */
+                            function shareMessage() {
+                              Kakao.Share.sendDefault({
+                                objectType: 'location',
+                                address: data[i].roadAddr,
+                                addressTitle: data[i].roadAddr,
+                                content: {
+                                  title: data[i].ftvName,
+                                  description: data[i].roadAddr,
+                                  imageUrl: '/resources/static/img/shareImg.png',
+                                  link: {
+                                    // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                                    mobileWebUrl: 'http://localhost',
+                                    webUrl: 'http://localhost',
+                                  },
+                                },
+                                social: {
+                                  likeCount: 286,
+                                  commentCount: 45,
+                                  sharedCount: 845,
+                                },
+                                buttons: [
+                                  {
+                                    title: '전국 축제 확인하기',
+                                    link: {
+                                      mobileWebUrl: 'http://localhost',
+                                      webUrl: 'http://localhost',
+                                    },
+                                  },
+                                ],
+                              });
+                            }
                           }
                         );
+
+                        // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다
+                        function closeOverlay() {
+                          overlay.setMap(null);
+                        }
+                        //
 
                         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
                         // map.setCenter(coords);

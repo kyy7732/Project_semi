@@ -10,8 +10,7 @@
             <style>
                 #contents {
                     width: 900px;
-                    height: auto;
-                    margin: auto;
+                    margin-left: 500px;
                 }
 
                 .guide_txt {
@@ -102,11 +101,13 @@
                 div.btn_area {
                     text-align: center;
                     margin: 20px;
+                    height: 30px;
                 }
 
                 div.btn_area span {
-                    margin-top: 30px;
+                    margin-top: 50px;
                     padding: 3px 0;
+                    height: 30px;
                 }
 
                 .b_ok {

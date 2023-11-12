@@ -149,10 +149,6 @@
         }
 
         /*****모달창*****/
-        * {
-          margin: 0;
-          padding: 0;
-        }
 
         a.button {
           display: inline-block;
@@ -1827,6 +1823,58 @@
           1531: '2023 자유공원 벚꽃축제',
           1532: '2023 가족의 달 어린이축제',
           1533: '무의도 춤축제',
+        };
+        // 헤더 랜덤 축제에 관련된 변수
+        var quote = document.getElementById('quote');
+        var btn = document.getElementById('increase');
+        var btn2 = document.getElementById('decrease');
+
+        // 축제 배열로 담은 것
+        var arr = [
+          {
+            quote: '축제1',
+          },
+          {
+            quote: '축제2',
+          },
+          {
+            quote: '축제3',
+          },
+          {
+            quote: '축제4',
+          },
+          {
+            quote: '축제5',
+          },
+        ];
+
+        //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn
+        btn.addEventListener('click', function () {
+          var random = Math.floor(Math.random() * arr.length);
+
+          quote.textContent = arr[random].quote;
+        });
+
+        //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn2
+        btn2.addEventListener('click', function () {
+          var random = Math.floor(Math.random() * arr.length);
+
+          quote.textContent = arr[random].quote;
+        });
+
+        let str = '';
+
+        document.querySelector('.like').onclick = () => {
+          fetch('${pageContext.request.contextPath}/user/likeList/' + `${login}`)
+            .then((res) => res.json())
+            .then((list) => {
+              console.log(list);
+              for (like of list) {
+                str += `<div>` + like.ftvName + `/` + like.url + `</div>`;
+              }
+
+              document.querySelector('.ftv').insertAdjacentHTML('beforeend', str);
+            });
         };
         ///실시간 데이탕
         function showRandomFestival() {
