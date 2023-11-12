@@ -29,6 +29,7 @@
 		<property name="password" value="${ora.password}"/>
 	</bean>
 	
+	
 	<mybatis-spring:scan base-package="com.semi.project.festival.mapper"/>
 	<mybatis-spring:scan base-package="com.semi.project.user.mapper"/>
 	<mybatis-spring:scan base-package="com.semi.project.reply.mapper"/>

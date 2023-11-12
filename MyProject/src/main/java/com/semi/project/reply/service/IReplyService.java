@@ -2,7 +2,6 @@ package com.semi.project.reply.service;
 
 import java.util.List;
 
-import com.semi.project.reply.dto.ReplyDetailDTO;
 import com.semi.project.reply.dto.UserReplyModifyRequestDTO;
 import com.semi.project.reply.dto.UserReplyRequestDTO;
 import com.semi.project.reply.dto.UserReplyResponseDTO;
@@ -19,8 +18,6 @@ public interface IReplyService {
 	// 총 댓글 개수
 	int getTotal(int ftvNum);
 	
-	// 상세 보기
-	ReplyDetailDTO getContent(int commentNum);
 	
 	// 수정
 	void update(UserReplyModifyRequestDTO dto);

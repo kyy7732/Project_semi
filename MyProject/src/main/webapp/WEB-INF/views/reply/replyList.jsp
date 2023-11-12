@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
+pageEncoding="UTF-8"%>  
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -100,6 +101,8 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
     </style>
   </head>
   <body>
+
+    
     <div id="mainWrapper">
       <ul>
         <br />
@@ -118,16 +121,16 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
             
             <!-- 게시물이 출력될 영역 -->
             
-            <!-- <c:forEach var="vo" items="${replyList}">
+            <c:forEach var="vo" items="${replyList}">
 	                            <tr>
-	                                <td>${vo.}</td>
+	                                <td>${vo.commentNum}</td>
 	                                <td>
-	                                <a href="${pageContext.request.contextPath}/user/userContent?bno=${vo.bno}&pageNo=${pc.page.pageNo}&amount=${pc.page.amount}&keyword=${pc.page.keyword}&condition=${pc.page.condition}">${vo.title}</a>
+	                                <a href="${pageContext.request.contextPath}/user/userContent?bno=${vo.bno}&pageNo=${pc.page.pageNo}&amount=${pc.page.amount}&keyword=${pc.page.keyword}&condition=${pc.page.condition}">${vo.content}</a>
 	                                </td>
-	                                <td>${vo.writer}</td>
-	                                <td>${vo.date}</td>
+	                                <td>${vo.userId}</td>
+	                                <td>${vo.regDate}</td>
 	                            </tr>
-                            </c:forEach>-->
+                            </c:forEach>
             <li>
               <ul>
                 <li>1</li>
@@ -213,7 +216,7 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
         </li>
       </ul>
     </div>
-    
+    <%@ include file="../include/footer.jsp" %>
+
   </body>
 </html>
-<%@ include file="/WEB-INF/views/include/footer.jsp" %>
