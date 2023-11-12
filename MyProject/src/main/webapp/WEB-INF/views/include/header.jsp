@@ -140,10 +140,7 @@ prefix="c" %>
       }
 
       /*****모달창*****/
-      * {
-        margin: 0;
-        padding: 0;
-      }
+
       a.button {
         display: inline-block;
         padding: 10px 20px;

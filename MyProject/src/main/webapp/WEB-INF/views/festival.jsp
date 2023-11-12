@@ -4,31 +4,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <script src="./jquery-3.4.1.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="./bootstrapt/css/bootstrap.min.css"
-    />
-    <script src="./bootstrapt/js/bootstrap.min.js"></script> -->
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
-    />
-
-    <!-- 부가적인 테마 -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
-    />
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <link
-      href="../../resources/static/css/bootstrap.css"
-      rel="stylesheet"
-    />
-
     <meta charset="UTF-8" />
     <title>Insert title here</title>
   </head>
@@ -581,7 +556,6 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       crossorigin="anonymous"
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../../resources/static/js/bootstrap.js"></script>
 
     <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div

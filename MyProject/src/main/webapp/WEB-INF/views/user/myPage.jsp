@@ -92,16 +92,11 @@ a:hover{
     color: #000;
 }
         
-
-#wrap {
-  margin-left: -00px;
-  margin-top: 150px;
-}
-
 #contents {
   width: 900px;
   height: auto;
   margin: auto;
+  
 }
 .button {
   --background: #275efe;
@@ -114,8 +109,6 @@ a:hover{
   --font-shadow: var(--font-size);
   margin-left: 300px;
   margin-top: -10px;
-  width: 60px;
-  height: 15px;
   padding: 16px 32px;
   font-family: 'Roboto';
   font-weight: 500;
