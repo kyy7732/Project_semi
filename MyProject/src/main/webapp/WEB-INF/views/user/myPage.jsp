@@ -58,13 +58,14 @@ li.border {
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    height: 70px;
+    height: 107px;
 }
 .aButton{
     display: block;
     padding: 12px;
     text-decoration-line: none;
     color: #0356A9;
+    height: 48px;
 
 }
 .aButton:hover{
@@ -82,29 +83,24 @@ a:hover{
     color: #158aff;
 }
 #page5 {
-    margin-top: 100px;
     text-align: center;
     line-height: 100px;
     margin-left: 100px;
+    margin-top: 50px;
     
 }
 #no:hover {
     color: #000;
 }
         
-
-#wrap {
-  margin-left: -00px;
-  margin-top: 150px;
-}
-
 #contents {
   width: 900px;
   height: auto;
   margin: auto;
+  
 }
 .button {
-  --background: #275efe;
+  --background: #0356A9;
   --text: #fff;
   --font-size: 15px;
   --duration: 0.44s;
@@ -113,9 +109,7 @@ a:hover{
   --shadow-hover: 0 4px 20px -2px rgba(39, 94, 254, 0.5);
   --font-shadow: var(--font-size);
   margin-left: 300px;
-  margin-top: -10px;
-  width: 60px;
-  height: 15px;
+  margin-top: 10px;
   padding: 16px 32px;
   font-family: 'Roboto';
   font-weight: 500;
@@ -131,6 +125,8 @@ a:hover{
   box-shadow: var(--shadow);
   transform: translateY(var(--y)) translateZ(0);
   transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+  width: 100px;
+  height: 50px;
 }
 .tab1 {
   --background: #fff;
@@ -190,7 +186,7 @@ a:hover{
 /************* 테이블 작업 ************/
 table.table_type {
   position: relative;
-  top: -288px;
+  top: -326px;
   left: 215px;
   width: 800px;
   border-collapse: collapse;
@@ -242,7 +238,7 @@ table.table_type td {
 div.btn_area {
   text-align: center;
   margin: -280px;
-  margin-left: -150px;
+  margin-left: 180px;
 }
 
 </style>
@@ -264,12 +260,10 @@ div.btn_area {
                 </li>
                 <div id="menu2">
                 <li class="border">
-                    <a href="${pageContext.request.contextPath}/user/myPage" class="aButton"><h2 class="hTable">비밀번호 변경</h2></a>
+                    <a href="${pageContext.request.contextPath}/user/myPage" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
                     <!--<a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>-->
                 </li>
-                <li class="border">
-                    <a href="${pageContext.request.contextPath}/reply/replyList" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
-                </li>
+                
                 <li class="border">
                     <a href="${pageContext.request.contextPath}/user/likeList" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
                 </li>
@@ -342,6 +336,20 @@ div.btn_area {
                                 <input type="text" id="email" name="email" class="join" value="${userInfo.useremail}" disabled="disabled">
                                 @
                                 <input class="join" type="text" class="box" id="email1" name="email1" value="${userInfo.emailDomain}" disabled="disabled" >&nbsp;
+                                    <select type="select" class="box" id="email2" name="email2">
+                                    	<option value="type">::직접입력::</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="daum.net">daum.net</option>
+                                    </select>&nbsp;&nbsp;
+                                    <span class="btn b_bdcheck">
+                                        <input type="button" class="btn btn_primary" id="check_btn" value="이메일 인증">
+                                    </span>
+
+                                    <div class="mail_check_box">
+                                    	<input type="text" class="form_control mail_check_input" placeholder="인증번호 6자리를 입력하세요." maxlength="6" style="width: 185px;">
+                                    	<span id="mail_check_warn"></span>
+                                    </div>
                             </td>
                         </tr>
                     </tbody>
@@ -420,11 +428,9 @@ div.btn_area {
       }
     }
 
-
       // update로 보내기
       //회원정보 수정 요청 검사 스크립트
       
-
       
     </script>
 

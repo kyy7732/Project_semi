@@ -1,34 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
+pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
   <head>
     <script src="./jquery-3.4.1.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="./bootstrapt/css/bootstrap.min.css"
-    />
-    <script src="./bootstrapt/js/bootstrap.min.js"></script>
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
-    />
-
-    <!-- 부가적인 테마 -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"
-    />
-
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <link
-      href="../../resources/static/css/bootstrap.css"
-      rel="stylesheet"
-    />
-
     <meta charset="UTF-8" />
     <title>Insert title here</title>
   </head>
@@ -122,9 +98,8 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       display: inline-block;
       width: 100px;
       border: none;
-      height: 40px;
       color: #fff;
-      border-radius: 10px;
+      border-radius: 6px;
       padding: 10px 25px;
       font-family: 'Lato', sans-serif;
       font-weight: 500;
@@ -158,7 +133,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       width: 400px;
       justify-content: center;
       border: 1px solid #bbb;
-      border-radius: 10px;
+      border-radius: 6px;
       padding: 8px 8px;
       font-size: 15px;
       margin-bottom: -3px;
@@ -215,6 +190,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     .modal-open {
       overflow: hidden;
     }
+
     .modal {
       position: fixed;
       top: 0;
@@ -227,6 +203,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       -webkit-overflow-scrolling: touch;
       outline: 0;
     }
+
     .modal.fade .modal-dialog {
       -webkit-transition: -webkit-transform 0.3s ease-out;
       -o-transition: -o-transform 0.3s ease-out;
@@ -236,21 +213,25 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       -o-transform: translate(0, -25%);
       transform: translate(0, -25%);
     }
+
     .modal.in .modal-dialog {
       -webkit-transform: translate(0, 0);
       -ms-transform: translate(0, 0);
       -o-transform: translate(0, 0);
       transform: translate(0, 0);
     }
+
     .modal-open .modal {
       overflow-x: hidden;
       overflow-y: auto;
     }
+
     .modal-dialog {
       position: relative;
       width: auto;
       margin: 10px;
     }
+
     .modal-content {
       position: relative;
       background-color: #fff;
@@ -263,6 +244,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
       box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
     }
+
     .modal-backdrop {
       position: absolute;
       top: 0;
@@ -270,45 +252,56 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       left: 0;
       background-color: #000;
     }
+
     .modal-backdrop.fade {
       filter: alpha(opacity=0);
       opacity: 0;
     }
+
     .modal-backdrop.in {
       filter: alpha(opacity=50);
       opacity: 0.5;
     }
+
     .modal-header {
       min-height: 16.42857143px;
       padding: 15px;
       border-bottom: 1px solid #e5e5e5;
     }
+
     .modal-header .close {
       margin-top: -2px;
     }
+
     .modal-title {
       margin: 0;
       line-height: 1.42857143;
     }
+
     .modal-body {
       position: relative;
       padding: 15px;
     }
+
     .modal-footer {
       padding: 15px;
       text-align: right;
       border-top: 1px solid #e5e5e5;
     }
+
     .modal-footer .btn + .btn {
       margin-bottom: 0;
       margin-left: 5px;
     }
+
     .modal-footer .btn-group .btn + .btn {
       margin-left: -1px;
     }
+
     .modal-footer .btn-block + .btn-block {
       margin-left: 0;
     }
+
     .modal-scrollbar-measure {
       position: absolute;
       top: -9999px;
@@ -316,19 +309,45 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
       height: 50px;
       overflow: scroll;
     }
+
+    /* 데스크탑 버전 */
     @media (min-width: 768px) {
       .modal-dialog {
         width: 600px;
         margin: 30px auto;
       }
+
       .modal-content {
         -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
       }
+
       .modal-sm {
         width: 300px;
       }
     }
+
+    /* 모바일 버전 */
+    @media (max-width: 767px) {
+      body > #wrap {
+        /* width: 500px; */
+        flex-direction: column;
+      }
+      body > #wrap > #wrap2 {
+        /* width: 500px; */
+        flex-direction: column;
+      }
+      .del-area {
+        display: block;
+      }
+      body > #wrap > .map-area {
+        /* width: 500px; */
+        width: 100%;
+        margin: 0;
+        /* padding: 20px; */
+      }
+      body > #wrap #map {
+        /* width: 500px; */
     @media (min-width: 992px) {
       .modal-lg {
         width: 900px;
@@ -337,31 +356,509 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
     /* 모달창 조절 */
     .modal-body {
-      padding: 0px;
+      padding: 15px;
     }
+
     .modal-content > .row {
       margin: 0px;
     }
-    .modal-body > .modal-img {
-      padding: 0px;
-    }
-    .modal-body > .modal-con {
-      padding: 15px;
-    }
-    .modal-inner {
-      position: relative;
-    }
-    .modal-inner .profile {
+
+    .profile {
       position: absolute;
       top: 0px;
       left: 0px;
     }
-    .modal-inner .title {
+
+    .title {
       padding-left: 50px;
     }
-    .modal-inner p {
+
+    p {
       margin: 0px;
     }
+
+    .ressk {
+      width: 600px;
+      height: 300px;
+      background: skyblue;
+      border-radius: 6px;
+
+    }
+
+    /* area-reply - 상세페이지 댓글*/
+    .area-reply {
+      margin-bottom: 60px;
+    }
+
+    .area-reply a {
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1.69;
+      color: #909090;
+    }
+
+    .area-reply .item-reply {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 25px 0 24px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .area-reply .box-content {
+      width: calc(100% - 64px);
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px; /* 원하는 간격 설정 */
+    }
+
+    .col-form-label {
+      flex: 0 0 100px; /* 레이블의 너비 조정 */
+    }
+
+
+    /* .area-reply .box-content .box-meta {
+        margin-bottom: 4px;
+        font-size: 13px;
+        line-height: 1.69;
+      } */
+
+    /*방문자 댓글창*/
+    /* .area-reply .box-content .text {
+        font-size: 14px;
+        line-height: 1.43;
+        color: #000000;
+        word-break: break-all;
+        border: 1px solid #e6e6e6;
+        padding: 10px;
+        box-shadow: 2px 5px 8px 0px #e7e7e794;
+        margin: 0 0px 3px 0;
+        position: relative;
+        border-radius: 20px 20px 20px 20px;
+        background-color: #f5f5f5;
+        margin-right: 45px;
+      }
+
+      .area-reply .box-content .text:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 0.625em solid transparent;
+        border-right-color: #e6e6e6;
+        border-left: 0;
+        border-top: 0;
+        margin-top: -0.312em;
+        margin-left: -0.625em;
+        margin-right: 0;
+        right: auto;
+      }
+
+      .area-reply .list-reply-comment .item-reply:last-child {
+        margin-bottom: 0;
+      } */
+
+    /*관리자 댓글*/
+    .area-reply .text {
+      margin: 0 0px 3px 0;
+      position: relative;
+      border-radius: 20px 20px 20px 20px;
+      background-color: #b0c4de;
+      margin-left: 45px;
+    }
+
+    .area-reply .text:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 0.625em solid transparent;
+      border-left-color: #e6e6e6;
+      border-right: 0;
+      border-top: 0;
+      margin-top: -0.312em;
+      margin-right: -0.625em;
+      margin-left: 0;
+      left: auto;
+    }
+
+    /* ----- media query - mobile ----- */
+    @media screen and (max-width: 1060px) {
+      .area-reply {
+        margin-bottom: 30px;
+      }
+
+      .area-reply .item-reply {
+        padding: 25px 0 19px 0;
+      }
+
+      .area-reply .box-content {
+        margin-top: -3px;
+      }
+
+      /* .area-reply .box-content .box-meta {
+          line-height: 1.59;
+        } */
+
+      .area-reply .box-content .text {
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+
+      /* .area-reply .list-reply-comment .box-meta {
+          margin-top: 6px;
+        } */
+    }
+
+    /* .comments {
+        max-width: 100%;
+        margin-top: 10px;
+        border-top: 1px solid #e6e6e6;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+      } */
+
+    ul li {
+      padding: 30px 0 25px;
+      border-top: 1px solid #e6e6e6;
+      position: relative;
+      min-height: 48px;
+    }
+
+    ul li:first-child {
+      border: none;
+    }
+
+    ul li ul li {
+      padding: 26px 0 0 60px;
+      border-top: 0;
+      border-bottom: 0;
+    }
+
+    /* ul li .author-meta {
+        position: absolute;
+        overflow: hidden;
+        top: 30px;
+        height: 48px;
+        left: 0;
+        right: 0;
+        padding: 4px 0 0 60px;
+      }
+
+      ul li ul li .author-meta {
+        top: 26px;
+        left: 60px;
+      } */
+
+    ul li span {
+      display: inline-block;
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    ul li .control {
+      position: absolute;
+      top: 33px;
+      right: 0;
+    }
+
+    ul li ul li .control {
+      top: 29px;
+    }
+
+    ul li .control a {
+      margin: 0 2px;
+      text-decoration: none;
+      font-size: 12px;
+      color: #999;
+    }
+
+    ul li p {
+      position: relative;
+      margin: 29px 0 0 60px;
+      font-size: 0.875em;
+      line-height: 1.5714;
+      color: #666;
+    }
+
+    .textarea {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      resize: none;
+      box-sizing: border-box;
+      border-radius: 6px;
+
+      background-color: #f5f5f5;
+    }
+
+    .textarea {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      resize: none;
+      box-sizing: border-box;
+      background-color: #f5f5f5;
+      border: none;
+    }
+
+    .submit {
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    /*댓글 작성 버튼*/
+    .btn {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      padding: 0 10px;
+      border: 1px solid #00008b;
+      text-decoration: none;
+      text-align: left;
+      background-color: #00008b;
+      font-size: 12px;
+      text-align: center;
+      color: #ffffff;
+      border-radius: 20px 20px 20px 20px;
+      -webkit-transition: color 0.2s, background-color 0.2s;
+      transition: color 0.2s, background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #00008b;
+      border-color: #00008b;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    #replytext {
+      width: 530px;
+      height: 52px;
+    }
+
+    /* area-reply - 상세페이지 댓글****************************************/
+    .area-reply {
+      margin-bottom: 60px;
+    }
+
+    .area-reply a {
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1.69;
+      color: #909090;
+    }
+
+    .area-reply .item-reply {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 25px 0 24px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .area-reply .box-content {
+      width: calc(100% - 64px);
+    }
+
+    /*방문자 댓글창 사용자 댓글창*/
+    .area-reply .box-content .text {
+      font-size: 14px;
+      line-height: 1.43;
+      color: #000000;
+      word-break: break-all;
+      border: 1px solid #e6e6e6;
+      padding: 10px;
+      box-shadow: 2px 5px 8px 0px #e7e7e794;
+      margin: 0 0px 3px 0;
+      position: relative;
+      border-radius: 20px 20px 20px 20px;
+      background-color: #f5f5f5;
+      margin-right: 45px;
+    }
+
+    .area-reply .box-content .text:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 0.625em solid transparent;
+      border-right-color: #e6e6e6;
+      border-left: 0;
+      border-top: 0;
+      margin-top: -0.312em;
+      margin-left: -0.625em;
+      margin-right: 0;
+      right: auto;
+    }
+
+    .area-reply .list-reply-comment .item-reply:last-child {
+      margin-bottom: 0;
+    }
+
+    /*관리자 댓글 본인댓글창*/
+    .area-reply .rp_admin .text {
+      margin: 0 0px 3px 0;
+      position: relative;
+      border-radius: 20px 20px 20px 20px;
+      background-color: #b0c4de;
+      margin-left: 45px;
+    }
+
+    .area-reply .rp_admin .text:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 0.625em solid transparent;
+      border-left-color: #e6e6e6;
+      border-right: 0;
+      border-top: 0;
+      margin-top: -0.312em;
+      margin-right: -0.625em;
+      margin-left: 0;
+      left: auto;
+    }
+
+    /* ----- media query - mobile ----- */
+    @media screen and (max-width: 1060px) {
+      .area-reply {
+        margin-bottom: 30px;
+      }
+
+      .area-reply .item-reply {
+        padding: 25px 0 19px 0;
+      }
+
+      .area-reply .box-content {
+        margin-top: -3px;
+      }
+
+      .area-reply .box-content .text {
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+    }
+
+    .comments .comment-list ul li .control {
+      position: absolute;
+      top: 33px;
+      right: 0;
+    }
+
+    .comments .comment-list ul li ul li .control {
+      top: 29px;
+    }
+
+    .comments .comment-list ul li .control a {
+      margin: 0 2px;
+      text-decoration: none;
+      font-size: 12px;
+      color: #999;
+    }
+
+    .comments .comment-list ul li p {
+      position: relative;
+      margin: 29px 0 0 60px;
+      font-size: 0.875em;
+      line-height: 1.5714;
+      color: #666;
+    }
+
+    .comments .comment-form input::-webkit-input-placeholder,
+    .comments .comment-form textarea::-webkit-input-placeholder {
+      color: #d6d6d6;
+    }
+
+    .comments .comment-form textarea {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      resize: none;
+      box-sizing: border-box;
+      background-color: #f5f5f5;
+      border: none;
+    }
+
+    .comments .comment-form .field .secret label:before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin-right: 9px;
+      border: 1px solid #e1e1e1;
+      vertical-align: middle;
+      background-color: #fff;
+    }
+
+    .submit {
+      margin-bottom: 10px;
+      text-align: right;
+    }
+
+    /*댓글 작성 버튼*/
+    .btn {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      padding: 0 10px;
+      border: 1px solid #00008b;
+      text-decoration: none;
+      text-align: left;
+      background-color: #00008b;
+      font-size: 12px;
+      text-align: center;
+      color: #ffffff;
+      border-radius: 10px;
+      -webkit-transition: color 0.2s, background-color 0.2s;
+      transition: color 0.2s, background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #00008b;
+      border-color: #00008b;
+      color: #ffffff;
+      font-weight: bold;
+    }
+    .regist {
+      height: 52px;
+      margin-left: 3px;
+      margin-top: 3px;
+      width: 65px;
+    }
+
+    .link-inner {
+      text-align: center;
+    }
+    .modal-footer {
+      height: 50px;
+    }
+    /* // area-reply - 상세페이지 댓글*/
   </style>
 
   <body>
@@ -429,49 +926,57 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             </button>
           </div>
           <div class="modal-body">
-            <label
-              for="place"
-              class="col-form-label"
-              >장소:</label
-            >
-            <div
-              class="mb-3"
-              id="place"
-            >
-              축제장소
+            <div class="form-group">
+              <label
+                for="place"
+                class="col-form-label"
+                >장소</label
+              >
+              <div
+                class="mb-3"
+                id="place"
+              >
+                축제장소
+              </div>
             </div>
-            <label
-              for="roadAddr"
-              class="col-form-label"
-              >도로명 주소:</label
-            >
-            <div
-              class="mb-3"
-              id="roadAddr"
-            >
-              주소
+            <div class="form-group">
+              <label
+                for="roadAddr"
+                class="col-form-label"
+                >도로명 주소</label
+              >
+              <div
+                class="mb-3"
+                id="roadAddr"
+              >
+                주소
+              </div>
             </div>
-            <label
-              for="phone"
-              class="col-form-label"
-              >전화번호:</label
-            >
-            <div
-              class="mb-3"
-              id="phone"
-            >
-              전화번호
+            <div class="form-group">
+              <label
+                for="phone"
+                class="col-form-label"
+                >전화번호</label
+              >
+              <div
+                class="mb-3"
+                id="phone"
+              >
+                전화번호
+              </div>
             </div>
-            <label
-              for="content"
-              class="col-form-label"
-              >내용:</label
-            >
-            <div
-              class="mb-3"
-              id="content"
-            >
-              축제내용
+            <div class="form-group">
+              <label
+                for="content"
+                class="col-form-label"
+                >내용</label
+              >
+              <div
+                class="mb-3"
+                id="content"
+              >
+                축제내용
+              </div>
             </div>
             <!-- <label
         for="url"
@@ -498,8 +1003,12 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
               >좋아요<img class="likeSelect" id="likeSelectImg" src="${pageContext.request.contextPath}/img/like.png"></img></a
             >
             <!-- src\main\webapp\resources\static\img\like.png -->
-            <a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
-            <a href="##"
+
+            <a href="##" id="ssk"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>
+            <a
+              id="share"
+              data-ftvNumForShare="1"
+              href="javascript:shareMessage()"
               ><i class="glyphicon glyphicon-share-alt"></i>공유하기</a
             >
           </div>
@@ -520,8 +1029,65 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
             </button>
           </div>
         </div>
+        <!-- 댓글창 -->
+        <div
+          class="ressk"
+          style="display: none"
+        >
+          <div
+            class="textarea"
+            style="display: flex; justify-content: space-between"
+          >
+            <textarea
+              name="cols"
+              id="replytext"
+              cols="30"
+              rows="4"
+              placeholder="댓글을 남겨주세요."
+            ></textarea>
+            <div class="submit">
+              <button
+                type="submit"
+                class="btn regist"
+                onclick=""
+              >
+                <a> 등록 </a>
+              </button>
+            </div>
+          </div>
+          <!-- area-reply -->
+          <div class="area-reply">
+            <s_rp_container>
+              <ul class="list-reply">
+                <s_rp_rep>
+                  <li
+                    id=""
+                    class="item-reply"
+                  >
+                    <div class="box-content">
+                      <div class="control">
+                        <p
+                          class="text"
+                          aria-placeholder="댓글 입력창 입니다."
+                        ></p>
+                      </div>
+
+                    </div>
+                  </li>
+                </s_rp_rep>
+              </ul>
+            </s_rp_container>
+          </div>
+        </div>
       </div>
     </div>
+
+    <script>
+      $('#ssk').click(function () {
+        $('.ressk').toggle();
+      });
+    </script>
+    <script src="script.js"></script>
 
     <script
       type="text/javascript"
@@ -534,6 +1100,15 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="../../resources/static/js/bootstrap.js"></script>
+    <!-- 카카오 공유하기 api -->
+    <script
+      src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js"
+      integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      Kakao.init('a5c28d99bb31ae88bf5a825a4fd77ac6'); // 사용하려는 앱의 JavaScript 키 입력
+    </script>
 
     <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -811,7 +1386,90 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                         marker,
                         'click',
                         function () {
-                          overlay.setMap(map);
+
+                          console.log('클릭한 마커의 번호: ', data[i].ftvNum);
+
+                          document.getElementById(
+                            'exampleModalLabel'
+                          ).textContent = data[i].ftvName;
+                          document.getElementById('date').textContent =
+                            data[i].startDate + ' ~ ' + data[i].endDate;
+                          document.getElementById('place').textContent =
+                            data[i].place;
+                          document.getElementById('roadAddr').textContent =
+                            data[i].roadAddr;
+                          document.getElementById('phone').textContent =
+                            data[i].phone;
+                          document.getElementById('content').textContent =
+                            data[i].ftvContent;
+                          // document
+                          //   .getElementById('url')
+                          //   .setAttribute('href', data[i].url);
+                          // document.getElementById('aContent').textContent =
+                          //   data[i].url;
+
+                          //data 묻히기
+                          document
+                            .getElementById('share')
+                            .setAttribute(
+                              'data-ftvNumForShare',
+                              data[i].ftvNum
+                            );
+
+                          document
+                            .getElementById('modalY')
+                            .setAttribute('href', data[i].url);
+                          document.getElementById('modalY').textContent =
+                            '축제 상세보기';
+
+                          $('#testModal').modal('show');
+
+                          document
+                            .getElementById('share')
+                            .addEventListener('click', (e) => {
+                              //모달 안의 공유하기 버튼 눌렀을 때 이벤트
+                              const bno =
+                                document.getElementById('share').dataset
+                                  .ftvNumForShare;
+                              console.log('bno: ', bno);
+                              shareMessage();
+                            });
+
+                          // overlay.setMap(map);
+                          getFtvNum = data[i].ftvNum;
+
+                          /* 카카오 공유하기 */
+                          function shareMessage() {
+                            Kakao.Share.sendDefault({
+                              objectType: 'location',
+                              address: data[i].roadAddr,
+                              addressTitle: data[i].roadAddr,
+                              content: {
+                                title: data[i].ftvName,
+                                description: data[i].roadAddr,
+                                imageUrl: '/resources/static/img/shareImg.png',
+                                link: {
+                                  // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+                                  mobileWebUrl: 'http://localhost',
+                                  webUrl: 'http://localhost',
+                                },
+                              },
+                              social: {
+                                likeCount: 286,
+                                commentCount: 45,
+                                sharedCount: 845,
+                              },
+                              buttons: [
+                                {
+                                  title: '전국 축제 확인하기',
+                                  link: {
+                                    mobileWebUrl: 'http://localhost',
+                                    webUrl: 'http://localhost',
+                                  },
+                                },
+                              ],
+                            });
+                          }
                         }
                       );
 
@@ -1148,7 +1806,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
                       makeOutListener(infowindow)
                     );
 
-                    // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+                    // 마커를 클릭했을 때 커스텀 오버레이를 표시합축제 상세니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
                       likeMarker = data[i].ftvNum;
@@ -1665,7 +2323,7 @@ pageEncoding="UTF-8"%> <%@ include file="./include/header.jsp" %>
 
           });
       });
-
+    
       // 좋아요 리스트 구현
 
     </script>

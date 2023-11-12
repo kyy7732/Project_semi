@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
+pageEncoding="UTF-8"%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -100,11 +103,13 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
     </style>
   </head>
   <body>
+
+    
     <div id="mainWrapper">
       <ul>
         <br />
         <li><strong><h3>내 댓글 목록</strong></li>
-
+       
         <li>
           <ul id="ulTable">
             <li>
@@ -115,23 +120,23 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
                 <li>작성자</li>
               </ul>
             </li>
+
+          
             
-            <!-- 게시물이 출력될 영역 -->
-            
-            <!-- <c:forEach var="vo" items="${replyList}">
+            <c:forEach var="vo" items="${replyList}">
 	                            <tr>
-	                                <td>${vo.}</td>
+	                                <td>${vo.commentNum}</td>
 	                                <td>
-	                                <a href="${pageContext.request.contextPath}/user/userContent?bno=${vo.bno}&pageNo=${pc.page.pageNo}&amount=${pc.page.amount}&keyword=${pc.page.keyword}&condition=${pc.page.condition}">${vo.title}</a>
+	                                <a href="${pageContext.request.contextPath}/user/userContent?bno=${vo.bno}&pageNo=${pc.page.pageNo}&amount=${pc.page.amount}&keyword=${pc.page.keyword}&condition=${pc.page.condition}">${vo.content}</a>
 	                                </td>
-	                                <td>${vo.writer}</td>
-	                                <td>${vo.date}</td>
+	                                <td>${vo.userId}</td>
+	                                <td>${vo.regDate}</td>
 	                            </tr>
-                            </c:forEach>-->
+                            </c:forEach>
             <li>
               <ul>
                 <li>1</li>
-                <li class="left">제목제목제목제목1</li>
+                <li class="left">제목</li>
                 <li>2014.07.09</li>
                 <li>자바킹</li>
               </ul>
@@ -164,11 +169,11 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
               </ul>
             </li>
 
-            <li></li>
+
           </ul>
         </li>
 
-        <form action="${pageContext.request.contextPath}/user/reply" name="pageForm">
+        <form action="${pageContext.request.contextPath}/reply/replyList" name="pageForm">
             <div class="text-center">
                 <hr>
                     <ul id="pagination" class="pagination pagination-sm">
@@ -213,7 +218,15 @@ pageEncoding="UTF-8"%> <%@ include file="/WEB-INF/views/include/header.jsp" %>
         </li>
       </ul>
     </div>
+    <%@ include file="../include/footer.jsp" %>
+
     
+    <script>
+
+             
+   
+
+    </script>
+
   </body>
 </html>
-<%@ include file="/WEB-INF/views/include/footer.jsp" %>
