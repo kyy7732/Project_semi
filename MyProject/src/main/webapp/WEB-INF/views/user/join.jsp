@@ -13,7 +13,6 @@
         #contents {
             width: 900px;
             margin-left: 500px;
-
         }
 
         .guide_txt {

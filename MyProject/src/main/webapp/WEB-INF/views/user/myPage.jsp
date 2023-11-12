@@ -58,7 +58,7 @@ li.border {
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    height: 70px;
+    height: 107px;
 }
 .aButton{
     display: block;
@@ -82,10 +82,10 @@ a:hover{
     color: #158aff;
 }
 #page5 {
-    margin-top: 100px;
     text-align: center;
     line-height: 100px;
     margin-left: 100px;
+    margin-top: 50px;
     
 }
 #no:hover {
@@ -99,7 +99,7 @@ a:hover{
   
 }
 .button {
-  --background: #275efe;
+  --background: #0356A9;
   --text: #fff;
   --font-size: 15px;
   --duration: 0.44s;
@@ -108,7 +108,7 @@ a:hover{
   --shadow-hover: 0 4px 20px -2px rgba(39, 94, 254, 0.5);
   --font-shadow: var(--font-size);
   margin-left: 300px;
-  margin-top: -10px;
+  margin-top: 10px;
   padding: 16px 32px;
   font-family: 'Roboto';
   font-weight: 500;
@@ -124,6 +124,8 @@ a:hover{
   box-shadow: var(--shadow);
   transform: translateY(var(--y)) translateZ(0);
   transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+  width: 100px;
+  height: 50px;
 }
 .tab1 {
   --background: #fff;
@@ -183,7 +185,7 @@ a:hover{
 /************* 테이블 작업 ************/
 table.table_type {
   position: relative;
-  top: -288px;
+  top: -326px;
   left: 215px;
   width: 800px;
   border-collapse: collapse;
@@ -260,9 +262,7 @@ div.btn_area {
                     <a href="${pageContext.request.contextPath}/user/myPage" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>
                     <!--<a href="${pageContext.request.contextPath}/user/myInfo" class="aButton"><h2 class="hTable">내 정보 수정</h2></a>-->
                 </li>
-                <li class="border">
-                    <a href="${pageContext.request.contextPath}/reply/replyList" class="aButton"><h2 class="hTable">내 댓글 목록</h2></a>
-                </li>
+                
                 <li class="border">
                     <a href="${pageContext.request.contextPath}/user/likeList" class="aButton"><h2 class="hTable">좋아요 목록</h2></a>
                 </li>
