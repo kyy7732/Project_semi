@@ -14,7 +14,7 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
       /* background-image: url(); */
       /* background: url(MyProject\src\main\webapp\resources\static\img\mountain.jpg);
       background-size: cover; */
-      height: 900px;
+      height: 100%;
       width: 100%;
       margin: 0;
       overflow: hidden;
@@ -1139,11 +1139,8 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
       // 지도 클릭시 색상 변경
       let colorflag = false;
       let moveflag = false;
-      let likeMarker = ''; // 마커 클릭시 좋아요 여부 확인
-      let likeMarkers = ''; // 마커 클릭시 좋아요 여부 확인
       let getFtvNum; // 축제번호
       let likeftvNum = []; // 좋아요 번호
-      // const userIdVal = '${login}'; // 로그인 여부
 
       // init('json/sido.json');
       $.getJSON(jsonLocation, function (data) {
@@ -1660,8 +1657,7 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
                           'click',
                           function () {
                             console.log('클릭한 마커의 번호: ', data[i].ftvNum);
-                            likeMarker = data[i].ftvNum;
-                            likeMarkers = data[i].ftvNum;
+
                             document.getElementById(
                               'exampleModalLabel'
                             ).textContent = data[i].ftvName;
@@ -1809,10 +1805,6 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합축제 상세니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
-                      likeMarker = data[i].ftvNum;
-                      likeMarkers = data[i].ftvNum;
-
-                      console.log('likeMarker: ', likeMarker);
 
                       document.getElementById('exampleModalLabel').textContent =
                         data[i].ftvName;
@@ -1938,9 +1930,6 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
-                      likeMarker = data[i].ftvNum;
-                      likeMarkers = data[i].ftvNum;
-
                       document.getElementById('exampleModalLabel').textContent =
                         data[i].ftvName;
                       document.getElementById('date').textContent =
@@ -2056,9 +2045,6 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
-                      likeMarker = data[i].ftvNum;
-                      likeMarkers = data[i].ftvNum;
-
                       document.getElementById('exampleModalLabel').textContent =
                         data[i].ftvName;
                       document.getElementById('date').textContent =
@@ -2174,9 +2160,6 @@ pageEncoding="UTF-8" %> <%@ include file="./include/header.jsp" %>
                     // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
                     kakao.maps.event.addListener(marker, 'click', function () {
                       console.log('클릭한 마커의 번호: ', data[i].ftvNum);
-                      likeMarker = data[i].ftvNum;
-                      likeMarkers = data[i].ftvNum;
-
                       document.getElementById('exampleModalLabel').textContent =
                         data[i].ftvName;
                       document.getElementById('date').textContent =
