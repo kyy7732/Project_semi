@@ -4,33 +4,23 @@
 
 <mapper namespace="com.semi.project.reply.mapper.IReplyMapper">
 	
-	<!--  <insert id="replyRegist">
+	<!-- 댓글 등록 -->
+	 <insert id="regist">
 		INSERT INTO reply
 		(comment_num, content, user_id, ftv_num)
-		VALUES(SEQ_reply_comment_num.NEXTVAL, #{content}, #{userId}, #{ftvNum})
-	</insert>  -->
+		VALUES(seq_reply_comment_num.NEXTVAL, #{content}, #{userId}, #{ftvNum})
+	</insert>  
 	
-	<select id="getList" resultType="reply">
-		SELECT  * FROM
-			(
-			SELECT ROWNUM AS RN, tbl.* FROM
-				(	
-				SELECT * FROM reply
-				WHERE ftv_num = #{ftvNum}
-				ORDER BY comment_num DESC
+	<!-- 댓글 수정 -->
+	<update id="update">
+      UPDATE reply
+      SET comment_num = #{commentNum}, content = #{content}, user_id = #{userId}, ftv_num = #{ftvNum}
+      WHERE reply_no = #{replyNo}
+   </update>
+	
+	
+	
 
-				) tbl
-			)
-		<![CDATA[
-		WHERE rn > #{paging.pageStart} AND rn <= #{paging.pageEnd}
-		]]> <!-- 부등호를 사용하기위한 코드 -->
-	</select>
-	
-	<select id="getTotal" resultType="int">
-		SELECT COUNT(*)
-		FROM reply
-		WHERE ftv_num = #{ftvNum}
-	</select>
 	
 	
 </mapper>

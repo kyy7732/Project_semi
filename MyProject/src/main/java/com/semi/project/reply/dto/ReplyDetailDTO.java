@@ -18,6 +18,7 @@ public class ReplyDetailDTO {
 	private String userId;
 	private String content;
 	private String date;
+	private int ftvNum;
 	
 	public ReplyDetailDTO(Reply reply) {
 		super();

@@ -1,6 +1,6 @@
 package com.semi.project.reply.service;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,47 +20,17 @@ public class ReplyService implements IReplyService {
 
 	private final IReplyMapper mapper;
 	
-	
+	//댓글 등록
 	@Override
 	public void regist(UserReplyRequestDTO dto) {
 		mapper.regist(Reply.builder()
-				.commentNum(dto.getCommentNum())
 				.content(dto.getContent())
 				.userId(dto.getUserId())
-				
+				.ftvNum(dto.getFtvNum())
 				.build());
 	}
 
-	@Override
-	public List<UserReplyResponseDTO> getList(Page page) {
-		List<UserReplyResponseDTO> dtoList = new ArrayList<>();
-		List<Reply> list = mapper.getList(page);
-		for(Reply re : list) {
-			dtoList.add(new UserReplyResponseDTO(re));
-		}
-		return dtoList;
-	}
 
-	@Override
-	public int getTotal(int ftvNum) {
-		return mapper.getTotal(ftvNum);
-	}
-
-
-	@Override
-	public void update(UserReplyModifyRequestDTO dto) {
-		mapper.update(Reply.builder()
-							.commentNum(dto.getCommentNum())
-							.content(dto.getContent())
-							.userId(dto.getUserId())
-							.build());
-		
-	}
-
-	@Override
-	public void delete(int commentNum) {
-		mapper.delete(commentNum);
-	}
 
 }
 

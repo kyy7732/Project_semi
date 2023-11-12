@@ -984,7 +984,7 @@
               <textarea name="cols" id="replytext" cols="30" rows="4" placeholder="댓글을 남겨주세요.">
                 </textarea>
               <div class="submit">
-                <button type="submit" class="btn" onclick="">등록</button>
+                <button type="submit" id="replyregist" class="btn" onclick="">등록</button>
               </div>
             </div>
             <!-- area-reply -->
@@ -995,10 +995,10 @@
                     <li id="" class="item-reply">
                       <div class="box-content">
                         <div class="control">
-                          <p class="text" aria-placeholder="댓글 입력창 입니다."></p>
+                          <p class="text" id="ftvComment" aria-placeholder="댓글 입력창 입니다."></p>
                           <a href="#" class="link-comment" onclick="">답글</a>
                           <a href="#">댓글주소</a>
-                          <a href="#" onclick="">수정/댓글</a>
+                          <a href="#" id="updatereply" onclick="">수정/댓글</a>
                         </div>
                         <!-- <div class="control">
                           <a href="#" class="link-comment" onclick="">답글</a>
@@ -1015,6 +1015,13 @@
         </div>
       </div>
 
+      <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5c6f403205c2f67b836ea3a0e1fc26f5&libraries=services,clusterer,drawing"></script>
+      <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script src="../../resources/static/js/bootstrap.js"></script>
+
       <script>
         $("#ssk").click(function () {
           $(".ressk").toggle();
@@ -1022,14 +1029,42 @@
       </script>
       <script src="script.js"></script>
 
-      <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5c28d99bb31ae88bf5a825a4fd77ac6&libraries=services,clusterer,drawing"></script>
-      <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-      <script src="../../resources/static/js/bootstrap.js"></script>
-
       <script>
+
+        //댓글 등록 
+        window.onload = function () {
+
+          document.getElementById('replyregist').onclick = () => {
+            console.log('댓글 등록 이벤트 발생!');
+
+            let replytext = document.getElementById('replytext').value;
+
+            //요청에 관련된 정보 객체
+            const reqObj = {
+              method: 'post',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                'content': replytext,
+                'userId': userIdVal,
+                'ftvNum': getFtvNum,
+              })
+            };
+
+            fetch('${pageContext.request.contextPath}/reply/new', reqObj)
+              .then(res => res.text())
+              .then(data => {
+                console.log('통신 성공!: ', data);
+                //등록성공 -> 다음 등록을 위해 비워둬야함.
+                document.getElementById('content').value = '';
+                //등록 후 댓글 목록 함수를 비동기식으로 표현함
+                getList(getFtvNum);
+              });
+          }// 댓글 등록 끝.
+
+        }
+
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div
           mapOption = {
             center: new kakao.maps.LatLng(36.050701, 129.370667), // 지도의 중심좌표
