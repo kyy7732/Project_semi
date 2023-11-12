@@ -1824,45 +1824,16 @@
           1532: '2023 가족의 달 어린이축제',
           1533: '무의도 춤축제',
         };
-        // 헤더 랜덤 축제에 관련된 변수
-        var quote = document.getElementById('quote');
-        var btn = document.getElementById('increase');
-        var btn2 = document.getElementById('decrease');
+        function showRandomFestival() {
+          const randomNumber =
+            Math.floor(Math.random() * Object.keys(festivalNames).length) + 1;
+          const festivalName = festivalNames[randomNumber];
+          document.getElementById('festivalName').textContent = festivalName;
+        }
 
-        // 축제 배열로 담은 것
-        var arr = [
-          {
-            quote: '축제1',
-          },
-          {
-            quote: '축제2',
-          },
-          {
-            quote: '축제3',
-          },
-          {
-            quote: '축제4',
-          },
-          {
-            quote: '축제5',
-          },
-        ];
-
-        //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn
-        btn.addEventListener('click', function () {
-          var random = Math.floor(Math.random() * arr.length);
-
-          quote.textContent = arr[random].quote;
-        });
-
-        //버튼 눌렀을 때 arr 배열 안의 축제 랜덤으로 출력 btn2
-        btn2.addEventListener('click', function () {
-          var random = Math.floor(Math.random() * arr.length);
-
-          quote.textContent = arr[random].quote;
-        });
-
-        let str = '';
+        // 페이지 로딩 후 5초마다 데이터 랜덤으로 표시
+        showRandomFestival();
+        setInterval(showRandomFestival, 2000); // 5000 밀리초(5초)
 
         document.querySelector('.like').onclick = () => {
           fetch('${pageContext.request.contextPath}/user/likeList/' + `${login}`)
@@ -1876,17 +1847,6 @@
               document.querySelector('.ftv').insertAdjacentHTML('beforeend', str);
             });
         };
-        ///실시간 데이탕
-        function showRandomFestival() {
-          const randomNumber =
-            Math.floor(Math.random() * Object.keys(festivalNames).length) + 1;
-          const festivalName = festivalNames[randomNumber];
-          document.getElementById('festivalName').textContent = festivalName;
-        }
-
-        // 페이지 로딩 후 5초마다 데이터 랜덤으로 표시
-        showRandomFestival();
-        setInterval(showRandomFestival, 2000); // 5000 밀리초(5초)
       </script>
     </body>
 
