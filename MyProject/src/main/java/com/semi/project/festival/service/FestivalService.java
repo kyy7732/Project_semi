@@ -36,20 +36,8 @@ public class FestivalService {
 		return dtoList;
 
 	}
-
-	// 검색창에 축제명 입력시 데이터 메서드
-	public List<FtvResponseDTO> getFestivalByName(String ftvName){
-		List<Festival> ftvList = mapper.getFestivalName(ftvName);
-		
-		List<FtvResponseDTO> dtoList = new ArrayList<>();
-		
-		for( Festival ftv : ftvList) {
-			dtoList.add(new FtvResponseDTO(ftv));
-		}
-		
-		return dtoList;
-	}
 	
+	//행정구역 클릭시 요청 데이터 메서드
 	public List<FtvResponseDTO> getFestivalByArea(String name) {
 		List<Festival> ftvList = mapper.getFestivalByArea(name); // 받기
 
@@ -60,7 +48,33 @@ public class FestivalService {
 		}
 
 		return dtoList;
-	} // 메서드의 끝
+	}
 
+	// 검색창에 축제명 입력시 데이터 메서드
+	public List<FtvResponseDTO> getFestivalByName(String ftvName){
+		List<Festival> ftvList = mapper.getFestivalName(ftvName);
+		
+		List<FtvResponseDTO> dtoList = new ArrayList<>();
+		
+		for(Festival ftv : ftvList) {
+			dtoList.add(new FtvResponseDTO(ftv));
+		}
+		
+		return dtoList;
+	}// 메서드의 끝
+	
+	// 실시간 인기축제 창에 랜덤 데이터 메서드
+	public List<FtvResponseDTO> getftvNameList2(String ftvname){
+		List<Festival> ftvList = mapper.getFestivalName(ftvname);
+		
+		List<FtvResponseDTO> dtoList = new ArrayList<>();
+		
+		for(Festival ftv : ftvList) {
+			dtoList.add(new FtvResponseDTO(ftv));
+			log.info("ftv 값 불러오기", ftv);
+		}
+		
+		return dtoList;
+	}
 
 }
