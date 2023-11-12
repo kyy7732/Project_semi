@@ -140,10 +140,7 @@ prefix="c" %>
       }
 
       /*****모달창*****/
-      * {
-        margin: 0;
-        padding: 0;
-      }
+
       a.button {
         display: inline-block;
         padding: 10px 20px;
@@ -1858,6 +1855,7 @@ prefix="c" %>
         document.getElementById('festivalName').textContent = festivalName;
       }
 
+
       // 페이지 로딩 후 5초마다 데이터 랜덤으로 표시
       showRandomFestival();
       setInterval(showRandomFestival, 5000); // 5000 밀리초(5초)
@@ -1874,9 +1872,6 @@ prefix="c" %>
             document.querySelector('.ftv').insertAdjacentHTML('beforeend', str);
           });
       };
-      ///실시간 데이탕
-
-      
     </script>
   </body>
 </html>
