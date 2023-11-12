@@ -23,8 +23,9 @@ prefix="spring"%>
         height: 80vh;
       }
 
-      h2 {
+      h3 {
         text-indent: -9999px;
+        font-size: 10px;
       }
       .login-wrapper {
         text-align: center;
@@ -92,14 +93,30 @@ prefix="spring"%>
 
       #joinDiv button {
         height: 40px;
+        width: 300px;
       }
 
       #joinDiv .joinimage {
-        width: 100px;
+        width: 300px;
         background-color: #f8f8f8;
         border: none;
         text-align: center;
         border-radius: 6px;
+        font-size: 16px;
+        height: 45px;
+        text-align: center;
+        color: #fff;
+        border-radius: 6px;
+      }
+      #joinDiv .joinBtn {
+        width: 300px;
+        height: 45px;
+        border-radius: 6px;
+      }
+
+      #border {
+        border: 1px solid rgb(173, 170, 170);
+        margin-top: 15px;
       }
     </style>
   </head>
@@ -114,7 +131,8 @@ prefix="spring"%>
           />
         </a>
 
-        <h2>Login</h2>
+        <div id="border"></div>
+        <h3>Login</h3>
         <form
           method="post"
           id="loginForm"
@@ -140,39 +158,11 @@ prefix="spring"%>
             로그인
           </button>
 
-          <!-- 네이버 로그인 -->
-          <div id="loginButtonsContainer">
-            <div id="naver_id_login">
-              <a href="naverLogin.jsp">
-                <img
-                  src="../img/naver.png"
-                  width="300px"
-                />
-              </a>
-              naver
-            </div>
-
-            <!-- 카카오로그인 -->
-            <botton>
-              <a href="javascript:kakaoLogin()">
-                <img
-                  src="../img/kakao_login_btb_s.png"
-                  width="160px "
-                  height="45px"
-                />
-              </a>
-            </botton>
-          </div>
-
           <!-- 회원가입 -->
           <div id="joinDiv">
-            <p>
-              회원가입을 하시면 다양한 축제와 <br />
-              정보 알림을 받아보실 수 있습니다.
-            </p>
             <a href="${pageContext.request.contextPath}/user/join">
               <img
-                src="/img/join.png"
+                src="/img/joinBtn.png"
                 class="joinBtn"
               />
             </a>
@@ -201,50 +191,6 @@ prefix="spring"%>
 
         document.loginForm.submit();
       };
-    </script>
-    <script
-      type="text/javascript"
-      src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-      charset="utf-8"
-    ></script>
-    <script type="text/javascript">
-      var clientId = `${clientId}`;
-      var callbackUrl = 'https://localhost:80/project/user/login.jsp';
-      var naver_id_login = new naver_id_login(clientId, callbackUrl);
-
-      var state = naver_id_login.getUniqState();
-      naver_id_login.setButton('green', 2, 45);
-      naver_id_login.setDomain('localhost:8000/BBS/main.jsp');
-      naver_id_login.setState(state);
-      naver_id_login.setPopup();
-      naver_id_login.init_naver_id_login();
-    </script>
-
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script>
-      window.Kakao.init('7de3b0c0985fa8044b6661bdd8144459');
-
-      function kakaoLogin() {
-        window.Kakao.Auth.login({
-          scope: 'profile_nickname',
-          success: (authObj) => {
-            console.log('authObj : ');
-            console.log(authObj);
-
-            window.Kakao.API.request({
-              url: '/v2/user/me',
-              success: (res) => {
-                console.log('success: ');
-                console.log(res);
-              },
-              fail: (res) => {
-                console.log(res);
-              },
-            });
-          },
-        });
-      }
-     
     </script>
   </body>
 </html>
