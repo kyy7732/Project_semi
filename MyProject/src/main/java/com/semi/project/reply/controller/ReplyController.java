@@ -3,6 +3,7 @@ package com.semi.project.reply.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.semi.project.reply.dto.UserReplyModifyRequestDTO;
 import com.semi.project.reply.dto.UserReplyRequestDTO;
+import com.semi.project.reply.dto.UserReplyResponseDTO;
 import com.semi.project.reply.service.ReplyService;
 
 import lombok.RequiredArgsConstructor;

@@ -23,8 +23,9 @@ prefix="spring"%>
         height: 80vh;
       }
 
-      h2 {
+      h3 {
         text-indent: -9999px;
+        font-size: 10px;
       }
       .login-wrapper {
         text-align: center;
@@ -112,6 +113,12 @@ prefix="spring"%>
         height: 45px;
         border-radius: 6px;
       }
+
+      #border {
+        border: 1px solid rgb(173, 170, 170);
+        margin-top: 15px;
+
+      }
     </style>
   </head>
 
@@ -125,7 +132,8 @@ prefix="spring"%>
           />
         </a>
 
-        <h2>Login</h2>
+        <div id="border"></div>
+        <h3>Login</h3>
         <form
           method="post"
           id="loginForm"
@@ -155,7 +163,7 @@ prefix="spring"%>
           <div id="joinDiv">
             <a href="${pageContext.request.contextPath}/user/join">
               <img
-                src="/img/join.png"
+                src="/img/joinBtn.png"
                 class="joinBtn"
               />
             </a>
